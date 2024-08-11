@@ -1,0 +1,142 @@
+{
+  "main": {
+    "id": "bef3a606c90e81e0",
+    "type": "split",
+    "children": [
+      {
+        "id": "ea065e05aea6383d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c944d5338958a5db",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "欢迎.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "dac696ef63646083",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "2d9b463ac6233f7d",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "cc3ae12a2f5d692a",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "057907cc0933cb72",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true
+          }
+        }
+      },
+      {
+        "id": "1c0f5022e38f43e5",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {}
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "b834cea2bc733818",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "63aa1d73a2c010d9",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "欢迎.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "1ab90dc0bd9bcb58",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "欢迎.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "ee58e8c504660519",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "欢迎.md"
+          }
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": true,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": true,
+      "daily-notes:打开/创建今天的日记": true,
+      "templates:插入模板": true,
+      "command-palette:打开命令面板": true,
+      "markdown-importer:打开 Markdown 格式转换器": true,
+      "zk-prefixer:创建时间戳笔记": true,
+      "workspaces:管理工作区布局": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": true,
+      "omnisearch:Omnisearch": true,
+      "templater-obsidian:Templater": true
+    }
+  },
+  "active": "c944d5338958a5db",
+  "lastOpenFiles": []
+}

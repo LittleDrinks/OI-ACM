@@ -1,0 +1,173 @@
+{
+  "main": {
+    "id": "ed16b99214630fbe",
+    "type": "split",
+    "children": [
+      {
+        "id": "16c91dcb445bcede",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5643122c65d9e487",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2-题解/AcWing103.电影.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7f6c8da415929381",
+    "type": "split",
+    "children": [
+      {
+        "id": "0e633fc20dee07e4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d1d33600c1a07559",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "13590c8235728ab7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ce6ff92fcb436eb9",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "0322e523a125bb36",
+    "type": "split",
+    "children": [
+      {
+        "id": "27e1cbf3ed8be78a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "416f94a1e7ab16c7",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2-题解/AcWing103.电影.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "bd466e5107f6ed4a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2-题解/AcWing103.电影.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "e545248956e0ef98",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "21dc2d45d4e19c83",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2-题解/AcWing103.电影.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": true,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": true,
+      "daily-notes:打开/创建今天的日记": true,
+      "templates:插入模板": true,
+      "command-palette:打开命令面板": true,
+      "obsidian-excalidraw-plugin:新建绘图文件": true,
+      "omnisearch:Omnisearch": true,
+      "templater-obsidian:Templater": true,
+      "zk-prefixer:创建时间戳笔记": true,
+      "markdown-importer:打开 Markdown 格式转换器": true,
+      "workspaces:管理工作区布局": false
+    }
+  },
+  "active": "5643122c65d9e487",
+  "lastOpenFiles": [
+    "2-题解/AcWing102.最佳牛围栏.md",
+    "AcWing120.md",
+    "欢迎.md",
+    "~syncthing~.nomedia.tmp",
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLight.woff2",
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLightItalic.woff2",
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiBoldItalic.woff2",
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiBold.woff2",
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-Regular.woff2",
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-LightItalic.woff2",
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-Light.woff2",
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-Italic.woff2",
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-ExtraLightItalic.woff2",
+    "0-系统组件/2-模板/带metadata的新文件.md",
+    "0-系统组件/1-附件/带metadata的新文件.md"
+  ]
+}
