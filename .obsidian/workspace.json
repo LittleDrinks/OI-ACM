@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "972c7468bfca64ea",
+        "id": "59af21840bb90e55",
         "type": "tabs",
         "children": [
           {
-            "id": "76ac3425067a8696",
+            "id": "d095fac9629f53ea",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "2-题解/AcWing131.直方图中最大的矩形.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "2-题解/AcWing131.直方图中最大的矩形.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "2-题解/AcWing131.直方图中最大的矩形.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "2-题解/AcWing131.直方图中最大的矩形.md"
+              }
             }
           }
         ]
@@ -141,14 +149,26 @@
       "templater-obsidian:Templater": false,
       "zk-prefixer:创建时间戳笔记": true,
       "markdown-importer:打开 Markdown 格式转换器": true,
-      "workspaces:管理工作区布局": false
+      "workspaces:管理工作区布局": false,
+      "homepage:Open homepage": false
     }
   },
-  "active": "76ac3425067a8696",
+  "active": "d095fac9629f53ea",
   "lastOpenFiles": [
+    "0-系统组件/2-模板/题解模板.md",
+    "2-题解/AcWing131.直方图中最大的矩形.md",
+    "3-笔记/栈.md",
+    "0-系统组件/3-Excalidraw/SP1805图例2.md",
+    "2-题解/AcWing130.火车进出栈问题.md",
+    "0-系统组件/3-Excalidraw/SP1805图示1.md",
+    "0-系统组件/3-Excalidraw/P9978图示1.md",
+    "0-系统组件/homepage.md",
+    "2-题解/AcWing41.包含min函数的栈.md",
+    "3-笔记/排序.md",
+    "2-题解/AcWing113.特殊排序.md",
+    "3-笔记/二分.md",
     "2-题解/AcWing121.赶牛入圈.md",
     "2-题解/AcWing120.防线.md",
-    "2-题解/AcWing113.特殊排序.md",
     "2-题解/AcWing112.糖果传递.md",
     "2-题解/AcWing107.超快速排序.md",
     "2-题解/AcWing106.动态中位数.md",
@@ -156,8 +176,6 @@
     "2-题解/AcWing104.货舱选址.md",
     "2-题解/AcWing103.电影.md",
     "2-题解/AcWing102.最佳牛围栏.md",
-    "3-笔记/二分.md",
-    "3-笔记/排序.md",
     "欢迎.md",
     "~syncthing~.nomedia.tmp",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLight.woff2",
