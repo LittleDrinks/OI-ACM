@@ -2,7 +2,8 @@
 tags:
   - 题解
   - 二分
-aliases: 
+aliases:
+  - AcWing102
 speed:
 ---
 ## [102. 最佳牛围栏](https://www.acwing.com/problem/content/104/)

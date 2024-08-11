@@ -2,7 +2,8 @@
 tags:
   - 题解
   - 离散化
-aliases: 
+aliases:
+  - AcWing103
 speed:
 ---
 ## [103. 电影](https://www.acwing.com/problem/content/105/)

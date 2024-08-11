@@ -3,7 +3,8 @@ tags:
   - 题解
   - 堆
   - 排序
-aliases: 
+aliases:
+  - AcWing106
 speed:
 ---
 ## [106. 动态中位数](https://www.acwing.com/problem/content/108/)

@@ -1,7 +1,8 @@
 ---
 tags:
   - 题解
-aliases: 
+aliases:
+  - AcWing112
 speed:
 ---
 ## [122. 糖果传递](https://www.acwing.com/problem/content/124/)

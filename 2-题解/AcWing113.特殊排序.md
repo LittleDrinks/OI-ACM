@@ -2,12 +2,12 @@
 tags:
   - 题解
   - 二分
-same: 
+same: AcWing113
 speed:
 ---
 ## [113. 特殊排序](https://www.acwing.com/problem/content/115/)
 
-
+二分优化插入排序。
 
 [AC代码提交记录](https://www.acwing.com/problem/content/submission/code_detail/36397983/)
 

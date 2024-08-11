@@ -3,7 +3,8 @@ tags:
   - 题解
   - 排序
   - 贪心
-aliases: 
+aliases:
+  - AcWing104
 speed:
 ---
 ## [104. 货仓选址](https://www.acwing.com/problem/content/106/)

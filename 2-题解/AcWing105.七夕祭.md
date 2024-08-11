@@ -3,7 +3,8 @@ tags:
   - 题解
   - 排序
   - 贪心
-aliases: 
+aliases:
+  - AcWing105
 speed:
 ---
 ## [105. 七夕祭](https://www.acwing.com/problem/content/107/)
