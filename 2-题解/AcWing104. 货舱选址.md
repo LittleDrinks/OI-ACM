@@ -17,7 +17,7 @@ speed:
 若n是奇数，那么应该放在 $x[(n+1)/2]$
 若n是偶数，那么选址坐标 $x[n/2] <= x <= x[1+n/2]$
 
-[AC代码提交记录](https://www.acwing.com/problem/content/submission/code_detail/36422131/)
+#### [AC 代码](https://www.acwing.com/problem/content/submission/code_detail/36422131/)
 
 ```cpp
 #include <bits/stdc++.h>

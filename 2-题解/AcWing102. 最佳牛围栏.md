@@ -10,7 +10,7 @@ speed:
 
 前置题：[[POJ1050]]
 
-[AC代码提交记录](https://www.acwing.com/problem/content/submission/code_detail/36395666/)
+#### [AC 代码](https://www.acwing.com/problem/content/submission/code_detail/36395666/)
 
 ```cpp
 #include <bits/stdc++.h>

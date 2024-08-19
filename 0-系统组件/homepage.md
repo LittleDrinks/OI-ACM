@@ -1,6 +1,9 @@
 ---
 tags:
 ---
-[[二分]]
-[[排序]]
-[[栈]]
+```dataview
+task
+from "3-笔记"
+where !completed
+group by file.link
+```

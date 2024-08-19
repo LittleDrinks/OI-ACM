@@ -13,7 +13,7 @@ speed:
 - 去重时写 `len=unique(a+1, a+n+1)-(a+1)`
 - 二分时写 `lower(a+1, a+n+1, x)-a`
 
-[AC代码提交记录](https://www.acwing.com/problem/content/submission/code_detail/36421747/)
+#### [AC 代码](https://www.acwing.com/problem/content/submission/code_detail/36421747/)
 
 ```cpp
 #include <bits/stdc++.h>

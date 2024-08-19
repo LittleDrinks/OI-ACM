@@ -9,7 +9,7 @@ speed:
 
 二分优化插入排序。
 
-[AC代码提交记录](https://www.acwing.com/problem/content/submission/code_detail/36397983/)
+##### [AC 代码](https://www.acwing.com/problem/content/submission/code_detail/36397983/)
 
 ```cpp
 class Solution {
@@ -23,7 +23,7 @@ public:
 };
 ```
 
-[AC代码提交记录](https://www.acwing.com/problem/content/submission/code_detail/36397945/)
+##### [AC 代码](https://www.acwing.com/problem/content/submission/code_detail/36397945/)
 
 ```cpp
 class Solution {

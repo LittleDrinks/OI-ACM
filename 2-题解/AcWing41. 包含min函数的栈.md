@@ -3,14 +3,15 @@ tags:
   - 题解
   - 栈
   - 单调栈
-aliases: 
+aliases:
+  - AcWing41
 speed:
 ---
 ## [41. 包含min函数的栈](https://www.acwing.com/problem/content/90/)
 
 单调栈模板题，另外搞一个栈存储前缀最小值即可。
 
-[AC代码提交记录](https://www.acwing.com/problem/content/submission/code_detail/36434273/)
+#### [AC 代码](https://www.acwing.com/problem/content/submission/code_detail/36434273/)
 
 ```cpp
 class MinStack {

@@ -12,7 +12,7 @@ speed:
 对顶堆求动态中位数
 大根堆在下，小根堆在上，小根堆里的数都比大根堆大，答案为小根堆的堆顶。
 
-[AC代码提交记录](https://www.acwing.com/problem/content/submission/code_detail/36423057/)
+#### [AC 代码](https://www.acwing.com/problem/content/submission/code_detail/36423057/)
 
 ```cpp
 #include <bits/stdc++.h>

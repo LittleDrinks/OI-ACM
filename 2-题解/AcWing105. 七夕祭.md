@@ -9,7 +9,7 @@ speed:
 ---
 ## [105. 七夕祭](https://www.acwing.com/problem/content/107/)
 
-前置题：[[AcWing112.糖果传递]]，[[AcWing104.货舱选址]]
+前置题：[[AcWing112. 糖果传递]]，[[AcWing104. 货舱选址]]
 
-[AC代码提交记录]()
+#### [AC 代码]()
 

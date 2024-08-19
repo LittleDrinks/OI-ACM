@@ -16,7 +16,7 @@ speed:
 一种可行的做法是：维护一个严格单调递增的栈 `s`，一旦栈顶 `h[s.top()]` 大于当前位置 `h[i]`，就说明 `s.top()` 右侧第一个比它小的矩形是 `i`。直到最终 `h[s.top()]`。
 *注意：这种做法维护出的 `L,R` 在遇到一段连续 `h` 相等的情况下是不完全正确的，但在这段连续的矩阵内至少有一个点可以算出正确的答案，因此最终答案是正确的。*
 
-[AC 代码提交记录](https://www.acwing.com/problem/content/submission/code_detail/36437772/)
+#### [AC 代码](https://www.acwing.com/problem/content/submission/code_detail/36437772/)
 
 ```cpp
 #include <bits/stdc++.h>
