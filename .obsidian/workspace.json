@@ -4,22 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "c15c6c5648780f72",
+        "id": "759181d55de0c72e",
         "type": "tabs",
         "children": [
           {
-            "id": "56823f75c3616e1a",
+            "id": "1988d1f9c3ccc8fb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CF2001D.md",
+                "file": "3-笔记/Trie.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d12f1284c522cd31",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2-题解/CF1980G.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CF2001D.md",
+                "file": "2-题解/CF1980G.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CF2001D.md",
+                "file": "2-题解/CF1980G.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,11 +138,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CF2001D.md"
+                "file": "2-题解/CF1980G.md"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -144,19 +158,21 @@
       "daily-notes:打开/创建今天的日记": true,
       "templates:插入模板": true,
       "command-palette:打开命令面板": true,
-      "obsidian-excalidraw-plugin:新建绘图文件": true,
-      "omnisearch:Omnisearch": true,
-      "templater-obsidian:Templater": false,
       "zk-prefixer:创建时间戳笔记": true,
       "markdown-importer:打开 Markdown 格式转换器": true,
       "workspaces:管理工作区布局": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "omnisearch:Omnisearch": false,
+      "templater-obsidian:Templater": false,
       "homepage:Open homepage": false
     }
   },
-  "active": "56823f75c3616e1a",
+  "active": "d12f1284c522cd31",
   "lastOpenFiles": [
+    "3-笔记/Trie.md",
+    "2-题解/CF1980G.md",
+    "2-题解/CF2001D.md",
     "0-系统组件/homepage.md",
-    "CF2001D.md",
     "3-笔记/贪心.md",
     "3-笔记/DP.md",
     "3-笔记/栈.md",
@@ -179,8 +195,6 @@
     "2-题解/AcWing104. 货舱选址.md",
     "2-题解/AcWing103. 电影.md",
     "2-题解/AcWing102. 最佳牛围栏.md",
-    "0-系统组件/3-Excalidraw/SP1805图例2.md",
-    "0-系统组件/3-Excalidraw/SP1805图示1.md",
     "~syncthing~.nomedia.tmp",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLight.woff2",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLightItalic.woff2",
