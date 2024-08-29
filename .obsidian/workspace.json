@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "b6826cd6549c9b67",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md",
+                "file": "conflict-files-obsidian-git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md",
+                "file": "conflict-files-obsidian-git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md"
+                "file": "conflict-files-obsidian-git.md"
               }
             }
           }
@@ -153,10 +166,12 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e422ebf413ac34f5",
+  "active": "b6826cd6549c9b67",
   "lastOpenFiles": [
-    "2-题解/gym105222I.md",
+    "~syncthing~.nomedia.tmp",
     "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md",
+    "conflict-files-obsidian-git.md",
+    "2-题解/gym105222I.md",
     "0-系统组件/2-模板/比赛模板.md",
     "0-系统组件/homepage.md",
     "2-题解/CF2003D2.md",
@@ -183,9 +198,6 @@
     "3-汇总/1-笔记/排序.md",
     "2-题解/AcWing106. 动态中位数.md",
     "2-题解/AcWing105. 七夕祭.md",
-    "2-题解/AcWing 110. 防晒.md",
-    "2-题解/AcWing1055. 股票买卖 II.md",
-    "~syncthing~.nomedia.tmp",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLight.woff2",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLightItalic.woff2",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiBoldItalic.woff2",
