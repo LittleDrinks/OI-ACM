@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "c15c6c5648780f72",
+        "id": "66e044f04c848d8d",
         "type": "tabs",
         "children": [
           {
-            "id": "56823f75c3616e1a",
+            "id": "e422ebf413ac34f5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CF2001D.md",
+                "file": "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "CF",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CF2001D.md",
+                "file": "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CF2001D.md",
+                "file": "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CF2001D.md"
+                "file": "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md"
               }
             }
           }
@@ -144,52 +144,52 @@
       "daily-notes:打开/创建今天的日记": true,
       "templates:插入模板": true,
       "command-palette:打开命令面板": true,
-      "obsidian-excalidraw-plugin:新建绘图文件": true,
-      "omnisearch:Omnisearch": true,
-      "templater-obsidian:Templater": false,
       "zk-prefixer:创建时间戳笔记": true,
       "markdown-importer:打开 Markdown 格式转换器": true,
       "workspaces:管理工作区布局": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "omnisearch:Omnisearch": false,
+      "templater-obsidian:Templater": false,
       "homepage:Open homepage": false
     }
   },
-  "active": "56823f75c3616e1a",
+  "active": "e422ebf413ac34f5",
   "lastOpenFiles": [
+    "2-题解/gym105222I.md",
+    "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md",
+    "0-系统组件/2-模板/比赛模板.md",
     "0-系统组件/homepage.md",
-    "CF2001D.md",
-    "3-笔记/贪心.md",
-    "3-笔记/DP.md",
-    "3-笔记/栈.md",
+    "2-题解/CF2003D2.md",
+    "2-题解/CF2003D1.md",
+    "2-题解/CF1980G.md",
+    "3-文档/2-比赛/Codeforces Round 968 (Div. 2).md",
+    "3-文档/1-笔记/贪心.md",
+    "3-文档/1-笔记/栈.md",
+    "3-文档/1-笔记/排序.md",
+    "3-文档/1-笔记/二分.md",
+    "3-文档/1-笔记/Trie.md",
+    "3-文档/1-笔记/DP.md",
+    "3-文档/2-比赛",
+    "3-文档/1-笔记",
+    "3-文档",
+    "3-汇总/1-笔记",
+    "2-题解/CF2001D.md",
+    "3-汇总/1-笔记/贪心.md",
+    "3-汇总/1-笔记/DP.md",
+    "3-汇总/1-笔记/栈.md",
     "2-题解/AcWing130. 火车进出栈问题.md",
     "2-题解/AcWing131. 直方图中最大的矩形.md",
     "2-题解/AcWing41. 包含min函数的栈.md",
-    "3-笔记/排序.md",
+    "3-汇总/1-笔记/排序.md",
     "2-题解/AcWing106. 动态中位数.md",
     "2-题解/AcWing105. 七夕祭.md",
     "2-题解/AcWing 110. 防晒.md",
     "2-题解/AcWing1055. 股票买卖 II.md",
-    "3-笔记/二分.md",
-    "0-系统组件/2-模板/题解模板.md",
-    "2-题解/AT_arc179_b.md",
-    "2-题解/AcWing121. 赶牛入圈.md",
-    "2-题解/AcWing120. 防线.md",
-    "2-题解/AcWing113. 特殊排序.md",
-    "2-题解/AcWing112. 糖果传递.md",
-    "2-题解/AcWing107. 超快速排序.md",
-    "2-题解/AcWing104. 货舱选址.md",
-    "2-题解/AcWing103. 电影.md",
-    "2-题解/AcWing102. 最佳牛围栏.md",
-    "0-系统组件/3-Excalidraw/SP1805图例2.md",
-    "0-系统组件/3-Excalidraw/SP1805图示1.md",
     "~syncthing~.nomedia.tmp",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLight.woff2",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLightItalic.woff2",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiBoldItalic.woff2",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiBold.woff2",
-    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-Regular.woff2",
-    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-LightItalic.woff2",
-    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-Light.woff2",
-    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-Italic.woff2",
-    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-ExtraLightItalic.woff2"
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-Regular.woff2"
   ]
 }
