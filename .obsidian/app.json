@@ -2,5 +2,11 @@
   "showLineNumber": true,
   "attachmentFolderPath": "0-系统组件/1-附件",
   "promptDelete": false,
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "pdfExportSettings": {
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  }
 }
