@@ -3,7 +3,7 @@ tags:
   - 题解
 aliases:
   - 前缀统计
-  - AcWing142
+  - AcWing142. 前缀统计
 speed:
 ---
 ## [142. 前缀统计](https://www.acwing.com/problem/content/144/)

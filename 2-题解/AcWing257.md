@@ -2,8 +2,8 @@
 tags:
   - 题解
 aliases:
-  - AcWing257
   - 关押罪犯
+  - AcWing257. 关押罪犯
 speed:
 ---
 ## [257. 关押罪犯](https://www.acwing.com/problem/content/259/)

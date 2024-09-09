@@ -3,7 +3,9 @@ tags:
   - 题解
   - 栈
   - 卡特兰数
-aliases: 
+aliases:
+  - AcWing130. 火车进出栈问题
+  - 火车进出栈问题
 speed:
 ---
 ## [130. 火车进出栈问题](https://www.acwing.com/problem/content/132/)

@@ -5,9 +5,9 @@ tags:
   - Trie
 ---
 字典树
-- [x] [[AcWing142. 前缀统计]]
+- [x] [[AcWing142]]
 
 01Trie
-- [x] [[AcWing143. 最大异或对]]
-- [x] [[AcWing144. 最长异或值路径]]
+- [x] [[AcWing143]]
+- [x] [[AcWing144]]
 - [x] [[CF1980G]]

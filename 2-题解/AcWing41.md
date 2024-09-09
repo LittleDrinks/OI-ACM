@@ -4,7 +4,8 @@ tags:
   - 栈
   - 单调栈
 aliases:
-  - AcWing41
+  - AcWing41. 包含min函数的栈
+  - 包含min函数的栈
 speed:
 ---
 ## [41. 包含min函数的栈](https://www.acwing.com/problem/content/90/)

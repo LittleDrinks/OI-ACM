@@ -4,7 +4,8 @@ tags:
   - 堆
   - 排序
 aliases:
-  - AcWing106
+  - AcWing106. 动态中位数
+  - 动态中位数
 speed:
 ---
 ## [106. 动态中位数](https://www.acwing.com/problem/content/108/)

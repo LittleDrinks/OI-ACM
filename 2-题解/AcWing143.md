@@ -2,8 +2,8 @@
 tags:
   - 题解
 aliases:
-  - AcWing143
   - 最大异或对
+  - AcWing143. 最大异或对
 speed:
 ---
 ## [143. 最大异或对](https://www.acwing.com/problem/content/145/)

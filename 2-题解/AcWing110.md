@@ -1,7 +1,9 @@
 ---
 tags:
   - 题解
-aliases: 
+aliases:
+  - AcWing110. 防晒
+  - 防晒
 speed:
 ---
 ## []()

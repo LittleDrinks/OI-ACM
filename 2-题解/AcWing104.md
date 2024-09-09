@@ -4,7 +4,8 @@ tags:
   - 排序
   - 贪心
 aliases:
-  - AcWing104
+  - AcWing104. 货舱选址
+  - 货舱选址
 speed:
 ---
 ## [104. 货仓选址](https://www.acwing.com/problem/content/106/)

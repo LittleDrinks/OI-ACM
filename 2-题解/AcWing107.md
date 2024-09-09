@@ -3,7 +3,8 @@ tags:
   - 题解
   - 逆序对
 aliases:
-  - AcWing107
+  - AcWing107. 超快速排序
+  - 超快速排序
 speed:
 ---
 ## [107. 超快速排序](https://www.acwing.com/problem/content/109/)

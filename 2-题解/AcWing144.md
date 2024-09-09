@@ -2,13 +2,13 @@
 tags:
   - 题解
 aliases:
-  - AcWing144
   - 最长异或值路径
+  - AcWing144. 最长异或值路径
 speed:
 ---
 ## [144. 最长异或值路径](https://www.acwing.com/problem/content/146/)
 
-前置题：[[AcWing143. 最大异或对|最大异或对]]
+前置题：[[AcWing143|最大异或对]]
 
 #### [AC代码](https://www.acwing.com/problem/content/submission/code_detail/36870653/)
 

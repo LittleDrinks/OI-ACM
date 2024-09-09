@@ -3,7 +3,8 @@ tags:
   - 题解
   - 离散化
 aliases:
-  - AcWing103
+  - AcWing103. 电影
+  - 电影
 speed:
 ---
 ## [103. 电影](https://www.acwing.com/problem/content/105/)

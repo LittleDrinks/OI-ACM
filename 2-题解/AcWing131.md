@@ -4,6 +4,8 @@ tags:
 aliases:
   - SP1805
   - Largest Rectangle in a Histogram
+  - AcWing131. 直方图中最大的矩形
+  - 直方图中最大的矩形
 speed:
 ---
 ## [HISTOGRA - Largest Rectangle in a Histogram](https://www.luogu.com.cn/problem/SP1805)

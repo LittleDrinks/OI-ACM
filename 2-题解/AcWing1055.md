@@ -3,7 +3,7 @@ tags:
   - 题解
   - 贪心
 aliases:
-  - AcWing1055
+  - AcWing1055. 股票买卖 II
 speed:
 ---
 ## [1055. 股票买卖 II](https://www.acwing.com/problem/content/1057/)

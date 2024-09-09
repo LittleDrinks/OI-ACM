@@ -2,7 +2,9 @@
 tags:
   - 题解
   - 二分
-same: AcWing113
+aliases:
+  - AcWing113. 特殊排序
+  - 特殊排序
 speed:
 ---
 ## [113. 特殊排序](https://www.acwing.com/problem/content/115/)
