@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "6be69d271bf932f2",
+        "id": "e059676f4cbc54c5",
         "type": "tabs",
         "children": [
           {
-            "id": "d5a961cfae6648a9",
+            "id": "d619d2f67a8a9a1f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0-系统组件/homepage.md",
+                "file": "3-文档/1-笔记/根号分治.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 285.5
   },
   "right": {
     "id": "0322e523a125bb36",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "0-系统组件/homepage.md",
+                "file": "3-文档/1-笔记/根号分治.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "0-系统组件/homepage.md",
+                "file": "3-文档/1-笔记/根号分治.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "0-系统组件/homepage.md"
+                "file": "3-文档/1-笔记/根号分治.md"
               }
             }
           }
@@ -151,37 +151,38 @@
       "omnisearch:Omnisearch": false,
       "templater-obsidian:Templater": false,
       "homepage:Open homepage": false,
-      "smart-random-note:Open Random Note from Search": false
+      "smart-random-note:Open Random Note from Search": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d5a961cfae6648a9",
+  "active": "d619d2f67a8a9a1f",
   "lastOpenFiles": [
-    "2-题解/P2344.md",
+    "3-文档/1-笔记/欧拉函数.md",
+    "3-文档/1-笔记/贪心.md",
+    "3-文档/1-笔记/栈.md",
+    "3-文档/1-笔记/根号分治.md",
+    "3-文档/1-笔记/二分.md",
+    "3-文档/1-笔记/堆.md",
     "0-系统组件/homepage.md",
+    "3-文档/1-笔记/二分图匹配.md",
+    "2-题解/AcWing375.md",
+    "2-题解/AcWing374.md",
+    "3-文档/1-笔记/树状数组.md",
+    "2-题解/P2982.md",
+    "2-题解/P1972.md",
+    "2-题解/P5200.md",
+    "3-文档/2-比赛/2023-2024 ICPC Southwestern European Regional Contest (SWERC 2023).md",
+    "2-题解/P2344.md",
+    "2-题解/AcWing41.md",
+    "3-文档/1-笔记/Trie.md",
+    "3-文档/1-笔记/DP.md",
+    "2-题解/gym105222F.md",
+    "3-文档/1-笔记/排序.md",
+    "2-题解/AcWing148.md",
     "2-题解/P6033.md",
     "3-文档/2-比赛/Codeforces Round 969 (Div. 2).md",
-    "2-题解/AcWing148.md",
-    "3-文档/1-笔记/堆.md",
     "2-题解/P8250.md",
     "2-题解/CF1207F.md",
-    "2-题解/AcWing105.md",
-    "2-题解/gym104945J.md",
-    "2-题解/AcWing142.md",
-    "2-题解/AcWing112.md",
-    "2-题解/P1966.md",
-    "2-题解/AcWing131.md",
-    "2-题解/AcWing130.md",
-    "2-题解/AcWing121.md",
-    "2-题解/AcWing120.md",
-    "2-题解/AcWing113.md",
-    "2-题解/AcWing110.md",
-    "2-题解/AcWing107.md",
-    "2-题解/AcWing106.md",
-    "2-题解/AcWing104.md",
-    "2-题解/AcWing103.md",
-    "2-题解/AcWing102.md",
-    "2-题解/AcWing41.md",
-    "2-题解/AcWing143.md",
     "~syncthing~.nomedia.tmp",
     "3-文档/2-比赛",
     "3-文档/1-笔记",

@@ -6,7 +6,7 @@ tags:
 aliases:
   - AcWing41. 包含min函数的栈
   - 包含min函数的栈
-speed:
+speed: 
 ---
 ## [41. 包含min函数的栈](https://www.acwing.com/problem/content/90/)
 
