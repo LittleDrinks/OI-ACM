@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "f99d3d19c2f78c35",
+        "id": "6be69d271bf932f2",
         "type": "tabs",
         "children": [
           {
-            "id": "ef102c7024f68f3f",
+            "id": "d5a961cfae6648a9",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "0-系统组件/homepage.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "0-系统组件/homepage.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "0-系统组件/homepage.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "0-系统组件/homepage.md"
+              }
             }
           }
         ]
@@ -146,12 +154,18 @@
       "smart-random-note:Open Random Note from Search": false
     }
   },
-  "active": "ef102c7024f68f3f",
+  "active": "d5a961cfae6648a9",
   "lastOpenFiles": [
+    "2-题解/P2344.md",
+    "0-系统组件/homepage.md",
+    "2-题解/P6033.md",
+    "3-文档/2-比赛/Codeforces Round 969 (Div. 2).md",
+    "2-题解/AcWing148.md",
+    "3-文档/1-笔记/堆.md",
+    "2-题解/P8250.md",
     "2-题解/CF1207F.md",
     "2-题解/AcWing105.md",
     "2-题解/gym104945J.md",
-    "2-题解/P8250.md",
     "2-题解/AcWing142.md",
     "2-题解/AcWing112.md",
     "2-题解/P1966.md",
@@ -168,12 +182,6 @@
     "2-题解/AcWing102.md",
     "2-题解/AcWing41.md",
     "2-题解/AcWing143.md",
-    "2-题解/AcWing144.md",
-    "2-题解/AcWing1055.md",
-    "3-文档/1-笔记/二分图匹配.md",
-    "2-题解/AcWing257.md",
-    "2-题解/AcWing372.md",
-    "2-题解/AcWing373.md",
     "~syncthing~.nomedia.tmp",
     "3-文档/2-比赛",
     "3-文档/1-笔记",
