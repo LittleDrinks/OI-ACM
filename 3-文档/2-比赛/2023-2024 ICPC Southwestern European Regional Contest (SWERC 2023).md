@@ -6,4 +6,4 @@ tags:
 
 - [ ] [[gym104945A|A. Card game]]
 - [ ] [[gym104945J|J. Olympic goodies]]
-- [x] [[gym104945K|K. Team selection]]
+- [x] [[gym104945K|K. Team selection]] ✅ 2024-09-07
