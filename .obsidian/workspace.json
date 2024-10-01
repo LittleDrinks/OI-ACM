@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "41529b9cdbb0968d",
+        "id": "203cbd74dc3c28bf",
         "type": "tabs",
         "children": [
           {
-            "id": "fadf1e67f735060d",
+            "id": "56eaba84cd58bcbb",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "0-系统组件/homepage.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -48,7 +44,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:题解",
+                "query": "card",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -62,6 +58,14 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
+              "state": {}
+            }
+          },
+          {
+            "id": "cf2c00143b00226d",
+            "type": "leaf",
+            "state": {
+              "type": "VIEW_TYPE_LONGFORM_EXPLORER",
               "state": {}
             }
           }
@@ -85,7 +89,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "0-系统组件/homepage.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +105,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "0-系统组件/homepage.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,12 +126,19 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "0-系统组件/homepage.md"
-              }
+              "state": {}
+            }
+          },
+          {
+            "id": "5b1cf506039c19ce",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -152,46 +161,47 @@
       "templater-obsidian:Templater": false,
       "homepage:Open homepage": false,
       "smart-random-note:Open Random Note from Search": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": true
     }
   },
-  "active": "fadf1e67f735060d",
+  "active": "56eaba84cd58bcbb",
   "lastOpenFiles": [
-    "3-文档/2-比赛/2023-2024 ICPC Central Europe Regional Contest (CERC 23).md",
-    "2-题解/gym104871G.md",
-    "0-系统组件/1-附件/Pasted image 20240930203940.png",
-    "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
-    "2-题解/gym103409K.md",
-    "2-题解/gym103409B.md",
-    "0-系统组件/homepage.md",
-    "2-题解/P1883.md",
-    "2-题解/P3382.md",
-    "2-题解/gym103409D.md",
-    "3-文档/2-比赛/Codeforces Round 969 (Div. 2).md",
-    "3-文档/2-比赛/Codeforces Round 968 (Div. 2).md",
-    "3-文档/2-比赛/2022-2023 ICPC Northwestern European Regional Programming Contest (NWERC 2022).md",
-    "2-题解/gym105222F.md",
-    "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md",
-    "3-文档/2-比赛/2023-2024 ICPC Southwestern European Regional Contest (SWERC 2023).md",
-    "2-题解/gym103409E.md",
-    "2-题解/gym105222I.md",
-    "gym104875D.md",
+    "4-输出/板子/计算几何.md",
+    "4-输出/板子/快读.md",
+    "4-输出/板子/线段树.md",
+    "4-输出/板子/网络流.md",
+    "4-输出/板子/匈牙利算法.md",
+    "4-输出/板子/Tarjan.md",
+    "4-输出/板子/有向图上判环.md",
     "~syncthing~.nomedia.tmp",
-    "2-题解/P2982.md",
-    "1-闪念/20240907235646.md",
-    "2-题解/P6577.md",
-    "2-题解/P8655.md",
-    "2-题解/AcWing106.md",
-    "2-题解/iai351.md",
-    "0-系统组件/2-模板/比赛模板.md",
+    "4-输出/板子/最短路.md",
+    "4-输出/板子/最小生成树.md",
+    "4-输出/板子/数学.md",
+    "4-输出/板子/LCA.md",
+    "4-输出/板子/树的直径.md",
+    "4-输出/板子/Trie.md",
+    "4-输出/板子/并查集.md",
+    "4-输出/板子/图论.md",
+    "2-题解/CF2018C.md",
+    "0-系统组件/homepage.md",
+    "3-文档/2-比赛/2022-2023 ICPC Northwestern European Regional Programming Contest (NWERC 2022).md",
+    "4-输出/板子/树状数组.md",
+    "4-输出/板子/数据结构.md",
+    "4-输出/板子/杂项.md",
+    "4-输出/板子/Index.md",
+    "4-输出/板子",
+    "1-闪念/20240930220540高版本gcc.md",
+    "3-文档/3-板子",
+    "3-文档/2-比赛/2023-2024 ICPC Southwestern European Regional Contest (SWERC 2023).md",
+    "2-题解/gym104945A.md",
+    "3-文档/1-笔记/树状数组.md",
+    "0-系统组件/1-附件/Pasted image 20240930203940.png",
     "3-文档/2-比赛",
     "3-文档/1-笔记",
     "3-文档",
     "3-汇总/1-笔记",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLight.woff2",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLightItalic.woff2",
-    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiBoldItalic.woff2",
-    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiBold.woff2",
-    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-Regular.woff2"
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiBoldItalic.woff2"
   ]
 }
