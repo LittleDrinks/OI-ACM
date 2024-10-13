@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "203cbd74dc3c28bf",
+        "id": "f6e16d07557fe6ca",
         "type": "tabs",
         "children": [
           {
-            "id": "56eaba84cd58bcbb",
+            "id": "acde0ee316feb470",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "3-文档/2-比赛/The 2024 ICPC Kunming Invitational Contest.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -89,6 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "3-文档/2-比赛/The 2024 ICPC Kunming Invitational Contest.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,6 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "3-文档/2-比赛/The 2024 ICPC Kunming Invitational Contest.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +132,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "3-文档/2-比赛/The 2024 ICPC Kunming Invitational Contest.md"
+              }
             }
           },
           {
@@ -164,44 +172,44 @@
       "obsidian-git:Open Git source control": true
     }
   },
-  "active": "56eaba84cd58bcbb",
+  "active": "acde0ee316feb470",
   "lastOpenFiles": [
-    "4-输出/板子/计算几何.md",
-    "4-输出/板子/快读.md",
-    "4-输出/板子/线段树.md",
-    "4-输出/板子/网络流.md",
-    "4-输出/板子/匈牙利算法.md",
-    "4-输出/板子/Tarjan.md",
-    "4-输出/板子/有向图上判环.md",
-    "~syncthing~.nomedia.tmp",
-    "4-输出/板子/最短路.md",
-    "4-输出/板子/最小生成树.md",
-    "4-输出/板子/数学.md",
-    "4-输出/板子/LCA.md",
-    "4-输出/板子/树的直径.md",
-    "4-输出/板子/Trie.md",
-    "4-输出/板子/并查集.md",
-    "4-输出/板子/图论.md",
-    "2-题解/CF2018C.md",
+    "2-题解/gym105386E.md",
+    "3-文档/2-比赛/The 2024 ICPC Kunming Invitational Contest.md",
+    "2-题解/gym105386I.md",
+    "2-题解/gym105386G.md",
     "0-系统组件/homepage.md",
-    "3-文档/2-比赛/2022-2023 ICPC Northwestern European Regional Programming Contest (NWERC 2022).md",
-    "4-输出/板子/树状数组.md",
-    "4-输出/板子/数据结构.md",
-    "4-输出/板子/杂项.md",
-    "4-输出/板子/Index.md",
+    "4-输出/板子/WA.md",
+    "3-文档/1-笔记/Trie.md",
+    "2-题解/AcWing143.md",
+    "2-题解/AcWing142.md",
+    "2-题解/P3865.md",
+    "4-输出/板子/ST表.md",
+    "4-输出/板子/Trie.md",
+    "3-文档/1-笔记/ST表.md",
+    "4-输出/板子/快读.md",
+    "4-输出/板子/并查集.md",
+    "4-输出/板子/最小生成树.md",
+    "4-输出/板子/有向图上判环.md",
+    "4-输出/板子/最短路.md",
+    "4-输出/板子/图论.md",
+    "4-输出/板子/计算几何.md",
+    "4-输出/板子/线性筛.md",
+    "3-文档/1-笔记/数学.md",
+    "3-文档/1-笔记/DP.md",
+    "2-题解/AcWing286.md",
+    "2-题解/AcWing287.md",
+    "2-题解/AcWing285.md",
+    "3-文档/1-笔记/未命名",
+    "~syncthing~.nomedia.tmp",
     "4-输出/板子",
-    "1-闪念/20240930220540高版本gcc.md",
     "3-文档/3-板子",
-    "3-文档/2-比赛/2023-2024 ICPC Southwestern European Regional Contest (SWERC 2023).md",
-    "2-题解/gym104945A.md",
-    "3-文档/1-笔记/树状数组.md",
     "0-系统组件/1-附件/Pasted image 20240930203940.png",
     "3-文档/2-比赛",
     "3-文档/1-笔记",
     "3-文档",
     "3-汇总/1-笔记",
     "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLight.woff2",
-    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLightItalic.woff2",
-    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiBoldItalic.woff2"
+    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLightItalic.woff2"
   ]
 }

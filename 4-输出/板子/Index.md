@@ -20,8 +20,11 @@ longform:
     - 数据结构
     - - 并查集
       - Trie
+      - ST表
       - 树状数组
       - 线段树
     - 数学
+    - - 线性筛
+    - WA
   ignoredFiles: []
 ---
