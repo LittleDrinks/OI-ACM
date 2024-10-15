@@ -25,6 +25,7 @@ longform:
       - 线段树
     - 数学
     - - 线性筛
-    - WA
-  ignoredFiles: []
+    - 烂掉啦
+  ignoredFiles:
+    - manuscript
 ---

@@ -4,35 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "b4e0964bb4059fb9",
+        "id": "1c899c0f824ec108",
         "type": "tabs",
         "children": [
           {
-            "id": "6b771f5e81fde1a9",
+            "id": "3562c89fb5ee136c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3-文档/1-笔记/线段树.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "2d2ef0c8a6cda21a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2-题解/SP1716.md",
+                "file": "2-题解/gym104821F.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -106,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2-题解/SP1716.md",
+                "file": "2-题解/gym104821F.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2-题解/SP1716.md",
+                "file": "2-题解/gym104821F.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2-题解/SP1716.md"
+                "file": "2-题解/gym104821F.md"
               }
             }
           },
@@ -185,34 +172,34 @@
       "obsidian-git:Open Git source control": true
     }
   },
-  "active": "2d2ef0c8a6cda21a",
+  "active": "3562c89fb5ee136c",
   "lastOpenFiles": [
-    "3-文档/1-笔记/线段树.md",
-    "2-题解/SP1716.md",
-    "2-题解/P3372.md",
+    "3-文档/1-笔记/The 2023 ICPC Asia Nanjing Regional Contest.md",
+    "2-题解/gym104821F.md",
+    "2-题解/gym104821G.md",
+    "2-题解/gym104821C.md",
+    "3-文档/1-笔记/数学.md",
+    "4-输出/板子/数学.md",
+    "3-文档/1-笔记/贪心.md",
+    "2-题解/AcWing110.md",
+    "4-输出/板子/烂掉啦.md",
     "0-系统组件/homepage.md",
-    "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md",
-    "2-题解/P1502.md",
-    "2-题解/P2894.md",
-    "2-题解/P1856.md",
-    "2-题解/P5490.md",
-    "2-题解/P3373.md",
-    "2-题解/P2344.md",
-    "2-题解/AcWing375.md",
-    "3-文档/1-笔记/树状数组.md",
-    "2-题解/P5200.md",
     "2-题解/iai100.md",
-    "2-题解/P1972.md",
-    "2-题解/iai351.md",
-    "2-题解/P2982.md",
+    "3-文档/1-笔记/树状数组.md",
+    "2-题解/P3368.md",
+    "4-输出/板子/树状数组.md",
     "4-输出/板子/快读.md",
-    "2-题解/gym103409D.md",
-    "3-文档/2-比赛/The 2024 ICPC Kunming Invitational Contest.md",
-    "2-题解/gym105386E.md",
-    "2-题解/gym105386I.md",
-    "2-题解/gym105386G.md",
-    "4-输出/板子/WA.md",
-    "3-文档/1-笔记/Trie.md",
+    "4-输出/板子/线段树.md",
+    "4-输出/板子/manuscript.md",
+    "4-输出/板子/ST表.md",
+    "4-输出/板子/Trie.md",
+    "4-输出/板子/并查集.md",
+    "4-输出/板子/数据结构.md",
+    "4-输出/板子/最小生成树.md",
+    "4-输出/板子/有向图上判环.md",
+    "4-输出/板子/最短路.md",
+    "4-输出/板子/网络流.md",
+    "4-输出/板子/计算几何.md",
     "3-文档/1-笔记/未命名",
     "~syncthing~.nomedia.tmp",
     "4-输出/板子",
