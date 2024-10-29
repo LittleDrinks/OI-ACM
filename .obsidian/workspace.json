@@ -149,10 +149,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "0-系统组件/homepage.md"
+                "file": "4-输出/板子/最短路.md"
               },
               "icon": "lucide-list",
-              "title": "homepage 的大纲"
+              "title": "最短路 的大纲"
             }
           },
           {
@@ -191,34 +191,35 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "5b1cf506039c19ce",
+  "active": "d1d33600c1a07559",
   "lastOpenFiles": [
-    "README.md",
-    "0-系统组件/homepage.md",
-    "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
+    "4-输出/板子/最短路.md",
+    "4-输出/板子/有向图上判环.md",
+    "4-输出/板子/并查集.md",
+    "4-输出/板子/数据结构.md",
+    "4-输出/板子/Trie.md",
+    "4-输出/板子/ST表.md",
     "4-输出/板子/对顶multiset.md",
-    "2-题解/gym104901K.md",
-    "2-题解/AcWing106.md",
-    "3-文档/2-比赛/The 2023 ICPC Asia Jinan Regional Contest.md",
-    "3-文档/2-比赛/Codeforces Round 969 (Div. 2).md",
     "4-输出/板子/树状数组.md",
     "4-输出/板子/线段树.md",
+    "4-输出/板子/线性筛.md",
+    "4-输出/板子/烂掉啦.md",
+    "0-系统组件/homepage.md",
+    "3-文档/2-比赛/The 2023 ICPC Asia Jinan Regional Contest.md",
+    "2-题解/gym104901K.md",
+    "2-题解/P2894.md",
+    "README.md",
+    "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
+    "2-题解/AcWing106.md",
+    "3-文档/2-比赛/Codeforces Round 969 (Div. 2).md",
     "2-题解/AcWing244.md",
     "2-题解/CF1196D2.md",
     "2-题解/gym103409K.md",
-    "4-输出/板子/最短路.md",
-    "4-输出/板子/有向图上判环.md",
-    "4-输出/板子/烂掉啦.md",
     "~syncthing~.nomedia.tmp",
     "1-闪念/20240930220540高版本gcc和devc++配置.md",
     "2-题解/CF440B.md",
     "3-文档/1-笔记/贪心.md",
     "2-题解/CF313C.md",
-    "2-题解/AT_arc052_d.md",
-    "2-题解/AcWing375.md",
-    "2-题解/AcWing310.md",
-    "2-题解/AcWing142.md",
-    "2-题解/AcWing102.md",
     "0-系统组件/1-附件/Pasted image 20240930203940.png",
     "3-文档/1-笔记/未命名",
     "4-输出/板子",

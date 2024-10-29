@@ -1,0 +1,231 @@
+{
+  "workspaces": {
+    "主页": {
+      "main": {
+        "id": "5324373015726ba8",
+        "type": "split",
+        "children": [
+          {
+            "id": "4509724f8bf84da7",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "e7a7b303c61786dc",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "0-系统组件/homepage.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "homepage"
+                }
+              },
+              {
+                "id": "47492fd2941d3650",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "3-文档/2-比赛/The 2023 ICPC Asia Jinan Regional Contest.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "The 2023 ICPC Asia Jinan Regional Contest"
+                }
+              },
+              {
+                "id": "2c1cacef7c01a997",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "2-题解/gym104901K.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "gym104901K"
+                }
+              }
+            ],
+            "currentTab": 2
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "7f6c8da415929381",
+        "type": "split",
+        "children": [
+          {
+            "id": "0e633fc20dee07e4",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "d1d33600c1a07559",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {
+                    "sortOrder": "alphabetical"
+                  },
+                  "icon": "lucide-folder-closed",
+                  "title": "文件列表"
+                }
+              },
+              {
+                "id": "13590c8235728ab7",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "对顶堆",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  },
+                  "icon": "lucide-search",
+                  "title": "搜索"
+                }
+              },
+              {
+                "id": "ce6ff92fcb436eb9",
+                "type": "leaf",
+                "state": {
+                  "type": "bookmarks",
+                  "state": {},
+                  "icon": "lucide-bookmark",
+                  "title": "书签"
+                }
+              },
+              {
+                "id": "cf2c00143b00226d",
+                "type": "leaf",
+                "state": {
+                  "type": "VIEW_TYPE_LONGFORM_EXPLORER",
+                  "state": {},
+                  "icon": "longform",
+                  "title": "Longform"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 285.5
+      },
+      "right": {
+        "id": "0322e523a125bb36",
+        "type": "split",
+        "children": [
+          {
+            "id": "27e1cbf3ed8be78a",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "416f94a1e7ab16c7",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "2-题解/AT_arc052_d.md",
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-coming-in",
+                  "title": "AT_arc052_d 的反向链接列表"
+                }
+              },
+              {
+                "id": "bd466e5107f6ed4a",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "0-系统组件/homepage.md",
+                    "linksCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-going-out",
+                  "title": "homepage 的出链列表"
+                }
+              },
+              {
+                "id": "e545248956e0ef98",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true
+                  },
+                  "icon": "lucide-tags",
+                  "title": "标签"
+                }
+              },
+              {
+                "id": "21dc2d45d4e19c83",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "2-题解/gym104901K.md"
+                  },
+                  "icon": "lucide-list",
+                  "title": "gym104901K 的大纲"
+                }
+              },
+              {
+                "id": "5b1cf506039c19ce",
+                "type": "leaf",
+                "state": {
+                  "type": "git-view",
+                  "state": {},
+                  "icon": "git-pull-request",
+                  "title": "Source Control"
+                }
+              }
+            ],
+            "currentTab": 4
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300,
+        "collapsed": true
+      },
+      "left-ribbon": {
+        "hiddenItems": {
+          "switcher:打开快速切换": true,
+          "graph:查看关系图谱": false,
+          "canvas:新建白板": true,
+          "daily-notes:打开/创建今天的日记": true,
+          "templates:插入模板": true,
+          "command-palette:打开命令面板": true,
+          "zk-prefixer:创建时间戳笔记": false,
+          "markdown-importer:打开 Markdown 格式转换器": true,
+          "workspaces:管理工作区布局": false,
+          "obsidian-excalidraw-plugin:新建绘图文件": false,
+          "omnisearch:Omnisearch": false,
+          "templater-obsidian:Templater": false,
+          "smart-random-note:Open Random Note from Search": false,
+          "obsidian-git:Open Git source control": false,
+          "homepage:Open homepage": false
+        }
+      },
+      "active": "2c1cacef7c01a997",
+      "mtime": "2024-10-29T15:25:24+08:00"
+    }
+  },
+  "active": "主页"
+}
