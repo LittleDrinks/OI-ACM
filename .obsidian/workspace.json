@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "4f21127a7a71326b",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "db8bd040c3b4a742",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4-输出/板子/对顶multiset.md",
+                "file": "0-系统组件/homepage.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "对顶multiset"
+              "title": "homepage"
+            }
+          },
+          {
+            "id": "3c926a80a7781476",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -83,8 +98,7 @@
               "title": "Longform"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -166,12 +180,12 @@
               "title": "Source Control"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -188,21 +202,24 @@
       "omnisearch:Omnisearch": false,
       "templater-obsidian:Templater": false,
       "smart-random-note:Open Random Note from Search": false,
-      "obsidian-git:Open Git source control": true,
+      "obsidian-git:Open Git source control": false,
       "homepage:Open homepage": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "3c926a80a7781476",
   "lastOpenFiles": [
-    "2-题解/gym104901K.md",
     "0-系统组件/homepage.md",
+    "README.md",
+    "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
+    "4-输出/板子/对顶multiset.md",
+    "README.md",
+    "2-题解/gym104901K.md",
     "2-题解/AcWing106.md",
     "3-文档/2-比赛/The 2023 ICPC Asia Jinan Regional Contest.md",
     "3-文档/2-比赛/Codeforces Round 969 (Div. 2).md",
     "4-输出/板子/树状数组.md",
     "4-输出/板子/线段树.md",
     "2-题解/AcWing244.md",
-    "4-输出/板子/对顶multiset.md",
     "2-题解/CF1196D2.md",
     "2-题解/gym103409K.md",
     "4-输出/板子/最短路.md",
@@ -218,9 +235,6 @@
     "2-题解/AcWing310.md",
     "2-题解/AcWing142.md",
     "2-题解/AcWing102.md",
-    "2-题解/AcWing41.md",
-    "3-文档/2-比赛/The 2023 ICPC Asia Nanjing Regional Contest.md",
-    "2-题解/gym104821L.md",
     "0-系统组件/1-附件/Pasted image 20240930203940.png",
     "3-文档/1-笔记/未命名",
     "4-输出/板子",
