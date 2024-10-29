@@ -21,6 +21,7 @@ longform:
     - - 并查集
       - Trie
       - ST表
+      - 对顶multiset
       - 树状数组
       - 线段树
     - 数学

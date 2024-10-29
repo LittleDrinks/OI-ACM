@@ -17,10 +17,10 @@
   "templater-obsidian",
   "cm-chs-patch",
   "settings-search",
-  "homepage",
   "smart-random-note",
   "obsidian-tasks-plugin",
   "obsidian-admonition",
   "contribution-graph",
-  "longform"
+  "longform",
+  "homepage"
 ]

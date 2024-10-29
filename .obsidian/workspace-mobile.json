@@ -1,19 +1,19 @@
 {
   "main": {
-    "id": "bef3a606c90e81e0",
+    "id": "5324373015726ba8",
     "type": "split",
     "children": [
       {
-        "id": "99b8a98b3e5b1cfb",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "0171372bdafc4c2f",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0-系统组件/homepage.md",
+                "file": "4-输出/板子/烂掉啦.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "0-系统组件/homepage.md",
+            "file": "4-输出/板子/烂掉啦.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
-            "file": "0-系统组件/homepage.md",
+            "file": "4-输出/板子/烂掉啦.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           }
@@ -122,7 +122,7 @@
         "state": {
           "type": "outline",
           "state": {
-            "file": "0-系统组件/homepage.md"
+            "file": "4-输出/板子/烂掉啦.md"
           }
         }
       }
@@ -148,8 +148,9 @@
       "smart-random-note:Open Random Note from Search": false
     }
   },
-  "active": "0171372bdafc4c2f",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "0-系统组件/homepage.md",
     "2-题解/gym103409K.md",
     "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md"
   ]
