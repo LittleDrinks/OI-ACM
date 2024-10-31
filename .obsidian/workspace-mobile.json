@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4-输出/板子/烂掉啦.md",
+                "file": "0-系统组件/homepage.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "4-输出/板子/烂掉啦.md",
+            "file": "0-系统组件/homepage.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
-            "file": "4-输出/板子/烂掉啦.md",
+            "file": "0-系统组件/homepage.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           }
@@ -122,7 +122,7 @@
         "state": {
           "type": "outline",
           "state": {
-            "file": "4-输出/板子/烂掉啦.md"
+            "file": "0-系统组件/homepage.md"
           }
         }
       }
@@ -150,6 +150,7 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "4-输出/板子/烂掉啦.md",
     "0-系统组件/homepage.md",
     "2-题解/gym103409K.md",
     "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md"
