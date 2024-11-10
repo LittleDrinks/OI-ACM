@@ -1,5 +1,5 @@
 {
-  "collapse-filter": true,
+  "collapse-filter": false,
   "search": "-path:0-系统组件  ",
   "showTags": false,
   "showAttachments": false,
@@ -20,18 +20,25 @@
         "a": 1,
         "rgb": 14069084
       }
+    },
+    {
+      "query": "tag:#比赛",
+      "color": {
+        "a": 1,
+        "rgb": 11392604
+      }
     }
   ],
-  "collapse-display": true,
+  "collapse-display": false,
   "showArrow": false,
   "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1,
+  "nodeSizeMultiplier": 2.04064449064449,
   "lineSizeMultiplier": 1,
   "collapse-forces": true,
   "centerStrength": 0.518713248970312,
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.3628873693012134,
+  "scale": 0.2588386562181643,
   "close": true
 }
