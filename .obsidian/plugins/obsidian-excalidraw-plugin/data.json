@@ -1,5 +1,5 @@
 {
-  "folder": "Excalidraw",
+  "folder": "0-系统组件/3-Excalidraw",
   "cropFolder": "",
   "annotateFolder": "",
   "embedUseExcalidrawFolder": false,
@@ -93,7 +93,7 @@
   "library2": {
     "type": "excalidrawlib",
     "version": 2,
-    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.3.0",
+    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.5.2",
     "libraryItems": []
   },
   "imageElementNotice": true,
