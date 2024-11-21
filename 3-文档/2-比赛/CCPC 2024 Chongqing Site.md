@@ -4,4 +4,3 @@ tags:
 ---
 # [CCPC 2024 Chongqing Site](https://qoj.ac/contest/1840)
 
-- [ ] 
