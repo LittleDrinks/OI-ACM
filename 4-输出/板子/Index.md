@@ -26,6 +26,7 @@ longform:
       - 线段树
     - 数学
     - - 线性筛
+      - 快速幂与乘法逆元
     - 烂掉啦
   ignoredFiles:
     - manuscript

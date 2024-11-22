@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "91b30589d6b579ea",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "59c53e094e8b5e1b",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -191,15 +191,21 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "59c53e094e8b5e1b",
   "lastOpenFiles": [
     "0-系统组件/homepage.md",
+    "4-输出/板子/快速幂与乘法逆元.md",
+    "4-输出/板子/线性筛.md",
     "2-题解/AT_arc187_b.md",
+    "2-题解/CF2038D.md",
+    "2-题解/gym105535J.md",
+    "0-系统组件/3-Excalidraw/Jolly Polygon.md",
+    "2-题解/gym105535K.md",
+    "3-文档/2-比赛/2024 ICPC Belarus Regional Contest.md",
+    "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
     "2-题解/P6577.md",
     "2-题解/AT_arc187_a.md",
-    "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
     "3-文档/2-比赛/CCPC 2024 Chongqing Site.md",
-    "2-题解/CF2038D.md",
     "0-系统组件/3-Excalidraw/Drawing 2024-11-20 16.44.06.excalidraw.md",
     "0-系统组件/3-Excalidraw/CF2038D.md",
     "0-系统组件/3-Excalidraw/CF2038D.png",
@@ -216,12 +222,6 @@
     "2-题解/AcWing41.md",
     "2-题解/AcWing131.md",
     "3-文档/1-笔记/栈.md",
-    "4-输出/板子/快读.md",
-    "2-题解/AcWing142.md",
-    "2-题解/CF1980G.md",
-    "2-题解/AcWing143.md",
-    "2-题解/gym103409D.md",
-    "2-题解/gym105222F.md",
     "0-系统组件/1-附件/Pasted image 20240930203940.png",
     "3-文档/1-笔记/未命名",
     "4-输出/板子",
