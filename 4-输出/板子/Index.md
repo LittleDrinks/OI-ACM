@@ -7,6 +7,8 @@ longform:
   scenes:
     - 杂项
     - - 快读
+      - 多维vector
+      - vector去重与离散化
     - 计算几何
     - 图论
     - - 最短路

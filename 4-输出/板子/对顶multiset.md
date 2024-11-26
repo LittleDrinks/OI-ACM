@@ -4,7 +4,7 @@ tags:
   - 堆/对顶堆
 ---
 ```cpp
-struct PairingHeap {
+struct PairingMultiset {
     int sz;
     multiset <int> minH, maxH;
     ll minS, maxS;
