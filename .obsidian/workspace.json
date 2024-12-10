@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "2595d68419c61bef",
+        "id": "8b99b2bb400f88bc",
         "type": "tabs",
         "children": [
           {
-            "id": "da175e41fdd52fa8",
+            "id": "7619aee019e09c76",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -83,7 +83,8 @@
               "title": "Longform"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -191,21 +192,23 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "d1d33600c1a07559",
+  "active": "5b1cf506039c19ce",
   "lastOpenFiles": [
+    "3-文档/1-笔记/计算几何.md",
+    "4-输出/板子/向量.md",
     "~syncthing~.nomedia.tmp",
+    "4-输出/板子/并查集.md",
+    "0-系统组件/homepage.md",
+    "3-文档/2-比赛/2024 ICPC Asia Taichung Regional Contest.md",
     "2-题解/P1106.md",
     "2-题解/CF1886C.md",
-    "0-系统组件/homepage.md",
     "4-输出/板子/树状数组.md",
     "4-输出/板子/线段树.md",
     "4-输出/板子/Trie.md",
     "4-输出/板子/对顶multiset.md",
-    "4-输出/板子/并查集.md",
     "4-输出/板子/vector去重与离散化.md",
     "4-输出/板子/烂掉啦.md",
     "2-题解/CF2041H.md",
-    "3-文档/2-比赛/2024 ICPC Asia Taichung Regional Contest.md",
     "2-题解/CF2041D.md",
     "2-题解/CF2041C.md",
     "2-题解/P5490.md",
@@ -217,8 +220,6 @@
     "4-输出/板子/计算几何.md",
     "4-输出/板子/多维vector.md",
     "4-输出/板子/快读.md",
-    "2-题解/CF2041B.md",
-    "0-系统组件/2-模板/题解模板.md",
     "0-系统组件/3-Excalidraw/CF2038D.png",
     "Excalidraw",
     "0-系统组件/1-附件/Pasted image 20240930203940.png",

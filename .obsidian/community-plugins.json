@@ -2,7 +2,6 @@
   "android-nomedia",
   "better-word-count",
   "dataview",
-  "easy-typing-obsidian",
   "obsidian-excalidraw-plugin",
   "file-explorer-note-count",
   "floating-toc",
@@ -22,5 +21,6 @@
   "obsidian-admonition",
   "contribution-graph",
   "longform",
-  "homepage"
+  "homepage",
+  "easy-typing-obsidian"
 ]
