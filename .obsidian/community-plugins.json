@@ -3,7 +3,6 @@
   "better-word-count",
   "dataview",
   "obsidian-excalidraw-plugin",
-  "file-explorer-note-count",
   "floating-toc",
   "obsidian-git",
   "obsidian-hover-editor",
@@ -22,5 +21,6 @@
   "contribution-graph",
   "longform",
   "homepage",
-  "easy-typing-obsidian"
+  "easy-typing-obsidian",
+  "file-explorer-note-count"
 ]
