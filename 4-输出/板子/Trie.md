@@ -4,8 +4,6 @@ tags:
   - 01Trie
   - 模板
 ---
-
-
 01 Trie
 ```cpp
 struct Trie {

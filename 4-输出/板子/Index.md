@@ -7,8 +7,7 @@ longform:
   scenes:
     - 杂项
     - - 快读
-      - 多维vector
-      - vector去重与离散化
+      - vector相关
     - 计算几何
     - - 基础定义与向量
       - 点线操作
