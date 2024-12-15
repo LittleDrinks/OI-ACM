@@ -2,7 +2,7 @@
 tags:
 ---
 ```cpp
-// 多维 vector
+// 多维 vector，需要 c++17
 vector a(n+1, vector (n+1, vector<int>(n+1)));
 
 // 去重与离散化
@@ -15,5 +15,8 @@ for (int i = 1; i <= n; ++i) {
 
 // 前缀和
 vector <ll> a(n), s(n);
-iota(a.begin(), a.end(), s.begin());
+partial_sum(a.begin(), a.end(), s.begin());
+
+// 填充 1~n，令 a[i]=i
+iota(a.begin(), a.end(), 0);
 ```
