@@ -2,7 +2,7 @@
 tags:
 ---
 ```cpp
-// 多维 vector，需要 c++17
+// 多维 vector，需要 c++17，c++14 只能老老实实写 vector<vector<int>>
 vector a(n+1, vector (n+1, vector<int>(n+1)));
 
 // 去重与离散化
