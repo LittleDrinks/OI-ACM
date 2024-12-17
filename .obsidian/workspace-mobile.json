@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4-输出/板子/点线操作.md",
+                "file": "0-系统组件/homepage.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "点线操作"
+              "title": "homepage"
             }
           }
         ]
@@ -168,6 +168,7 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "4-输出/板子/点线操作.md",
     "0-系统组件/homepage.md",
     "2-题解/gym104821G.md",
     "3-文档/2-比赛/2023-2024 ICPC Southwestern European Regional Contest (SWERC 2023).md",
@@ -192,7 +193,6 @@
     "2-题解/gym105386I.md",
     "2-题解/gym105386G.md",
     "2-题解/gym105386E.md",
-    "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md",
-    "3-文档/1-笔记/线段树.md"
+    "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md"
   ]
 }
