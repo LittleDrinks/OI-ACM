@@ -1,7 +1,8 @@
+# 我的模板
 [TOC]
-# 杂项
+## 杂项
 
-## 快读
+### 快读
 
 ```cpp
 inline int read()
@@ -13,7 +14,7 @@ inline int read()
 }
 ```
 
-## vector相关
+### vector相关
 
 ```cpp
 // 多维 vector，需要 c++17，c++14 只能老老实实写 vector<vector<int>>
@@ -35,14 +36,11 @@ partial_sum(a.begin(), a.end(), s.begin());
 iota(a.begin(), a.end(), 0);
 ```
 
-# 计算几何
+## 计算几何
 
 https://blog.csdn.net/qq_45249273/article/details/123798461
 https://csacademy.com/app/geometry_widget/
 先判断，再计算，精度会好很多
-
-## 基础定义
-
 ```cpp
 typedef long long ll;
 typedef double db;  // 视情况改为 long double
@@ -51,7 +49,8 @@ const db PI=acos(-1.0);
 int sgn(db x) { return fabs(x)<eps? 0: ( x>0? 1: -1 ); }
 int sgn(ll x) { return x==0? 0: ( x>0? 1: -1 ); }
 ```
-## 向量
+
+### 向量
 
 向量旋转 $\begin{bmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{bmatrix}\begin{bmatrix}a_x\\a_y\end{bmatrix}=\begin{bmatrix}\cos\theta a_x & -\sin\theta a_y\\ \sin\theta a_x & \cos\theta a_y\end{bmatrix}$
 ```cpp
@@ -130,7 +129,7 @@ db S(Point A, Point B, Point C)
     return 0.5*fabs((A-B)^(A-C));
 };
 
-// 二维向量夹角
+// 二维向量夹角，疑似误差较大，慎用
 db getAngle(Vector a, Vector b)
 {
     return fabs(atan2(fabs(a^b), a*b));
@@ -143,7 +142,7 @@ db getThirdSide(Vector a, Vector b)
 }
 ```
 
-## 点线操作
+### 点线操作
 
 点 $P$ 在直线 $AB$ 上，则 $\overrightarrow{AB}\times\overrightarrow{AP}=\vec{0}$，若要求在线段/射线上，再判断 $x,y$ 是否分别位于 $AB$ 之间即可。
 判断两线段是否相交：先做两次跨立实验判断是否规范相交，再特判至少三点共线的情况
@@ -217,7 +216,7 @@ Point GetLineProjection(Point P, Point A, Point B) {
 }
 ```
 
-## 多边形
+### 多边形
 
 多边形的面积 $S=\dfrac12\|\sum_{i=0}^{n-1}\overrightarrow{OP_i}\times\overrightarrow{OP_{(i+1)\mod n}}\|$
 ```cpp
@@ -289,27 +288,9 @@ struct Polygon {
 }
 ```
 
-# 图论
+## 数据结构
 
-## 最短路
-
-### 有向图上判环
-
-## 最小生成树
-
-## LCA
-
-## 树的直径
-
-## Tarjan
-
-## 匈牙利算法
-
-## 网络流
-
-# 数据结构
-
-## 并查集
+### 并查集
 
 ```cpp
 struct Dsu {
@@ -337,7 +318,7 @@ struct Dsu {
 Dsu D(n);
 ```
 
-## Trie
+### Trie
 
 01 Trie
 ```cpp
@@ -370,22 +351,22 @@ struct Trie {
 	}
 } T;
 ```
-## ST表
+### ST表
 
 ```cpp
 struct ST {
 	int n, I=0;
 	vector<vector<int>> st;
 	vector <int> Log;
-	ST(int n, vector<int> a): n(n) {
-        while ((1<<I) < n) { ++I; }
-		Log.resize(n+1);
-		Log[1] = 0;
+	ST(vector<int> a) {
+		n = a.size();
+		Log.resize(n+1, 0);
 		for (int i = 2; i <= n; ++i) { Log[i] = Log[i/2] + 1; }
-		st.resize(n+1, vector<int>(I+5, 0));
-		for (int j = 1; j <= n; ++j) { st[j][0]=a[j]; }
+		I = Log[n];
+		st.resize(n, vector<int>(I+1, 0));
+		for (int j = 0; j < n; ++j) { st[j][0]=a[j]; }
 		for (int i = 1; i <= I; ++i) {
-			for (int j = 1; j+(1<<(i-1))<=n; ++j) {
+			for (int j = 0; j+(1<<(i-1))<n; ++j) {
 				st[j][i] = max(st[j][i-1], st[j+(1<<(i-1))][i-1]);
 			}
 		}
@@ -398,7 +379,7 @@ struct ST {
 };
 ```
 
-## 对顶multiset
+### 对顶multiset
 
 ```cpp
 struct PairingMultiset {
@@ -461,7 +442,7 @@ struct PairingMultiset {
 } p;
 ```
 
-## 树状数组
+### 树状数组
 
 ```cpp
 struct BIT {
@@ -497,7 +478,7 @@ struct BIT {
 BIT T(n);
 ```
 
-## 线段树
+### 线段树
 
 ```cpp
 struct lazyTag {
@@ -578,9 +559,182 @@ struct segmentTree {
     }
 };
 ```
-# 数学
+## 图论
 
-## 线性筛
+```CPP
+typedef pair<int,int> pii;
+const int N=2005;
+vector <pii> G[N];
+
+void dfs(int u, int fa)
+{
+    for (auto [v, w]: G[u]) {
+        if (v != fa) { dfs(v, u); }
+    }
+}
+```
+
+### 最短路
+
+Dijkstra
+```cpp
+void Dijkstra()
+{
+    priority_queue <pii, vector<pii>, greater<pii>> q;
+    for (int i = 1; i <= n; ++i) { dis[i] = inf; }
+    dis[1] = 0;
+    q.push( {0,1} );
+    while (!q.empty()) {
+        int u = q.top().second; q.pop();
+        if (vis[u]) { continue; }
+        vis[u] = true;
+        for (auto [v,c]: G[u]) {
+            if (dis[v] > dis[u] + 1) {
+                dis[v] = dis[u] + 1;
+                if (!vis[v]) { q.push( {dis[v], v} ); }
+            }
+        }
+    }
+    #ifndef ONLINE_JUDGE
+    for (int i = 1; i <= n; ++i) { printf("dis[%d]=%d\n", i, dis[i]); }
+    #endif
+}
+```
+#### 有向图上判环
+
+枚举图上的一个点 $u$ 作为环的起点，跑一遍 Dijkstra 求出点 $u$ 到剩下所有点 $v$ 的最短距离。如果有一条 $v\to u$ 的边，那么就找到了一个环，环的权值为 $dis[v]+val(v,u)$。最终时间复杂度 $O(N(N+M)\log N)$。
+```cpp
+void Dijkstra(int s)
+{
+    priority_queue <pii, vector<pii>, greater<pii>> q;
+    for (int i = 1; i <= n; ++i) { vis[i]=0; dis[i]=inf; }
+    dis[s] = 0;
+    q.push( {0, s} );
+    while (!q.empty()) {
+        int u = q.top().second; q.pop();
+        if (vis[u]) { continue; }
+        vis[u] = 1;
+        for (auto [v,p]: G[u]) {
+            if (dis[v] > dis[u] + p) {
+                dis[v] = dis[u] + p;
+                if (!vis[v]) { q.push( {dis[v], v}); }
+            }
+            // 与 Dijkstra 唯一的区别
+            if (v == s) { mnc = min(mnc, dis[u]+p); }
+        }
+    }
+}
+```
+### 最小生成树
+
+kruskal 时间复杂度为 $O(m\log m)$
+```cpp
+int n, m;
+int kruskal()
+{   // 默认是一张连通图
+	vector <array<int,3>> e(m);
+	for (auto& [w, u, v]: e) { cin >> u >> v >> w; }
+	sort(e.begin(), e.end());
+	int ans = 0, cnt = 0;
+	d = DSU(n);
+	for (auto& [w, u, v]: e) {
+		if (d.find(u) != d.find(v)) {
+			d.merge(u, v);
+			ans += w;
+			++cnt;
+		}
+		if (cnt == n-1) { break; }
+	}
+	return ans;
+}
+```
+### LCA
+
+
+#### 倍增O(LogN)求LCA
+
+```cpp
+const int N=5e5+5, I=20;
+int n, m, s, dep[N], f[N][I+5];
+vector <int> G[N];
+
+void dfs(int u, int fa)
+{   // 预处理深度和父节点信息
+    dep[u] = dep[fa] + 1;
+    f[u][0] = fa;
+    for (int i = 1; i <= I; ++i) {
+        f[u][i] = f[f[u][i-1]][i-1];
+    }
+    for (int v: G[u]) {
+        if (v != fa) { dfs(v, u); }
+    }
+}
+
+int lca(int u, int v)
+{   // 求 lca
+    if (dep[u] < dep[v]) { swap(u, v); }
+    for (int i = I; i >= 0; --i) {
+        if (dep[f[u][i]] >= dep[v]) { u = f[u][i]; }
+    }
+    if (u == v) { return u; }
+    for (int i = I; i >= 0; --i) {
+        if (f[u][i] != f[v][i]) { u=f[u][i]; v=f[v][i]; }
+    }
+    return f[u][0];
+}
+```
+
+#### 欧拉序+ST表O(1)求LCA
+
+初次访问节点 $u$ 和回溯到节点 $u$ 时记录，所产生的序列即为欧拉序。
+欧拉序长度为 $2n-1$。
+在欧拉序区间 $[first[u],first[v]]$ 上深度最小的节点即为 $lca(u,v)$。
+```cpp
+struct ST {};  // 此处详见 ST 表的板子，把 vector<int> 改为 vector<pii>，用 pair 实现深度比较
+
+int first[N], dep[N];
+vector <int> G[N];
+vector <pii> eular;
+void dfs(int u, int fa)
+{
+    first[u] = eular.size();
+    dep[u] = dep[fa] + 1;
+    eular.push_back( {dep[u], u} );
+    for (int v: G[u]) {
+        if (v != fa) {
+            dfs(v, u);
+            eular.push_back( {dep[u], u} );
+        }
+    }
+}
+
+int main()
+{   // 此处仅给出求 lca 部分的代码
+	dfs(s, 0);
+    ST st(eular);
+    while (q--) {
+		int u, v;
+		cin >> u >> v;
+		u = first[u];
+		v = first[v];
+		if (u > v) { swap(u, v); }
+		cout << st.query(u, v) << "\n";
+    }
+}
+```
+### 树的重心
+
+### 树的直径
+
+### Tarjan
+
+### 匈牙利算法
+
+### 网络流
+
+## 数学
+
+### 线性筛
 
 ```cpp
 vector <int> getPrime(int n)
@@ -600,7 +754,7 @@ vector <int> getPrime(int n)
 }
 ```
 
-## 快速幂与乘法逆元
+### 快速幂与乘法逆元
 
 ```cpp
 const int MOD=998244353;
@@ -619,7 +773,7 @@ ll Inv(ll x)
 }
 ```
 
-# 烂掉啦
+## 烂掉啦
 - 开 `long long`
 	- `#define int long long`
 	- 叉乘的结果再相乘，需要检查是否爆 `long long`
@@ -631,7 +785,7 @@ ll Inv(ll x)
 	- 写值域相关的数据结构时，数组按值域开而不是按个数开
 	- （网络流！）建图的时候考虑清楚点边的意义和数量（如：有可能需要开 $3N$）
 - 多测没清空
-	- 测 `assert` 时注意全局变量是否清空！！
+	- 全局变量记得要清空（测 `assert` 时注意全局！！）
 - `(int)a.size()`，否则在和负数比较的时候会出错
 - `cin` 读入大数据导致 `TLE`，总输入量达到 `4e6` 就要快读或者优化 `cin`
 - 结构体数组赋初值用花括号而不是圆括号
