@@ -6,7 +6,7 @@ tags:
 欧拉序长度为 $2n-1$。
 在欧拉序区间 $[first[u],first[v]]$ 上深度最小的节点即为 $lca(u,v)$。
 ```cpp
-struct ST {};  // 此处详见 ST 表的板子，把 vector<int> 改为 vector<pii>，用 pair 实现深度比较
+struct ST {};  // 把 vector<int> 改为 vector<pii>，用 pair 实现深度比较
 
 int first[N], dep[N];
 vector <int> G[N];
@@ -34,7 +34,7 @@ int main()
 		u = first[u];
 		v = first[v];
 		if (u > v) { swap(u, v); }
-		cout << st.query(u, v) << "\n";
+		cout << st.query(u, v).second << "\n";  // 这里需要输出节点编号
     }
 }
 ```

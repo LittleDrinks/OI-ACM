@@ -4,21 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "524bbbc1c49668dc",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "e51c4cb002c50a7c",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "4-输出/板子/有向图上找最小环.md",
-                "mode": "source",
-                "source": false
+                "file": "0-系统组件/1-附件/56c0a8a12b4081d91ce8e4635eaf3cc.png"
               },
-              "icon": "lucide-file",
-              "title": "有向图上找最小环"
+              "icon": "lucide-image",
+              "title": "56c0a8a12b4081d91ce8e4635eaf3cc"
             }
           }
         ]
@@ -83,8 +81,7 @@
               "title": "Longform"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -123,12 +120,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "0-系统组件/homepage.md",
+                "file": "0-系统组件/1-附件/56c0a8a12b4081d91ce8e4635eaf3cc.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "homepage 的出链列表"
+              "title": "56c0a8a12b4081d91ce8e4635eaf3cc 的出链列表"
             }
           },
           {
@@ -192,34 +189,34 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e51c4cb002c50a7c",
+  "active": "5b1cf506039c19ce",
   "lastOpenFiles": [
+    "0-系统组件/homepage.md",
+    "0-系统组件/1-附件/未命名",
+    "1-闪念/20241230212651一些有用的网站.md",
+    "4-输出/板子/模板.md",
+    "4-输出/板子/template_by_LittleDrinks.md",
+    "4-输出/板子/匈牙利算法.md",
+    "4-输出/板子/倍增O(LogN)求LCA.md",
+    "4-输出/板子/欧拉序+ST表O(1)求LCA.md",
+    "4-输出/板子/线性筛.md",
+    "4-输出/板子/快速幂与乘法逆元.md",
+    "4-输出/板子/网络流.md",
+    "4-输出/板子/Tarjan.md",
+    "4-输出/板子/树的直径.md",
+    "4-输出/板子/树的重心.md",
+    "4-输出/板子/对拍.md",
+    "4-输出/板子/vector相关.md",
+    "4-输出/板子/最小生成树.md",
+    "4-输出/板子/myTemplate.md",
+    "4-输出/板子/图论.md",
+    "4-输出/板子/有向图上找最小环.md",
     "4-输出/板子/manuscript.md",
-    "4-输出/板子/我的模板.md",
     "4-输出/板子/线段树.md",
     "4-输出/板子/数据结构.md",
     "4-输出/板子/杂项.md",
     "4-输出/板子/快读.md",
     "4-输出/板子/烂掉啦.md",
-    "4-输出/板子/最短路.md",
-    "4-输出/板子/树的重心.md",
-    "4-输出/板子/树的直径.md",
-    "4-输出/板子/欧拉序+ST表O(1)求LCA.md",
-    "4-输出/板子/倍增O(LogN)求LCA.md",
-    "4-输出/板子/LCA.md",
-    "4-输出/板子/ST表.md",
-    "4-输出/板子/Trie.md",
-    "2-题解/AT_abc379_e.md",
-    "2-题解/AT_abc378_f.md",
-    "2-题解/AT_abc378_e.md",
-    "2-题解/AT_abc377_e.md",
-    "0-系统组件/homepage.md",
-    "4-输出/板子/最小生成树.md",
-    "4-输出/板子/图论.md",
-    "4-输出/板子/并查集.md",
-    "4-输出/板子/模板.md",
-    "4-输出/板子/计算几何.md",
-    "4-输出/板子/基础定义.md",
     "~syncthing~.nomedia.tmp",
     "0-系统组件/1-附件/Pasted image 20241222131648.png",
     "0-系统组件/1-附件/769026e41fd8671126b30b4a3e07449.png",
@@ -234,7 +231,6 @@
     "3-文档/2-比赛",
     "3-文档/1-笔记",
     "3-文档",
-    "3-汇总/1-笔记",
-    "0-系统组件/0-配置相关/font/CascadiaCode-2404.23/woff2/static/CascadiaMonoPL-SemiLight.woff2"
+    "3-汇总/1-笔记"
   ]
 }

@@ -1,4 +1,4 @@
-# 我的模板
+# 模板
 [TOC]
 ## 杂项
 
@@ -35,6 +35,8 @@ partial_sum(a.begin(), a.end(), s.begin());
 // 填充 1~n，令 a[i]=i
 iota(a.begin(), a.end(), 0);
 ```
+
+### 对拍
 
 ## 计算几何
 
@@ -129,7 +131,7 @@ db S(Point A, Point B, Point C)
     return 0.5*fabs((A-B)^(A-C));
 };
 
-// 二维向量夹角，疑似误差较大，慎用
+// 二维向量夹角
 db getAngle(Vector a, Vector b)
 {
     return fabs(atan2(fabs(a^b), a*b));
@@ -184,7 +186,7 @@ bool hasIntersection(Line L1, Line L2)
     if (L1.onSegment(L2.a) || L1.onSegment(L2.b) || L2.onSegment(L1.a) || L2.onSegment(L1.b)) {
         return true;
     }
-    bool crossStanding = & {  // 跨立实验，lambda 表达式需要 c++17
+    bool crossStanding = [&](Line L, Point a, Point b) {  // 跨立实验，lambda 表达式需要 c++17
         return L.toLeft(a)*L.toLeft(b) == -1;
     }
     // 线段端点分布在直线两侧，“线段与线段/线段与直线/直线与直线”是否相交对应修改即可
@@ -561,6 +563,7 @@ struct segmentTree {
 ```
 ## 图论
 
+https://csacademy.com/app/graph_editor/
 ```CPP
 typedef pair<int,int> pii;
 const int N=2005;
@@ -600,7 +603,7 @@ void Dijkstra()
     #endif
 }
 ```
-#### 有向图上判环
+#### 有向图上找最小环
 
 枚举图上的一个点 $u$ 作为环的起点，跑一遍 Dijkstra 求出点 $u$ 到剩下所有点 $v$ 的最短距离。如果有一条 $v\to u$ 的边，那么就找到了一个环，环的权值为 $dis[v]+val(v,u)$。最终时间复杂度 $O(N(N+M)\log N)$。
 ```cpp
@@ -636,7 +639,7 @@ int kruskal()
 	for (auto& [w, u, v]: e) { cin >> u >> v >> w; }
 	sort(e.begin(), e.end());
 	int ans = 0, cnt = 0;
-	d = DSU(n);
+	d = Dsu(n);  // 见并查集模板
 	for (auto& [w, u, v]: e) {
 		if (d.find(u) != d.find(v)) {
 			d.merge(u, v);
@@ -690,7 +693,7 @@ int lca(int u, int v)
 欧拉序长度为 $2n-1$。
 在欧拉序区间 $[first[u],first[v]]$ 上深度最小的节点即为 $lca(u,v)$。
 ```cpp
-struct ST {};  // 此处详见 ST 表的板子，把 vector<int> 改为 vector<pii>，用 pair 实现深度比较
+struct ST {};  // 把 vector<int> 改为 vector<pii>，用 pair 实现深度比较
 
 int first[N], dep[N];
 vector <int> G[N];
@@ -718,7 +721,7 @@ int main()
 		u = first[u];
 		v = first[v];
 		if (u > v) { swap(u, v); }
-		cout << st.query(u, v) << "\n";
+		cout << st.query(u, v).second << "\n";  // 这里需要输出节点编号
     }
 }
 ```

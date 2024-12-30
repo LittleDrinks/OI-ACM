@@ -5,10 +5,11 @@ longform:
   workflow: Default Workflow
   sceneFolder: /
   scenes:
-    - 我的模板
+    - 模板
     - - 杂项
       - - 快读
         - vector相关
+        - 对拍
       - 计算几何
       - - 向量
         - 点线操作
@@ -38,4 +39,6 @@ longform:
       - 烂掉啦
   ignoredFiles:
     - manuscript
+    - myTemplate
+    - template_by_LittleDrinks
 ---
