@@ -5,6 +5,10 @@ tags:
 // 多维 vector，需要 c++17，c++14 只能老老实实写 vector<vector<int>>
 vector a(n+1, vector (n+1, vector<int>(n+1)));
 
+// 最值
+int mx = *min_element(vec.begin(), vec.end(), cmp);
+int mn = *min_element(vec.begin(), vec.end(), cmp);
+
 // 去重与离散化
 for (int i = 1; i <= n; ++i) { vec.push_back(a[i]); }
 sort(vec.begin(), vec.end());
