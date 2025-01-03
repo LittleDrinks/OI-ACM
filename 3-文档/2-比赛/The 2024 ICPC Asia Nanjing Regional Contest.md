@@ -5,3 +5,8 @@ tags:
 # [The 2024 ICPC Asia Nanjing Regional Contest](https://codeforces.com/gym/105484)
 
 - [x] [[gym105484B]] ✅ 2024-11-12
+- [x] [[gym105484E]] ✅ 2025-01-03
+- [ ] [[gym105484G]]
+- [x] [[gym105484J]] ✅ 2025-01-03
+- [x] [[gym105484K]] ✅ 2025-01-03
+- [ ] [[gym105484M]]
