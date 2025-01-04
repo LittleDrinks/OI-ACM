@@ -8,8 +8,10 @@ longform:
     - 模板
     - - 杂项
       - - 快读
+        - 取模
         - vector相关
         - 对拍
+        - bfs
       - 计算几何
       - - 向量
         - 点线操作
@@ -39,6 +41,7 @@ longform:
       - 数学
       - - 线性筛
         - 快速幂与乘法逆元
+        - O(1)计算排列组合数
       - 烂掉啦
   ignoredFiles:
     - manuscript
