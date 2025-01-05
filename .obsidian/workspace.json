@@ -4,20 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "1709f263ad646901",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "a74844de94303654",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "file": "4-输出/板子/有向图上找最小环.md",
-                "staged": false
+                "file": "3-文档/2-比赛/Hello 2025.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "git-pull-request",
-              "title": "Diff View (有向图上找最小环)"
+              "icon": "lucide-file",
+              "title": "Hello 2025"
             }
           }
         ]
@@ -103,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2-题解/AT_abc379_e.md",
+                "file": "3-文档/2-比赛/Hello 2025.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +114,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "AT_abc379_e 的反向链接列表"
+              "title": "Hello 2025 的反向链接列表"
             }
           },
           {
@@ -122,11 +123,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "3-文档/2-比赛/Hello 2025.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "出链"
+              "title": "Hello 2025 的出链列表"
             }
           },
           {
@@ -190,22 +192,27 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "5b1cf506039c19ce",
   "lastOpenFiles": [
-    "4-输出/板子/bfs.md",
+    "4-输出/板子/常用函数.md",
+    "3-文档/2-比赛/Hello 2025.md",
+    "2-题解/CF2057C.md",
+    "2-题解/CF2057D.md",
     "0-系统组件/homepage.md",
-    "4-输出/板子/取模.md",
+    "4-输出/板子/并查集.md",
+    "3-文档/2-比赛/2024 ICPC Asia Taichung Regional Contest.md",
     "2-题解/CF2041H.md",
+    "4-输出/板子/最小生成树.md",
+    "4-输出/板子/最短路.md",
+    "4-输出/板子/bfs.md",
     "4-输出/板子/O(1)计算排列组合数.md",
     "4-输出/板子/杂项.md",
     "4-输出/板子/快速幂与乘法逆元.md",
-    "3-文档/2-比赛/2024 ICPC Asia Taichung Regional Contest.md",
     "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
     "4-输出/板子/树的重心.md",
     "4-输出/板子/欧拉序+ST表O(1)求LCA.md",
     "4-输出/板子/倍增O(LogN)求LCA.md",
     "4-输出/板子/LCA.md",
-    "4-输出/板子/最小生成树.md",
     "4-输出/板子/有向图上找最小环.md",
     "2-题解/gym105484M.md",
     "3-文档/2-比赛/The 2024 ICPC Asia Nanjing Regional Contest.md",
@@ -213,11 +220,6 @@
     "4-输出/板子/Trie.md",
     "4-输出/板子/点线操作.md",
     "4-输出/板子/计算几何.md",
-    "4-输出/板子/并查集.md",
-    "4-输出/板子/vector相关.md",
-    "2-题解/gym105484K.md",
-    "南京前五题.md",
-    "2-题解/gym105484J.md",
     "0-系统组件/1-附件/计算几何资料/~$【徐明宽】二维计算几何相关算法与实战应用.pptx",
     "~syncthing~.nomedia.tmp",
     "0-系统组件/1-附件/56c0a8a12b4081d91ce8e4635eaf3cc.png",
