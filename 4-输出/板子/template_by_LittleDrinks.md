@@ -14,11 +14,27 @@ inline int read()
 }
 ```
 
+### 常用函数
+```cpp
+// 取模
+const int MOD=998244353;
+void add(ll &x, ll y) { if ((x+=y) >= MOD) { x -= MOD; } }  // 不要漏掉括号
+void del(ll &x, ll y) { if ((x-=y) < 0)    { x += MOD; } }
+
+// 随机数
+mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+int myRand(int B) { return (unsigned long long)rng() % B; }
+```
+
 ### vector相关
 
 ```cpp
 // 多维 vector，需要 c++17，c++14 只能老老实实写 vector<vector<int>>
 vector a(n+1, vector (n+1, vector<int>(n+1)));
+
+// 最值
+int mx = *min_element(vec.begin(), vec.end(), cmp);
+int mn = *min_element(vec.begin(), vec.end(), cmp);
 
 // 去重与离散化
 for (int i = 1; i <= n; ++i) { vec.push_back(a[i]); }
@@ -37,6 +53,42 @@ iota(a.begin(), a.end(), 0);
 ```
 
 ### 对拍
+
+### bfs
+
+```cpp
+const int dx={-1, 1, 0, 0}, dy={0, 0, -1, 1}  // d={上, 下, 左, 右}
+int f[N][N];
+bool vis[N][N];
+bool valid(int x, int y)
+{
+    return (
+        (1 <= x && x <= h) &&
+        (1 <= y && y <= w)
+    );
+}
+int sx, sy, tx, ty;
+int bfs()
+{
+    queue <array<int,3>> q;
+    q.push( { sx, sy, 0 } );
+    memset(f, 0x3f, sizeof(f));
+    while (!q.empty()) {
+        auto [x, y, cnt] = q.front(); q.pop();
+        if (vis[x][y]) { continue; }
+        vis[x][y] = true;
+        f[x][y] = cnt;
+        for (int dd = 0; dd < 4; ++dd) {
+            int nx = x + dx[dd];
+            int ny = y + dy[dd];
+            if (valid(nx, ny)) { q.push( { nx, ny, cnt+1 } ); }
+        }
+    }
+    if (vis[tx][ty]) { return f[tx][ty]; }
+    else { return -1; }
+}
+```
+### 拆分数
 
 ## 计算几何
 
@@ -65,6 +117,7 @@ struct Point {
 	string info(string name) {
 		return format("{}({},{})", name, x, y);  // c++20
 	}
+	db ang() { return atan2(y, x); }
 	Point operator + (const Point &p) const {
         return Point(x+p.x, y+p.y);
     }
@@ -83,26 +136,8 @@ struct Point {
 	ll operator ^ (const Point &p) const { // 叉乘，用的时候记得打括号
 	    return x*p.y - y*p.x;
 	}
-	/* 
 	bool operator < (const Point &p) const {
 		return x<p.x || (x==p.x && y<p.y);
-	}
-	*/
-	int quad() {  // 下半平面 < 原点和 x 轴正半轴 < 上半平面 < x 轴负半轴
-	    if (y < 0)       { return 1; }
-	    else if (y > 0)  { return 3; }
-	    else if (x >= 0) { return 2; }
-	    else             { return 4; }
-	}
-	bool operator < (const Point &p) const {  // 极角排序
-	    Point a=*this, b=p;
-	    int qa = a.quad(), qb = b.quad();
-	    if (qa == qb) {
-	        ll cross = a^b;
-	        if (cross == 0) { return abs(a.x) < abs(b.x); }
-	        return cross > 0;
-	    }
-	    return qa < qb;
 	}
 	ll len2() {
 	    return (*this)*(*this);
@@ -130,6 +165,24 @@ db S(Point A, Point B, Point C)
 {
     return 0.5*fabs((A-B)^(A-C));
 };
+
+// 极角排序
+// 把全平面划分为 下半平面 < 原点 < x 正半轴 < 上半平面 < x 负半轴
+bool cmp(Point a, Point b) {  
+    auto quad = [](const Point &a) {
+		if (a.y < 0)       { return 1; }
+        else if (a.y > 0)  { return 3; }
+        else if (a.x >= 0) { return 2; }
+        else               { return 4; }	
+    };
+    int qa = quad(a), qb = quad(b);
+	if (qa == qb) {
+	    ll cross = a^b;
+	    if (cross == 0) { return abs(a.x) < abs(b.x); }
+	    return cross > 0;
+	}
+	return qa < qb;
+}
 
 // 二维向量夹角
 db getAngle(Vector a, Vector b)
@@ -295,14 +348,14 @@ struct Polygon {
 ### 并查集
 
 ```cpp
-struct Dsu {
+struct dsu {
     int n;
     vector <int> fa;
     vector <ll> cnt;
     Dsu(int n): n(n) {
-        fa.resize(n+1);
+        fa.assign(n+1, 0);
         iota(fa.begin(), fa.end(), 0);
-        cnt.resize(n+1, 1);
+        cnt.assign(n+1, 1);
     }
     int find(int x) {
         return fa[x]==x? fa[x]: fa[x]=find(fa[x]);
@@ -482,20 +535,25 @@ BIT T(n);
 
 ### 线段树
 
+需要自定义 `info` 和 `lazyTag`，重写两个带默认值的构造函数和三个运算符，并修改 `build()` 中对 `info` 的新建。
 ```cpp
 struct lazyTag {
-	lazyTag() { }
-    lazyTag operator + (const lazyTag &tag) const { }
+	lazyTag() { }  // 记得写默认值
 };
 struct info {
     int l, r;
-    info(int l=INT_MAX, int r=0): l(l), r(r) { }
+    int len() { return r-l+1; }
+    info(int l=INT_MAX, int r=0): l(l), r(r) { }  // 记得写默认值
     bool operator <= (const pair<int,int> &p) const {
         return p.first <= l && r <= p.second;
     }
-    info operator + (const info &f) const { }
-    info operator + (const lazyTag &tag) const { }
 };
+info operator + (info f1, info f2) {
+}
+info operator + (info f, lazyTag tag) {
+}
+lazyTag operator + (lazyTag t1, lazyTag t2) {
+}
 struct segmentTree {
     #define lson (pos << 1) 
     #define rson (pos << 1 | 1)
@@ -508,8 +566,8 @@ struct segmentTree {
     vector <node> t;
     segmentTree(int n): n(n) {
         p.resize(n+1);
-        for (int i = 1; i <= n; ++i) { cin >> p[i]; }
-        t.resize(n<<2);
+        for (int i = 1; i <= n; ++i) { cin >> p[i]; }  // 这两行输入原始数组，如无需要记得删
+        t.resize( (n+5) << 2 );
         build(1, 1, n);
     }
     void push_up(int pos) {
@@ -520,15 +578,13 @@ struct segmentTree {
         t[pos].tag = t[pos].tag + tag;
     }
     void spread_down(int pos) {
-        t[lson].val = t[lson].val + t[pos].tag;
-        t[lson].tag = t[lson].tag + t[pos].tag;
-        t[rson].val = t[rson].val + t[pos].tag;
-        t[rson].tag = t[rson].tag + t[pos].tag;
-        t[pos].tag = lazyTag();
+    	setTag(lson, t[pos].tag);
+    	setTag(rson, t[pos].tag);
+    	t[pos].tag = lazyTag();
     }
     void build(int pos, int l, int r) {
         if (l == r) {
-            t[pos].val = info(p[l], l, r);
+            t[pos].val = info(p[l], l, r);  // 根据 info() 构造函数修改
         } else {
             int mid = (l + r) >> 1;
             build(lson, l, mid);
@@ -536,7 +592,7 @@ struct segmentTree {
             push_up(pos);
         }
     }
-    void modify(int pos, int l, int r, const lazyTag &tag) {
+    void modify(int pos, int l, int r, const lazyTag &tag) {  // 区间修改
         if (t[pos].val <= make_pair(l, r)) {
             setTag(pos, tag);
         } else {
@@ -547,7 +603,7 @@ struct segmentTree {
             push_up(pos);
         }
     }
-    info query(int pos, int l, int r) {
+    info query(int pos, int l, int r) {  // 区间查询
         if (t[pos].val <= make_pair(l, r)) {
             return t[pos].val;
         } else {
@@ -561,6 +617,10 @@ struct segmentTree {
     }
 };
 ```
+### 分块
+
+#### 动态逆序对
+
 ## 图论
 
 https://csacademy.com/app/graph_editor/
@@ -579,22 +639,23 @@ void dfs(int u, int fa)
 
 ### 最短路
 
-Dijkstra
 ```cpp
-void Dijkstra()
+void Dijkstra(int s, int t)
 {
     priority_queue <pii, vector<pii>, greater<pii>> q;
-    for (int i = 1; i <= n; ++i) { dis[i] = inf; }
-    dis[1] = 0;
-    q.push( {0,1} );
+    vector <int> dis(n+1, inf);
+    vector <bool> vis(n+1, false);
+    dis[s] = 0;
+    vis[s] = true;
+    q.push( {s,1} );
     while (!q.empty()) {
-        int u = q.top().second; q.pop();
+        auto [d, u] = q.top(); q.pop();
         if (vis[u]) { continue; }
         vis[u] = true;
-        for (auto [v,c]: G[u]) {
-            if (dis[v] > dis[u] + 1) {
-                dis[v] = dis[u] + 1;
-                if (!vis[v]) { q.push( {dis[v], v} ); }
+        for (auto [v, w]: G[u]) {
+            if (dis[v] > dis[u] + w) {
+                dis[v] = dis[u] + w;
+                if (!vis[v]) { q.push( { dis[v], v } ); }
             }
         }
     }
@@ -603,9 +664,47 @@ void Dijkstra()
     #endif
 }
 ```
+#### bitset优化传递闭包
+
+邻接矩阵存图，时间复杂度为 $O(\dfrac{n^3}{w})$，可以处理 $2000$ 左右的数据。
+```cpp
+bitset <N> b[N];
+for (int j = 1; j <= n; ++j) {  // 注意中转点在最外层
+    for (int i = 1; i <= n; ++i) {
+        if (b[i][j]) { b[i] |= b[j]; }
+    }
+}
+```
+
+#### spfa判断负环
+
+```cpp
+bool spfa(int s=1)
+{
+	queue <int> q;
+	vector <int> dis(n+1, inf), cnt(n+1, 0);
+	vector <bool> inq(n+1, false);
+	dis[s] = 0;
+	inq[s] = true;
+	q.push(s);
+	while (!q.empty()) {
+		int u = q.front(); q.pop();
+        inq[u] = false;
+		for (auto& [v, w]: G[u]) {
+			if (dis[v] > dis[u] + w) {
+				dis[v] = dis[u] + w;
+				cnt[v] = cnt[u] + 1;  // 最短路径上的节点数量，无负环则至多为 n-1
+				if (cnt[v] >= n) { return true; }
+				if (!inq[v]) { q.push(v); inq[v] = true; }
+			}
+		}
+	}
+	return false;
+}
+```
 #### 有向图上找最小环
 
-枚举图上的一个点 $u$ 作为环的起点，跑一遍 Dijkstra 求出点 $u$ 到剩下所有点 $v$ 的最短距离。如果有一条 $v\to u$ 的边，那么就找到了一个环，环的权值为 $dis[v]+val(v,u)$。最终时间复杂度 $O(N(N+M)\log N)$。
+枚举图上的一个点 $u$ 作为环的起点，跑一遍 Dijkstra 求出点 $u$ 到剩下所有点 $v$ 的最短距离。如果有一条 $v\to u$ 的边，那么就找到了一个环，环的权值为 $dis[v]+w(v,u)$。最终时间复杂度 $O(N(N+M)\log N)$。
 ```cpp
 void Dijkstra(int s)
 {
@@ -651,6 +750,7 @@ int kruskal()
 	return ans;
 }
 ```
+
 ### LCA
 
 
@@ -699,7 +799,7 @@ int first[N], dep[N];
 vector <int> G[N];
 vector <pii> eular;
 void dfs(int u, int fa)
-{
+{   // 预处理深度和欧拉序
     first[u] = eular.size();
     dep[u] = dep[fa] + 1;
     eular.push_back( {dep[u], u} );
@@ -715,20 +815,64 @@ int main()
 {   // 此处仅给出求 lca 部分的代码
 	dfs(s, 0);
     ST st(eular);
-    while (q--) {
-		int u, v;
-		cin >> u >> v;
+    auto lca = [&](int u, int v){
 		u = first[u];
 		v = first[v];
 		if (u > v) { swap(u, v); }
-		cout << st.query(u, v).second << "\n";  // 这里需要输出节点编号
+		return st.query(u, v).second;  // 这里需要输出节点编号
+    };
+    while (q--) {
+		int u, v;
+		cin >> u >> v;
+		cout << lca(u, v) << "\n";
     }
 }
 ```
 ### 树的重心
 
+去掉重心所形成的每个连通块的大小都小于等于 $\dfrac{n}{2}$。
+```cpp
+int cnt[N];
+void findBaryCenter(int u, int fa, int &core)
+{
+    cnt[u] = 1;
+    // vector <pair<int,int>> vec;
+    int mx = 0;
+    for (int v: G[u]) {
+        if (v != fa) {
+            findBaryCenter(v, u, core);
+            cnt[u] += cnt[v];
+            // vec.push_back( { cnt[v], v } );
+            mx = max(mx, cnt[v]);
+        }
+    }
+    if (fa != 0) {
+    	// vec.push_back( { rm-cnt[u], fa } );
+    	mx = max(mx, n-cnt[u]);
+    }
+    // sort(vec.begin(), vec.end());
+    // if (vec.back().first * 2 <= rm) { core = u; }
+    if (mx * 2 <= m) { core = u; }
+}
+```
 ### 树的直径
 
+### 欧拉路
+
+有向图中欧拉通路存在条件：起点出度比入度大 $1$，终点入度比出度大 $1$，其余点入度等于出度。
+有向图中欧拉回路存在条件：所有点入度等于出度。
+```cpp
+void dfs(int u)
+{
+    for (auto [v, id]: G[u]) {
+        if (!vis[id]) {
+            vis[id] = true;
+            dfs(v);
+        }
+    }
+    ans.push_back(u);
+}
+```
 ### Tarjan
 
 ### 匈牙利算法
@@ -759,10 +903,12 @@ vector <int> getPrime(int n)
 
 ### 快速幂与乘法逆元
 
+根据费马小定理 $a^{p-1}\equiv1\pmod p$，得 $a^{p-2}\equiv\dfrac{1}{a}\pmod p$，据此计算乘法逆元。
+要求模数为质数，且 $a$ 不是 $p$ 的倍数
 ```cpp
 const int MOD=998244353;
-ll qpow(ll a, ll b)
-{
+ll qpow(ll a, ll b=MOD-2)
+{   // 快速幂函数，x 的乘法逆元为 qpow(x)
     ll res=1;
     for (; b; b>>=1) {
         if (b & 1) { res=(res*a)%MOD; }
@@ -770,9 +916,26 @@ ll qpow(ll a, ll b)
     }
     return res;
 }
-ll Inv(ll x)
-{
-    return qpow(x, MOD-2, MOD);
+```
+
+### O(1)计算排列组合数
+
+$C_n^k=\dfrac{n!}{k!(n-k)!}$
+```cpp
+// 预处理阶乘和阶乘的逆元
+vector<ll> fac(n+1), Inv(n+1);
+fac[0] = Inv[0] = 1;
+for (int i = 1; i <= n; ++i) {
+	fac[i] = fac[i-1]*i%MOD;
+	Inv[i] = qpow(fac[i]);
+}
+
+// 计算
+auto C=[&](ll n, ll k) {
+    return n==0? 1: fac[n] * Inv[k] % MOD * Inv[n-k] % MOD;
+};
+auto P=[&](ll n, ll k) {
+    return n==0? 1: fac[n] * Inv[n-k] % MOD;
 }
 ```
 
