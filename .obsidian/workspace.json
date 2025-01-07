@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "57c19bb6329dffcb",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "98b158362ca3fd52",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -192,8 +192,15 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "5b1cf506039c19ce",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "4-输出/板子/ST表.md",
+    "3-文档/2-比赛/The 2024 ICPC Kunming Invitational Contest.md",
+    "gym105386J.md",
+    "4-输出/板子/vector相关.md",
+    "2-题解/gym105386G.md",
+    "2-题解/gym105386E.md",
+    "0-系统组件/homepage.md",
     "4-输出/板子/烂掉啦.md",
     "4-输出/板子/杂项.md",
     "4-输出/板子/快速幂与乘法逆元.md",
@@ -202,11 +209,9 @@
     "4-输出/板子/bfs.md",
     "4-输出/板子/拆分数.md",
     "4-输出/板子/对拍.md",
-    "4-输出/板子/vector相关.md",
     "4-输出/板子/常用函数.md",
     "4-输出/板子/快读.md",
     "4-输出/板子/对顶multiset.md",
-    "4-输出/板子/ST表.md",
     "4-输出/板子/线段树.md",
     "4-输出/板子/动态逆序对.md",
     "4-输出/板子/分块.md",
@@ -215,11 +220,6 @@
     "4-输出/板子/匈牙利算法.md",
     "4-输出/板子/欧拉路.md",
     "4-输出/板子/树的直径.md",
-    "4-输出/板子/树的重心.md",
-    "4-输出/板子/template_by_LittleDrinks.md",
-    "0-系统组件/homepage.md",
-    "3-文档/2-比赛/The 3rd Universal Cup. Stage 8 Cangqian.md",
-    "2-题解/QOJ8936.md",
     "0-系统组件/1-附件/计算几何资料/~$【徐明宽】二维计算几何相关算法与实战应用.pptx",
     "~syncthing~.nomedia.tmp",
     "0-系统组件/1-附件/56c0a8a12b4081d91ce8e4635eaf3cc.png",
