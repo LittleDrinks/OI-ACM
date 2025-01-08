@@ -4,15 +4,15 @@ tags:
 ---
 ```cpp
 const int N=5e5+5, I=20;
-int n, m, s, dep[N], f[N][I+5];
+int n, m, s, dep[N], f[I+5][N];
 vector <int> G[N];
 
 void dfs(int u, int fa)
 {   // 预处理深度和父节点信息
     dep[u] = dep[fa] + 1;
-    f[u][0] = fa;
+    f[0][u] = fa;
     for (int i = 1; i <= I; ++i) {
-        f[u][i] = f[f[u][i-1]][i-1];
+        f[i][u] = f[i-1][f[i-1][u]];
     }
     for (int v: G[u]) {
         if (v != fa) { dfs(v, u); }
@@ -23,12 +23,12 @@ int lca(int u, int v)
 {   // 求 lca
     if (dep[u] < dep[v]) { swap(u, v); }
     for (int i = I; i >= 0; --i) {
-        if (dep[f[u][i]] >= dep[v]) { u = f[u][i]; }
+        if (dep[f[i][u]] >= dep[v]) { u = f[i][u]; }
     }
     if (u == v) { return u; }
     for (int i = I; i >= 0; --i) {
-        if (f[u][i] != f[v][i]) { u=f[u][i]; v=f[v][i]; }
+        if (f[i][u] != f[i][v]) { u=f[i][u]; v=f[i][v]; }
     }
-    return f[u][0];
+    return f[0][u];
 }
 ```
