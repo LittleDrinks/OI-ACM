@@ -8,36 +8,35 @@ tags:
 template <typename T>
 struct ST {
     int n=0, I=0;
-    vector<vector<T>> st;
     vector<int> Log;
-    ST() {}
-    ST(vector <T> a) {
+    vector<vector<T>> st;
+    ST() { }
+    ST(const vector<T>& a) {
         n = a.size();
         Log.assign(n+1, 0);
-        for (int i = 2; i <= n; ++i) { Log[i] = Log[i/2] + 1; }
-        I = Log[n];
-        st.assign(I+1, vector<T>(n,0));
+        for (int i = 2; i <= n; ++i) { I=Log[i]=Log[i/2]+1; }
+        st.assign(I+1, vector<T>(n));
         copy(a.begin(), a.end(), st[0].begin());
         for (int i = 1; i <= I; ++i) {
-            for (int j = 0; j+(1<<(i-1))<n; ++j) {
+            for (int j = 0; j+(1<<(i-1)) < n; ++j) {
                 st[i][j] = max( st[i-1][j], st[i-1][j+(1<<(i-1))] );
             }
         }
     }
-    T query(int l, int r) {
-        --l; --r;
+    T query(int l, int r) {  // 注意下标从 0 开始
         int s = Log[r-l+1];
         return max( st[s][l], st[s][r-(1<<s)+1] );
     }
-	int nxt(int now, T x) {  // 区间最大值大于等于 x
-        int ans = now;
-        for (int i = I; i >= 0; --i) {
-            int p = ans + (1 << i);
-            if (p <= n && query(now+1, p) < x) {
-                ans = p;
-            }
+    int find(int l, T x) {  // 第一个区间 [l,r] 最值大于等于 x 的 r
+    	if (l >= n) { return -1; }
+        int rl=l-1, rr=n;
+        while (rl != rr-1) {
+            int mid = (rl + rr) >> 1;
+            if (query(l, mid) >= x) { rr = mid; }
+            else { rl = mid; }
         }
-        return ans+1;
+        if (rr < n) { return rr; }
+        return -1;
     }
 };
 ```
