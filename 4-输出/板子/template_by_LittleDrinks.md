@@ -54,6 +54,18 @@ iota(a.begin(), a.end(), 0);
 
 ### 对拍
 
+```cpp
+// checker.cpp
+while (1) {
+	system("gen > data.in");
+	system("my < data.in > my.out");
+	system("std < data.in > std.out");
+	if (system("fc my.out std.out")) {  // linux 下换成 diff
+		system("pause");
+		return 0;
+	}
+}
+```
 ### bfs
 
 ```cpp
@@ -409,28 +421,39 @@ struct Trie {
 ### ST表
 
 ```cpp
+template <typename T>
 struct ST {
-	int n, I=0;
-	vector<vector<int>> st;
-	vector <int> Log;
-	ST(vector<int> a) {
-		n = a.size();
-		Log.resize(n+1, 0);
-		for (int i = 2; i <= n; ++i) { Log[i] = Log[i/2] + 1; }
-		I = Log[n];
-		st.resize(n, vector<int>(I+1, 0));
-		for (int j = 0; j < n; ++j) { st[j][0]=a[j]; }
-		for (int i = 1; i <= I; ++i) {
-			for (int j = 0; j+(1<<(i-1))<n; ++j) {
-				st[j][i] = max(st[j][i-1], st[j+(1<<(i-1))][i-1]);
-			}
-		}
-	}
-	int query(int l, int r)
-	{
-		int s = Log[r-l+1];
-		return max(st[l][s], st[r-(1<<s)+1][s]);
-	}
+    int n=0, I=0;
+    vector<int> Log;
+    vector<vector<T>> st;
+    ST() { }
+    ST(const vector<T>& a) {
+        n = a.size();
+        Log.assign(n+1, 0);
+        for (int i = 2; i <= n; ++i) { I=Log[i]=Log[i/2]+1; }
+        st.assign(I+1, vector<T>(n));
+        copy(a.begin(), a.end(), st[0].begin());
+        for (int i = 1; i <= I; ++i) {
+            for (int j = 0; j+(1<<(i-1)) < n; ++j) {
+                st[i][j] = max( st[i-1][j], st[i-1][j+(1<<(i-1))] );
+            }
+        }
+    }
+    T query(int l, int r) {  // 注意下标从 0 开始
+        int s = Log[r-l+1];
+        return max( st[s][l], st[s][r-(1<<s)+1] );
+    }
+    int find(int l, T x) {  // 第一个区间 [l,r] 最值大于等于 x 的 r
+    	if (l >= n) { return -1; }
+        int rl=l-1, rr=n;
+        while (rl != rr-1) {
+            int mid = (rl + rr) >> 1;
+            if (query(l, mid) >= x) { rr = mid; }
+            else { rl = mid; }
+        }
+        if (rr < n) { return rr; }
+        return -1;
+    }
 };
 ```
 
@@ -639,31 +662,7 @@ void dfs(int u, int fa)
 
 ### 最短路
 
-```cpp
-void Dijkstra(int s, int t)
-{
-    priority_queue <pii, vector<pii>, greater<pii>> q;
-    vector <int> dis(n+1, inf);
-    vector <bool> vis(n+1, false);
-    dis[s] = 0;
-    vis[s] = true;
-    q.push( {s,1} );
-    while (!q.empty()) {
-        auto [d, u] = q.top(); q.pop();
-        if (vis[u]) { continue; }
-        vis[u] = true;
-        for (auto [v, w]: G[u]) {
-            if (dis[v] > dis[u] + w) {
-                dis[v] = dis[u] + w;
-                if (!vis[v]) { q.push( { dis[v], v } ); }
-            }
-        }
-    }
-    #ifndef ONLINE_JUDGE
-    for (int i = 1; i <= n; ++i) { printf("dis[%d]=%d\n", i, dis[i]); }
-    #endif
-}
-```
+
 #### bitset优化传递闭包
 
 邻接矩阵存图，时间复杂度为 $O(\dfrac{n^3}{w})$，可以处理 $2000$ 左右的数据。
@@ -676,6 +675,31 @@ for (int j = 1; j <= n; ++j) {  // 注意中转点在最外层
 }
 ```
 
+#### 有向图上找最小环
+
+枚举图上的一个点 $u$ 作为环的起点，跑一遍 Dijkstra 求出点 $u$ 到剩下所有点 $v$ 的最短距离。如果有一条 $v\to u$ 的边，那么就找到了一个环，环的权值为 $dis[v]+w(v,u)$。最终时间复杂度 $O(NM\log M)$。
+```cpp
+void Dijkstra(int s)
+{
+    priority_queue <pii, vector<pii>, greater<pii>> q;
+    for (int i = 1; i <= n; ++i) { vis[i]=0; dis[i]=inf; }
+    dis[s] = 0;
+    q.push( {0, s} );
+    while (!q.empty()) {
+        int u = q.top().second; q.pop();
+        if (vis[u]) { continue; }
+        vis[u] = 1;
+        for (auto [v,p]: G[u]) {
+            if (dis[v] > dis[u] + p) {
+                dis[v] = dis[u] + p;
+                if (!vis[v]) { q.push( {dis[v], v}); }
+            }
+            // 与 Dijkstra 唯一的区别
+            if (v == s) { mnc = min(mnc, dis[u]+p); }
+        }
+    }
+}
+```
 #### spfa判断负环
 
 ```cpp
@@ -702,48 +726,27 @@ bool spfa(int s=1)
 	return false;
 }
 ```
-#### 有向图上找最小环
-
-枚举图上的一个点 $u$ 作为环的起点，跑一遍 Dijkstra 求出点 $u$ 到剩下所有点 $v$ 的最短距离。如果有一条 $v\to u$ 的边，那么就找到了一个环，环的权值为 $dis[v]+w(v,u)$。最终时间复杂度 $O(N(N+M)\log N)$。
-```cpp
-void Dijkstra(int s)
-{
-    priority_queue <pii, vector<pii>, greater<pii>> q;
-    for (int i = 1; i <= n; ++i) { vis[i]=0; dis[i]=inf; }
-    dis[s] = 0;
-    q.push( {0, s} );
-    while (!q.empty()) {
-        int u = q.top().second; q.pop();
-        if (vis[u]) { continue; }
-        vis[u] = 1;
-        for (auto [v,p]: G[u]) {
-            if (dis[v] > dis[u] + p) {
-                dis[v] = dis[u] + p;
-                if (!vis[v]) { q.push( {dis[v], v}); }
-            }
-            // 与 Dijkstra 唯一的区别
-            if (v == s) { mnc = min(mnc, dis[u]+p); }
-        }
-    }
-}
-```
 ### 最小生成树
 
 kruskal 时间复杂度为 $O(m\log m)$
 ```cpp
 int n, m;
+vector<pii> G[N];
 int kruskal()
 {   // 默认是一张连通图
 	vector <array<int,3>> e(m);
 	for (auto& [w, u, v]: e) { cin >> u >> v >> w; }
 	sort(e.begin(), e.end());
 	int ans = 0, cnt = 0;
-	d = Dsu(n);  // 见并查集模板
+	d = dsu(n);  // 见并查集模板
 	for (auto& [w, u, v]: e) {
 		if (d.find(u) != d.find(v)) {
 			d.merge(u, v);
 			ans += w;
 			++cnt;
+			// 以下两行为建图，完成后 G 中存放了最小生成树
+			G[u].push_back( { v, w } );
+			G[v].push_back( { u, w } );
 		}
 		if (cnt == n-1) { break; }
 	}
@@ -758,15 +761,15 @@ int kruskal()
 
 ```cpp
 const int N=5e5+5, I=20;
-int n, m, s, dep[N], f[N][I+5];
+int n, m, s, dep[N], f[I+5][N];
 vector <int> G[N];
 
 void dfs(int u, int fa)
 {   // 预处理深度和父节点信息
     dep[u] = dep[fa] + 1;
-    f[u][0] = fa;
+    f[0][u] = fa;
     for (int i = 1; i <= I; ++i) {
-        f[u][i] = f[f[u][i-1]][i-1];
+        f[i][u] = f[i-1][f[i-1][u]];
     }
     for (int v: G[u]) {
         if (v != fa) { dfs(v, u); }
@@ -777,13 +780,13 @@ int lca(int u, int v)
 {   // 求 lca
     if (dep[u] < dep[v]) { swap(u, v); }
     for (int i = I; i >= 0; --i) {
-        if (dep[f[u][i]] >= dep[v]) { u = f[u][i]; }
+        if (dep[f[i][u]] >= dep[v]) { u = f[i][u]; }
     }
     if (u == v) { return u; }
     for (int i = I; i >= 0; --i) {
-        if (f[u][i] != f[v][i]) { u=f[u][i]; v=f[v][i]; }
+        if (f[i][u] != f[i][v]) { u=f[i][u]; v=f[i][v]; }
     }
-    return f[u][0];
+    return f[0][u];
 }
 ```
 
@@ -793,7 +796,10 @@ int lca(int u, int v)
 欧拉序长度为 $2n-1$。
 在欧拉序区间 $[first[u],first[v]]$ 上深度最小的节点即为 $lca(u,v)$。
 ```cpp
-struct ST {};  // 把 vector<int> 改为 vector<pii>，用 pair 实现深度比较
+// 见 ST 表板子
+// 用 pair 实现深度比较，比较函数为 min
+template <typename T>
+struct ST {};
 
 int first[N], dep[N];
 vector <int> G[N];
@@ -811,23 +817,23 @@ void dfs(int u, int fa)
     }
 }
 
+ST<pii> st;
+int lca(int u, int v)
+{
+    u = first[u];
+    v = first[v];
+    if (u > v) { swap(u, v); }
+    return st.query(u, v).second;
+}
+
 int main()
-{   // 此处仅给出求 lca 部分的代码
+{   
+	// 预处理欧拉序，构建 ST 表，之后就可以直接调用 lca 进行求解
 	dfs(s, 0);
-    ST st(eular);
-    auto lca = [&](int u, int v){
-		u = first[u];
-		v = first[v];
-		if (u > v) { swap(u, v); }
-		return st.query(u, v).second;  // 这里需要输出节点编号
-    };
-    while (q--) {
-		int u, v;
-		cin >> u >> v;
-		cout << lca(u, v) << "\n";
-    }
+    st = ST<pii>(eular);
 }
 ```
+
 ### 树的重心
 
 去掉重心所形成的每个连通块的大小都小于等于 $\dfrac{n}{2}$。
@@ -836,22 +842,15 @@ int cnt[N];
 void findBaryCenter(int u, int fa, int &core)
 {
     cnt[u] = 1;
-    // vector <pair<int,int>> vec;
     int mx = 0;
     for (int v: G[u]) {
         if (v != fa) {
             findBaryCenter(v, u, core);
             cnt[u] += cnt[v];
-            // vec.push_back( { cnt[v], v } );
             mx = max(mx, cnt[v]);
         }
     }
-    if (fa != 0) {
-    	// vec.push_back( { rm-cnt[u], fa } );
-    	mx = max(mx, n-cnt[u]);
-    }
-    // sort(vec.begin(), vec.end());
-    // if (vec.back().first * 2 <= rm) { core = u; }
+    if (fa != 0) { mx = max(mx, n-cnt[u]); }
     if (mx * 2 <= m) { core = u; }
 }
 ```
@@ -863,7 +862,7 @@ void findBaryCenter(int u, int fa, int &core)
 有向图中欧拉回路存在条件：所有点入度等于出度。
 ```cpp
 void dfs(int u)
-{
+{   // Hierholzer 算法
     for (auto [v, id]: G[u]) {
         if (!vis[id]) {
             vis[id] = true;
@@ -894,7 +893,7 @@ vector <int> getPrime(int n)
 		for (auto p: prime) {
 			if (i*p >= n) { break; }
 			vis[i*p] = 1;
-			if (i%p == 0) { break; }
+			if (i%p == 0) { break; }  // 线性筛关键优化
 		}
 	}
 	return prime;
@@ -904,7 +903,7 @@ vector <int> getPrime(int n)
 ### 快速幂与乘法逆元
 
 根据费马小定理 $a^{p-1}\equiv1\pmod p$，得 $a^{p-2}\equiv\dfrac{1}{a}\pmod p$，据此计算乘法逆元。
-要求模数为质数，且 $a$ 不是 $p$ 的倍数
+要求模数为质数，且 $a$ 不是 $p$ 的倍数。
 ```cpp
 const int MOD=998244353;
 ll qpow(ll a, ll b=MOD-2)
@@ -923,8 +922,7 @@ ll qpow(ll a, ll b=MOD-2)
 $C_n^k=\dfrac{n!}{k!(n-k)!}$
 ```cpp
 // 预处理阶乘和阶乘的逆元
-vector<ll> fac(n+1), Inv(n+1);
-fac[0] = Inv[0] = 1;
+vector<ll> fac(n+1, 1), Inv(n+1, 1);
 for (int i = 1; i <= n; ++i) {
 	fac[i] = fac[i-1]*i%MOD;
 	Inv[i] = qpow(fac[i]);

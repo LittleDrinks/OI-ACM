@@ -29,8 +29,8 @@ longform:
       - 图论
       - - 最短路
         - - bitset优化传递闭包
-          - spfa判断负环
           - 有向图上找最小环
+          - spfa判断负环
         - 最小生成树
         - LCA
         - - 倍增O(LogN)求LCA
