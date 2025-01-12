@@ -23,7 +23,7 @@ struct ST {
             }
         }
     }
-    T query(int l, int r) {  // 注意下标从 0 开始
+    T query(int l, int r) {  // 内部下标从 0 开始，注意传参
         int s = Log[r-l+1];
         return max( st[s][l], st[s][r-(1<<s)+1] );
     }

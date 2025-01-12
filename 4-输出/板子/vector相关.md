@@ -20,6 +20,7 @@ for (int i = 1; i <= n; ++i) {
 // 前缀和
 vector <ll> a(n), s(n);
 partial_sum(a.begin(), a.end(), s.begin());
+ll sum = accumulate(s.begin(), s.end(), 0LL);
 
 // 填充 1~n，令 a[i]=i
 iota(a.begin(), a.end(), 0);

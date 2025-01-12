@@ -47,6 +47,7 @@ for (int i = 1; i <= n; ++i) {
 // 前缀和
 vector <ll> a(n), s(n);
 partial_sum(a.begin(), a.end(), s.begin());
+ll sum = accumulate(s.begin(), s.end(), 0LL);
 
 // 填充 1~n，令 a[i]=i
 iota(a.begin(), a.end(), 0);
@@ -372,6 +373,9 @@ struct dsu {
     int find(int x) {
         return fa[x]==x? fa[x]: fa[x]=find(fa[x]);
     }
+    bool same(int x, int y) {
+    	return find(x)==find(y);
+    }
     void merge(int x, int y) {
         x = find(x);
         y = find(y);
@@ -382,15 +386,57 @@ struct dsu {
         ++cnt[find(x)];
     }
 };
-Dsu D(n);
+dsu d(n);
 ```
 
 ### Trie
 
-01 Trie
+```cpp
+const string VAL="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const int S=3e6+5, V=62;
+
+struct Trie {
+    unordered_map<char,int> p;
+    int tot, ch[S][V], pass[S];
+    int newNode() {
+        ++tot;
+        memset(ch[tot], 0, sizeof(ch[tot]));
+        pass[tot] = 0;
+        return tot;
+    }
+    void init() {
+        tot = -1;
+        newNode();
+    }
+    Trie() {
+        for (int i = 0; i < V; ++i) { p[VAL[i]] = i; }
+        init();
+    }
+    void insert(string s) {
+        int now = 0;
+        for (auto c: s) {
+            if (!ch[now][p[c]]) { ch[now][p[c]] = newNode(); }
+            now = ch[now][p[c]];
+            ++pass[now];
+        }
+    }
+    int query(string s) {
+        int now = 0;
+        for (auto c: s) {
+            if (!ch[now][p[c]]) { return 0; }
+            now = ch[now][p[c]];
+        }
+        return pass[now];
+    }
+} trie;
+```
+
+#### 01 Trie
+
+求 $\displaystyle \max_x \{x\oplus y\}$。求树上最长异或路径。
 ```cpp
 struct Trie {
-	int tot=0, ch[N*I][2];
+	int tot=0, ch[N*I][2];	
 	void insert(int x)
 	{
 		int now = 0;
@@ -439,7 +485,7 @@ struct ST {
             }
         }
     }
-    T query(int l, int r) {  // 注意下标从 0 开始
+    T query(int l, int r) {  // 内部下标从 0 开始，注意传参
         int s = Log[r-l+1];
         return max( st[s][l], st[s][r-(1<<s)+1] );
     }
@@ -457,7 +503,7 @@ struct ST {
 };
 ```
 
-### 对顶multiset
+### 对顶multiset维护中位数
 
 ```cpp
 struct PairingMultiset {
@@ -542,10 +588,9 @@ struct BIT {
     }
     int query(int x)
     {   // 求最小的前缀和等于x的位置
-        ++x;
         int ans=0, sum=0;
         for (int i = I; i >= 0; --i) {
-            if (ans+(1<<i) <= n && sum+t[ans+(1<<i)] < x) {
+            if (ans+(1<<i) <= n && sum+t[ans+(1<<i)] <= x) {
                 ans += (1<<i);
                 sum += t[ans];
             }
@@ -677,7 +722,7 @@ for (int j = 1; j <= n; ++j) {  // 注意中转点在最外层
 
 #### 有向图上找最小环
 
-枚举图上的一个点 $u$ 作为环的起点，跑一遍 Dijkstra 求出点 $u$ 到剩下所有点 $v$ 的最短距离。如果有一条 $v\to u$ 的边，那么就找到了一个环，环的权值为 $dis[v]+w(v,u)$。最终时间复杂度 $O(NM\log M)$。
+枚举图上的一个点 $u$ 作为环的起点，跑一遍 Dijkstra 求出点 $u$ 到剩下所有点 $v$ 的最短距离。如果有一条 $v\to u$ 的边，那么就找到了一个环，环的权值为 $dis[v]+w(v,u)$。最终时间复杂度 $O(NM\log N)$。
 ```cpp
 void Dijkstra(int s)
 {
@@ -834,6 +879,38 @@ int main()
 }
 ```
 
+### 基环树上找环
+
+在建图的过程中如果发现 $u,v$ 已经联通，则 $u,v$ 两点必然在环上。从 $u$ 出发 dfs 到 $v$ 即可。
+```cpp
+vector<int> G[N], cycle;
+void dfs(int u, int fa)
+{
+    cycle.push_back(u);
+    if (u == t) {
+        sort(cycle.begin(), cycle.end());
+        for (int x: cycle) { cout << x << " "; }
+        exit(0);
+    }
+    for (int v: G[u]) {
+        if (v != fa) { dfs(v, u); }
+    }
+    cycle.pop_back();
+}
+int main()
+{
+	dsu d(n);  // 见并查集板子
+	for (int i = 1; i <= n; ++i) {
+	    int u, v;
+	    cin >> u >> v;
+	    G[u].push_back(v);
+	    G[v].push_back(u);
+	    if (d.same(u, v)) { s=u; t=v; }
+	    d.merge(u, v);
+	}
+	dfs(s, 0);
+}
+```
 ### 树的重心
 
 去掉重心所形成的每个连通块的大小都小于等于 $\dfrac{n}{2}$。

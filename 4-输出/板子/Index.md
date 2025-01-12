@@ -20,8 +20,9 @@ longform:
       - 数据结构
       - - 并查集
         - Trie
+        - - 01 Trie
         - ST表
-        - 对顶multiset
+        - 对顶multiset维护中位数
         - 树状数组
         - 线段树
         - 分块
@@ -35,6 +36,7 @@ longform:
         - LCA
         - - 倍增O(LogN)求LCA
           - 欧拉序+ST表O(1)求LCA
+        - 基环树上找环
         - 树的重心
         - 树的直径
         - 欧拉路

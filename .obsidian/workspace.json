@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "1d6f704838184f6f",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "d0982ec6d012e4f1",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4-输出/板子/ST表.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "ST表"
+              "title": "新标签页"
             }
           }
         ]
@@ -52,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "单调栈",
+                "query": "最长上升子序列",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -191,36 +187,39 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "d1d33600c1a07559",
+  "active": "5b1cf506039c19ce",
   "lastOpenFiles": [
-    "4-输出/板子/并查集.md",
+    "4-输出/板子/template_by_LittleDrinks.md",
+    "4-输出/板子/Trie.md",
+    "4-输出/板子/01 Trie.md",
+    "2-题解/CF1980G.md",
+    "2-题解/AcWing144.md",
+    "2-题解/AcWing143.md",
+    "2-题解/AT_abc388_g.md",
+    "2-题解/AT_abc388_e.md",
+    "4-输出/板子/ST表.md",
+    "().md",
+    "3-文档/2-比赛/AtCoder Beginner Contest 388.md",
+    "2-题解/AT_abc388_f.md",
+    "contests/abc388/tasks/abc388_f.md",
+    "contests/abc388/tasks",
+    "contests/abc388",
+    "contests",
     "0-系统组件/homepage.md",
+    "2-题解/B3637.md",
+    "3-文档/1-笔记/树状数组.md",
+    "4-输出/板子/对拍.md",
+    "4-输出/板子/常用函数.md",
+    "4-输出/板子/vector相关.md",
+    "4-输出/板子/树状数组.md",
+    "4-输出/板子/对顶multiset维护中位数.md",
+    "4-输出/板子/基环树上找环.md",
+    "4-输出/板子/并查集.md",
     "2-题解/AT_abc379_f.md",
     "2-题解/CF1886C.md",
     "4-输出/数据结构入门/优先队列.md",
-    "4-输出/数据结构入门/栈.md",
     "0-系统组件/1-附件/Pasted image 20250110141805.png",
-    "4-输出/数据结构入门/Trie树.md",
-    "4-输出/数据结构入门/基本数据结构及其STL实现.md",
-    "4-输出/数据结构入门/树状数组.md",
-    "4-输出/数据结构入门/ST表.md",
-    "4-输出/数据结构入门/前言.md",
-    "4-输出/数据结构入门/并查集.md",
-    "4-输出/数据结构入门/队列.md",
-    "4-输出/数据结构入门/Index.md",
     "4-输出/数据结构入门",
-    "4-输出/数据结构入门.md",
-    "4-输出/板子/vector相关.md",
-    "4-输出/板子/图论.md",
-    "2-题解/P3988.md",
-    "3-文档/1-笔记/树状数组.md",
-    "2-题解/P1856.md",
-    "2-题解/P5490.md",
-    "3-文档/2-比赛/The 3rd Universal Cup. Stage 8 Cangqian.md",
-    "2-题解/QOJ8941.md",
-    "3-文档/2-比赛/The 2023 ICPC Asia Nanjing Regional Contest.md",
-    "2-题解/gym105386J.md",
-    "4-输出/板子/有向图上找最小环.md",
     "~syncthing~.nomedia.tmp",
     "4-输出/板子/~syncthing~Index.md.tmp",
     "0-系统组件/1-附件/计算几何资料/~$【徐明宽】二维计算几何相关算法与实战应用.pptx",
@@ -228,9 +227,6 @@
     "0-系统组件/1-附件/计算几何资料/ACM-ICPC程序设计系列-计算几何及应用.pdf",
     "0-系统组件/1-附件/计算几何资料/【HIT】计算几何模板.pdf",
     "0-系统组件/1-附件/计算几何资料/f2ae85bed0b6d5075b220e85e5753a82.par.temp",
-    "0-系统组件/1-附件/计算几何资料/【北大ACM】计算几何教程.pptx",
-    "0-系统组件/1-附件/计算几何资料/f1d296225d65e48c682697d255e53ade.par.temp",
-    "0-系统组件/1-附件/计算几何资料/3d97f22f8e4218987ba89b640a076f24.par.temp",
     "0-系统组件/1-附件/Pasted image 20241222131648.png",
     "0-系统组件/1-附件/769026e41fd8671126b30b4a3e07449.png",
     "0-系统组件/1-附件/ddfaa6d7e2d00f30819af0b593dba74.png",
