@@ -4,6 +4,6 @@ tags:
 ---
 # [AtCoder Beginner Contest 388](https://atcoder.jp/contests/abc388)
 
-- [ ] [[AT_abc388_e]]
+- [x] [[AT_abc388_e]] ✅ 2025-01-12
 - [ ] [[AT_abc388_f]]
-- [ ] [[AT_abc388_g]]
+- [x] [[AT_abc388_g]] ✅ 2025-01-12

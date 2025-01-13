@@ -2,7 +2,9 @@
 tags:
 ---
 ```cpp
-const int dx={-1, 1, 0, 0}, dy={0, 0, -1, 1}  // d={上, 下, 左, 右}
+const int dx[]={-1, 1, 0, 0}, dy[]={0, 0, -1, 1};  // 上，下，左，右
+unordered_map<char,int> d={{'U',0},{'D',1},{'L',2},{'R',3}};
+
 int f[N][N];
 bool vis[N][N];
 bool valid(int x, int y)

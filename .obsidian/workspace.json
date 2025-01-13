@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "1d6f704838184f6f",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "d0982ec6d012e4f1",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "0-系统组件/homepage.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "homepage"
             }
           }
         ]
@@ -48,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "最长上升子序列",
+                "query": "跑一遍 Dijkstra",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,7 +83,8 @@
               "title": "Longform"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -187,37 +192,38 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "5b1cf506039c19ce",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "4-输出/板子/template_by_LittleDrinks.md",
-    "4-输出/板子/Trie.md",
-    "4-输出/板子/01 Trie.md",
-    "2-题解/CF1980G.md",
-    "2-题解/AcWing144.md",
-    "2-题解/AcWing143.md",
-    "2-题解/AT_abc388_g.md",
-    "2-题解/AT_abc388_e.md",
-    "4-输出/板子/ST表.md",
-    "().md",
-    "3-文档/2-比赛/AtCoder Beginner Contest 388.md",
-    "2-题解/AT_abc388_f.md",
-    "contests/abc388/tasks/abc388_f.md",
+    "4-输出/板子/逆序对.md",
+    "4-输出/板子/vector相关.md",
+    "0-系统组件/homepage.md",
+    "4-输出/板子/倍增O(LogN)求LCA.md",
+    "4-输出/板子/欧拉序+ST表O(1)求LCA.md",
+    "4-输出/板子/树状数组.md",
+    "4-输出/最短路问题/gym103409K.md",
+    "4-输出/最短路问题/gym105386J.md",
+    "4-输出/最短路问题/gym103409E.md",
+    "4-输出/最短路问题/CF2041D.md",
+    "4-输出/最短路问题/例题.md",
+    "2-题解/gym103409E.md",
+    "4-输出/板子/有向图上找最小环.md",
+    "4-输出/最短路问题/最短路问题.md",
+    "4-输出/板子/Index.md",
+    "4-输出/最短路问题/有向图上找最小环.md",
+    "4-输出/最短路问题/从bfs讲起.md",
+    "2-题解/gym105386J.md",
+    "2-题解/CF2041D.md",
+    "2-题解/gym103409K.md",
+    "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
+    "4-输出/最短路问题/单源最短路问题（sssp）.md",
+    "4-输出/最短路问题/前言.md",
+    "4-输出/最短路问题/多源最短路问题（mssp）.md",
+    "4-输出/最短路问题/spfa.md",
+    "4-输出/最短路问题/判负环.md",
+    "4-输出/最短路问题",
     "contests/abc388/tasks",
     "contests/abc388",
     "contests",
-    "0-系统组件/homepage.md",
-    "2-题解/B3637.md",
-    "3-文档/1-笔记/树状数组.md",
-    "4-输出/板子/对拍.md",
-    "4-输出/板子/常用函数.md",
-    "4-输出/板子/vector相关.md",
-    "4-输出/板子/树状数组.md",
-    "4-输出/板子/对顶multiset维护中位数.md",
-    "4-输出/板子/基环树上找环.md",
-    "4-输出/板子/并查集.md",
-    "2-题解/AT_abc379_f.md",
-    "2-题解/CF1886C.md",
-    "4-输出/数据结构入门/优先队列.md",
     "0-系统组件/1-附件/Pasted image 20250110141805.png",
     "4-输出/数据结构入门",
     "~syncthing~.nomedia.tmp",
@@ -226,7 +232,6 @@
     "0-系统组件/1-附件/56c0a8a12b4081d91ce8e4635eaf3cc.png",
     "0-系统组件/1-附件/计算几何资料/ACM-ICPC程序设计系列-计算几何及应用.pdf",
     "0-系统组件/1-附件/计算几何资料/【HIT】计算几何模板.pdf",
-    "0-系统组件/1-附件/计算几何资料/f2ae85bed0b6d5075b220e85e5753a82.par.temp",
     "0-系统组件/1-附件/Pasted image 20241222131648.png",
     "0-系统组件/1-附件/769026e41fd8671126b30b4a3e07449.png",
     "0-系统组件/1-附件/ddfaa6d7e2d00f30819af0b593dba74.png",
