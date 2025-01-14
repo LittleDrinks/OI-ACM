@@ -70,7 +70,9 @@ while (1) {
 ### bfs
 
 ```cpp
-const int dx={-1, 1, 0, 0}, dy={0, 0, -1, 1}  // d={上, 下, 左, 右}
+const int dx[]={-1, 1, 0, 0}, dy[]={0, 0, -1, 1};  // 上，下，左，右
+unordered_map<char,int> d={{'U',0},{'D',1},{'L',2},{'R',3}};
+
 int f[N][N];
 bool vis[N][N];
 bool valid(int x, int y)
@@ -687,7 +689,38 @@ struct segmentTree {
 ```
 ### 分块
 
-#### 动态逆序对
+### 逆序对
+
+归并排序解决静态逆序对问题。
+```cpp
+ll msort(vector<int> &a, int l, int r)
+{
+    if (l == r) { return 0; }
+    int mid = (l + r) >> 1;
+    ll ans=0;
+    ans += msort(a, l, mid);
+    ans += msort(a, mid+1, r);
+    int i=l, j=mid+1;
+    vector<int> b;
+    while (i <= mid && j <= r) {
+        if (a[i] <= a[j]) { b.push_back(a[i++]); }
+        else              { b.push_back(a[j++]); ans+=mid-i+1; }
+    }
+    while (i <= mid) { b.push_back(a[i++]); }
+    while (j <= r)   { b.push_back(a[j++]); }
+    copy(b.begin(), b.end(), a.begin()+l);
+    return ans;
+}
+```
+树状数组解决静态逆序对问题。
+```cpp
+ll ans = 0;
+for (int i = 0; i < n; ++i) {
+    ans += t.query(n)-t.query(p[a[i]]);
+    t.modify(p[a[i]], 1);
+}
+```
+分块解决动态逆序对问题。
 
 ## 图论
 

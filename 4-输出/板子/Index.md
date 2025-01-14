@@ -20,7 +20,6 @@ longform:
       - 数据结构
       - - 并查集
         - Trie
-        - - 01 Trie
         - ST表
         - 对顶multiset维护中位数
         - 树状数组

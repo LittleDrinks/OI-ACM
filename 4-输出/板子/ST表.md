@@ -6,19 +6,19 @@ tags:
 ---
 ```cpp
 template <typename T>
-struct ST {
+struct ST {  // 标有“下标”的行都是下标改为 1 时需要修改的行
     int n=0, I=0;
     vector<int> Log;
     vector<vector<T>> st;
     ST() { }
     ST(const vector<T>& a) {
-        n = a.size();
+        n = a.size();  // 下标
         Log.assign(n+1, 0);
         for (int i = 2; i <= n; ++i) { I=Log[i]=Log[i/2]+1; }
-        st.assign(I+1, vector<T>(n));
-        copy(a.begin(), a.end(), st[0].begin());
+        st.assign(I+1, vector<T>(n));  // 下标
+        copy(a.begin(), a.end(), st[0].begin());  // 下标
         for (int i = 1; i <= I; ++i) {
-            for (int j = 0; j+(1<<(i-1)) < n; ++j) {
+            for (int j = 0; j+(1<<(i-1)) < n; ++j) {  // 下标
                 st[i][j] = max( st[i-1][j], st[i-1][j+(1<<(i-1))] );
             }
         }
@@ -28,14 +28,14 @@ struct ST {
         return max( st[s][l], st[s][r-(1<<s)+1] );
     }
     int find(int l, T x) {  // 第一个区间 [l,r] 最值大于等于 x 的 r
-    	if (l >= n) { return -1; }
+    	if (l >= n) { return -1; }  // 下标
         int rl=l-1, rr=n;
         while (rl != rr-1) {
             int mid = (rl + rr) >> 1;
             if (query(l, mid) >= x) { rr = mid; }
             else { rl = mid; }
         }
-        if (rr < n) { return rr; }
+        if (rr < n) { return rr; }  // 下标
         return -1;
     }
 };
