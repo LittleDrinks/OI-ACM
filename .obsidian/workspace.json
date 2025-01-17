@@ -4,35 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "e66be538eadcb0f0",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "88cd60290d066eb0",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2-题解/P8856.md",
+                "file": "3-文档/2-比赛/Hello 2025.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "P8856"
+              "title": "Hello 2025"
             }
           },
           {
-            "id": "5544675cd451c3bd",
+            "id": "5fa7cc9f70443836",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4-输出/板子/线段树.md",
+                "file": "2-题解/CF2057E.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "线段树"
+              "title": "CF2057E"
             }
           }
         ],
@@ -98,8 +98,7 @@
               "title": "Longform"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -207,11 +206,16 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "5544675cd451c3bd",
+  "active": "d1d33600c1a07559",
   "lastOpenFiles": [
+    "3-文档/2-比赛/Hello 2025.md",
+    "0-系统组件/homepage.md",
+    "2-题解/CF2057E.md",
+    "4-输出/板子/图论.md",
+    "3-文档/2-比赛/AtCoder Beginner Contest 388.md",
+    "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
     "2-题解/P8856.md",
     "4-输出/板子/线段树.md",
-    "0-系统组件/homepage.md",
     "2-题解/AT_abc386_e.md",
     "3-文档/2-比赛/AtCoder Beginner Contest 386.md",
     "2-题解/AT_abc386_f.md",
@@ -220,7 +224,6 @@
     "2-题解/P5490.md",
     "4-输出/板子/常用函数.md",
     "2-题解/CF2057D.md",
-    "3-文档/2-比赛/Hello 2025.md",
     "3-文档/2-比赛/The 2023 ICPC Asia Nanjing Regional Contest.md",
     "4-输出/板子/vector相关.md",
     "2-题解/P7167.md",
@@ -231,10 +234,6 @@
     "4-输出/板子/逆序对.md",
     "4-输出/板子/倍增O(LogN)求LCA.md",
     "4-输出/板子/欧拉序+ST表O(1)求LCA.md",
-    "4-输出/板子/树状数组.md",
-    "4-输出/最短路问题/gym103409K.md",
-    "4-输出/最短路问题/gym105386J.md",
-    "4-输出/最短路问题/gym103409E.md",
     "4-输出/最短路问题",
     "contests/abc388/tasks",
     "contests/abc388",
