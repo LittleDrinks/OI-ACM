@@ -7,10 +7,10 @@
   "sessions": [
     {
       "start": "2025-01-17T16:07:29.296Z",
-      "total": 0,
+      "total": 232,
       "drafts": {
         "4-输出/板子/Index.md": {
-          "total": 0,
+          "total": 232,
           "scenes": {
             "模板": 0,
             "杂项": 0,
@@ -52,7 +52,9 @@
             "数学": 0,
             "线性筛": 0,
             "快速幂与乘法逆元": 0,
-            "O(1)计算排列组合数": 0,
+            "O(1)计算排列组合数": 91,
+            "卡特兰数": 127,
+            "容斥原理": 14,
             "烂掉啦": 0
           }
         },
@@ -1560,7 +1562,7 @@
         {
           "id": "write-to-note",
           "optionValues": {
-            "target": "templ",
+            "target": "template_by_LittleDrinks.md",
             "open-after": true
           }
         }

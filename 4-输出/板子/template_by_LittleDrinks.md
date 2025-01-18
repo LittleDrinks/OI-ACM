@@ -23,7 +23,7 @@ void del(ll &x, ll y) { if ((x-=y) < 0)    { x += MOD; } }
 
 // 随机数
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-int myRand(int B) { return (unsigned long long)rng() % B; }
+int Rand(int B) { return (unsigned long long)rng() % B; }
 ```
 
 ### vector相关
@@ -393,6 +393,7 @@ dsu d(n);
 
 ### Trie
 
+普通 Trie。
 ```cpp
 const string VAL="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const int S=3e6+5, V=62;
@@ -432,9 +433,6 @@ struct Trie {
     }
 } trie;
 ```
-
-#### 01 Trie
-
 求 $\displaystyle \max_x \{x\oplus y\}$。求树上最长异或路径。
 ```cpp
 struct Trie {
@@ -466,23 +464,24 @@ struct Trie {
 	}
 } T;
 ```
+
 ### ST表
 
 ```cpp
 template <typename T>
-struct ST {
+struct ST {  // 标有“下标”的行都是下标改为 1 时需要修改的行
     int n=0, I=0;
     vector<int> Log;
     vector<vector<T>> st;
     ST() { }
     ST(const vector<T>& a) {
-        n = a.size();
+        n = a.size();  // 下标
         Log.assign(n+1, 0);
         for (int i = 2; i <= n; ++i) { I=Log[i]=Log[i/2]+1; }
-        st.assign(I+1, vector<T>(n));
-        copy(a.begin(), a.end(), st[0].begin());
+        st.assign(I+1, vector<T>(n));  // 下标
+        copy(a.begin(), a.end(), st[0].begin());  // 下标
         for (int i = 1; i <= I; ++i) {
-            for (int j = 0; j+(1<<(i-1)) < n; ++j) {
+            for (int j = 0; j+(1<<(i-1)) < n; ++j) {  // 下标
                 st[i][j] = max( st[i-1][j], st[i-1][j+(1<<(i-1))] );
             }
         }
@@ -492,14 +491,14 @@ struct ST {
         return max( st[s][l], st[s][r-(1<<s)+1] );
     }
     int find(int l, T x) {  // 第一个区间 [l,r] 最值大于等于 x 的 r
-    	if (l >= n) { return -1; }
+    	if (l >= n) { return -1; }  // 下标
         int rl=l-1, rr=n;
         while (rl != rr-1) {
             int mid = (rl + rr) >> 1;
             if (query(l, mid) >= x) { rr = mid; }
             else { rl = mid; }
         }
-        if (rr < n) { return rr; }
+        if (rr < n) { return rr; }  // 下标
         return -1;
     }
 };
@@ -605,85 +604,64 @@ BIT T(n);
 
 ### 线段树
 
-需要自定义 `info` 和 `lazyTag`，重写两个带默认值的构造函数和三个运算符，并修改 `build()` 中对 `info` 的新建。
+模板中维护了区间加法和最值查询。
+需要自定义 `node` 上的信息，写好默认值，并且对应重载 `push_up()`，`setTag()`，`spread_down()`。
 ```cpp
-struct lazyTag {
-	lazyTag() { }  // 记得写默认值
-};
-struct info {
-    int l, r;
-    int len() { return r-l+1; }
-    info(int l=INT_MAX, int r=0): l(l), r(r) { }  // 记得写默认值
-    bool operator <= (const pair<int,int> &p) const {
-        return p.first <= l && r <= p.second;
-    }
-};
-info operator + (info f1, info f2) {
-}
-info operator + (info f, lazyTag tag) {
-}
-lazyTag operator + (lazyTag t1, lazyTag t2) {
-}
 struct segmentTree {
-    #define lson (pos << 1) 
+    #define lson (pos << 1)
     #define rson (pos << 1 | 1)
     struct node {
-        info val;
-        lazyTag tag;
+        int l, r, mx, tg;
+        node(int l=INT_MAX, int r=0, int mx=0, int tg=0): l(l), r(r), mx(mx), tg(tg) { }
     };
-    int n;
-    vector <int> p;
-    vector <node> t;
-    segmentTree(int n): n(n) {
-        p.resize(n+1);
-        for (int i = 1; i <= n; ++i) { cin >> p[i]; }  // 这两行输入原始数组，如无需要记得删
+    vector<node> t;
+    segmentTree(int n) {
         t.resize( (n+5) << 2 );
-        build(1, 1, n);
+        build(1, 1, n); 
     }
     void push_up(int pos) {
-        t[pos].val = t[lson].val + t[rson].val;
+    	// 左右子区间合并
+        t[pos].mx = max(t[lson].mx, t[rson].mx);
     }
-    void setTag(int pos, const lazyTag &tag) {
-        t[pos].val = t[pos].val + tag;
-        t[pos].tag = t[pos].tag + tag;
+    void setTag(int pos, int d) {
+    	// 修改节点并打上懒标记
+        t[pos].mx += d;
+        t[pos].tg += d;
     }
     void spread_down(int pos) {
-    	setTag(lson, t[pos].tag);
-    	setTag(rson, t[pos].tag);
-    	t[pos].tag = lazyTag();
+		// 下传 t[pos] 上的懒标记，直接调用 setTag() 即可，如果不用懒标记则删除
+		// 记得清空懒标记
+        setTag(lson, t[pos].tg);
+        setTag(rson, t[pos].tg);
+        t[pos].tg = 0;
     }
     void build(int pos, int l, int r) {
-        if (l == r) {
-            t[pos].val = info(p[l], l, r);  // 根据 info() 构造函数修改
-        } else {
-            int mid = (l + r) >> 1;
-            build(lson, l, mid);
-            build(rson, mid+1, r);
-            push_up(pos);
-        }
+        t[pos] = node(l, r);
+        if (l == r) { return; }
+        int mid = (l + r) >> 1;
+        build(lson, l, mid);
+        build(rson, mid+1, r);
+        push_up(pos);
     }
-    void modify(int pos, int l, int r, const lazyTag &tag) {  // 区间修改
-        if (t[pos].val <= make_pair(l, r)) {
-            setTag(pos, tag);
-        } else {
-            int mid = (t[pos].val.l + t[pos].val.r) >> 1;
-            spread_down(pos);
-            if (l <= mid) { modify(lson, l, r, tag); }
-            if (mid < r)  { modify(rson, l, r, tag); }
-            push_up(pos);
+    void modify(int pos, int l, int r, int d) {
+    	// 区间修改
+        if (r < t[pos].l || t[pos].r < l) { return; }
+        if (l <= t[pos].l && t[pos].r <= r) {
+            setTag(pos, d); return;
         }
+        spread_down(pos);
+        modify(lson, l, r, d);
+        modify(rson, l, r, d);
+        push_up(pos);
     }
-    info query(int pos, int l, int r) {  // 区间查询
-        if (t[pos].val <= make_pair(l, r)) {
-            return t[pos].val;
-        } else {
-            int mid = (t[pos].val.l + t[pos].val.r) >> 1;
-            spread_down(pos);
-            info res = info();
-            if (l <= mid) { res = res + query(lson, l, r); }
-            if (mid < r)  { res = res + query(rson, l, r); }
-            return res;
+    int query(int pos, int l, int r) {
+		// 区间查询
+        if (r < t[pos].l || t[pos].r < l) { return 0; }  // 返回默认值
+        if (l <= t[pos].l && t[pos].r <= r) {
+            return t[pos].mx;
         }
+        spread_down(pos);
+        return max(query(lson, l, r), query(rson, l, r));  // 求解
     }
 };
 ```
@@ -1029,23 +1007,40 @@ ll qpow(ll a, ll b=MOD-2)
 
 ### O(1)计算排列组合数
 
-$C_n^k=\dfrac{n!}{k!(n-k)!}$
+常见公式：① $C_n^k=\dfrac{n!}{k!(n-k)!}$；② $C_n^m=C_{n-1}^m+C_{n-1}^{m-1}$；③ $\displaystyle\sum_{i=0}^nC_n^i=2^n$
+不定方程 $\displaystyle\sum_{i=1}^mx_i=n$ 正整数解个数为 $C_{n-1}^{m-1}$，非负整数解的个数为 $C_{n+m-1}^{m-1}$
 ```cpp
 // 预处理阶乘和阶乘的逆元
-vector<ll> fac(n+1, 1), Inv(n+1, 1);
-for (int i = 1; i <= n; ++i) {
-	fac[i] = fac[i-1]*i%MOD;
-	Inv[i] = qpow(fac[i]);
+vector<ll> fac, Inv;
+void init(int sz)
+{
+    fac.resize(sz+1, 1);
+    Inv.resize(sz+1, 1);
+    for (int i = 1; i <= sz; ++i) {
+        fac[i] = fac[i-1] * i % MOD;
+        Inv[i] = qpow(fac[i]); 
+    }
 }
-
-// 计算
-auto C=[&](ll n, ll k) {
-    return n==0? 1: fac[n] * Inv[k] % MOD * Inv[n-k] % MOD;
-};
-auto P=[&](ll n, ll k) {
-    return n==0? 1: fac[n] * Inv[n-k] % MOD;
-}
+ll C(ll n, ll k) { return n==0? 1: fac[n] * Inv[k] % MOD * Inv[n-k] % MOD; }
+ll P(ll n, ll k) { return n==0? 1: fac[n] * Inv[n-k] % MOD; }
 ```
+python 高精度版。
+```python
+import math
+def C(n, k):
+    return math.factorial(n)//math.factorial(k)//math.factorial(n-k);
+```
+### 卡特兰数
+
+$Cat(n)$ 的求法：① $\begin{cases}H_1=1\\H_n=\dfrac{4n-2}{n+1}H_{n-1}\end{cases}$；② $H_n=\dfrac{C_{2n}^n}{n+1}$；③ $H_n=C_{2n}^n-C_{2n}^{n-1}$；④ $H_n=\displaystyle\prod_{i=0}^n H_iH_{n-1-i}$
+$Cat(n)$ 的意义：①不跨对角线从 $(1,1)$ 走到 $(n,n)$ 的方案数；② $2n$ 个括号所组成的所有合法括号序列的个数；③合法的出栈方案数；④ $n$ 边形划分为若干个三角形的方案数；⑤ $n+1$ 个节点的二叉树形态。
+```cpp
+ll Cat(ll n) { return C(2*n, n) * qpow(n+1) % MOD; }
+```
+
+### 容斥原理
+
+错位排列问题：$D(n)=(n-1)\times(D(n-1)+D(n-2))$
 
 ## 烂掉啦
 - 开 `long long`

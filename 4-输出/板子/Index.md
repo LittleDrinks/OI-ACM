@@ -46,6 +46,8 @@ longform:
       - - 线性筛
         - 快速幂与乘法逆元
         - O(1)计算排列组合数
+        - 卡特兰数
+        - 容斥原理
       - 烂掉啦
   ignoredFiles:
     - manuscript
