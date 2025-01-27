@@ -7,8 +7,7 @@ longform:
   scenes:
     - 模板
     - - 杂项
-      - - 快读
-        - 常用函数
+      - - 常用函数
         - vector相关
         - 对拍
         - bfs
