@@ -4,39 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "1622b5d300b602d0",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "9feef13d09c39b59",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3-文档/2-比赛/Ethflow Round 1 (Codeforces Round 1001, Div. 1 + Div. 2).md",
+                "file": "2-题解/CF2005D.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Ethflow Round 1 (Codeforces Round 1001, Div. 1 + Div. 2)"
-            }
-          },
-          {
-            "id": "d3459ad7f4ab8128",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2-题解/CF2062D.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "CF2062D"
+              "title": "CF2005D"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -206,14 +191,16 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "d3459ad7f4ab8128",
+  "active": "9feef13d09c39b59",
   "lastOpenFiles": [
-    "3-文档/2-比赛/Ethflow Round 1 (Codeforces Round 1001, Div. 1 + Div. 2).md",
-    "2-题解/CF2062D.md",
     "4-输出/板子/常用函数.md",
+    "2-题解/CF2005D.md",
+    "0-系统组件/homepage.md",
+    "4-输出/板子/图论.md",
+    "2-题解/CF2062D.md",
+    "3-文档/2-比赛/Ethflow Round 1 (Codeforces Round 1001, Div. 1 + Div. 2).md",
     "4-输出/板子/快读.md",
     "4-输出/板子/ST表.md",
-    "0-系统组件/homepage.md",
     "~syncthing~.nomedia.tmp",
     "2-题解/P3045.md",
     "4-输出/板子/快速幂与乘法逆元.md",
@@ -229,12 +216,10 @@
     "2-题解/CF2056D.md",
     "2-题解/CF2057E.md",
     "3-文档/2-比赛/Hello 2025.md",
-    "4-输出/板子/图论.md",
     "3-文档/2-比赛/AtCoder Beginner Contest 388.md",
     "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
     "2-题解/P8856.md",
     "4-输出/板子/线段树.md",
-    "2-题解/AT_abc386_e.md",
     "4-输出/最短路问题",
     "contests/abc388/tasks",
     "contests/abc388",
