@@ -8,7 +8,7 @@ speed:
 ---
 ## [243. 一个简单的整数问题2](https://www.acwing.com/problem/content/244/)
 
-记差分数组 $b[]$，同 [[AcWing242|AcWing 242. 一个简单的整数问题]]，$a[i]$ 的增量 $\Delta a[i]=\sum_{k=1}^i b[k]$。
+用树状数组维护区间修改+区间查询的操作。
 
 #### [AC代码](https://www.acwing.com/problem/content/submission/code_detail/36968132/)
 
