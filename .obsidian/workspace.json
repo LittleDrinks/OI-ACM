@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "2e3daa65b57319f2",
+        "id": "a583ac925a476122",
         "type": "tabs",
         "children": [
           {
-            "id": "64d5685389fd69da",
+            "id": "1757efecf46dadcc",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "abc388",
+                "query": "{2}",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -84,8 +84,7 @@
               "title": "Longform"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -193,34 +192,34 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "64d5685389fd69da",
+  "active": "1757efecf46dadcc",
   "lastOpenFiles": [
-    "AT_abc388_d.md",
-    "3-文档/2-比赛/AtCoder Beginner Contest 388.md",
     "3-文档/1-笔记/树状数组.md",
-    "2-题解/P2982.md",
-    "2-题解/P1972.md",
-    "0-系统组件/homepage.md",
-    "4-输出/板子/树状数组.md",
-    "2-题解/gym104945A.md",
-    "2-题解/AT_abc388_e.md",
-    "2-题解/B3637.md",
-    "2-题解/P1966.md",
-    "2-题解/AcWing241.md",
-    "2-题解/P5200.md",
-    "2-题解/gym104875J.md",
-    "2-题解/AcWing242.md",
     "2-题解/AcWing243.md",
+    "2-题解/iai100.md",
+    "2-题解/AT_abc386_e.md",
+    "2-题解/AT_abc381_d.md",
+    "2-题解/AT_abc379_f.md",
+    "2-题解/AT_abc379_e.md",
+    "2-题解/AT_abc378_f.md",
+    "2-题解/AT_abc378_e.md",
+    "4-输出/板子/树状数组.md",
+    "2-题解/AT_abc388_f.md",
+    "2-题解/AT_abc388_e.md",
+    "2-题解/AT_abc388_d.md",
+    "2-题解/AT_abc386_f.md",
+    "2-题解/iai405.md",
+    "2-题解/gym104875J.md",
+    "2-题解/P2344.md",
+    "2-题解/P5200.md",
+    "2-题解/P3988.md",
     "2-题解/gym104945K.md",
-    "2-题解/gym105222F.md",
-    "2-题解/gym105222I.md",
-    "2-题解/gym105386E.md",
-    "2-题解/gym105386G.md",
-    "2-题解/gym105386I.md",
-    "2-题解/gym105386J.md",
-    "2-题解/gym105386M.md",
-    "2-题解/gym105484B.md",
-    "2-题解/gym105484E.md",
+    "2-题解/AcWing244.md",
+    "4-输出/板子/常用函数.md",
+    "4-输出/板子/线段树.md",
+    "2-题解/P2988.md",
+    "0-系统组件/homepage.md",
+    "README.md",
     "0-系统组件/1-附件/Pasted image 20250130112742.png",
     "~syncthing~.nomedia.tmp",
     "4-输出/最短路问题",
