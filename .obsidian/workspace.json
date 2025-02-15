@@ -4,21 +4,34 @@
     "type": "split",
     "children": [
       {
-        "id": "a548967cf6cbb1ee",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "f4d9d9401793a596",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0-系统组件/homepage.md",
+                "file": "4-输出/板子/Manacher.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "homepage"
+              "title": "Manacher"
+            }
+          },
+          {
+            "id": "d3c79bb2ba0515c9",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "file": "4-输出/板子/Manacher.md",
+                "staged": false
+              },
+              "icon": "git-pull-request",
+              "title": "Diff View (Manacher)"
             }
           }
         ]
@@ -53,7 +66,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "拓扑排序",
+                "query": "abc392",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -193,44 +206,44 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "f4d9d9401793a596",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "3-文档/2-比赛/The 3rd Universal Cup. Stage 8 Cangqian.md",
+    "4-输出/板子/模板.md",
+    "4-输出/板子/template_by_LittleDrinks.md",
+    "4-输出/板子/杂项.md",
     "0-系统组件/homepage.md",
+    "2-题解/UVA1328.md",
+    "4-输出/板子/前缀函数与KMP.md",
+    "().md",
+    "2-题解/未命名.md",
+    "2-题解/AT_abc392_f.md",
+    "2-题解/AT_abc393_f.md",
+    "4-输出/板子/预处理因数.md",
+    "4-输出/板子/一些公柿.md",
+    "2-题解/AT_abc393_e.md",
+    "4-输出/板子/线性筛.md",
+    "4-输出/板子/字符串哈希.md",
+    "4-输出/板子/Manacher.md",
+    "4-输出/板子/字符串.md",
+    "3-文档/~syncthing~.sync-conflict-20250215-100758-TIMKZYG.nomedia.tmp",
+    "~syncthing~.nomedia.tmp",
+    "2-题解/~syncthing~.nomedia.tmp",
+    "0-系统组件/~syncthing~.nomedia.tmp",
+    "3-文档/2-比赛/The 3rd Universal Cup. Stage 8 Cangqian.md",
     "3-文档/2-比赛/The 2024 Sichuan Provincial Collegiate Programming Contest.md",
     "3-文档/2-比赛/2024 ICPC Belarus Regional Contest.md",
     "2-题解/gym105535A.md",
     "3-文档/2-比赛/AtCoder Beginner Contest 388.md",
-    "4-输出/板子/template_by_LittleDrinks.md",
     "4-输出/板子/拓扑排序.md",
     "4-输出/板子/LCA.md",
     "4-输出/板子/烂掉啦.md",
     "4-输出/板子/多边形.md",
-    "4-输出/板子/并查集.md",
-    "4-输出/板子/线段树.md",
-    "4-输出/板子/常用函数.md",
-    "4-输出/板子/点线操作.md",
-    "4-输出/板子/向量.md",
-    "4-输出/板子/计算几何.md",
-    "4-输出/板子/容斥原理.md",
-    "4-输出/板子/卡特兰数.md",
-    "4-输出/板子/O(1)计算排列组合数.md",
-    "4-输出/板子/快速幂与乘法逆元.md",
-    "4-输出/板子/线性筛.md",
-    "4-输出/板子/一些公柿.md",
-    "4-输出/板子/vector相关.md",
-    "4-输出/板子/Hierholzer求欧拉路.md",
-    "4-输出/板子/网络流.md",
     "0-系统组件/3-Excalidraw/~syncthing~.sync-conflict-20250215-090647-DWSA24O.nomedia.tmp",
     "4-输出/板子/~syncthing~Index.sync-conflict-20250215-090222-DWSA24O.md.tmp",
     "2-题解/~syncthing~.sync-conflict-20250215-090225-DWSA24O.nomedia.tmp",
     "~syncthing~.sync-conflict-20250215-090243-DWSA24O.nomedia.tmp",
     "1-闪念/~syncthing~.sync-conflict-20250215-090234-DWSA24O.nomedia.tmp",
     "3-文档/~syncthing~.nomedia.tmp",
-    "0-系统组件/0-配置相关/font/~syncthing~.nomedia.tmp",
-    "OI-ACM/0-系统组件/0-配置相关/font/CascadiaCode-2404.23/ttf/static/~syncthing~.nomedia.tmp",
-    "OI-ACM/0-系统组件/0-配置相关/font/CascadiaCode-2404.23/ttf/static",
-    "OI-ACM/0-系统组件/0-配置相关/font/CascadiaCode-2404.23/ttf",
     "0-系统组件/1-附件/Pasted image 20250130112742.png",
     "0-系统组件/1-附件/Pasted image 20250110141805.png",
     "0-系统组件/1-附件/56c0a8a12b4081d91ce8e4635eaf3cc.png",

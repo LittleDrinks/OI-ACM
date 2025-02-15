@@ -106,7 +106,7 @@ int bfs()
 }
 ```
 ### 拆分数
-
+/storage/emulated/0/111/OBSIDIAN/OI/OI-ACM/3-文档/1-笔记
 ## 计算几何
 
 https://blog.csdn.net/qq_45249273/article/details/123798461
@@ -959,7 +959,20 @@ void dfs(int u)
 
 平方和公式：$\sum_{i=1}^n(i^2)=\dfrac{n(n+1)(2n+1)}{6}$
 
+### 预处理因数
+
+$[1,n]$ 所有数字的因数个数和是 $O(n\log n)$ 的。
+$720720$ 是 $10^6$ 内因数最多的数字，其因数个数为 $240$。
+```cpp
+vector d(mx+1, vector<int>());
+for (int i = 1; i <= mx; ++i) {
+    for (int j = i; j <= mx; j += i) {
+        d[j].push_back(i);
+    }
+}
+```
 ### 线性筛
+
 
 ```cpp
 vector <int> getPrime(int n)
@@ -1032,6 +1045,72 @@ ll Cat(ll n) { return C(2*n, n) * qpow(n+1) % MOD; }
 ### 容斥原理
 
 错位排列问题：$D(n)=(n-1)\times(D(n-1)+D(n-2))$
+
+## 字符串
+
+
+### 前缀函数与KMP
+
+```cpp
+vector<int> prefixFunction(string s)
+{
+    vector<int> pi(s.length());
+    for (int i = 1; i < s.length(); ++i) {
+        int j = pi[i-1];
+        while (j && s[j]!=s[i]) { j = pi[j-1]; }
+        if (s[j] == s[i]) { ++j; }
+        pi[i] = j;
+    }
+    return pi;
+}
+void kmp()
+{
+	string s, t;
+    cin >> s >> t;
+    int n = s.length(), m = t.length();
+    vector<int> pi = prefixFunction(t+"#"+s);
+    for (int i = m+1; i <= n+m; ++i) {
+        if (pi[i] == m) { cout << i-2*m+1 << "\n"; }
+    }
+    for (int i = 0; i < m; ++i) { cout << pi[i] << " "; }
+}
+```
+### Manacher
+
+```cpp
+vector<int> manacher(string s)
+{
+    vector<int> d(s.length());
+    d[0] = 1;
+    int r=0, mid=0;
+    for (int i = 1; i < s.length()-1; ++i) {
+        d[i] = 1;
+        if (r >= i) { d[i] = min(d[2*mid-i], r-i+1); }
+        while (s[i-d[i]] == s[i+d[i]]) { ++d[i]; }  // 需要保证不会越界
+        if (i + d[i] > r) { 
+            r = i + d[i] - 1;
+            mid = i;
+        }
+    }
+
+
+    return d;
+}
+void solve()
+{
+    string s, t;
+    cin >> s;
+    for (auto c: s) {
+        t.push_back('#');
+        t.push_back(c);
+    }
+    t = "."+t+"#!";  // 首位添加两个不同的字符保证不会越界
+    vector<int> d=manacher(t);
+    cout << (*max_element(d.begin(), d.end()))-1 << endl;
+}
+```
+
+### 字符串哈希
 
 ## 烂掉啦
 - 开 `long long`
