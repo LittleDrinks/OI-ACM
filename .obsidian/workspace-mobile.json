@@ -11,14 +11,10 @@
             "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4-输出/板子/匈牙利算法.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "匈牙利算法"
+              "title": "新标签页"
             }
           }
         ]
@@ -88,8 +84,8 @@
         "state": {
           "type": "VIEW_TYPE_LONGFORM_EXPLORER",
           "state": {},
-          "icon": "longform",
-          "title": "Longform"
+          "icon": "lucide-file",
+          "title": "插件不再活动"
         }
       }
     ],
@@ -105,7 +101,6 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "4-输出/板子/匈牙利算法.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -154,25 +149,17 @@
       "canvas:新建白板": true,
       "daily-notes:打开/创建今天的日记": true,
       "templates:插入模板": true,
-      "command-palette:打开命令面板": true,
-      "markdown-importer:打开 Markdown 格式转换器": true,
-      "zk-prefixer:创建时间戳笔记": true,
-      "workspaces:管理工作区布局": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "obsidian-git:Open Git source control": false,
-      "omnisearch:Omnisearch": false,
-      "templater-obsidian:Templater": false,
-      "smart-random-note:Open Random Note from Search": false,
-      "homepage:Open homepage": false
+      "command-palette:打开命令面板": true
     }
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "0-系统组件/homepage.md",
+    "4-输出/板子/匈牙利算法.md",
     "4-输出/板子/O(1)计算排列组合数.md",
     "4-输出/板子/ST表.md",
     "4-输出/板子/LCA.md",
     "2-题解/QOJ8941.md",
-    "0-系统组件/homepage.md",
     "2-题解/gym103409K.md",
     "3-文档/2-比赛/2023-2024 ICPC Southwestern European Regional Contest (SWERC 2023).md",
     "4-输出/板子/点线操作.md",
@@ -192,7 +179,6 @@
     "3-文档/2-比赛/2023-2024 ICPC Central Europe Regional Contest (CERC 23).md",
     "2-题解/gym104901K.md",
     "2-题解/gym104821A.md",
-    "2-题解/gym104821L.md",
-    "3-文档/2-比赛/The 2024 ICPC Kunming Invitational Contest.md"
+    "2-题解/gym104821L.md"
   ]
 }

@@ -31,6 +31,7 @@ longform:
           - 有向图上找最小环
           - spfa判断负环
         - 最小生成树
+        - 拓扑排序
         - LCA
         - - 倍增O(LogN)求LCA
           - 欧拉序+ST表O(1)求LCA
@@ -42,7 +43,8 @@ longform:
         - 匈牙利算法
         - 网络流
       - 数学
-      - - 线性筛
+      - - 一些公柿
+        - 线性筛
         - 快速幂与乘法逆元
         - O(1)计算排列组合数
         - 卡特兰数
@@ -52,4 +54,5 @@ longform:
     - manuscript
     - myTemplate
     - template_by_LittleDrinks
+    - Index.sync-conflict-20250213-161051-DWSA24O
 ---
