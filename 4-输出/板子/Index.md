@@ -38,7 +38,7 @@ longform:
         - 基环树上找环
         - 树的重心
         - 树的直径
-        - 欧拉路
+        - Hierholzer求欧拉路
         - Tarjan
         - 匈牙利算法
         - 网络流

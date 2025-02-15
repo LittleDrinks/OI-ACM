@@ -2,9 +2,9 @@
 [TOC]
 ## 杂项
 
-### 快读
-
+### 常用函数
 ```cpp
+// 快读
 inline int read()
 {
 	int x=0,f=1;char ch=getchar();
@@ -12,18 +12,20 @@ inline int read()
 	while (ch>='0'&&ch<='9'){x=x*10+ch-48;ch=getchar();}
 	return x*f;
 }
-```
 
-### 常用函数
-```cpp
 // 取模
 const int MOD=998244353;
 void add(ll &x, ll y) { if ((x+=y) >= MOD) { x -= MOD; } }  // 不要漏掉括号
 void del(ll &x, ll y) { if ((x-=y) < 0)    { x += MOD; } }
 
+// 计算一个整数的二进制表示中有多少个 1
+__builtin_popcount(i);
+
 // 随机数
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 int Rand(int B) { return (unsigned long long)rng() % B; }
+uniform_int_distribution<int> dist(1, 100);  // 生成 1 到 100 之间的随机整数
+int random_value = dist(rng);
 ```
 
 ### vector相关
@@ -123,67 +125,35 @@ int sgn(ll x) { return x==0? 0: ( x>0? 1: -1 ); }
 
 向量旋转 $\begin{bmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{bmatrix}\begin{bmatrix}a_x\\a_y\end{bmatrix}=\begin{bmatrix}\cos\theta a_x & -\sin\theta a_y\\ \sin\theta a_x & \cos\theta a_y\end{bmatrix}$
 ```cpp
-// 为方便不写 template，题目中坐标为浮点数时可用 db 代替 int/ll
-struct Point {
-	int x, y;
-    Point(int x=0, int y=0): x(x), y(y) {}
-    void in() { cin >> x >> y; }
-    void print() { cout << x << " " << y << "\n"; }
-	string info(string name) {
-		return format("{}({},{})", name, x, y);  // c++20
-	}
+template<typename T>
+struct point {
+	T x, y;
+    point(int x=0, int y=0): x(x), y(y) {}
+    friend istream& operator >> (istream &is, point &p) { is >> p.x >> p.y; return is; }
 	db ang() { return atan2(y, x); }
-	Point operator + (const Point &p) const {
-        return Point(x+p.x, y+p.y);
-    }
-    Point operator - (const Point &p) const {
-        return Point (x-p.x, y-p.y);
-    }
-	Point operator * (const db &k) const {
-		return Point(k*x, k*y);
-	}
-	Point operator / (const db &k) const {
-		return Point(x/k, y/k);
-	}
-	ll operator * (const Point &p) const {
-	    return x*p.x+y*p.y;
-	}
-	ll operator ^ (const Point &p) const { // 叉乘，用的时候记得打括号
-	    return x*p.y - y*p.x;
-	}
-	bool operator < (const Point &p) const {
-		return x<p.x || (x==p.x && y<p.y);
-	}
-	ll len2() {
-	    return (*this)*(*this);
-	}
-	db len() {  // 不可改 ll
-	    return sqrtl(len2());  // hypotl(x, y)
-	}
-	Point rotate(db ang) {
-	    return Point(x*cos(ang)-y*sin(ang), x*sin(ang)+y*cos(ang));
-	}
-	Point trunc(db l) {
-	    return (*this) * (l/len());
-	}
+	bool operator < (const point &p) const { return x<p.x || (x==p.x && y<p.y); }
+	point operator + (const point &p) const { return point(x+p.x, y+p.y); }
+    point operator - (const point &p) const { return point(x-p.x, y-p.y); }
+	point operator * (const db &k) const { return point(k*x, k*y); }
+	point operator / (const db &k) const { return point(x/k, y/k); }
+	T operator * (const point &p) const { return x*p.x + y*p.y; }
+	T operator ^ (const point &p) const { return x*p.y - y*p.x; }  // 叉乘，用的时候记得打括号
+	T len2() { return (*this)*(*this); }
+	db len() { return sqrtl(len2()); }  // hypotl(x, y)
+	point rotate(db ang) { return point(x*cos(ang)-y*sin(ang), x*sin(ang)+y*cos(ang)); }
+	point trunc(db l) { return (*this) * (l/len()); }
 };
+typedef point<ll> Point;
 typedef Point Vector;
 
 // 判断 c 是否在 ab 的逆时针方向
-int toLeft(Point a, Point b, Point c)
-{
+int toLeft(Point a, Point b, Point c) {
     return ((b-a)^(c-a))>0;
 }
 
-// 三角形面积，如需避免浮点数，可以返回二倍面积
-db S(Point A, Point B, Point C)
-{
-    return 0.5*fabs((A-B)^(A-C));
-};
-
 // 极角排序
 // 把全平面划分为 下半平面 < 原点 < x 正半轴 < 上半平面 < x 负半轴
-bool cmp(Point a, Point b) {  
+bool argcmp(Point a, Point b) {  
     auto quad = [](const Point &a) {
 		if (a.y < 0)       { return 1; }
         else if (a.y > 0)  { return 3; }
@@ -198,17 +168,22 @@ bool cmp(Point a, Point b) {
 	}
 	return qa < qb;
 }
-
-// 二维向量夹角
-db getAngle(Vector a, Vector b)
-{
-    return fabs(atan2(fabs(a^b), a*b));
+// 所有点在一个半平面内的简化版本
+bool argcmp(Point a, Point b) {
+    return (a^b) > eps;
 }
 
-// 余弦定理求第三边
-db getThirdSide(Vector a, Vector b)
-{
-    return sqrtl(a.len2() + b.len2() - a*b*2);
+// Point 作为 map 的键
+map<Point,pair<ll,ll>,decltype(&argcmp)> evt{&argcmp};
+
+// 三角形面积，如需避免浮点数，可以返回二倍面积
+db S(Point A, Point B, Point C) {
+    return 0.5*fabs((A-B)^(A-C));
+};
+
+// 二维向量夹角
+db getAngle(Vector a, Vector b) {
+    return fabs(atan2(fabs(a^b), a*b));
 }
 ```
 
@@ -475,11 +450,11 @@ struct ST {  // 标有“下标”的行都是下标改为 1 时需要修改的�
     vector<vector<T>> st;
     ST() { }
     ST(const vector<T>& a) {
-        n = a.size();  // 下标
+        n = a.size();                                 // 下标
         Log.assign(n+1, 0);
         for (int i = 2; i <= n; ++i) { I=Log[i]=Log[i/2]+1; }
-        st.assign(I+1, vector<T>(n));  // 下标
-        copy(a.begin(), a.end(), st[0].begin());  // 下标
+        st.assign(I+1, vector<T>(n));                 // 下标
+        copy(a.begin(), a.end(), st[0].begin());      // 下标
         for (int i = 1; i <= I; ++i) {
             for (int j = 0; j+(1<<(i-1)) < n; ++j) {  // 下标
                 st[i][j] = max( st[i-1][j], st[i-1][j+(1<<(i-1))] );
@@ -491,14 +466,14 @@ struct ST {  // 标有“下标”的行都是下标改为 1 时需要修改的�
         return max( st[s][l], st[s][r-(1<<s)+1] );
     }
     int find(int l, T x) {  // 第一个区间 [l,r] 最值大于等于 x 的 r
-    	if (l >= n) { return -1; }  // 下标
+    	if (l >= n) { return -1; }                    // 下标
         int rl=l-1, rr=n;
         while (rl != rr-1) {
             int mid = (rl + rr) >> 1;
             if (query(l, mid) >= x) { rr = mid; }
             else { rl = mid; }
         }
-        if (rr < n) { return rr; }  // 下标
+        if (rr < n) { return rr; }                    // 下标
         return -1;
     }
 };
@@ -575,29 +550,26 @@ struct BIT {
     vector <int> t;
     BIT(int n): n(n) { t.resize(n+1, 0); }  // 注意值域树状数组中 n=tot
     int lowbit(int x) { return x&-x; }
-    void modify(int x, int d)
-    {
-        for (; x <= n; x += lowbit(x)) {
-            t[x] += d;
-        }
+    void modify(int x, int d) {
+        for (; x <= n; x += lowbit(x)) { t[x] += d; }
     }
-    int sum(int x)
-    {   // 前缀和
+	// 前缀和
+    int query(int x) {
         int res = 0;
         for (; x; x -= lowbit(x)) { res += t[x]; }
         return res;
     }
-    int query(int x)
-    {   // 求最小的前缀和等于x的位置
-        int ans=0, sum=0;
-        for (int i = I; i >= 0; --i) {
-            if (ans+(1<<i) <= n && sum+t[ans+(1<<i)] <= x) {
-                ans += (1<<i);
-                sum += t[ans];
-            }
-        }
-        return ans + 1;
-    }
+    // 求最小的前缀和等于x的位置
+	int select(int x) {
+	    int ans = 0, sum = 0;
+	    for (int i = ceil(log2(n)); i >= 0; --i) {
+	        if (ans+(1<<i) <= n && sum+t[ans+(1<<i)] < x) { 
+	            ans += 1<<i;
+	            sum += t[ans];
+	        }
+	    }
+	    return ans + 1;
+	}
 };
 BIT T(n);
 ```
@@ -810,6 +782,21 @@ int kruskal()
 }
 ```
 
+### 拓扑排序
+
+```cpp
+queue<int> q;
+for (int i = 1; i <= n; ++i) {
+	if (deg[i] == 0) { q.push(i); }
+}
+while (!q.empty()) {
+	int u = q.front(); q.pop();
+	for (int v: G[u]) {
+		if (--deg[v] == 0) { q.push(v); }
+	}
+}
+```
+
 ### LCA
 
 
@@ -944,7 +931,7 @@ void findBaryCenter(int u, int fa, int &core)
 ```
 ### 树的直径
 
-### 欧拉路
+### Hierholzer求欧拉路
 
 有向图中欧拉通路存在条件：起点出度比入度大 $1$，终点入度比出度大 $1$，其余点入度等于出度。
 有向图中欧拉回路存在条件：所有点入度等于出度。
@@ -967,6 +954,10 @@ void dfs(int u)
 ### 网络流
 
 ## 数学
+
+### 一些公柿
+
+平方和公式：$\sum_{i=1}^n(i^2)=\dfrac{n(n+1)(2n+1)}{6}$
 
 ### 线性筛
 
