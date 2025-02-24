@@ -105,8 +105,6 @@ int bfs()
     else { return -1; }
 }
 ```
-### 拆分数
-/storage/emulated/0/111/OBSIDIAN/OI/OI-ACM/3-文档/1-笔记
 ## 计算几何
 
 https://blog.csdn.net/qq_45249273/article/details/123798461
@@ -340,15 +338,15 @@ struct Polygon {
 ```cpp
 struct dsu {
     int n;
-    vector <int> fa;
-    vector <ll> cnt;
-    Dsu(int n): n(n) {
-        fa.assign(n+1, 0);
-        iota(fa.begin(), fa.end(), 0);
+    vector<int> f;
+    vector<ll> cnt;
+    dsu(int n): n(n) {
+        f.assign(n+1, 0);
+        iota(f.begin(), f.end(), 0);
         cnt.assign(n+1, 1);
     }
     int find(int x) {
-        return fa[x]==x? fa[x]: fa[x]=find(fa[x]);
+        return f[x]==x? f[x]: a[x]=find(f[x]);
     }
     bool same(int x, int y) {
     	return find(x)==find(y);
@@ -356,7 +354,7 @@ struct dsu {
     void merge(int x, int y) {
         x = find(x);
         y = find(y);
-        fa[y] = x;
+        f[y] = x;
         cnt[x] += cnt[y];
     }
     void add(int x) {
@@ -442,6 +440,7 @@ struct Trie {
 
 ### ST表
 
+这是一个 $0$ 下标的封装版 ST 表。但是 $1$ 下标时令 $a[0]=0$ 不会影响答案。
 ```cpp
 template <typename T>
 struct ST {  // 标有“下标”的行都是下标改为 1 时需要修改的行
@@ -462,6 +461,7 @@ struct ST {  // 标有“下标”的行都是下标改为 1 时需要修改的�
         }
     }
     T query(int l, int r) {  // 内部下标从 0 开始，注意传参
+  		if (l > r) { return -1; } 
         int s = Log[r-l+1];
         return max( st[s][l], st[s][r-(1<<s)+1] );
     }
@@ -1083,7 +1083,7 @@ vector<int> manacher(string s)
     vector<int> d(s.length());
     d[0] = 1;
     int r=0, mid=0;
-    for (int i = 1; i < s.length()-1; ++i) {
+    for (int i = 1; i < s.length()-1; ++i) {  // 最后一个字符为防越界使用，无需访问
         d[i] = 1;
         if (r >= i) { d[i] = min(d[2*mid-i], r-i+1); }
         while (s[i-d[i]] == s[i+d[i]]) { ++d[i]; }  // 需要保证不会越界
@@ -1092,8 +1092,6 @@ vector<int> manacher(string s)
             mid = i;
         }
     }
-
-
     return d;
 }
 void solve()
@@ -1112,6 +1110,28 @@ void solve()
 
 ### 字符串哈希
 
+```cpp
+typedef long long ll;
+typedef pair<ll, ll> hs;
+const ll MOD1=1e9+7, MOD2=1e9+9;
+const hs p = { 117, 131 };
+hs operator + (hs a, hs b) { return hs{(a.first+b.first)%MOD1, (a.second+b.second)%MOD2}; }
+hs operator - (hs a, hs b) { return hs{(a.first-b.first+MOD1)%MOD1, (a.second-b.second+MOD2)%MOD2}; }
+hs operator * (hs a, hs b) { return hs{(a.first*b.first)%MOD1, (a.second*b.second)%MOD2}; }
+struct Hash {
+    int n;
+    vector<hs> hs1, Pow;
+    Hash(const string &s) {
+        n = s.length();
+        hs1.resize(n+2);
+        Pow.resize(n+2);
+        Pow[0] = { 1LL, 1LL };
+        for (int i = 1; i <= n; ++i) { Pow[i] = Pow[i-1]*p; }
+        for (int i = 1; i <= n; ++i) { hs1[i] = hs1[i-1]*p + hs{s[i-1],s[i-1]}; }
+    }
+    hs get(int l, int r) { return hs1[r]-hs1[l-1]*Pow[r-l+1]; }
+};
+```
 ## 烂掉啦
 - 开 `long long`
 	- `#define int long long`
