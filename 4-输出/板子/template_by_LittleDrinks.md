@@ -3,6 +3,7 @@
 ## 杂项
 
 ### 常用函数
+
 ```cpp
 // 快读
 inline int read()
@@ -20,12 +21,82 @@ void del(ll &x, ll y) { if ((x-=y) < 0)    { x += MOD; } }
 
 // 计算一个整数的二进制表示中有多少个 1
 __builtin_popcount(i);
+```
 
-// 随机数
+### 高精度
+
+重载 `__int128` 输入输出
+```cpp
+istream& operator >> (istream& is, __int128 &x)
+{
+	string s; is>>s;
+	bool f=false;
+	__int128 ans = 0;
+	for (auto c: s) {
+		if (c == '-') { f = true; }
+		if (isdigit(c)) { ans = ans * 10 + (c-'0'); }
+	}
+	x = f? -ans: ans;
+	return is;
+}
+ostream& operator << (ostream& os, __int128 &x)
+{
+	string ans;
+	function<void(__int128)> write = [&](__int128 x){
+		if (x < 0) { ans += '-'; x=-x; }
+		if (x > 9) { write(x/10); }
+		ans += '0'+x%10;
+	};
+	write(x); return os << ans;
+}
+```
+
+### 随机数
+
+随机数
+```cpp
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-int Rand(int B) { return (unsigned long long)rng() % B; }
-uniform_int_distribution<int> dist(1, 100);  // 生成 1 到 100 之间的随机整数
-int random_value = dist(rng);
+int Rand(int a, int b) { return rnd() % (b - a + 1) + a; }
+shuffle(a.begin(), a.end(), rng);
+```
+随机树/图
+```cpp
+// n 为节点个数
+// m 为边的个数，默认为 -1，表示建树
+// root 为根节点编号，默认为 -1，
+vector<array<int,2>> Graph(int n, int m=-1, int root=-1)
+{
+	assert(m==-1 || (n-1<=m && m<=1LL*n*(n-1)/2));
+	assert(root==-1 || (1<=root && root<=n));
+	vector<array<int,2>> E;
+	set<array<int,2>> diff;
+	// 先建一棵以 0 为根的树，然后选根偏移
+	for (int i = 1; i < n; ++i) {
+		E.push_back( { i, Rand(0, i-1) } );
+	}
+	if (root == -1) { root = Rand(0, n-1); }
+	for (auto& [x, y]: E) {
+		x = (x+root) % n + 1;
+		y = (y+root) % n + 1;
+		diff.insert( { x, y } );
+		diff.insert( { y, x } );  // 无向图中需要添加这条反向边
+	}
+	// 从树建图
+	if (m != -1) {
+		for (int i = n-1; i <= m; ++i) {
+			while (1) {
+				int x = Rand(1, n);
+				int y = Rand(1, n);
+				if (x == y || diff.count({x,y})) { continue; }
+				E.push_back( { x, y } );
+				diff.insert( { x, y } );
+				diff.insert( { y, x } );  // 无向图中需要添加这条反向边
+			}
+		}
+	}
+	shuffle(E.begin(), E.end(), rng);
+	return E;
+}
 ```
 
 ### vector相关

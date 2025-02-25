@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4-输出/板子/Tarjan.md",
+                "file": "4-输出/板子/随机数.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Tarjan"
+              "title": "随机数"
+            }
+          },
+          {
+            "id": "5a8cb565656a932f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4-输出/板子/template_by_LittleDrinks.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "template_by_LittleDrinks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -193,20 +208,23 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "5a8cb565656a932f",
   "lastOpenFiles": [
-    "4-输出/板子/template_by_LittleDrinks.md",
+    "4-输出/板子/随机数.md",
+    "4-输出/板子/高精度.md",
+    "4-输出/板子/常用函数.md",
+    "4-输出/板子/分块.md",
+    "0-系统组件/homepage.md",
     "4-输出/板子/Tarjan.md",
+    "4-输出/板子/template_by_LittleDrinks.md",
     "4-输出/板子/容斥原理.md",
     "4-输出/板子/一些公柿.md",
     "4-输出/板子/O(1)计算排列组合数.md",
     "4-输出/板子/前缀函数与KMP.md",
     "4-输出/板子/Manacher.md",
     "4-输出/板子/字符串哈希.md",
-    "0-系统组件/homepage.md",
     "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
     "4-输出/板子/ST表.md",
-    "4-输出/板子/常用函数.md",
     "4-输出/板子/向量.md",
     "4-输出/板子/计算几何.md",
     "4-输出/板子/vector相关.md",
@@ -219,9 +237,6 @@
     "2-题解/AT_abc393_e.md",
     "2-题解/P3195.md",
     "2-题解/P1896.md",
-    "0-系统组件/2-模板/题解模板.md",
-    "4-输出/板子/预处理因数.md",
-    "4-输出/板子/拆分数.md",
     "3-文档/~syncthing~.sync-conflict-20250215-100758-TIMKZYG.nomedia.tmp",
     "2-题解/~syncthing~.nomedia.tmp",
     "0-系统组件/~syncthing~.nomedia.tmp",
