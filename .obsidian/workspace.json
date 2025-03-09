@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4-输出/板子/倍增O(LogN)求LCA.md",
+                "file": "2-题解/P8774.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "倍增O(LogN)求LCA"
+              "title": "P8774"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "线段树",
+                "query": "tag:#欧拉图",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -84,8 +84,7 @@
               "title": "Longform"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -139,7 +138,9 @@
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-tags",
               "title": "标签"
@@ -151,10 +152,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "4-输出/板子/最短路.md"
+                "file": "2-题解/P1967.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "最短路 的大纲"
+              "title": "P1967 的大纲"
             }
           },
           {
@@ -193,34 +197,34 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "5b1cf506039c19ce",
   "lastOpenFiles": [
     "0-系统组件/homepage.md",
-    "3-文档/2-比赛/Codeforces Round 969 (Div. 2).md",
-    "4-输出/板子/懒标记线段树.md",
-    "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
-    "2-题解/AcWing375.md",
-    "2-题解/gym105222F.md",
-    "2-题解/P1856.md",
+    "2-题解/P8774.md",
+    "2-题解/AT_abc391_g.md",
     "2-题解/P6577.md",
-    "2-题解/CF2057D.md",
-    "4-输出/板子/树状数组.md",
-    "3-文档/1-笔记/线段树.md",
-    "4-输出/板子/随机数.md",
-    "4-输出/板子/高精度.md",
-    "4-输出/板子/常用函数.md",
-    "4-输出/板子/分块.md",
-    "4-输出/板子/Tarjan.md",
-    "4-输出/板子/template_by_LittleDrinks.md",
-    "4-输出/板子/容斥原理.md",
-    "4-输出/板子/一些公柿.md",
-    "4-输出/板子/O(1)计算排列组合数.md",
-    "4-输出/板子/前缀函数与KMP.md",
-    "4-输出/板子/Manacher.md",
-    "4-输出/板子/字符串哈希.md",
-    "4-输出/板子/ST表.md",
-    "4-输出/板子/向量.md",
-    "4-输出/板子/计算几何.md",
+    "3-文档/2-比赛/Codeforces Round 969 (Div. 2).md",
+    "2-题解/AT_abc392_f.md",
+    "2-题解/CF2005D.md",
+    "2-题解/CF2057E.md",
+    "3-文档/2-比赛/Hello 2025.md",
+    "2-题解/CF2003D1.md",
+    "3-文档/2-比赛/Codeforces Round 968 (Div. 2).md",
+    "2-题解/CF2038L.md",
+    "3-文档/2-比赛/2024-2025 ICPC, NERC, Southern and Volga Russian Regional Contest.md",
+    "2-题解/CF2038B.md",
+    "3-文档/2-比赛/2024 ICPC Belarus Regional Contest.md",
+    "2-题解/gym105535A.md",
+    "3-文档/2-比赛/2023-2024 ICPC Central Europe Regional Contest (CERC 23).md",
+    "3-文档/2-比赛/2023-2024 ICPC Southwestern European Regional Contest (SWERC 2023).md",
+    "2-题解/gym104871G.md",
+    "3-文档/2-比赛/2022-2023 ICPC Northwestern European Regional Programming Contest (NWERC 2022).md",
+    "2-题解/gym105535J.md",
+    "2-题解/gym105535K.md",
+    "3-文档/2-比赛/The 3rd Universal Cup. Stage 8 Cangqian.md",
+    "2-题解/P1967.md",
+    "3-文档/1-笔记/图论.md",
+    "4-输出/板子/最小生成树.md",
     "~syncthing~.nomedia.tmp",
     "3-文档/~syncthing~.sync-conflict-20250215-100758-TIMKZYG.nomedia.tmp",
     "2-题解/~syncthing~.nomedia.tmp",

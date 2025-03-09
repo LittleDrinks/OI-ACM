@@ -26,9 +26,8 @@ $$
 f(i+1,dp(i))\overset{+}{\leftarrow}f(i,dp(i))
 $$
 其中，$t_j$ 共有 $|\sum|=26$ 种取值，$dp(i-1)$ 是一个长度为 $n$ 的数组，并且 $dp(i-1)$ 的差分数组只会有 $0,1$ 两种取值，通过枚举差分数组可以枚举出所有 $2^n$ 种可能的 $dp(i-1)$，总状态数为 $O(n\cdot2^n)$，实现时可以对 $dp(i-1)$ 的差分数组进行状压，也可以直接使用 `array<int>` 和 `map`。外层单次转移需要枚举 $t_j$ 并通过内层 DP 由 $dp(i-1)$ 推得 $dp(i)$，复杂度为 $O(m|\sum|)$。总时间复杂度为 $O(nm|\sum|2^n)$。
-记 $popcount(dp)$ 表示 $dp$ 数组中 $1$ 的数量，最终 $LCS=i$ 的方案数为：
+记 $popcount(dp)$ 表示 $dp$ 差分数组中 $1$ 的数量，最终 $LCS=i$ 的方案数为：
 $$\sum_{popcount(dp(n-1))=i}f(n,dp(n-1))$$
-
 
 #### [AC 代码](https://www.luogu.com.cn/record/201883903)
 
