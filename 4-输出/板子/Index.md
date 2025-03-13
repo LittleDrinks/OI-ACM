@@ -18,7 +18,7 @@ longform:
         - 点线操作
         - 多边形
       - 数据结构
-      - - 并查集
+      - - 带权并查集
         - Trie
         - ST表
         - 对顶multiset维护中位数
@@ -37,7 +37,7 @@ longform:
         - - 倍增O(LogN)求LCA
           - 欧拉序+ST表O(1)求LCA
         - 基环树上找环
-        - 树的重心
+        - 点分治与树的重心
         - 树的直径
         - Hierholzer求欧拉路
         - Tarjan

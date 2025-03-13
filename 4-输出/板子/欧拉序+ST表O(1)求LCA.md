@@ -18,11 +18,11 @@ void dfs(int u, int fa)
 {   // 预处理深度和欧拉序
     first[u] = eular.size();
     dep[u] = dep[fa] + 1;
-    eular.push_back( {dep[u], u} );
+    eular.push_back( {dep[u], u } );
     for (int v: G[u]) {
         if (v != fa) {
             dfs(v, u);
-            eular.push_back( {dep[u], u} );
+            eular.push_back( {dep[u], u } );
         }
     }
 }
