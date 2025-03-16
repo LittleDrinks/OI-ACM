@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "3bcd6c5808bc1bfd",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "47cc9aabff8f6666",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2-题解/AT_abc238_e.md",
+                "file": "2-题解/AT_abc397_f.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "AT_abc238_e"
+              "title": "AT_abc397_f"
             }
           }
         ]
@@ -197,36 +197,36 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "47cc9aabff8f6666",
+  "active": "5b1cf506039c19ce",
   "lastOpenFiles": [
-    "2-题解/P8745.md",
+    "4-输出/板子/懒标记线段树.md",
+    "2-题解/AT_abc397_f.md",
     "0-系统组件/homepage.md",
+    "2-题解/AT_abc397_e.md",
+    "2-题解/AT_abc397_d.md",
+    "4-输出/板子/随机数.md",
+    "2-题解/lanqiao3530.md",
+    "4-输出/板子/O(1)计算排列组合数.md",
+    "4-输出/板子/一些公柿.md",
+    "3-文档/2-比赛/The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG).md",
+    "3-文档/1-笔记/生成函数.md",
+    "2-题解/AT_abc238_e.md",
     "2-题解/未命名",
+    "2-题解/P6577.md",
+    "2-题解/P1856.md",
+    "3-文档/2-比赛/Hello 2025.md",
+    "2-题解/P8745.md",
     "2-题解/P8776.md",
     "2-题解/P8775.md",
     "4-输出/板子/带权并查集.md",
     "2-题解/P8779.md",
     "~syncthing~.nomedia.tmp",
-    "2-题解/AT_abc238_e.md",
     "2-题解/P1196.md",
     "2-题解/P8743.md",
     "2-题解/P3806.md",
     "4-输出/板子/点分治与树的重心.md",
-    "3-文档/2-比赛/Hello 2025.md",
     "4-输出/板子/树的重心.md",
     "4-输出/板子/基环树上找环.md",
-    "2-题解/CF342E.md",
-    "4-输出/板子/ST表.md",
-    "4-输出/板子/Trie.md",
-    "4-输出/板子/欧拉序+ST表O(1)求LCA.md",
-    "2-题解/P1502.md",
-    "4-输出/板子/点线操作.md",
-    "4-输出/板子/向量.md",
-    "2-题解/P8777.md",
-    "2-题解/P8774.md",
-    "2-题解/AT_abc391_g.md",
-    "2-题解/P6577.md",
-    "3-文档/2-比赛/Codeforces Round 969 (Div. 2).md",
     "3-文档/~syncthing~.sync-conflict-20250215-100758-TIMKZYG.nomedia.tmp",
     "2-题解/~syncthing~.nomedia.tmp",
     "0-系统组件/~syncthing~.nomedia.tmp",

@@ -1,7 +1,7 @@
 ---
 tags:
   - 题解
-  - BIT
+  - 树状数组
 aliases:
 ---
 ## [D - Coming of Age Celebration](https://atcoder.jp/contests/abc388/tasks/abc388_d)

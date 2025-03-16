@@ -1,7 +1,7 @@
 ---
 tags:
   - 题解
-  - BIT
+  - 树状数组
 aliases:
 ---
 ## [F - Prefix LIS Query](https://atcoder.jp/contests/abc393/tasks/abc393_f)

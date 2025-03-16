@@ -3,7 +3,7 @@ tags:
   - 题解
   - 前缀和
   - 逆序对
-  - BIT
+  - 树状数组
 aliases:
 ---
 ## [\[ABC378E\] Mod Sigma Problem](https://www.luogu.com.cn/problem/AT_abc378_e)

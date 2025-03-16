@@ -48,5 +48,4 @@ int main()
     }
     cout << (d.same(0,n)?"Yes":"No") << "\n";
 }
-
 ```

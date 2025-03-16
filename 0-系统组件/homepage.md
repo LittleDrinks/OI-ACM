@@ -1,7 +1,7 @@
 ---
 tags:
 ---
-P8745 [蓝桥杯 2021 省 AB] 括号序列
+
 > [!multi-column]
 > > [!todo] 知识点
 > > ```dataview

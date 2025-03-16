@@ -1,7 +1,7 @@
 ---
 tags:
   - 题解
-  - BIT
+  - 树状数组
 aliases:
 ---
 ## [F - Insert](https://atcoder.jp/contests/abc392/tasks/abc392_f)
