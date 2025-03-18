@@ -57,7 +57,7 @@ int main()
 > &&\dfrac{1}{(1-x)}&=\sum_{k=0}^\infty x^k\\
 > &求一阶导&\dfrac{1\times1}{(1-x)^2}&=\sum_{k=1}^\infty kx^{k-1}\\
 > &求二阶导&\dfrac{1\times1\times2}{(1-x)^3}&=\sum_{k=2}^\infty k(k-1)x^{k-2}\\
-> &求三阶导&\dfrac{1\times1\times2\times3}{(1-x)^3}&=\sum_{k=3}^\infty k(k-1)(k-2)x^{k-3}\\
+> &求三阶导&\dfrac{1\times1\times2\times3}{(1-x)^4}&=\sum_{k=3}^\infty k(k-1)(k-2)x^{k-3}\\
 > &&\cdots\\
 > &求n-1阶导&\dfrac{(n-1)!}{(1-x)^n}&=\sum_{k=n-1}^{\infty}\bigg(x^{k-(n-1)}\prod_{i=0}^{n-2}(k-i) \bigg)\\
 > \end{align}

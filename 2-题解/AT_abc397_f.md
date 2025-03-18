@@ -7,7 +7,7 @@ aliases:
 ## [AT_abc397_f - Variety Split Hard](https://atcoder.jp/contests/abc397/tasks/abc397_f)
 
 答案由三部分构成，即 $L(i-1)+X(i,j)+R(j+1)$。考虑对于每个 $2\leq i\leq n-2$ 计算 $$\max_{j=i}^{n-1} \bigg(X(i,j)+R(j+1)\bigg)$$ 其中 $R$ 是可以通过 $O(n)$ 预处理得到的。
-注意到 $X(i,j)$ 是随 $i$ 单调变化的，如果位于 $p_1$ 位置上的数下一次出现在 $p_2$，当 $i$ 从 $p_1$ 移动到 $p_1+1$ 时，$X(i,i),X(i,i+1),\cdots,X(i,p_2-1)$ 都会减少 $1$。
+注意到 $X(i,j)$ 是随 $i$ 单调变化的，记位于 $p_1$ 位置上的数下一次出现在 $p_2$，当 $i$ 从 $p_1$ 移动到 $p_1+1$ 时，$X(i,i),X(i,i+1),\cdots,X(i,p_2-1)$ 都会减少 $1$。
 不妨记 $t[j]=X(i,j)+R[j+1]$，$i$ 的每次右移都可以转换为对 $t$ 的 $[p_1,p_2)$ 区间减 $1$，并查询区间 $[i+1,n)$ 的最值，这个操作可以用线段树维护。
 
 [***AC 代码***](https://atcoder.jp/contests/abc397/submissions/63878541)
@@ -126,5 +126,4 @@ int main()
     }
     cout << ans << "\n";
 }
-
 ```
