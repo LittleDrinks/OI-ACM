@@ -1,8 +1,15 @@
 # 模板
+
 [TOC]
+
+
 ## 杂项
 
+
+
+
 ### 常用函数
+
 
 ```cpp
 // 快读
@@ -23,7 +30,10 @@ void del(ll &x, ll y) { if ((x-=y) < 0)    { x += MOD; } }
 __builtin_popcount(i);
 ```
 
+
+
 ### 高精度
+
 
 重载 `__int128` 输入输出
 ```cpp
@@ -51,12 +61,15 @@ ostream& operator << (ostream& os, __int128 &x)
 }
 ```
 
+
+
 ### 随机数
+
 
 随机数
 ```cpp
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-int Rand(int a, int b) { return rnd() % (b - a + 1) + a; }
+int Rand(int a, int b) { return rng() % (b - a + 1) + a; }
 shuffle(a.begin(), a.end(), rng);
 ```
 随机树/图
@@ -99,7 +112,10 @@ vector<array<int,2>> Graph(int n, int m=-1, int root=-1)
 }
 ```
 
+
+
 ### vector相关
+
 
 ```cpp
 // 多维 vector，需要 c++17，c++14 只能老老实实写 vector<vector<int>>
@@ -126,13 +142,16 @@ ll sum = accumulate(s.begin(), s.end(), 0LL);
 iota(a.begin(), a.end(), 0);
 ```
 
+
+
 ### 对拍
+
 
 ```cpp
 // checker.cpp
 while (1) {
 	system("gen > data.in");
-	system("my < data.in > my.out");
+	system("myc < data.in > myc.out");
 	system("std < data.in > std.out");
 	if (system("fc my.out std.out")) {  // linux 下换成 diff
 		system("pause");
@@ -140,7 +159,10 @@ while (1) {
 	}
 }
 ```
+
+
 ### bfs
+
 
 ```cpp
 const int dx[]={-1, 1, 0, 0}, dy[]={0, 0, -1, 1};  // 上，下，左，右
@@ -176,7 +198,10 @@ int bfs()
     else { return -1; }
 }
 ```
+
+
 ## 计算几何
+
 
 https://blog.csdn.net/qq_45249273/article/details/123798461
 https://csacademy.com/app/geometry_widget/
@@ -190,7 +215,10 @@ int sgn(db x) { return fabs(x)<eps? 0: ( x>0? 1: -1 ); }
 int sgn(ll x) { return x==0? 0: ( x>0? 1: -1 ); }
 ```
 
+
+
 ### 向量
+
 
 向量旋转 $\begin{bmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{bmatrix}\begin{bmatrix}a_x\\a_y\end{bmatrix}=\begin{bmatrix}\cos\theta a_x & -\sin\theta a_y\\ \sin\theta a_x & \cos\theta a_y\end{bmatrix}$
 ```cpp
@@ -200,13 +228,13 @@ struct point {
     point(int x=0, int y=0): x(x), y(y) {}
     friend istream& operator >> (istream &is, point &p) { is >> p.x >> p.y; return is; }
 	db ang() { return atan2(y, x); }
-	bool operator < (const point &p) const { return x<p.x || (x==p.x && y<p.y); }
-	point operator + (const point &p) const { return point(x+p.x, y+p.y); }
-    point operator - (const point &p) const { return point(x-p.x, y-p.y); }
-	point operator * (const db &k) const { return point(k*x, k*y); }
-	point operator / (const db &k) const { return point(x/k, y/k); }
-	T operator * (const point &p) const { return x*p.x + y*p.y; }
-	T operator ^ (const point &p) const { return x*p.y - y*p.x; }  // 叉乘，用的时候记得打括号
+	bool operator< (const point &p) const { return x<p.x || (x==p.x && y<p.y); }
+	point operator+ (const point &p) const { return point(x+p.x, y+p.y); }
+    point operator- (const point &p) const { return point(x-p.x, y-p.y); }
+	point operator* (const db &k) const { return point(k*x, k*y); }
+	point operator/ (const db &k) const { return point(x/k, y/k); }
+	T operator* (const point &p) const { return x*p.x + y*p.y; }
+	T operator^ (const point &p) const { return x*p.y - y*p.x; }  // 叉乘，用的时候记得打括号
 	T len2() { return (*this)*(*this); }
 	db len() { return sqrtl(len2()); }  // hypotl(x, y)
 	point rotate(db ang) { return point(x*cos(ang)-y*sin(ang), x*sin(ang)+y*cos(ang)); }
@@ -238,12 +266,12 @@ bool argcmp(Point a, Point b) {
 	return qa < qb;
 }
 // 所有点在一个半平面内的简化版本
-bool argcmp(Point a, Point b) {
-    return (a^b) > eps;
-}
+bool argcmp(Point a, Point b) { return (a^b) > eps; }
 
-// Point 作为 map 的键
+// STL 中使用 argcmp()
+set<Point,decltype(&argcmp)> evt{&argcmp};
 map<Point,pair<ll,ll>,decltype(&argcmp)> evt{&argcmp};
+priority_queue<Point,vector<Point>,decltype(&argcmp)> q{&argcmp};
 
 // 三角形面积，如需避免浮点数，可以返回二倍面积
 db S(Point A, Point B, Point C) {
@@ -256,7 +284,10 @@ db getAngle(Vector a, Vector b) {
 }
 ```
 
+
+
 ### 点线操作
+
 
 点 $P$ 在直线 $AB$ 上，则 $\overrightarrow{AB}\times\overrightarrow{AP}=\vec{0}$，若要求在线段/射线上，再判断 $x,y$ 是否分别位于 $AB$ 之间即可。
 判断两线段是否相交：先做两次跨立实验判断是否规范相交，再特判至少三点共线的情况
@@ -330,7 +361,10 @@ Point GetLineProjection(Point P, Point A, Point B) {
 }
 ```
 
+
+
 ### 多边形
+
 
 多边形的面积 $S=\dfrac12\|\sum_{i=0}^{n-1}\overrightarrow{OP_i}\times\overrightarrow{OP_{(i+1)\mod n}}\|$
 ```cpp
@@ -402,40 +436,50 @@ struct Polygon {
 }
 ```
 
+
+
 ## 数据结构
 
-### 并查集
+
+
+
+### 带权并查集
+
 
 ```cpp
 struct dsu {
     int n;
-    vector<int> f;
-    vector<ll> cnt;
-    dsu(int n): n(n) {
-        f.assign(n+1, 0);
+    vector<int> f, siz, pre;
+    dsu(int n): n(n), f(vector<int>(n+1)), siz(vector<int>(n+1,1)), pre(vector<int>(n+1)) {
         iota(f.begin(), f.end(), 0);
-        cnt.assign(n+1, 1);
     }
     int find(int x) {
-        return f[x]==x? f[x]: a[x]=find(f[x]);
+        if (f[x] == x) { return x; }
+        int fa = find(f[x]);
+        pre[x] += pre[f[x]];
+        return f[x]=fa;
     }
     bool same(int x, int y) {
-    	return find(x)==find(y);
+        return find(x) == find(y);
     }
     void merge(int x, int y) {
         x = find(x);
         y = find(y);
-        f[y] = x;
-        cnt[x] += cnt[y];
+        f[x] = y;
+        pre[x] += siz[y];
+        siz[y] += siz[x];
+        siz[x] = 0;
     }
-    void add(int x) {
-        ++cnt[find(x)];
+    int query(int x, int y) {
+        return abs(pre[x]-pre[y])-1;
     }
 };
-dsu d(n);
 ```
 
+
+
 ### Trie
+
 
 普通 Trie。
 ```cpp
@@ -509,48 +553,54 @@ struct Trie {
 } T;
 ```
 
+
+
 ### ST表
+
 
 这是一个 $0$ 下标的封装版 ST 表。但是 $1$ 下标时令 $a[0]=0$ 不会影响答案。
 ```cpp
 template <typename T>
-struct ST {  // 标有“下标”的行都是下标改为 1 时需要修改的行
+struct ST {
     int n=0, I=0;
     vector<int> Log;
     vector<vector<T>> st;
     ST() { }
-    ST(const vector<T>& a) {
-        n = a.size();                                 // 下标
-        Log.assign(n+1, 0);
-        for (int i = 2; i <= n; ++i) { I=Log[i]=Log[i/2]+1; }
-        st.assign(I+1, vector<T>(n));                 // 下标
-        copy(a.begin(), a.end(), st[0].begin());      // 下标
+    ST(const vector<T>& a): n(a.size()), Log(vector<int>(n+1)) {
+        for (int i = 2; i <= n; ++i) {
+        	I=Log[i]=Log[i/2]+1;
+        }
+        st.assign(I+1, vector<T>(n));
+        copy(a.begin(), a.end(), st[0].begin());
         for (int i = 1; i <= I; ++i) {
-            for (int j = 0; j+(1<<(i-1)) < n; ++j) {  // 下标
+            for (int j = 0; j+(1<<(i-1)) < n; ++j) {
                 st[i][j] = max( st[i-1][j], st[i-1][j+(1<<(i-1))] );
             }
         }
     }
-    T query(int l, int r) {  // 内部下标从 0 开始，注意传参
-  		if (l > r) { return -1; } 
+    T query(int l, int r) {
+    	assert(l <= r);  // l > r 时的返回值需要特殊定义
         int s = Log[r-l+1];
         return max( st[s][l], st[s][r-(1<<s)+1] );
     }
     int find(int l, T x) {  // 第一个区间 [l,r] 最值大于等于 x 的 r
-    	if (l >= n) { return -1; }                    // 下标
+    	if (l >= n) { return -1; }
         int rl=l-1, rr=n;
         while (rl != rr-1) {
             int mid = (rl + rr) >> 1;
             if (query(l, mid) >= x) { rr = mid; }
             else { rl = mid; }
         }
-        if (rr < n) { return rr; }                    // 下标
+        if (rr < n) { return rr; }
         return -1;
     }
 };
 ```
 
+
+
 ### 对顶multiset维护中位数
+
 
 ```cpp
 struct PairingMultiset {
@@ -613,7 +663,10 @@ struct PairingMultiset {
 } p;
 ```
 
+
+
 ### 树状数组
+
 
 ```cpp
 struct BIT {
@@ -645,72 +698,89 @@ struct BIT {
 BIT T(n);
 ```
 
-### 线段树
 
-模板中维护了区间加法和最值查询。
-需要自定义 `node` 上的信息，写好默认值，并且对应重载 `push_up()`，`setTag()`，`spread_down()`。
+
+### 懒标记线段树
+
+
+懒标记线段树本质上是维护两个幺半群和三个三元操作，对应重载即可。
 ```cpp
+template<typename Info, typename Lazy>
 struct segmentTree {
-    #define lson (pos << 1)
-    #define rson (pos << 1 | 1)
-    struct node {
-        int l, r, mx, tg;
-        node(int l=INT_MAX, int r=0, int mx=0, int tg=0): l(l), r(r), mx(mx), tg(tg) { }
-    };
-    vector<node> t;
-    segmentTree(int n) {
-        t.resize( (n+5) << 2 );
-        build(1, 1, n); 
+    #define lson (p << 1)
+    #define rson (p << 1 | 1)
+    #define m ((l+r)>>1)
+    int n;
+    vector<Info> info;
+    vector<Lazy> lazy;
+    void push_up(int p) {
+        info[p] = info[lson] + info[rson];
     }
-    void push_up(int pos) {
-    	// 左右子区间合并
-        t[pos].mx = max(t[lson].mx, t[rson].mx);
+    void apply(int p, const Lazy& v) {
+        info[p] = info[p] + v;
+        lazy[p] = lazy[p] + v;
     }
-    void setTag(int pos, int d) {
-    	// 修改节点并打上懒标记
-        t[pos].mx += d;
-        t[pos].tg += d;
+    void spread_down(int p) {
+        apply(lson, lazy[p]);
+        apply(rson, lazy[p]);
+        lazy[p] = Lazy();
     }
-    void spread_down(int pos) {
-		// 下传 t[pos] 上的懒标记，直接调用 setTag() 即可，如果不用懒标记则删除
-		// 记得清空懒标记
-        setTag(lson, t[pos].tg);
-        setTag(rson, t[pos].tg);
-        t[pos].tg = 0;
+    segmentTree(int n): n(n), info(4 << __lg(n)), lazy(4 << __lg(n)) { }
+    segmentTree(const vector<Info> &a): segmentTree(a.size()) {
+        function<void(int,int,int)> build = [&](int p, int l, int r){
+            if (r - l == 1) { info[p] = a[l]; return; }
+            build(lson, l, m);
+            build(rson, m, r);
+            push_up(p);
+        };
+        build(1, 0, n);
     }
-    void build(int pos, int l, int r) {
-        t[pos] = node(l, r);
-        if (l == r) { return; }
-        int mid = (l + r) >> 1;
-        build(lson, l, mid);
-        build(rson, mid+1, r);
-        push_up(pos);
+    void rangeApply(int p, int l, int r, int x, int y, const Lazy& v) {
+        if (y <= l || r <= x) { return; }
+        if (x <= l && r <= y) { apply(p, v); return; }
+        spread_down(p);
+        rangeApply(lson, l, m, x, y, v);
+        rangeApply(rson, m, r, x, y, v);
+        push_up(p);
     }
-    void modify(int pos, int l, int r, int d) {
-    	// 区间修改
-        if (r < t[pos].l || t[pos].r < l) { return; }
-        if (l <= t[pos].l && t[pos].r <= r) {
-            setTag(pos, d); return;
-        }
-        spread_down(pos);
-        modify(lson, l, r, d);
-        modify(rson, l, r, d);
-        push_up(pos);
+    Info rangeQuery(int p, int l, int r, int x, int y) {
+        if (y <= l || r <= x) { return Info(); }
+        if (x <= l && r <= y) { return info[p]; }
+        spread_down(p);
+        return rangeQuery(lson, l, m, x, y) + rangeQuery(rson, m, r, x, y);
     }
-    int query(int pos, int l, int r) {
-		// 区间查询
-        if (r < t[pos].l || t[pos].r < l) { return 0; }  // 返回默认值
-        if (l <= t[pos].l && t[pos].r <= r) {
-            return t[pos].mx;
-        }
-        spread_down(pos);
-        return max(query(lson, l, r), query(rson, l, r));  // 求解
+    void modify(int x, int y, ll k) {
+    	assert(x <= y);
+        rangeApply(1, 0, n, x, y+1, Lazy(k));
+    }
+    ll query(int x, int y) {
+        return rangeQuery(1, 0, n, x, y+1).s;
     }
 };
+struct Info {
+    Info() { }
+};
+struct Lazy {
+    Lazy() { }
+};
+Info operator+ (const Info &u, const Info &v) {
+}
+Info operator+ (const Info &u, const Lazy &v) {
+    return u;
+}
+Lazy operator+ (const Lazy &u, const Lazy &v) {
+    return u;
+}
 ```
+
+
 ### 分块
 
+
+
+
 ### 逆序对
+
 
 归并排序解决静态逆序对问题。
 ```cpp
@@ -743,7 +813,10 @@ for (int i = 0; i < n; ++i) {
 ```
 分块解决动态逆序对问题。
 
+
+
 ## 图论
+
 
 https://csacademy.com/app/graph_editor/
 ```CPP
@@ -759,10 +832,16 @@ void dfs(int u, int fa)
 }
 ```
 
+
+
 ### 最短路
 
 
+
+
+
 #### bitset优化传递闭包
+
 
 邻接矩阵存图，时间复杂度为 $O(\dfrac{n^3}{w})$，可以处理 $2000$ 左右的数据。
 ```cpp
@@ -774,7 +853,10 @@ for (int j = 1; j <= n; ++j) {  // 注意中转点在最外层
 }
 ```
 
+
+
 #### 有向图上找最小环
+
 
 枚举图上的一个点 $u$ 作为环的起点，跑一遍 Dijkstra 求出点 $u$ 到剩下所有点 $v$ 的最短距离。如果有一条 $v\to u$ 的边，那么就找到了一个环，环的权值为 $dis[v]+w(v,u)$。最终时间复杂度 $O(NM\log N)$。
 ```cpp
@@ -799,7 +881,10 @@ void Dijkstra(int s)
     }
 }
 ```
+
+
 #### spfa判断负环
+
 
 ```cpp
 bool spfa(int s=1)
@@ -825,7 +910,10 @@ bool spfa(int s=1)
 	return false;
 }
 ```
+
+
 ### 最小生成树
+
 
 kruskal 时间复杂度为 $O(m\log m)$
 ```cpp
@@ -853,7 +941,10 @@ int kruskal()
 }
 ```
 
+
+
 ### 拓扑排序
+
 
 ```cpp
 queue<int> q;
@@ -868,43 +959,64 @@ while (!q.empty()) {
 }
 ```
 
+
+
 ### LCA
+
+
+
 
 
 #### 倍增O(LogN)求LCA
 
+
 ```cpp
 const int N=5e5+5, I=20;
-int n, m, s, dep[N], f[I+5][N];
-vector <int> G[N];
+int n, m, s, dep[N], f[I+5][N], mn[I+5][N];
+vector <pii> G[N];
 
 void dfs(int u, int fa)
-{   // 预处理深度和父节点信息
-    dep[u] = dep[fa] + 1;
+{   // 预处理父节点、深度、路径上的最小值
     f[0][u] = fa;
+    dep[u] = dep[fa] + 1;
     for (int i = 1; i <= I; ++i) {
-        f[i][u] = f[i-1][f[i-1][u]];
+        f[i][u] = f[i-1][ f[i-1][u] ];
+        mn[i][u] = min( mn[i-1][u], mn[i-1][ f[i-1][u] ] );
     }
-    for (int v: G[u]) {
-        if (v != fa) { dfs(v, u); }
+    for (auto [v, w]: G[u]) {
+        if (v != fa) {
+            mn[0][v] = w;
+            dfs(v, u);
+        }
     }
 }
 
-int lca(int u, int v)
-{   // 求 lca
+int LCA(int u, int v)
+{   // 求 u,v 到其 LCA 路径上的最小值
+    int ans = numeric_limits<int>::max();
+    function<void(int&,int)> jump = [&](int &u, int i) {
+        ans = min(ans, mn[i][u]);
+        u = f[i][u];
+    };
     if (dep[u] < dep[v]) { swap(u, v); }
     for (int i = I; i >= 0; --i) {
-        if (dep[f[i][u]] >= dep[v]) { u = f[i][u]; }
+        if (dep[f[i][u]] >= dep[v]) { jump(u, i); }
     }
-    if (u == v) { return u; }
+    if (u == v) { return ans; }
     for (int i = I; i >= 0; --i) {
-        if (f[i][u] != f[i][v]) { u=f[i][u]; v=f[i][v]; }
+        if (f[i][u] != f[i][v]) {
+            jump(u, i); jump(v, i);
+        }
     }
-    return f[0][u];
+    jump(u, 0); jump(v, 0);
+    return ans;
 }
 ```
 
+
+
 #### 欧拉序+ST表O(1)求LCA
+
 
 初次访问节点 $u$ 和回溯到节点 $u$ 时记录，所产生的序列即为欧拉序。
 欧拉序长度为 $2n-1$。
@@ -922,11 +1034,11 @@ void dfs(int u, int fa)
 {   // 预处理深度和欧拉序
     first[u] = eular.size();
     dep[u] = dep[fa] + 1;
-    eular.push_back( {dep[u], u} );
+    eular.push_back( {dep[u], u } );
     for (int v: G[u]) {
         if (v != fa) {
             dfs(v, u);
-            eular.push_back( {dep[u], u} );
+            eular.push_back( {dep[u], u } );
         }
     }
 }
@@ -948,7 +1060,10 @@ int main()
 }
 ```
 
+
+
 ### 基环树上找环
+
 
 在建图的过程中如果发现 $u,v$ 已经联通，则 $u,v$ 两点必然在环上。从 $u$ 出发 dfs 到 $v$ 即可。
 ```cpp
@@ -980,29 +1095,79 @@ int main()
 	dfs(s, 0);
 }
 ```
-### 树的重心
+
+
+### 树的直径
+
+
+
+
+### 点分治与树的重心
+
 
 去掉重心所形成的每个连通块的大小都小于等于 $\dfrac{n}{2}$。
 ```cpp
-int cnt[N];
-void findBaryCenter(int u, int fa, int &core)
-{
-    cnt[u] = 1;
-    int mx = 0;
-    for (int v: G[u]) {
-        if (v != fa) {
-            findBaryCenter(v, u, core);
-            cnt[u] += cnt[v];
-            mx = max(mx, cnt[v]);
+int n, siz[N], dis[N];
+bool vis[N];
+vector<pii> G[N];
+
+void calcsiz(int u, int fa, int sum, int &core)
+{   // 求树的重心
+    siz[u] = 1;
+    int mxz = 0;
+    for (auto [v, w]: G[u]) {
+        if (v != fa && !vis[v]) {
+            calcsiz(v, u, sum, core);
+            siz[u] += siz[v];
+            mxz = max(mxz, siz[v]);
         }
     }
-    if (fa != 0) { mx = max(mx, n-cnt[u]); }
-    if (mx * 2 <= m) { core = u; }
+    mxz = max(mxz, sum-siz[u]);
+    if (mxz * 2 <= sum) { core = u; }
+}
+
+void calcdis(int u, int fa) 
+{
+    for (auto [v, w]: G[u]) {
+        if (v != fa && !vis[v]) {
+            dis[v] = dis[u] + w;
+            calcdis(v, u);
+        }
+    }
+}
+
+void work(int u, int fa)
+{
+    vis[u] = true;
+    for (auto [v, w]: G[u]) {
+        if (v != fa && !vis[v]) {
+            dis[v] = w;
+            calcdis(v, u);
+        }
+    }
+    for (auto [v, w]: G[u]) {
+        if (v != fa && !vis[v]) {
+            int sum = siz[v];
+            int core = 0;
+            calcsiz(v, u, sum, core);
+            calcsiz(core, u, sum, core);  // 第二次调用更新 siz[]
+            work(core, u);
+        }
+    }
+}
+
+int main()
+{
+    int core = 0;
+    calcsiz(1, 0, n, core);
+    calcsiz(core, 0, n, core);
+    work(core, 0);
 }
 ```
-### 树的直径
+
 
 ### Hierholzer求欧拉路
+
 
 有向图中欧拉通路存在条件：起点出度比入度大 $1$，终点入度比出度大 $1$，其余点入度等于出度。
 有向图中欧拉回路存在条件：所有点入度等于出度。
@@ -1018,19 +1183,149 @@ void dfs(int u)
     ans.push_back(u);
 }
 ```
-### Tarjan
 
-### 匈牙利算法
 
-### 网络流
+### DSU on tree
+
+
+求一棵树中有多少子树，满足其中存在的每种颜色的结点个数都相同。
+```cpp
+const int N=2e5+5;
+int n, c[N], siz[N], hvs[N];
+int L[N], R[N], dfn[N], totdfn;
+vector<int> G[N];
+
+void dfs_init(int u, int fa)
+{
+	siz[u] = 1;
+	L[u] = ++totdfn;
+	dfn[totdfn] = u;
+	for (int v: G[u]) {
+		if (v != fa) {
+			dfs_init(v, u);
+			siz[u] += siz[v];
+			if (hvs[u] == 0 || siz[v] > siz[hvs[u]]) {
+				hvs[u] = v;
+			}
+		}
+	}
+	R[u] = totdfn;
+}
+
+void add(int u, int dt)
+{
+	--ccnt[cnt[c[u]]];
+	cnt[c[u]] += dt;
+	++ccnt[cnt[c[u]]];
+}
+
+void dfs_solve(int u, int fa, bool keep)
+{
+	for (auto v: G[u]) {
+		if (v != fa && v != hvs[u]) {
+			dfs_solve(v, u, false);
+		}
+	}
+	if (hvs[u]) {
+		dfs_solve(hvs[u], u, true);
+	}
+	for (auto v: G[u]) {
+		if (v != fa && v != hvs[u]) {
+			for (int i = L[v]; i <= R[v]; ++i) {
+				add(dfn[i], 1);
+			}
+		}
+	}
+	add(u, 1);
+	ans += (cnt[c[u]] * ccnt[cnt[c[u]]] == siz[u]);
+	if (keep) { return; }
+	for (int i = L[u]; i <= R[u]; ++i) {
+		add(dfn[i], -1);
+	}
+}
+```
+
+
+
+### Tarjan缩点
+
+
+
+
+### 最大流
+
+
+dicnic 在普通图上的时间复杂度是 $O (EV^2)$，在单位容量图上的时间复杂度是 $O (E\min(E^{\frac{1}{2}},V^{\frac{2}{3}}))$
+```cpp
+const ll INF = 9e18; 
+struct Flow {
+    vector<tuple<int,ll,int>> G[N];  // 终点，流量，反边
+    int dis[N], now[N];  // now[u] 为当前弧
+    void add_edge(int u, int v, ll w) {
+        G[u].push_back( { v, w, G[v].size() } );
+        G[v].push_back( { u, 0, G[u].size()-1 } );
+    }
+    void bfs(int st) {  // 求层次图
+        queue<int> q;
+        memset(dis, 0, sizeof(dis));
+        q.push(st); dis[st] = 1;
+        while (!q.empty()) {
+            int u = q.front(); q.pop();
+            for (auto& [v, w, inv]: G[u]) {
+                if (w != 0 && dis[v] == 0) {
+                    dis[v] = dis[u] + 1;
+                    q.push(v);
+                }
+            }
+        }
+    }
+    ll dfs(int u, int t, ll flow) {  // 求阻塞流
+        if (u == t) { return flow; }
+        for (int &i=now[u]; i < (int)G[u].size(); ++i) {
+            auto& [v, w, inv] = G[u][i];
+            if (w != 0 && dis[v] > dis[u]) {
+                ll d = dfs(v, t, min(flow, w));
+                if (d > 0) {
+                    w -= d;
+                    get<1>(G[v][inv]) += d;
+                    return d;
+                }
+            }
+        }
+        return 0;
+    }
+    ll dicnic(int st, int ed) {
+        for (ll flow=0, res;;) {
+            bfs(st);
+            if (dis[ed] == 0) { return flow; }
+            memset(now, 0, sizeof(now));
+            while ((res=dfs(st,ed,INF)) > 0) {
+                flow += res;
+            }
+        }
+    }
+};
+```
+
+
 
 ## 数学
 
+
+
+
 ### 一些公柿
 
-平方和公式：$\sum_{i=1}^n(i^2)=\dfrac{n(n+1)(2n+1)}{6}$
+
+平方和公式 $\displaystyle\sum_{i=1}^n(i^2)=\dfrac{n(n+1)(2n+1)}{6}$
+组合数① $\displaystyle{n\choose k}=\frac{n!}{k!(n-k)!}$；② $\displaystyle{n\choose m}={n-1\choose m}+{n-1 \choose m-1}$；③ $\displaystyle\sum_{k=r}^{n}{n\choose k}={n+1\choose k+1}$；④ $\displaystyle\sum_{i=0}^n{n\choose i}=2^n$
+不定方程 $\displaystyle\sum_{i=1}^mx_i=n$ 正整数解个数为 ${n-1\choose m-1}$，非负整数解的个数为 ${n+m-1\choose m-1}$
+几何级数① $\dfrac{1}{1-x}=\displaystyle\sum_{k=0}^\infty x^k$；② $\dfrac{x}{(1-x)^2}=\displaystyle\sum_{k=1}^\infty kx^k$
+
+
 
 ### 预处理因数
+
 
 $[1,n]$ 所有数字的因数个数和是 $O(n\log n)$ 的。
 $720720$ 是 $10^6$ 内因数最多的数字，其因数个数为 $240$。
@@ -1042,7 +1337,10 @@ for (int i = 1; i <= mx; ++i) {
     }
 }
 ```
+
+
 ### 线性筛
+
 
 
 ```cpp
@@ -1063,7 +1361,10 @@ vector <int> getPrime(int n)
 }
 ```
 
+
+
 ### 快速幂与乘法逆元
+
 
 根据费马小定理 $a^{p-1}\equiv1\pmod p$，得 $a^{p-2}\equiv\dfrac{1}{a}\pmod p$，据此计算乘法逆元。
 要求模数为质数，且 $a$ 不是 $p$ 的倍数。
@@ -1080,10 +1381,11 @@ ll qpow(ll a, ll b=MOD-2)
 }
 ```
 
+
+
 ### O(1)计算排列组合数
 
-常见公式：① $C_n^k=\dfrac{n!}{k!(n-k)!}$；② $C_n^m=C_{n-1}^m+C_{n-1}^{m-1}$；③ $\displaystyle\sum_{i=0}^nC_n^i=2^n$
-不定方程 $\displaystyle\sum_{i=1}^mx_i=n$ 正整数解个数为 $C_{n-1}^{m-1}$，非负整数解的个数为 $C_{n+m-1}^{m-1}$
+
 ```cpp
 // 预处理阶乘和阶乘的逆元
 vector<ll> fac, Inv;
@@ -1105,7 +1407,10 @@ import math
 def C(n, k):
     return math.factorial(n)//math.factorial(k)//math.factorial(n-k);
 ```
+
+
 ### 卡特兰数
+
 
 $Cat(n)$ 的求法：① $\begin{cases}H_1=1\\H_n=\dfrac{4n-2}{n+1}H_{n-1}\end{cases}$；② $H_n=\dfrac{C_{2n}^n}{n+1}$；③ $H_n=C_{2n}^n-C_{2n}^{n-1}$；④ $H_n=\displaystyle\prod_{i=0}^n H_iH_{n-1-i}$
 $Cat(n)$ 的意义：①不跨对角线从 $(1,1)$ 走到 $(n,n)$ 的方案数；② $2n$ 个括号所组成的所有合法括号序列的个数；③合法的出栈方案数；④ $n$ 边形划分为若干个三角形的方案数；⑤ $n+1$ 个节点的二叉树形态。
@@ -1113,14 +1418,23 @@ $Cat(n)$ 的意义：①不跨对角线从 $(1,1)$ 走到 $(n,n)$ 的方案数�
 ll Cat(ll n) { return C(2*n, n) * qpow(n+1) % MOD; }
 ```
 
+
+
 ### 容斥原理
 
+
 错位排列问题：$D(n)=(n-1)\times(D(n-1)+D(n-2))$
+
+
 
 ## 字符串
 
 
+
+
+
 ### 前缀函数与KMP
+
 
 ```cpp
 vector<int> prefixFunction(string s)
@@ -1146,7 +1460,10 @@ void kmp()
     for (int i = 0; i < m; ++i) { cout << pi[i] << " "; }
 }
 ```
+
+
 ### Manacher
+
 
 ```cpp
 vector<int> manacher(string s)
@@ -1179,7 +1496,10 @@ void solve()
 }
 ```
 
+
+
 ### 字符串哈希
+
 
 ```cpp
 typedef long long ll;
@@ -1203,7 +1523,10 @@ struct Hash {
     hs get(int l, int r) { return hs1[r]-hs1[l-1]*Pow[r-l+1]; }
 };
 ```
+
+
 ## 烂掉啦
+
 - 开 `long long`
 	- `#define int long long`
 	- 叉乘的结果再相乘，需要检查是否爆 `long long`
