@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2-题解/CF1886E.md",
+                "file": "2-题解/P10390.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CF1886E"
+              "title": "P10390"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#DP/状压DP",
+                "query": "三分",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -84,8 +84,7 @@
               "title": "Longform"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -198,12 +197,20 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "d1d33600c1a07559",
   "lastOpenFiles": [
-    "2-题解/CF2041C.md",
+    "2-题解/P10389.md",
+    "2-题解/P10390.md",
     "0-系统组件/homepage.md",
-    "3-文档/2-比赛/The 2023 ICPC Asia Nanjing Regional Contest.md",
+    "4-输出/板子/高精度.md",
+    "2-题解/CF2085D.md",
+    "2-题解/CF2085C.md",
+    "2-题解/P1883.md",
+    "2-题解/gym104871G.md",
+    "2-题解/P3382.md",
     "2-题解/CF1886E.md",
+    "2-题解/CF2041C.md",
+    "3-文档/2-比赛/The 2023 ICPC Asia Nanjing Regional Contest.md",
     "2-题解/P8774.md",
     "2-题解/P8745.md",
     "2-题解/P3195.md",
@@ -218,14 +225,6 @@
     "2-题解/AcWing287.md",
     "4-输出/板子/template_by_LittleDrinks.md",
     "2-题解/P9233.md",
-    "4-输出/板子/DSU on tree.md",
-    "README.md",
-    "3-文档/2-比赛/Codeforces Round 969 (Div. 2).md",
-    "3-文档/2-比赛/Hello 2025.md",
-    "2-题解/P1129.md",
-    "4-输出/板子/最大流.md",
-    "2-题解/CF2064E.md",
-    "4-输出/板子/点线操作.md",
     "2-题解/未命名",
     "~syncthing~.nomedia.tmp",
     "3-文档/~syncthing~.sync-conflict-20250215-100758-TIMKZYG.nomedia.tmp",
