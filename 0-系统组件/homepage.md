@@ -1,23 +1,12 @@
 ---
 tags:
 ---
-
-> [!multi-column]
-> > [!todo] 知识点
-> > ```dataview
-> > task
-> > from "3-文档/1-笔记"
-> > where !completed
-> > group by file.link
-> > ```
-> 
-> > [!todo] 比赛
-> > ```dataview
-> > task
-> > from "3-文档/2-比赛"
-> > where !completed
-> > group by file.link
-> > ```
+```dataview
+TABLE WITHOUT ID file.link AS "题目", file.mtime AS "修改时间"
+FROM "2-题解"
+SORT file.mtime DESC
+LIMIT 10
+```
 ```contributionGraph
 title: 刷题统计
 graphType: default
@@ -63,5 +52,7 @@ cellStyle:
   minHeight: 15px
 
 ```
-
-
+```dataview
+CALENDAR file.ctime
+FROM "2-题解"
+```

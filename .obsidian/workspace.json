@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "1d56d7a71b62b634",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "e5bc695d034b1f9a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2-题解/CF1795F.md",
+                "file": "0-系统组件/homepage.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CF1795F"
+              "title": "homepage"
+            }
+          },
+          {
+            "id": "972cfb9401c2fe24",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2-题解/CF1886E.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CF1886E"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -197,34 +212,34 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "972cfb9401c2fe24",
   "lastOpenFiles": [
     "0-系统组件/homepage.md",
-    "2-题解/CF1795F.md",
-    "2-题解/P9234.md",
-    "4-输出/板子/倍增O(LogN)求LCA.md",
-    "4-输出/板子/随机数.md",
-    "4-输出/板子/LCA.md",
-    "4-输出/板子/带权并查集.md",
-    "4-输出/板子/线性筛.md",
-    "4-输出/板子/一些公柿.md",
-    "4-输出/板子/向量.md",
-    "2-题解/AcWing375.md",
-    "3-文档/2-比赛/AtCoder Beginner Contest 388.md",
-    "4-输出/板子/字符串哈希.md",
-    "2-题解/P10390.md",
-    "2-题解/P10389.md",
-    "4-输出/板子/高精度.md",
+    "2-题解/CF1886E.md",
+    "2-题解/CF1886C.md",
+    "2-题解/CF1868C.md",
+    "2-题解/CF2064E.md",
+    "主页.md",
+    "4-输出/板子/常用函数.md",
+    "4-输出/板子/烂掉啦.md",
     "2-题解/CF2085D.md",
     "2-题解/CF2085C.md",
-    "2-题解/P1883.md",
-    "2-题解/gym104871G.md",
-    "2-题解/P3382.md",
-    "2-题解/CF1886E.md",
+    "2-题解/CF2075D.md",
+    "2-题解/CF2062D.md",
+    "2-题解/CF2059C.md",
+    "2-题解/CF2057E.md",
+    "2-题解/CF2056E.md",
+    "2-题解/CF2038L.md",
+    "2-题解/CF2041B.md",
     "2-题解/CF2041C.md",
-    "3-文档/2-比赛/The 2023 ICPC Asia Nanjing Regional Contest.md",
-    "2-题解/P8774.md",
-    "2-题解/P8745.md",
+    "2-题解/CF1980G.md",
+    "2-题解/CF2057D.md",
+    "2-题解/AcWing102.md",
+    "2-题解/P3382.md",
+    "2-题解/P10390.md",
+    "2-题解/P9234.md",
+    "2-题解/CF1795F.md",
+    "2-题解/AcWing242.md",
     "2-题解/未命名",
     "~syncthing~.nomedia.tmp",
     "3-文档/~syncthing~.sync-conflict-20250215-100758-TIMKZYG.nomedia.tmp",
