@@ -1,15 +1,7 @@
-# 模板
-
-[TOC]
+# 杂项
 
 
-## 杂项
-
-
-
-
-### 常用函数
-
+## 常用函数
 
 ```cpp
 // 快读
@@ -25,19 +17,22 @@ inline int read()
 const int MOD=998244353;
 void add(ll &x, ll y) { if ((x+=y) >= MOD) { x -= MOD; } }  // 不要漏掉括号
 void del(ll &x, ll y) { if ((x-=y) < 0)    { x += MOD; } }
+void mul(ll &x, ll y) { (x*=y)%=MOD; }
 
 // 计算一个整数的二进制表示中有多少个 1
-__builtin_popcount(i);
+__builtin_popcountll(i);
+std::popcount((unsigned long long)i);  // c++20
+
+// 计算一个整数的二进制表示中最高位的 1
+__lg(i);  // i 最多 32 位
 ```
 
 
-
-### 高精度
-
+## 高精度
 
 重载 `__int128` 输入输出
 ```cpp
-istream& operator >> (istream& is, __int128 &x)
+istream& operator>> (istream& is, __int128 &x)
 {
 	string s; is>>s;
 	bool f=false;
@@ -49,7 +44,7 @@ istream& operator >> (istream& is, __int128 &x)
 	x = f? -ans: ans;
 	return is;
 }
-ostream& operator << (ostream& os, __int128 &x)
+ostream& operator<< (ostream& os, __int128 &x)
 {
 	string ans;
 	function<void(__int128)> write = [&](__int128 x){
@@ -62,9 +57,7 @@ ostream& operator << (ostream& os, __int128 &x)
 ```
 
 
-
-### 随机数
-
+## 随机数
 
 随机数
 ```cpp
@@ -96,7 +89,7 @@ vector<array<int,2>> Graph(int n, int m=-1, int root=-1)
 	}
 	// 从树建图
 	if (m != -1) {
-		for (int i = n-1; i <= m; ++i) {
+		for (int i = n-1; i < m; ++i) {
 			while (1) {
 				int x = Rand(1, n);
 				int y = Rand(1, n);
@@ -104,6 +97,7 @@ vector<array<int,2>> Graph(int n, int m=-1, int root=-1)
 				E.push_back( { x, y } );
 				diff.insert( { x, y } );
 				diff.insert( { y, x } );  // 无向图中需要添加这条反向边
+				break;
 			}
 		}
 	}
@@ -113,9 +107,7 @@ vector<array<int,2>> Graph(int n, int m=-1, int root=-1)
 ```
 
 
-
-### vector相关
-
+## vector相关
 
 ```cpp
 // 多维 vector，需要 c++17，c++14 只能老老实实写 vector<vector<int>>
@@ -143,9 +135,7 @@ iota(a.begin(), a.end(), 0);
 ```
 
 
-
-### 对拍
-
+## 对拍
 
 ```cpp
 // checker.cpp
@@ -160,9 +150,7 @@ while (1) {
 }
 ```
 
-
-### bfs
-
+## bfs
 
 ```cpp
 const int dx[]={-1, 1, 0, 0}, dy[]={0, 0, -1, 1};  // 上，下，左，右
@@ -199,9 +187,7 @@ int bfs()
 }
 ```
 
-
-## 计算几何
-
+# 计算几何
 
 https://blog.csdn.net/qq_45249273/article/details/123798461
 https://csacademy.com/app/geometry_widget/
@@ -216,9 +202,7 @@ int sgn(ll x) { return x==0? 0: ( x>0? 1: -1 ); }
 ```
 
 
-
-### 向量
-
+## 向量
 
 向量旋转 $\begin{bmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{bmatrix}\begin{bmatrix}a_x\\a_y\end{bmatrix}=\begin{bmatrix}\cos\theta a_x & -\sin\theta a_y\\ \sin\theta a_x & \cos\theta a_y\end{bmatrix}$
 ```cpp
@@ -285,9 +269,7 @@ db getAngle(Vector a, Vector b) {
 ```
 
 
-
-### 点线操作
-
+## 点线操作
 
 点 $P$ 在直线 $AB$ 上，则 $\overrightarrow{AB}\times\overrightarrow{AP}=\vec{0}$，若要求在线段/射线上，再判断 $x,y$ 是否分别位于 $AB$ 之间即可。
 判断两线段是否相交：先做两次跨立实验判断是否规范相交，再特判至少三点共线的情况
@@ -362,9 +344,7 @@ Point GetLineProjection(Point P, Point A, Point B) {
 ```
 
 
-
-### 多边形
-
+## 多边形
 
 多边形的面积 $S=\dfrac12\|\sum_{i=0}^{n-1}\overrightarrow{OP_i}\times\overrightarrow{OP_{(i+1)\mod n}}\|$
 ```cpp
@@ -437,20 +417,16 @@ struct Polygon {
 ```
 
 
-
-## 数据结构
-
+# 数据结构
 
 
-
-### 带权并查集
-
+## 带权并查集
 
 ```cpp
-struct dsu {
+struct DSU {
     int n;
     vector<int> f, siz, pre;
-    dsu(int n): n(n), f(vector<int>(n+1)), siz(vector<int>(n+1,1)), pre(vector<int>(n+1)) {
+    DSU(int n): n(n), f(vector<int>(n+1)), siz(vector<int>(n+1,1)), pre(vector<int>(n+1)) {
         iota(f.begin(), f.end(), 0);
     }
     int find(int x) {
@@ -477,9 +453,7 @@ struct dsu {
 ```
 
 
-
-### Trie
-
+## Trie
 
 普通 Trie。
 ```cpp
@@ -554,9 +528,7 @@ struct Trie {
 ```
 
 
-
-### ST表
-
+## ST表
 
 这是一个 $0$ 下标的封装版 ST 表。但是 $1$ 下标时令 $a[0]=0$ 不会影响答案。
 ```cpp
@@ -598,9 +570,7 @@ struct ST {
 ```
 
 
-
-### 对顶multiset维护中位数
-
+## 对顶multiset维护中位数
 
 ```cpp
 struct PairingMultiset {
@@ -664,9 +634,7 @@ struct PairingMultiset {
 ```
 
 
-
-### 树状数组
-
+## 树状数组
 
 ```cpp
 struct BIT {
@@ -699,9 +667,7 @@ BIT T(n);
 ```
 
 
-
-### 懒标记线段树
-
+## 懒标记线段树
 
 懒标记线段树本质上是维护两个幺半群和三个三元操作，对应重载即可。
 ```cpp
@@ -773,14 +739,10 @@ Lazy operator+ (const Lazy &u, const Lazy &v) {
 }
 ```
 
-
-### 分块
-
+## 分块
 
 
-
-### 逆序对
-
+## 逆序对
 
 归并排序解决静态逆序对问题。
 ```cpp
@@ -814,9 +776,7 @@ for (int i = 0; i < n; ++i) {
 分块解决动态逆序对问题。
 
 
-
-## 图论
-
+# 图论
 
 https://csacademy.com/app/graph_editor/
 ```CPP
@@ -833,15 +793,11 @@ void dfs(int u, int fa)
 ```
 
 
-
-### 最短路
-
+## 最短路
 
 
 
-
-#### bitset优化传递闭包
-
+### bitset优化传递闭包
 
 邻接矩阵存图，时间复杂度为 $O(\dfrac{n^3}{w})$，可以处理 $2000$ 左右的数据。
 ```cpp
@@ -854,9 +810,7 @@ for (int j = 1; j <= n; ++j) {  // 注意中转点在最外层
 ```
 
 
-
-#### 有向图上找最小环
-
+### 有向图上找最小环
 
 枚举图上的一个点 $u$ 作为环的起点，跑一遍 Dijkstra 求出点 $u$ 到剩下所有点 $v$ 的最短距离。如果有一条 $v\to u$ 的边，那么就找到了一个环，环的权值为 $dis[v]+w(v,u)$。最终时间复杂度 $O(NM\log N)$。
 ```cpp
@@ -882,9 +836,7 @@ void Dijkstra(int s)
 }
 ```
 
-
-#### spfa判断负环
-
+### spfa判断负环
 
 ```cpp
 bool spfa(int s=1)
@@ -911,9 +863,7 @@ bool spfa(int s=1)
 }
 ```
 
-
-### 最小生成树
-
+## 最小生成树
 
 kruskal 时间复杂度为 $O(m\log m)$
 ```cpp
@@ -942,9 +892,7 @@ int kruskal()
 ```
 
 
-
-### 拓扑排序
-
+## 拓扑排序
 
 ```cpp
 queue<int> q;
@@ -960,15 +908,11 @@ while (!q.empty()) {
 ```
 
 
-
-### LCA
-
+## LCA
 
 
 
-
-#### 倍增O(LogN)求LCA
-
+### 倍增O(LogN)求LCA
 
 ```cpp
 const int N=5e5+5, I=20;
@@ -1014,9 +958,7 @@ int LCA(int u, int v)
 ```
 
 
-
-#### 欧拉序+ST表O(1)求LCA
-
+### 欧拉序+ST表O(1)求LCA
 
 初次访问节点 $u$ 和回溯到节点 $u$ 时记录，所产生的序列即为欧拉序。
 欧拉序长度为 $2n-1$。
@@ -1061,9 +1003,7 @@ int main()
 ```
 
 
-
-### 基环树上找环
-
+## 基环树上找环
 
 在建图的过程中如果发现 $u,v$ 已经联通，则 $u,v$ 两点必然在环上。从 $u$ 出发 dfs 到 $v$ 即可。
 ```cpp
@@ -1096,14 +1036,10 @@ int main()
 }
 ```
 
-
-### 树的直径
-
+## 树的直径
 
 
-
-### 点分治与树的重心
-
+## 点分治与树的重心
 
 去掉重心所形成的每个连通块的大小都小于等于 $\dfrac{n}{2}$。
 ```cpp
@@ -1165,9 +1101,7 @@ int main()
 }
 ```
 
-
-### Hierholzer求欧拉路
-
+## Hierholzer求欧拉路
 
 有向图中欧拉通路存在条件：起点出度比入度大 $1$，终点入度比出度大 $1$，其余点入度等于出度。
 有向图中欧拉回路存在条件：所有点入度等于出度。
@@ -1184,9 +1118,7 @@ void dfs(int u)
 }
 ```
 
-
-### DSU on tree
-
+## DSU on tree
 
 求一棵树中有多少子树，满足其中存在的每种颜色的结点个数都相同。
 ```cpp
@@ -1246,14 +1178,10 @@ void dfs_solve(int u, int fa, bool keep)
 ```
 
 
-
-### Tarjan缩点
-
+## Tarjan缩点
 
 
-
-### 最大流
-
+## 最大流
 
 dicnic 在普通图上的时间复杂度是 $O (EV^2)$，在单位容量图上的时间复杂度是 $O (E\min(E^{\frac{1}{2}},V^{\frac{2}{3}}))$
 ```cpp
@@ -1308,24 +1236,22 @@ struct Flow {
 ```
 
 
-
-## 数学
-
+# 数学
 
 
-
-### 一些公柿
-
+## 一些公柿
 
 平方和公式 $\displaystyle\sum_{i=1}^n(i^2)=\dfrac{n(n+1)(2n+1)}{6}$
-组合数① $\displaystyle{n\choose k}=\frac{n!}{k!(n-k)!}$；② $\displaystyle{n\choose m}={n-1\choose m}+{n-1 \choose m-1}$；③ $\displaystyle\sum_{k=r}^{n}{n\choose k}={n+1\choose k+1}$；④ $\displaystyle\sum_{i=0}^n{n\choose i}=2^n$
+组合数
+① $\displaystyle{n\choose k}=\frac{n!}{k!(n-k)!}$；
+② $\displaystyle{n\choose m}={n-1\choose m}+{n-1 \choose m-1}$；
+③ $\displaystyle\sum_{k=r}^{n}{n\choose k}={n+1\choose k+1}$；
+④ $\displaystyle\sum_{i=0}^n{n\choose i}=2^n$
 不定方程 $\displaystyle\sum_{i=1}^mx_i=n$ 正整数解个数为 ${n-1\choose m-1}$，非负整数解的个数为 ${n+m-1\choose m-1}$
-几何级数① $\dfrac{1}{1-x}=\displaystyle\sum_{k=0}^\infty x^k$；② $\dfrac{x}{(1-x)^2}=\displaystyle\sum_{k=1}^\infty kx^k$
+几何级数：① $\dfrac{1}{1-x}=\displaystyle\sum_{k=0}^\infty x^k$；② $\dfrac{x}{(1-x)^2}=\displaystyle\sum_{k=1}^\infty kx^k$
 
 
-
-### 预处理因数
-
+## 预处理因数
 
 $[1,n]$ 所有数字的因数个数和是 $O(n\log n)$ 的。
 $720720$ 是 $10^6$ 内因数最多的数字，其因数个数为 $240$。
@@ -1338,9 +1264,7 @@ for (int i = 1; i <= mx; ++i) {
 }
 ```
 
-
-### 线性筛
-
+## 线性筛
 
 
 ```cpp
@@ -1352,7 +1276,7 @@ vector <int> getPrime(int n)
 	for (int i = 2; i <= n; ++i) {
 		if (!vis[i]) { prime.push_back(i); }
 		for (auto p: prime) {
-			if (i*p >= n) { break; }
+			if (i*p > n) { break; }
 			vis[i*p] = 1;
 			if (i%p == 0) { break; }  // 线性筛关键优化
 		}
@@ -1362,9 +1286,7 @@ vector <int> getPrime(int n)
 ```
 
 
-
-### 快速幂与乘法逆元
-
+## 快速幂与乘法逆元
 
 根据费马小定理 $a^{p-1}\equiv1\pmod p$，得 $a^{p-2}\equiv\dfrac{1}{a}\pmod p$，据此计算乘法逆元。
 要求模数为质数，且 $a$ 不是 $p$ 的倍数。
@@ -1382,9 +1304,7 @@ ll qpow(ll a, ll b=MOD-2)
 ```
 
 
-
-### O(1)计算排列组合数
-
+## O(1)计算排列组合数
 
 ```cpp
 // 预处理阶乘和阶乘的逆元
@@ -1408,9 +1328,7 @@ def C(n, k):
     return math.factorial(n)//math.factorial(k)//math.factorial(n-k);
 ```
 
-
-### 卡特兰数
-
+## 卡特兰数
 
 $Cat(n)$ 的求法：① $\begin{cases}H_1=1\\H_n=\dfrac{4n-2}{n+1}H_{n-1}\end{cases}$；② $H_n=\dfrac{C_{2n}^n}{n+1}$；③ $H_n=C_{2n}^n-C_{2n}^{n-1}$；④ $H_n=\displaystyle\prod_{i=0}^n H_iH_{n-1-i}$
 $Cat(n)$ 的意义：①不跨对角线从 $(1,1)$ 走到 $(n,n)$ 的方案数；② $2n$ 个括号所组成的所有合法括号序列的个数；③合法的出栈方案数；④ $n$ 边形划分为若干个三角形的方案数；⑤ $n+1$ 个节点的二叉树形态。
@@ -1419,22 +1337,16 @@ ll Cat(ll n) { return C(2*n, n) * qpow(n+1) % MOD; }
 ```
 
 
-
-### 容斥原理
-
+## 容斥原理
 
 错位排列问题：$D(n)=(n-1)\times(D(n-1)+D(n-2))$
 
 
-
-## 字符串
-
+# 字符串
 
 
 
-
-### 前缀函数与KMP
-
+## 前缀函数与KMP
 
 ```cpp
 vector<int> prefixFunction(string s)
@@ -1461,9 +1373,7 @@ void kmp()
 }
 ```
 
-
-### Manacher
-
+## Manacher
 
 ```cpp
 vector<int> manacher(string s)
@@ -1497,18 +1407,22 @@ void solve()
 ```
 
 
-
-### 字符串哈希
-
+## 字符串哈希
 
 ```cpp
 typedef long long ll;
 typedef pair<ll, ll> hs;
 const ll MOD1=1e9+7, MOD2=1e9+9;
 const hs p = { 117, 131 };
-hs operator + (hs a, hs b) { return hs{(a.first+b.first)%MOD1, (a.second+b.second)%MOD2}; }
-hs operator - (hs a, hs b) { return hs{(a.first-b.first+MOD1)%MOD1, (a.second-b.second+MOD2)%MOD2}; }
-hs operator * (hs a, hs b) { return hs{(a.first*b.first)%MOD1, (a.second*b.second)%MOD2}; }
+hs operator + (hs a, hs b) {
+	return hs{(a.first+b.first)%MOD1, (a.second+b.second)%MOD2};
+}
+hs operator - (hs a, hs b) {
+	return hs{(a.first-b.first+MOD1)%MOD1, (a.second-b.second+MOD2)%MOD2};
+}
+hs operator * (hs a, hs b) {
+	return hs{(a.first*b.first)%MOD1, (a.second*b.second)%MOD2};
+}
 struct Hash {
     int n;
     vector<hs> hs1, Pow;
@@ -1524,9 +1438,7 @@ struct Hash {
 };
 ```
 
-
-## 烂掉啦
-
+# 烂掉啦
 - 开 `long long`
 	- `#define int long long`
 	- 叉乘的结果再相乘，需要检查是否爆 `long long`
@@ -1547,3 +1459,5 @@ struct Hash {
 - 考虑初态，什么操作都不做
 - 有两维，可以尝试交换枚举顺序
 - 【与】和【或】不要搞反
+- 看看位运算的优先级，打括号
+- 调用系统函数时注意参数类型，如 `__builtin_popcount()` 不能传 `ll`
