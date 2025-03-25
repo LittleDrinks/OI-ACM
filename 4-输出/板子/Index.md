@@ -40,7 +40,8 @@ longform:
       - 点分治与树的重心
       - Hierholzer求欧拉路
       - DSU on tree
-      - Tarjan缩点
+      - 强连通分量（SCC）
+      - 割边与边双连通分量（EBCC）
       - 最大流
     - 数学
     - - 一些公柿
