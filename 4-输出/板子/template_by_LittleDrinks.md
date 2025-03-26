@@ -60,6 +60,35 @@ ostream& operator<< (ostream& os, __int128 &x)
 
 
 
+## vector相关
+
+```cpp
+// 多维 vector，需要 c++17，c++14 只能老老实实写 vector<vector<int>>
+vector a(n+1, vector (n+1, vector<int>(n+1)));
+
+// 最值
+int mx = *min_element(vec.begin(), vec.end(), cmp);
+int mn = *min_element(vec.begin(), vec.end(), cmp);
+
+// 去重与离散化
+for (int i = 1; i <= n; ++i) { vec.push_back(a[i]); }
+sort(vec.begin(), vec.end());
+vec.erase(unique(vec.begin(), vec.end()), vec.end());
+for (int i = 1; i <= n; ++i) {
+	idx[i]=lower_bound(vec.begin(), vec.end(), a[i])-vec.begin()+1;  // 下标从1开始
+}
+
+// 前缀和
+vector <ll> a(n), s(n);
+partial_sum(a.begin(), a.end(), s.begin());
+ll sum = accumulate(s.begin(), s.end(), 0LL);
+
+// 填充 1~n，令 a[i]=i
+iota(a.begin(), a.end(), 0);
+```
+
+
+
 ## 随机数
 
 随机数
@@ -111,35 +140,6 @@ vector<array<int,2>> Graph(int n, int m=-1, int root=-1)
 
 
 
-## vector相关
-
-```cpp
-// 多维 vector，需要 c++17，c++14 只能老老实实写 vector<vector<int>>
-vector a(n+1, vector (n+1, vector<int>(n+1)));
-
-// 最值
-int mx = *min_element(vec.begin(), vec.end(), cmp);
-int mn = *min_element(vec.begin(), vec.end(), cmp);
-
-// 去重与离散化
-for (int i = 1; i <= n; ++i) { vec.push_back(a[i]); }
-sort(vec.begin(), vec.end());
-vec.erase(unique(vec.begin(), vec.end()), vec.end());
-for (int i = 1; i <= n; ++i) {
-	idx[i]=lower_bound(vec.begin(), vec.end(), a[i])-vec.begin()+1;  // 下标从1开始
-}
-
-// 前缀和
-vector <ll> a(n), s(n);
-partial_sum(a.begin(), a.end(), s.begin());
-ll sum = accumulate(s.begin(), s.end(), 0LL);
-
-// 填充 1~n，令 a[i]=i
-iota(a.begin(), a.end(), 0);
-```
-
-
-
 ## 对拍
 
 ```cpp
@@ -154,6 +154,7 @@ while (1) {
 	}
 }
 ```
+
 
 
 ## bfs
@@ -194,9 +195,9 @@ int bfs()
 ```
 
 
+
 # 计算几何
 
-https://blog.csdn.net/qq_45249273/article/details/123798461
 https://csacademy.com/app/geometry_widget/
 先判断，再计算，精度会好很多
 ```cpp
@@ -354,7 +355,7 @@ Point GetLineProjection(Point P, Point A, Point B) {
 
 
 
-## 多边形
+## 凸包与多边形
 
 多边形的面积 $S=\dfrac12\|\sum_{i=0}^{n-1}\overrightarrow{OP_i}\times\overrightarrow{OP_{(i+1)\mod n}}\|$
 ```cpp
@@ -425,6 +426,10 @@ struct Polygon {
     else               { cout << "NO\n"; }
 }
 ```
+
+
+
+## 圆
 
 
 
@@ -888,6 +893,40 @@ bool spfa(int s=1)
 ```
 
 
+## 基环树上找环
+
+在建图的过程中如果发现 $u,v$ 已经联通，则 $u,v$ 两点必然在环上。从 $u$ 出发 dfs 到 $v$ 即可。
+```cpp
+vector<int> G[N], cycle;
+void dfs(int u, int fa)
+{
+    cycle.push_back(u);
+    if (u == t) {
+        sort(cycle.begin(), cycle.end());
+        for (int x: cycle) { cout << x << " "; }
+        exit(0);
+    }
+    for (int v: G[u]) {
+        if (v != fa) { dfs(v, u); }
+    }
+    cycle.pop_back();
+}
+int main()
+{
+	dsu d(n);  // 见并查集板子
+	for (int i = 1; i <= n; ++i) {
+	    int u, v;
+	    cin >> u >> v;
+	    G[u].push_back(v);
+	    G[v].push_back(u);
+	    if (d.same(u, v)) { s=u; t=v; }
+	    d.merge(u, v);
+	}
+	dfs(s, 0);
+}
+```
+
+
 ## 最小生成树
 
 kruskal 时间复杂度为 $O(m\log m)$
@@ -1033,40 +1072,6 @@ int main()
 
 
 
-## 基环树上找环
-
-在建图的过程中如果发现 $u,v$ 已经联通，则 $u,v$ 两点必然在环上。从 $u$ 出发 dfs 到 $v$ 即可。
-```cpp
-vector<int> G[N], cycle;
-void dfs(int u, int fa)
-{
-    cycle.push_back(u);
-    if (u == t) {
-        sort(cycle.begin(), cycle.end());
-        for (int x: cycle) { cout << x << " "; }
-        exit(0);
-    }
-    for (int v: G[u]) {
-        if (v != fa) { dfs(v, u); }
-    }
-    cycle.pop_back();
-}
-int main()
-{
-	dsu d(n);  // 见并查集板子
-	for (int i = 1; i <= n; ++i) {
-	    int u, v;
-	    cin >> u >> v;
-	    G[u].push_back(v);
-	    G[v].push_back(u);
-	    if (d.same(u, v)) { s=u; t=v; }
-	    d.merge(u, v);
-	}
-	dfs(s, 0);
-}
-```
-
-
 ## 树的直径
 
 
@@ -1162,7 +1167,7 @@ int L[N], R[N], dfn[N], totdfn;
 vector<int> G[N];
 
 void dfs_init(int u, int fa)
-{
+{   // 预处理 dfn 和重儿子
 	siz[u] = 1;
 	L[u] = ++totdfn;
 	dfn[totdfn] = u;
@@ -1187,15 +1192,15 @@ void add(int u, int dt)
 
 void dfs_solve(int u, int fa, bool keep)
 {
-	for (auto v: G[u]) {
+	for (auto v: G[u]) {  // 先做轻儿子，不保留
 		if (v != fa && v != hvs[u]) {
 			dfs_solve(v, u, false);
 		}
 	}
-	if (hvs[u]) {
+	if (hvs[u]) {  // 再做重儿子，保留
 		dfs_solve(hvs[u], u, true);
 	}
-	for (auto v: G[u]) {
+	for (auto v: G[u]) {  // 再把轻儿子的信息加上
 		if (v != fa && v != hvs[u]) {
 			for (int i = L[v]; i <= R[v]; ++i) {
 				add(dfn[i], 1);
@@ -1535,6 +1540,64 @@ struct Hash {
     hs get(int l, int r) { return hs1[r]-hs1[l-1]*Pow[r-l+1]; }
 };
 ```
+
+
+# DP
+
+
+
+
+## 无向图上回路计数
+
+将环视作一条链，起点是环上编号最小的那个点，且链的终点可以指回起点。记 $f(s,i)$ 表示这条链上包含了点集 $s$ 中的所有点，且以 $i$ 结尾的方案数。则
+$$
+f(s',j)\overset{+}{\leftarrow}f(s,i)\
+\begin{cases}
+s<s'\\
+\mathbin{\rm{lowbit}}(s)<j\\
+s[i]=1\\
+s[j]=0\\
+s'[i]=1\\
+s'[j]=1\\
+G[i][j]= 1
+\end{cases}
+$$
+当存在一条由终点 $i$ 指向起点 $\mathbin{\rm{lowbit}}(s)$ 的路径时，将 $f(s,i)$ 累加入答案。
+```cpp
+for (int i = 1; i <= n; ++i) {
+	f[1<<(i-1)][i] = 1;
+}
+for (int s = 0; s < (1<<n); ++s) {
+	for (int i = 1; i <= n; ++i) {
+		if (!f[s][i]) { continue; }
+		for (int j = 1; j <= n; ++j) {
+			if (!G[i][j]) { continue; }
+			if ((s&-s) > 1<<(j-1)) { continue; }  // 起点不能改
+			if(s>>(j-1)&1) {
+				if ((s&-s) == 1<<(j-1)) {  // 走回起点
+					ans += f[s][i];
+				}
+			} else {
+				f[s|(1<<(j-1))][j] += f[s][i];
+			}
+		}
+	}
+}
+cout << (ans-m)/2 << "\n";  // 去除无向边，环正走反走算一个
+```
+
+
+
+## 斜率优化
+
+
+
+## 四边形不等式
+
+
+
+## wqs二分
+
 
 
 # 烂掉啦

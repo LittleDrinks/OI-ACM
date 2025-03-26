@@ -9,7 +9,7 @@ int L[N], R[N], dfn[N], totdfn;
 vector<int> G[N];
 
 void dfs_init(int u, int fa)
-{
+{   // 预处理 dfn 和重儿子
 	siz[u] = 1;
 	L[u] = ++totdfn;
 	dfn[totdfn] = u;
@@ -34,15 +34,15 @@ void add(int u, int dt)
 
 void dfs_solve(int u, int fa, bool keep)
 {
-	for (auto v: G[u]) {
+	for (auto v: G[u]) {  // 先做轻儿子，不保留
 		if (v != fa && v != hvs[u]) {
 			dfs_solve(v, u, false);
 		}
 	}
-	if (hvs[u]) {
+	if (hvs[u]) {  // 再做重儿子，保留
 		dfs_solve(hvs[u], u, true);
 	}
-	for (auto v: G[u]) {
+	for (auto v: G[u]) {  // 再把轻儿子的信息加上
 		if (v != fa && v != hvs[u]) {
 			for (int i = L[v]; i <= R[v]; ++i) {
 				add(dfn[i], 1);

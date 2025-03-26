@@ -8,14 +8,15 @@ longform:
     - 杂项
     - - 常用函数
       - 高精度
-      - 随机数
       - vector相关
+      - 随机数
       - 对拍
       - bfs
     - 计算几何
     - - 向量
       - 点线操作
-      - 多边形
+      - 凸包与多边形
+      - 圆
     - 数据结构
     - - 带权并查集
       - Trie
@@ -30,12 +31,12 @@ longform:
       - - bitset优化传递闭包
         - 有向图上找最小环
         - spfa判断负环
+      - 基环树上找环
       - 最小生成树
       - 拓扑排序
       - LCA
       - - 倍增O(LogN)求LCA
         - 欧拉序+ST表O(1)求LCA
-      - 基环树上找环
       - 树的直径
       - 点分治与树的重心
       - Hierholzer求欧拉路
@@ -55,6 +56,11 @@ longform:
     - - 前缀函数与KMP
       - Manacher
       - 字符串哈希
+    - DP
+    - - 无向图上回路计数
+      - 斜率优化
+      - 四边形不等式
+      - wqs二分
     - 烂掉啦
   ignoredFiles:
     - manuscript
