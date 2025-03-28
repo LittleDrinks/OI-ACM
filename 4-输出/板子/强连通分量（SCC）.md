@@ -13,10 +13,8 @@ struct SCC {
 		low.assign(n+1, 0);
 		col.assign(n+1, 0);
 	}
-	SCC(int n, const vector<array<int,2>>& E): SCC(n) {
-		for (auto [u, v]: E) {
-			G[u].push_back(v);
-		}
+	void add_edge(int u, int v) {
+		G[u].push_back(v);
 	}
 	void dfs(int u) {
 		stk.push(u);

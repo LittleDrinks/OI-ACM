@@ -1218,7 +1218,20 @@ void dfs_solve(int u, int fa, bool keep)
 
 
 
-## 强连通分量（SCC）
+## tarjan
+
+
+| 定义                               | 限制  | 判断条件                                 | 额外操作                                                                      |
+| -------------------------------- | --- | ------------------------------------ | ------------------------------------------------------------------------- |
+| 桥：删去这条边后，图上原来连通的两点不再连通           | 无向图 | `low[v] > dfn[u]`                    | 无                                                                         |
+| 边双连通分量（EBCC）：任意一条边都不是桥的极大连通子图    | 无向图 | `low[v] > dfn[u]`                    | 忽略所有求完的桥，进行 dfs，求得答案                                                      |
+| 割点：删除该点及其边后，图中原来连通的两点不再连通        | 无向图 | `low[v] >= dfn[u]`                   | 根节点需要有 2 个及以上满足条件的子节点，使用 `child` 变量记录并进行特判                                |
+| 点双连通分量（PBCC）：任意一个节点都不是割点的极大连通子图  | 无向图 | `low[v] >= dfn[u]`                   | 用栈维护子节点，如果节点 `u` 通过子节点 `v` 判断为割点，  <br>那么一路出栈直到 `v` 出栈，最后将 `u` 加入答案中，但不出栈 |
+| 强连通分量（SCC）：有向图中任意两点都可互相到达的极大连通子图 | 有向图 | `low[u]==low[v]`，则 `u` 是这个 SCC 的起始位置 | 用栈维护子节点，从栈顶一路删，直到初始位置出栈                                                   |
+
+
+
+### 强连通分量（SCC）
 
 ```cpp
 struct SCC {
@@ -1232,10 +1245,8 @@ struct SCC {
 		low.assign(n+1, 0);
 		col.assign(n+1, 0);
 	}
-	SCC(int n, const vector<array<int,2>>& E): SCC(n) {
-		for (auto [u, v]: E) {
-			G[u].push_back(v);
-		}
+	void add_edge(int u, int v) {
+		G[u].push_back(v);
 	}
 	void dfs(int u) {
 		stk.push(u);
@@ -1268,7 +1279,84 @@ struct SCC {
 
 
 
-## 割边与边双连通分量（EBCC）
+### 割边与边双连通分量（EBCC）
+
+```cpp
+struct EBCC {
+    int n, totdfn=0, colcnt=0;
+    stack<int> stk;
+    vector<pii> B;
+    vector<int> dfn, low, col;
+    vector<vector<pii>> G;
+    EBCC(int n): n(n) {
+        G.assign(n+1, {});
+        dfn.assign(n+1, 0);
+        low.assign(n+1, 0);
+        col.assign(n+1, 0);
+    }
+    void add_edge(int u, int v, int id) {
+        G[u].emplace_back(v, id<<1);
+        G[v].emplace_back(u, id<<1|1);
+    }
+    void dfs(int u, int uid) {
+        stk.push(u);
+        dfn[u] = low[u] = ++totdfn;
+        for (auto [v, vid]: G[u]) {
+            if ((uid^vid) != 1) {
+                if (!dfn[v]) {
+                    dfs(v, vid);
+                    low[u] = min(low[u], low[v]);
+                    if (low[v] > dfn[u]) {  // 求桥
+                        B.emplace_back(min(u,v), max(u,v));
+                    }
+                } else if (!col[v] && dfn[v] < dfn[u]) {
+                    low[u] = min(low[u], dfn[v]);
+                }
+            }
+        }
+        if (low[u] == dfn[u]) {
+            col[u] = ++colcnt;
+            int v;
+            do {
+                v = stk.top(); stk.pop();
+                col[v] = colcnt;
+            } while (v != u);
+        }
+    }
+    vector<pii> work() {  // 桥
+        for (int i = 1; i <= n; ++i) {
+            if (!dfn[i]) { dfs(i, 0); }
+        }
+        return B;
+    }
+	struct Graph {
+	    int n;
+	    vector<array<int,2>> E;
+	    vector<int> siz, cnt;
+	    Graph(int n): n(n) {
+	        siz.assign(n+1, 0);  // EBCC 内部点的数量
+	        cnt.assign(n+1, 0);  // EBCC 内部边的数量
+	    }
+	};
+	Graph compress() {
+	    Graph g(colcnt);
+	    for (int i = 1; i <= n; ++i) {
+	        ++g.siz[col[i]];
+	        for (auto [v, vid]: G[i]) {
+	            if (col[v] < col[i]) {
+	                g.E.push_back( { col[i], col[v] } );
+	            } else if (i < v) {
+	                ++g.cnt[col[i]];
+	            }
+	        }
+	    }
+	    return g;
+	}
+};
+```
+
+
+### 割点与点双连通分量（PBCC）
 
 
 
@@ -1564,6 +1652,7 @@ G[i][j]= 1
 $$
 当存在一条由终点 $i$ 指向起点 $\mathbin{\rm{lowbit}}(s)$ 的路径时，将 $f(s,i)$ 累加入答案。
 ```cpp
+// CF11D
 for (int i = 1; i <= n; ++i) {
 	f[1<<(i-1)][i] = 1;
 }
