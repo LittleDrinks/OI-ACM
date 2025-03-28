@@ -81,7 +81,7 @@ for (int i = 1; i <= n; ++i) {
 // 前缀和
 vector <ll> a(n), s(n);
 partial_sum(a.begin(), a.end(), s.begin());
-ll sum = accumulate(s.begin(), s.end(), 0LL);
+ll sum = accumulate(a.begin(), a.end(), 0LL);
 
 // 填充 1~n，令 a[i]=i
 iota(a.begin(), a.end(), 0);
@@ -1074,6 +1074,21 @@ int main()
 
 ## 树的直径
 
+树上任意两节点之间最长的简单路径
+```cpp
+int d[N], mxd;
+void dfs(int u, int fa)
+{
+	for (auto v: G[u]) {
+		if (v != fa) {
+			dfs(v, u);
+			mxd = max(mxd, d[u]+d[v]+1);
+			d[u] = max(d[u], d[v]+1);
+		}
+	}
+}
+```
+
 
 
 ## 点分治与树的重心
@@ -1422,14 +1437,14 @@ struct Flow {
 
 ## 一些公柿
 
-平方和公式 $\displaystyle\sum_{i=1}^n(i^2)=\dfrac{n(n+1)(2n+1)}{6}$
-组合数
-① $\displaystyle{n\choose k}=\frac{n!}{k!(n-k)!}$；
-② $\displaystyle{n\choose m}={n-1\choose m}+{n-1 \choose m-1}$；
-③ $\displaystyle\sum_{k=r}^{n}{n\choose k}={n+1\choose k+1}$；
-④ $\displaystyle\sum_{i=0}^n{n\choose i}=2^n$
-不定方程 $\displaystyle\sum_{i=1}^mx_i=n$ 正整数解个数为 ${n-1\choose m-1}$，非负整数解的个数为 ${n+m-1\choose m-1}$
-几何级数：① $\dfrac{1}{1-x}=\displaystyle\sum_{k=0}^\infty x^k$；② $\dfrac{x}{(1-x)^2}=\displaystyle\sum_{k=1}^\infty kx^k$
+
+| 公式名                                   | 内容                                                                                                                                                                                                                                                     |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 连续幂和公式                                | $\displaystyle\sum_{i=1}^n(i^2)=\dfrac{n(n+1)(2n+1)}{6}$<br>$\displaystyle\sum_{i=1}^n(i^3)=(\dfrac{n(n+1)}{2})^2$                                                                                                                                     |
+| 组合数                                   | ①定义式：$\displaystyle{n\choose k}=\frac{n!}{k!(n-k)!}$；<br>②递推式： $\displaystyle{n\choose m}={n-1\choose m}+{n-1 \choose m-1}$；<br>③曲棍球棒定理：$\displaystyle\sum_{k=r}^{n}{n\choose k}={n+1\choose k+1}$；<br>④求和：$\displaystyle\sum_{i=0}^n{n\choose i}=2^n$ |
+| 几何级数                                  | ① $\dfrac{1}{1-x}=\displaystyle\sum_{k=0}^\infty x^k$；<br>② $\dfrac{x}{(1-x)^2}=\displaystyle\sum_{k=1}^\infty kx^k$                                                                                                                                   |
+| 不定方程 $\displaystyle\sum_{i=1}^mx_i=n$ | 正整数解个数为 ${n-1\choose m-1}$<br>非负整数解的个数为 ${n+m-1\choose m-1}$                                                                                                                                                                                           |
+| 前缀异或和                                 | $\oplus_{i=1}^ni=\begin{cases}1& n\equiv1\pmod4\\ n+1 & n\equiv2\pmod4\\ 0&n\equiv2\pmod4\\n&n\equiv3\pmod4\end{cases}$                                                                                                                                |
 
 
 
