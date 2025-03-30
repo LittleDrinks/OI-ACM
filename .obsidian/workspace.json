@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "8ad8f5e69f84b822",
+        "id": "0065d145e7c8b928",
         "type": "tabs",
         "children": [
           {
-            "id": "08a718cd172afdd8",
+            "id": "546e939867bb4653",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "4-输出/板子/懒标记线段树.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "懒标记线段树"
             }
           }
         ]
@@ -80,8 +84,7 @@
               "title": "Longform"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -194,34 +197,34 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "cf2c00143b00226d",
+  "active": "d1d33600c1a07559",
   "lastOpenFiles": [
+    "4-输出/板子/分块.md",
+    "4-输出/板子/逆序对.md",
+    "4-输出/板子/点线操作.md",
+    "4-输出/板子/向量.md",
+    "4-输出/板子/凸包与多边形.md",
+    "4-输出/板子/整数域三分.md",
+    "0-系统组件/homepage.md",
+    "4-输出/板子/template_by_LittleDrinks.md",
     "4-输出/板子/卡特兰数.md",
+    "4-输出/板子/常用函数.md",
+    "4-输出/板子/spfa判断负环.md",
+    "4-输出/板子/bitset优化传递闭包.md",
+    "4-输出/板子/无向图上回路计数.md",
+    "4-输出/板子/斜率优化.md",
+    "4-输出/板子/一些公柿.md",
+    "2-题解/CF11D.md",
+    "4-输出/板子/杂项.md",
     "4-输出/板子/O(1)计算排列组合数.md",
     "4-输出/板子/快速幂与乘法逆元.md",
-    "4-输出/板子/一些公柿.md",
     "2-题解/lanqiao3530.md",
-    "0-系统组件/homepage.md",
     "2-题解/CF1868C.md",
     "4-输出/板子/树的直径.md",
-    "4-输出/板子/template_by_LittleDrinks.md",
     "2-题解/CF1819C.md",
-    "4-输出/板子/常用函数.md",
     "4-输出/板子/vector相关.md",
     "4-输出/板子/ST表.md",
     "4-输出/板子/随机数.md",
-    "4-输出/板子/对拍.md",
-    "4-输出/板子/bfs.md",
-    "4-输出/板子/最小生成树.md",
-    "4-输出/板子/有向图上找最小环.md",
-    "4-输出/板子/倍增O(LogN)求LCA.md",
-    "2-题解/CF1809E.md",
-    "4-输出/板子/强连通分量（SCC）.md",
-    "4-输出/板子/tarjan.md",
-    "4-输出/板子/无向图上回路计数.md",
-    "4-输出/板子/割点与点双连通分量（PBCC）.md",
-    "4-输出/板子/割边与边双连通分量（EBCC）.md",
-    "2-题解/P8779.md",
     "2-题解/未命名",
     "~syncthing~.nomedia.tmp",
     "3-文档/~syncthing~.sync-conflict-20250215-100758-TIMKZYG.nomedia.tmp",

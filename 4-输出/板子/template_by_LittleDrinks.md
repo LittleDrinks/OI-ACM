@@ -196,6 +196,26 @@ int bfs()
 
 
 
+## 整数域三分
+
+```cpp
+// 整数域三分求最大值
+int l, r;
+while (l + 2 <= r) {
+	int w = (r - l) / 3;
+	int m1 = l + w; int v1 = f(m1);
+	int m2 = r - w; int v2 = f(m2);
+	if (v1 <= v2) {
+		l = m1 + 1;
+	} else {
+		r = m2 - 1;
+	}
+} 
+cout << max(f(l), f(r)) << "\n";
+```
+
+
+
 # 计算几何
 
 https://csacademy.com/app/geometry_widget/
@@ -1444,7 +1464,7 @@ struct Flow {
 | 组合数                                   | ①定义式：$\displaystyle{n\choose k}=\frac{n!}{k!(n-k)!}$；<br>②递推式： $\displaystyle{n\choose m}={n-1\choose m}+{n-1 \choose m-1}$；<br>③曲棍球棒定理：$\displaystyle\sum_{k=r}^{n}{n\choose k}={n+1\choose k+1}$；<br>④求和：$\displaystyle\sum_{i=0}^n{n\choose i}=2^n$ |
 | 几何级数                                  | ① $\dfrac{1}{1-x}=\displaystyle\sum_{k=0}^\infty x^k$；<br>② $\dfrac{x}{(1-x)^2}=\displaystyle\sum_{k=1}^\infty kx^k$                                                                                                                                   |
 | 不定方程 $\displaystyle\sum_{i=1}^mx_i=n$ | 正整数解个数为 ${n-1\choose m-1}$<br>非负整数解的个数为 ${n+m-1\choose m-1}$                                                                                                                                                                                           |
-| 前缀异或和                                 | $\oplus_{i=1}^ni=\begin{cases}1& n\equiv1\pmod4\\ n+1 & n\equiv2\pmod4\\ 0&n\equiv2\pmod4\\n&n\equiv3\pmod4\end{cases}$                                                                                                                                |
+| 前缀异或和                                 | $\oplus_{i=1}^ni=\begin{cases}1& n\equiv0\pmod4\\ n+1 & n\equiv1\pmod4\\ 0&n\equiv2\pmod4\\n&n\equiv3\pmod4\end{cases}$                                                                                                                                |
 
 
 
