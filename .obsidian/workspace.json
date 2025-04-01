@@ -4,39 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "0065d145e7c8b928",
+        "id": "cbde92f3c35146b2",
         "type": "tabs",
         "children": [
           {
-            "id": "546e939867bb4653",
+            "id": "51f7b21cbd4762aa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4-输出/板子/懒标记线段树.md",
+                "file": "2-题解/gym104417M.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "懒标记线段树"
-            }
-          },
-          {
-            "id": "82bdfd8de344f936",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4-输出/板子/template_by_LittleDrinks.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "template_by_LittleDrinks"
+              "title": "gym104417M"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -68,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "曲",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -99,8 +84,7 @@
               "title": "Longform"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -213,34 +197,35 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "82bdfd8de344f936",
+  "active": "5b1cf506039c19ce",
   "lastOpenFiles": [
-    "4-输出/板子/懒标记线段树.md",
-    "4-输出/板子/分块.md",
-    "4-输出/板子/逆序对.md",
-    "4-输出/板子/点线操作.md",
-    "4-输出/板子/向量.md",
-    "4-输出/板子/凸包与多边形.md",
-    "4-输出/板子/整数域三分.md",
+    "3-文档/1-笔记/树状数组.md",
+    "2-题解/P4180.md",
+    "3-文档/1-笔记/最短路.md",
+    "3-文档/1-笔记/数学.md",
+    "3-文档/1-笔记/数学 欧拉函数.md",
+    "3-文档/1-笔记/贪心.md",
+    "3-文档/1-笔记/线段树.md",
+    "3-文档/1-笔记/栈.md",
+    "3-文档/1-笔记/DP.md",
+    "3-文档/1-笔记/DP 状压DP.md",
+    "3-文档/1-笔记/Trie.md",
+    "3-文档/1-笔记/ST表.md",
+    "3-文档/1-笔记/DP 数位DP.md",
+    "3-文档/1-笔记/DP 树形DP.md",
+    "3-文档/1-笔记/排序.md",
+    "2-题解/CF1886C.md",
+    "3-文档/1-笔记/生成函数.md",
     "0-系统组件/homepage.md",
-    "4-输出/板子/template_by_LittleDrinks.md",
-    "4-输出/板子/卡特兰数.md",
-    "4-输出/板子/常用函数.md",
-    "4-输出/板子/spfa判断负环.md",
-    "4-输出/板子/bitset优化传递闭包.md",
-    "4-输出/板子/无向图上回路计数.md",
-    "4-输出/板子/斜率优化.md",
-    "4-输出/板子/一些公柿.md",
-    "2-题解/CF11D.md",
-    "4-输出/板子/杂项.md",
-    "4-输出/板子/O(1)计算排列组合数.md",
-    "4-输出/板子/快速幂与乘法逆元.md",
-    "2-题解/lanqiao3530.md",
-    "2-题解/CF1868C.md",
-    "4-输出/板子/树的直径.md",
-    "2-题解/CF1819C.md",
-    "4-输出/板子/vector相关.md",
-    "4-输出/板子/ST表.md",
+    "2-题解/CF1980G.md",
+    "1-闪念/20240907235646.md",
+    "1-闪念/20240930220540高版本gcc和devc++配置.md",
+    "1-闪念/20241230212651一些有用的网站.md",
+    "0-系统组件/1-附件/【jiangly】算法模板 (群友自收集，v1.8.7).pdf",
+    "0-系统组件/2-模板/闪念模板.md",
+    "0-系统组件/2-模板/题解模板.md",
+    "0-系统组件/2-模板/笔记模板.md",
+    "0-系统组件/2-模板/比赛模板.md",
     "2-题解/未命名",
     "~syncthing~.nomedia.tmp",
     "3-文档/~syncthing~.sync-conflict-20250215-100758-TIMKZYG.nomedia.tmp",
@@ -250,7 +235,6 @@
     "4-输出/板子/~syncthing~Index.sync-conflict-20250215-090222-DWSA24O.md.tmp",
     "2-题解/~syncthing~.sync-conflict-20250215-090225-DWSA24O.nomedia.tmp",
     "~syncthing~.sync-conflict-20250215-090243-DWSA24O.nomedia.tmp",
-    "1-闪念/~syncthing~.sync-conflict-20250215-090234-DWSA24O.nomedia.tmp",
     "0-系统组件/1-附件/Pasted image 20250130112742.png",
     "0-系统组件/1-附件/Pasted image 20250110141805.png",
     "0-系统组件/1-附件/56c0a8a12b4081d91ce8e4635eaf3cc.png",

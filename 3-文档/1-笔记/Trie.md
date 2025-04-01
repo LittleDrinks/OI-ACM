@@ -1,8 +1,8 @@
 ---
 tags:
   - 笔记
-  - 01Trie
-  - Trie
+aliases:
+  - "#Trie"
 ---
 字典树
 - [x] [[AcWing142]] ✅ 2024-09-07

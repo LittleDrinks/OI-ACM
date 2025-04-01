@@ -1,7 +1,7 @@
 ---
 tags:
   - 题解
-  - 单调栈
+  - 栈/单调栈
 aliases:
 ---
 ## [[ABC379F] Buildings 2](https://www.luogu.com.cn/problem/AT_abc379_f)

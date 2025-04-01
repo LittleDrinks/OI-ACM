@@ -2,7 +2,7 @@
 tags:
   - 题解
   - 栈
-  - 单调栈
+  - 栈/单调栈
 aliases:
   - AcWing41. 包含min函数的栈
   - 包含min函数的栈

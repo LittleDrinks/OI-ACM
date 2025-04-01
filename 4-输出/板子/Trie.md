@@ -1,7 +1,7 @@
 ---
 tags:
   - Trie
-  - 01Trie
+  - Trie/01Trie
   - 模板
 ---
 普通 Trie。

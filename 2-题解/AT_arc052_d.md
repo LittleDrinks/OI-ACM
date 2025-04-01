@@ -1,6 +1,8 @@
 ---
 tags:
   - 题解
+  - 根号分治
+  - DP/数位DP
 aliases:
   - "[ARC052D] 9"
 speed:

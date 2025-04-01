@@ -221,35 +221,36 @@ cout << max(f(l), f(r)) << "\n";
 https://csacademy.com/app/geometry_widget/
 先判断，再计算，精度会好很多
 ```cpp
+const int inf = INT_MAX;
 typedef long long ll;
 typedef double db;  // 视情况改为 long double
 const db eps=1e-8;  // 极端数据下，放大 eps 可能有奇效
 const db PI=acos(-1.0);
-int sgn(db x) { return fabs(x)<eps? 0: ( x>0? 1: -1 ); }
-int sgn(ll x) { return x==0? 0: ( x>0? 1: -1 ); }
+int sgn(db x) { return (x>eps)-(x<-eps); }
+int sgn(ll x) { return (x>0)-(x<0); }
 ```
 
 
 
 ## 向量
 
-向量旋转 $\begin{bmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{bmatrix}\begin{bmatrix}a_x\\a_y\end{bmatrix}=\begin{bmatrix}\cos\theta a_x & -\sin\theta a_y\\ \sin\theta a_x & \cos\theta a_y\end{bmatrix}$
 ```cpp
 template<typename T>
 struct point {
 	T x, y;
     point(int x=0, int y=0): x(x), y(y) {}
-    friend istream& operator >> (istream &is, point &p) { is >> p.x >> p.y; return is; }
+	friend istream& operator>> (istream& is, point& p) { return is>>p.x>>p.y; }
+	friend ostream& operator<< (ostream& os, point& p) { return os<<p.x<<" "<<p.y; }
 	db ang() { return atan2(y, x); }
 	bool operator< (const point &p) const { return x<p.x || (x==p.x && y<p.y); }
 	point operator+ (const point &p) const { return point(x+p.x, y+p.y); }
     point operator- (const point &p) const { return point(x-p.x, y-p.y); }
-	point operator* (const db &k) const { return point(k*x, k*y); }
-	point operator/ (const db &k) const { return point(x/k, y/k); }
+	point operator* (const T &k) const { return point(k*x, k*y); }
+	point operator/ (const T &k) const { return point(x/k, y/k); }
 	T operator* (const point &p) const { return x*p.x + y*p.y; }
-	T operator^ (const point &p) const { return x*p.y - y*p.x; }  // 叉乘，用的时候记得打括号
+	T operator^ (const point &p) const { return x*p.y - y*p.x; }  // 叉乘时打括号
 	T len2() { return (*this)*(*this); }
-	db len() { return sqrtl(len2()); }  // hypotl(x, y)
+	db len() { return sqrtl(len2()); }  // 等价于 hypotl(x, y)
 	point rotate(db ang) { return point(x*cos(ang)-y*sin(ang), x*sin(ang)+y*cos(ang)); }
 	point trunc(db l) { return (*this) * (l/len()); }
 };
@@ -258,11 +259,22 @@ typedef Point Vector;
 
 // 判断 c 是否在 ab 的逆时针方向
 int toLeft(Point a, Point b, Point c) {
-    return ((b-a)^(c-a))>0;
+    return sgn((b-a)^(c-a))>0;
 }
 
-// 极角排序
-// 把全平面划分为 下半平面 < 原点 < x 正半轴 < 上半平面 < x 负半轴
+// 二维向量夹角
+db getAngle(Vector a, Vector b) {
+    return fabs(atan2(fabs(a^b), a*b));
+}
+```
+
+极角排序
+```cpp
+// 所有点在一个半平面内的简化版本
+bool argcmp(Point a, Point b) { return (a^b) > eps; }
+
+// 全平面极角排序
+// 把全平面划分为：下半平面 < 原点 < x 正半轴 < 上半平面 < x 负半轴
 bool argcmp(Point a, Point b) {  
     auto quad = [](const Point &a) {
 		if (a.y < 0)       { return 1; }
@@ -278,54 +290,27 @@ bool argcmp(Point a, Point b) {
 	}
 	return qa < qb;
 }
-// 所有点在一个半平面内的简化版本
-bool argcmp(Point a, Point b) { return (a^b) > eps; }
 
-// STL 中使用 argcmp()
+// STL 中使用 argcmp()，不要忘记传入 &argcmp 作为初始化变量
 set<Point,decltype(&argcmp)> evt{&argcmp};
 map<Point,pair<ll,ll>,decltype(&argcmp)> evt{&argcmp};
 priority_queue<Point,vector<Point>,decltype(&argcmp)> q{&argcmp};
-
-// 三角形面积，如需避免浮点数，可以返回二倍面积
-db calcS(Point A, Point B, Point C) {
-    return 0.5*fabs((A-B)^(A-C));
-};
-
-// 二维向量夹角
-db getAngle(Vector a, Vector b) {
-    return fabs(atan2(fabs(a^b), a*b));
-}
 ```
 
 
 
 ## 点线操作
 
-点 $P$ 在直线 $AB$ 上，则 $\overrightarrow{AB}\times\overrightarrow{AP}=\vec{0}$，若要求在线段/射线上，再判断 $x,y$ 是否分别位于 $AB$ 之间即可。
-判断两线段是否相交：先做两次跨立实验判断是否规范相交，再特判至少三点共线的情况
 点 $P$ 到直线 $(A,\vec{v})$ 距离：$\dfrac{\|\vec{v}\times\overrightarrow{AP}\|}{\|\vec{v}\|}$，投影点 $B$ 满足 $\vec{OB}=\vec{OA}+\dfrac{\vec{v}\cdot\overrightarrow{AB}}{\vec{v}^2}\vec{v}$
 两直线 $(P_1,\vec{v_1}),(P_2,\vec{v_2})$ 的交点 $Q$ 满足：$\overrightarrow{OQ}=\overrightarrow{OP_1}+\dfrac{\|\vec{v_2}\times\overrightarrow{P_2P_1}\|}{\|\vec{v_1}\times\vec{v_2}\|}\vec{v_1}$
-
 ```cpp
-// 线段，射线，直线三合一
 struct Line {
     Point a, b;
     Vector v;
-	Line(Point a, Point b): a(a), b(b) {  // 注意此处用起点和终点构建
-        v = b - a;
-    }
-	// 判断 c 是否在射线的逆时针方向，注意不要写 bool
-	int toLeft(Point p) {
-	    return sgn(v^(p-a));
-	}
-    // 判断点 P 是否在线段上，包含端点
-	bool onSegment(Point p) {
-        return (toLeft(p)==0) && ((p-a)*(p-b)<=0);  // <= 包括端点，< 不包括端点
-    }
-    // 点 P 到直线 AB 的距离
-	db distToLine(Point p) {
-	    return fabs((v^(p-a))/v.len());
-	}
+	Line(Point a, Point b): a(a), b(b) { v = b - a; }
+	int toLeft(Point p) { return sgn(v^(p-a)); }
+	bool onSegment(Point p) { return (toLeft(p)==0) && ((p-a)*(p-b)<=0); }
+	db distToLine(Point p) { return fabs((v^(p-a))/v.len()); }
 	// 用整数操作判断直线与点 C 的距离是否小于（等于）某个值 r
 	// 常见于判断直线与圆的位置关系
 	// 注意叉乘再相乘可能会爆 ll，所以这里用 __int128
@@ -336,15 +321,19 @@ struct Line {
 };
 
 // 判断两条线段是否相交
+// 先做两次跨立实验判断是否规范相交，再特判至少三点共线的情况
 bool hasIntersection(Line L1, Line L2)
 {
-    if (L1.onSegment(L2.a) || L1.onSegment(L2.b) || L2.onSegment(L1.a) || L2.onSegment(L1.b)) {
-        return true;
-    }
-    bool crossStanding = [&](Line L, Point a, Point b) {  // 跨立实验，lambda 表达式需要 c++17
+	// 特判三点共线的情况
+    if (L1.onSegment(L2.a)) { return true; }
+    if (L1.onSegment(L2.b)) { return true; }
+    if (L2.onSegment(L1.a)) { return true; }
+    if (L2.onSegment(L1.b)) { return true; }
+    // 跨立实验判断两直线是否规范相交
+    // 线段端点分布在直线两侧，“线段与线段/线段与直线/直线与直线”是否相交对应修改即可
+    bool crossStanding = [&](Line L, Point a, Point b) {
         return L.toLeft(a)*L.toLeft(b) == -1;
     }
-    // 线段端点分布在直线两侧，“线段与线段/线段与直线/直线与直线”是否相交对应修改即可
     return crossStanding(L1, L2.a, L2.b) && crossStanding(L2, L1.a, L2.a);
 }
 
@@ -375,62 +364,81 @@ Point GetLineProjection(Point P, Point A, Point B) {
 
 
 
-## 凸包与多边形
+## 多边形与凸包
 
-多边形的面积 $S=\dfrac12\|\sum_{i=0}^{n-1}\overrightarrow{OP_i}\times\overrightarrow{OP_{(i+1)\mod n}}\|$
+任意多边形。可以计算面积和回转数，根据回转数判断点是否在该多边形内。
 ```cpp
-typedef vector<Point> Polygon;
-// 求多边形面积
-// 为避免精度误差，可以返回 2*S，即去掉 "0.5*()"
-db calcS(Polygon poly) {
-	db res = 0;
-	for (int i = 0; i < n; ++i) {
-		res += 0.5*(poly[i]^poly[(i+1)%n]);
-	}
-	return fabs(res);
-}
-// Sunday's algorithm 光线回转法
-// 在整数范围内判断一个点是否在多边形（不保证凸包）内部
-// 亦可用于求某点相对于该多边形的回转数
-int inPolygon(Point p) {
-	int wn = 0;
-	for (int i = 0; i < n; ++i) {
-		if (Line(poly[i], poly[(i + 1) % n]).onSegment(p)) { return -inf; }
-		int k = Line(poly[i], poly[(i+1)%n]).toLeft(p);
-		int d1 = sgn(poly[i].y - p.y);
-		int d2 = sgn(poly[(i + 1) % n].y - p.y);
-		if (k>0 && d1<=0 && d2>0) { wn++; }
-		if (k<0 && d2<=0 && d1>0) { wn--; }
-	}
-	// return wn;
-	return wn!=0;
-}
-```
-
-```cpp
-// 判断点是否在凸包内部
-{   //点在凸包边上
-    bool onSeg = false;
-    for (int j = 0; j < n; ++j) {
-        if (onSegment(poly[j], poly[(j+1)%3], {a,b})) {
-            onSeg = true;
+struct Polygon: vector<Point> {
+    using vector<Point>::vector;  // 直接使用 vector 的构造函数
+	// 求多边形面积
+	// 为避免精度误差，可以返回 2*S，即去掉 "0.5*()"
+    db area() {
+        db res = 0;
+        int n = this->size();
+        for (int i = 0; i < n; ++i) {
+            res += 0.5 * ((*this)[i] ^ (*this)[(i+1)%n]);
         }
+        return fabs(res);
     }
-    if (onSeg) { cout << "YES\n"; continue; }
-}
-{   // 点在凸包内部
-    int cnt = 0;
-    for (int j = 0; j < n; ++j) {
-        cnt += toLeft(poly[j], poly[(j+1)%3], Point(a,b));
+    // Sunday's algorithm 光线回转法
+    // 在整数范围内判断一个点是否在多边形（不保证凸包）内部
+    // 亦可用于求某点相对于该多边形的回转数
+    pair<bool,int> winding(Point p) {
+        int wn = 0, n = this->size();
+        for (int i = 0; i < n; ++i) {
+            if (Line((*this)[i], (*this)[(i+1)%n]).onSegment(p)) {
+            	return { true, -inf };
+            }
+            int k = Line((*this)[i], (*this)[(i+1)%n]).toLeft(p);
+            int d1 = sgn((*this)[i].y - p.y);
+            int d2 = sgn((*this)[(i + 1) % n].y - p.y);
+            if (k>0 && d1<=0 && d2>0) { wn++; }
+            if (k<0 && d2<=0 && d1>0) { wn--; }
+        }
+        return { wn!=0, wn };
     }
-    if (abs(cnt) == n) { cout << "YES\n"; }
-    else               { cout << "NO\n"; }
-}
+};
 ```
 
-
-
-## 圆
+凸包板子。可以求出平面点集的凸包，判断点是否在凸包内
+```cpp
+struct Convex: Polygon {
+	using Polygon::Polygon;
+	// 求平面点集的凸包
+	// Andrew 算法，时间复杂度 O(nlogn)
+    Convex(vector<Point> p) {
+        if (p.empty()) { return; }
+        sort(p.begin(), p.end());
+        auto check = [&](Point u){
+            Point p1=this->back(), p2=*prev(this->end(), 2);
+            return sgn((p1-p2)^(u-p1))<=0;
+        };
+        for (const Point &u: p) {
+            while ((int)this->size()>1 && check(u)) { this->pop_back(); }
+            this->push_back(u);
+        }
+        int k = this->size();
+        p.pop_back(); reverse(p.begin(), p.end());
+        for (const Point &u: p) {
+            while ((int)this->size()>k && check(u)) { this->pop_back(); }
+            this->push_back(u);
+        }
+        this->pop_back();
+    }
+    // 判断点是否在凸包内
+	bool inConvex(Point p) {
+	    int n = this->size();
+	    int cnt = 0;
+	    for (int i = 0; i < n; ++i) {
+	        Point p1 = (*this)[i], p2 = (*this)[(i+1)%n];
+	        if (Line(p1,p2).onSegment(p)) { return true; }
+	        cnt += toLeft(p1, p2, p);
+	    }
+	    if (abs(cnt) == n) { return true; }
+	    else { return false; }
+	}
+};
+```
 
 
 
@@ -444,7 +452,11 @@ int inPolygon(Point p) {
 struct DSU {
     int n;
     vector<int> f, siz, pre;
-    DSU(int n): n(n), f(vector<int>(n+1)), siz(vector<int>(n+1,1)), pre(vector<int>(n+1)) {
+    DSU(int n): n(n),
+    			f(vector<int>(n+1)),
+    			siz(vector<int>(n+1,1)),
+    			pre(vector<int>(n+1))
+    {
         iota(f.begin(), f.end(), 0);
     }
     int find(int x) {
@@ -1295,7 +1307,7 @@ struct SCC {
 
 
 
-### 割边与边双连通分量（EBCC）
+### 割边与边双连通分量（e-DCC）
 
 ```cpp
 struct EBCC {
@@ -1372,7 +1384,7 @@ struct EBCC {
 ```
 
 
-### 割点与点双连通分量（PBCC）
+### 割点与点双连通分量（p-DCC）
 
 
 
