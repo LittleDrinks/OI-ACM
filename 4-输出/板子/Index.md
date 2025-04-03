@@ -24,7 +24,6 @@ longform:
       - 对顶multiset维护中位数
       - 树状数组
       - 懒标记线段树
-      - 分块
       - 逆序对
     - 图论
     - - 最短路
@@ -43,8 +42,8 @@ longform:
       - DSU on tree
       - tarjan
       - - 强连通分量（SCC）
-        - 割边与边双连通分量（e-DCC）
-        - 割点与点双连通分量（p-DCC）
+        - 割边与边双连通分量（EBCC）
+        - 割点与点双连通分量（PBCC）
       - 最大流
     - 数学
     - - 一些公柿
@@ -60,9 +59,6 @@ longform:
       - 字符串哈希
     - DP
     - - 无向图上回路计数
-      - 斜率优化
-      - 四边形不等式
-      - wqs二分
     - 烂掉啦
   ignoredFiles:
     - manuscript

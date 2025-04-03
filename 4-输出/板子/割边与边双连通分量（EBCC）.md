@@ -15,14 +15,14 @@ struct EBCC {
         col.assign(n+1, 0);
     }
     void add_edge(int u, int v, int id) {
-        G[u].emplace_back(v, id<<1);
-        G[v].emplace_back(u, id<<1|1);
+        G[u].emplace_back(v, id);
+        G[v].emplace_back(u, id);
     }
     void dfs(int u, int uid) {
         stk.push(u);
         dfn[u] = low[u] = ++totdfn;
         for (auto [v, vid]: G[u]) {
-            if ((uid^vid) != 1) {
+            if (uid != vid) {
                 if (!dfn[v]) {
                     dfs(v, vid);
                     low[u] = min(low[u], low[v]);
@@ -43,7 +43,7 @@ struct EBCC {
             } while (v != u);
         }
     }
-    vector<pii> work() {  // 桥
+    vector<pii> work() {  // 求桥
         for (int i = 1; i <= n; ++i) {
             if (!dfn[i]) { dfs(i, 0); }
         }
