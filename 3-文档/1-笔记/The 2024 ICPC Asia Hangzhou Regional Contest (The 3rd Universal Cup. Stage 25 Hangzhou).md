@@ -1,0 +1,9 @@
+---
+tags:
+  - 比赛
+aliases:
+---
+# [The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25: Hangzhou)](https://codeforces.com/gym/105657)
+
+- [x] [[gym105657K]] ✅ 2025-04-06
+- [x] [[gym105657E]] ✅ 2025-04-06

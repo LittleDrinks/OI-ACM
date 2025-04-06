@@ -16,9 +16,9 @@ inline int read()
 
 // 取模
 const int MOD=998244353;
-void add(ll &x, ll y) { if ((x+=y) >= MOD) { x -= MOD; } }  // 不要漏掉括号
-void del(ll &x, ll y) { if ((x-=y) < 0)    { x += MOD; } }
-void mul(ll &x, ll y) { (x*=y)%=MOD; }
+ll add(ll &x, ll y) { if ((x+=y) >= MOD) { x -= MOD; } }  // 不要漏掉括号
+ll del(ll &x, ll y) { if ((x-=y) < 0)    { x += MOD; } }
+ll mul(ll &x, ll y) { (x*=y)%=MOD; }
 
 // 计算一个整数的二进制表示中有多少个 1
 __builtin_popcountll(i);
@@ -292,6 +292,7 @@ bool argcmp(Point a, Point b) {
 }
 
 // STL 中使用 argcmp()，不要忘记传入 &argcmp 作为初始化变量
+// 如果 argcmp() 使用 lambda 实现，类型应该为 decltype(argcmp)
 set<Point,decltype(&argcmp)> evt{&argcmp};
 map<Point,pair<ll,ll>,decltype(&argcmp)> evt{&argcmp};
 priority_queue<Point,vector<Point>,decltype(&argcmp)> q{&argcmp};
@@ -773,10 +774,6 @@ Lazy operator+ (const Lazy &u, const Lazy &v) {
     return u;
 }
 ```
-
-
-## 分块
-
 
 
 ## 逆序对
@@ -1307,7 +1304,7 @@ struct SCC {
 
 
 
-### 割边与边双连通分量（e-DCC）
+### 割边与边双连通分量（EBCC）
 
 ```cpp
 struct EBCC {
@@ -1323,14 +1320,14 @@ struct EBCC {
         col.assign(n+1, 0);
     }
     void add_edge(int u, int v, int id) {
-        G[u].emplace_back(v, id<<1);
-        G[v].emplace_back(u, id<<1|1);
+        G[u].emplace_back(v, id);
+        G[v].emplace_back(u, id);
     }
     void dfs(int u, int uid) {
         stk.push(u);
         dfn[u] = low[u] = ++totdfn;
         for (auto [v, vid]: G[u]) {
-            if ((uid^vid) != 1) {
+            if (uid != vid) {
                 if (!dfn[v]) {
                     dfs(v, vid);
                     low[u] = min(low[u], low[v]);
@@ -1351,7 +1348,7 @@ struct EBCC {
             } while (v != u);
         }
     }
-    vector<pii> work() {  // 桥
+    vector<pii> work() {  // 求桥
         for (int i = 1; i <= n; ++i) {
             if (!dfn[i]) { dfs(i, 0); }
         }
@@ -1384,8 +1381,64 @@ struct EBCC {
 ```
 
 
-### 割点与点双连通分量（p-DCC）
+### 割点与点双连通分量（PBCC）
 
+```cpp
+struct PBCC {
+    int n, root, totdfn=0, colcnt=0;
+    stack<int> stk;
+    vector<pii> B;
+    vector<int> dfn, low;
+    vector<bool> ver;
+    vector<vector<int>> pbcc;
+    vector<vector<pii>> G;
+    PBCC(int n): n(n) {
+        G.assign(n+1, {});
+        dfn.assign(n+1, 0);
+        low.assign(n+1, 0);
+        ver.assign(n+1, 0);
+    }
+    void add_edge(int u, int v, int id) {
+        G[u].emplace_back(v, id);
+        G[v].emplace_back(u, id);
+    }
+    void dfs(int u, int uid) {
+        stk.push(u);
+        int son = 0;
+        dfn[u] = low[u] = ++totdfn;
+        for (auto [v, vid]: G[u]) {
+            if (!dfn[v]) {
+                ++son;
+                dfs(v, vid);
+                low[u] = min(low[u], low[v]);
+                if (low[v] >= dfn[u]) {
+                    if (u != root) { ver[u] = true; }
+                    pbcc.push_back({});
+                    while (stk.top() != v) {
+                        pbcc.back().push_back(stk.top()); stk.pop();
+                    }
+                    pbcc.back().push_back(v); stk.pop();
+                    pbcc.back().push_back(u); 
+                }
+            } else if (uid != vid) {
+                low[u] = min(low[u], dfn[v]);
+            }
+        }
+        if (u == root) {
+            if (son >= 2) { ver[u] = true; }
+            if (!son) { pbcc.push_back( { u } ); }
+        }
+    }
+    vector<int> work() {  // 求割点
+        vector<int> V;
+        for (int i = 1; i <= n; ++i) {
+            if (!dfn[i]) { root=i; dfs(i, 0); }
+            if (ver[i]) { V.push_back(i); }
+        }
+        return V;
+    }
+};
+```
 
 
 ## 最大流
@@ -1458,6 +1511,7 @@ struct Flow {
 | 几何级数                                  | ① $\dfrac{1}{1-x}=\displaystyle\sum_{k=0}^\infty x^k$；<br>② $\dfrac{x}{(1-x)^2}=\displaystyle\sum_{k=1}^\infty kx^k$                                                                                                                                   |
 | 不定方程 $\displaystyle\sum_{i=1}^mx_i=n$ | 正整数解个数为 ${n-1\choose m-1}$<br>非负整数解的个数为 ${n+m-1\choose m-1}$                                                                                                                                                                                           |
 | 前缀异或和                                 | $\oplus_{i=1}^ni=\begin{cases}1& n\equiv0\pmod4\\ n+1 & n\equiv1\pmod4\\ 0&n\equiv2\pmod4\\n&n\equiv3\pmod4\end{cases}$                                                                                                                                |
+| 多重排列                                  | $\dfrac{n!}{\prod_i(k_i!)}$                                                                                                                                                                                                                            |
 
 
 
@@ -1702,18 +1756,6 @@ for (int s = 0; s < (1<<n); ++s) {
 }
 cout << (ans-m)/2 << "\n";  // 去除无向边，环正走反走算一个
 ```
-
-
-
-## 斜率优化
-
-
-
-## 四边形不等式
-
-
-
-## wqs二分
 
 
 
