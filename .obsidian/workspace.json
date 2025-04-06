@@ -13,30 +13,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4-输出/板子/一些公柿.md",
+                "file": "4-输出/板子/烂掉啦.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "一些公柿"
-            }
-          },
-          {
-            "id": "ae75c60794540746",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4-输出/板子/DSU on tree.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "DSU on tree"
+              "title": "烂掉啦"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -213,8 +198,12 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "ae75c60794540746",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "0-系统组件/homepage.md",
+    "2-题解/gym105657E.md",
+    "~syncthing~.nomedia.tmp",
+    "4-输出/板子/DSU on tree.md",
     "4-输出/板子/Hierholzer求欧拉路.md",
     "4-输出/板子/最大流.md",
     "4-输出/板子/烂掉啦.md",
@@ -222,8 +211,6 @@
     "4-输出/板子/一些公柿.md",
     "3-文档/1-笔记/The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25 Hangzhou).md",
     "2-题解/gym105657K.md",
-    "2-题解/gym105657E.md",
-    "0-系统组件/homepage.md",
     "4-输出/板子/向量.md",
     "4-输出/板子/点线操作.md",
     "1-闪念/20250406101638 预编译万能头.md",
@@ -239,11 +226,8 @@
     "4-输出/板子/割边与边双连通分量（EBCC）.md",
     "4-输出/板子/强连通分量（SCC）.md",
     "4-输出/板子/逆序对.md",
-    "4-输出/板子/分块.md",
-    "4-输出/板子/前缀函数与KMP.md",
     "0-系统组件/1-附件/【jiangly】算法模板 (群友自收集，v1.8.7).pdf",
     "2-题解/未命名",
-    "~syncthing~.nomedia.tmp",
     "3-文档/~syncthing~.sync-conflict-20250215-100758-TIMKZYG.nomedia.tmp",
     "2-题解/~syncthing~.nomedia.tmp",
     "0-系统组件/~syncthing~.nomedia.tmp",
