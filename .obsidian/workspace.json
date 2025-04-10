@@ -8,17 +8,31 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "9c024674bffa72a6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3-文档/2-比赛/The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25 Hangzhou).md",
+                "file": "2-题解/gym105657B.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25 Hangzhou)"
+              "title": "gym105657B"
+            }
+          },
+          {
+            "id": "654277d5e5fc1b01",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "3-文档/1-笔记/线段树.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "线段树"
             }
           }
         ]
@@ -197,16 +211,23 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "9c024674bffa72a6",
   "lastOpenFiles": [
-    "2-题解/gym105657H.md",
     "3-文档/2-比赛/The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25 Hangzhou).md",
+    "4-输出/板子/懒标记线段树.md",
+    "3-文档/1-笔记/线段树.md",
+    "2-题解/gym105657B.md",
+    "3-文档/1-笔记/The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25 Hangzhou).md",
+    "0-系统组件/homepage.md",
+    "2-题解/gym579538D.md",
+    "2-题解/gym105657E.md",
+    "2-题解/gym105657F.md",
+    "3-文档/1-笔记/tarjan.md",
     "2-题解/gym105657M.md",
+    "2-题解/gym105657H.md",
     "~syncthing~.nomedia.tmp",
     "3-文档/1-笔记/辗转相除法.md",
     "3-文档/1-笔记/笛卡尔树.md",
-    "0-系统组件/homepage.md",
-    "2-题解/gym579538D.md",
     "3-文档/2-比赛/SHUPC2025.md",
     "4-输出/板子/笛卡尔树.md",
     "2-题解/P5854.md",
@@ -218,13 +239,7 @@
     "4-输出/板子/一些公柿.md",
     "4-输出/板子/烂掉啦.md",
     "4-输出/板子/template_by_LittleDrinks.md",
-    "2-题解/gym105657E.md",
     "4-输出/板子/DSU on tree.md",
-    "4-输出/板子/Hierholzer求欧拉路.md",
-    "4-输出/板子/最大流.md",
-    "3-文档/1-笔记/The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25 Hangzhou).md",
-    "2-题解/gym105657K.md",
-    "4-输出/板子/向量.md",
     "0-系统组件/1-附件/【jiangly】算法模板 (群友自收集，v1.8.7).pdf",
     "2-题解/未命名",
     "3-文档/~syncthing~.sync-conflict-20250215-100758-TIMKZYG.nomedia.tmp",
