@@ -145,52 +145,13 @@ vector<array<int,2>> Graph(int n, int m=-1, int root=-1)
 ```cpp
 // checker.cpp
 while (1) {
-	system("gen > data.in");
+	system("gen > data.in");  // linux 下换成 ./xxx
 	system("myc < data.in > myc.out");
 	system("std < data.in > std.out");
 	if (system("fc my.out std.out")) {  // linux 下换成 diff
 		system("pause");
 		return 0;
 	}
-}
-```
-
-
-
-## bfs
-
-```cpp
-const int dx[]={-1, 1, 0, 0}, dy[]={0, 0, -1, 1};  // 上，下，左，右
-unordered_map<char,int> d={{'U',0},{'D',1},{'L',2},{'R',3}};
-
-int f[N][N];
-bool vis[N][N];
-bool valid(int x, int y)
-{
-    return (
-        (1 <= x && x <= h) &&
-        (1 <= y && y <= w)
-    );
-}
-int sx, sy, tx, ty;
-int bfs()
-{
-    queue <array<int,3>> q;
-    q.push( { sx, sy, 0 } );
-    memset(f, 0x3f, sizeof(f));
-    while (!q.empty()) {
-        auto [x, y, cnt] = q.front(); q.pop();
-        if (vis[x][y]) { continue; }
-        vis[x][y] = true;
-        f[x][y] = cnt;
-        for (int dd = 0; dd < 4; ++dd) {
-            int nx = x + dx[dd];
-            int ny = y + dy[dd];
-            if (valid(nx, ny)) { q.push( { nx, ny, cnt+1 } ); }
-        }
-    }
-    if (vis[tx][ty]) { return f[tx][ty]; }
-    else { return -1; }
 }
 ```
 
@@ -216,6 +177,46 @@ cout << max(f(l), f(r)) << "\n";
 
 
 
+## 运行时间
+
+```cpp
+auto start = chrono::high_resolution_clock::now();
+auto stop = chrono::high_resolution_clock::now();
+auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+if (duration > 998) { cout << ans << "\n"; exit(0); }
+```
+
+
+
+## 土制cph
+
+```python
+from os import system as e, listdir as l
+from sys import argv
+_, q, v = argv  # q: 题号, f: 文件名
+
+# r: 运行命令
+# 跑 py 需要 `python3 cph.py A A.py`
+if "py" in f:
+	r = f"python3 {f}"
+else:
+	e(f"g++ -std=c++23 -o2 -Wall {f}.cpp -o {f}")
+	r = "./" + f
+
+#
+d = "samples-" + q.capitalize()
+for i in l(d):
+	if not "in" in i: continue
+	print(i)
+	p = d + "/" + i[:-2]
+	if e(f"timeout 2 {r}<{p}in>{p}out"): print("TLE or RE")
+	else:
+		with open(f"{p}out") as o, open(f"{p}ans") as a:
+			rf = lambda f: [l.rstrip() for l in f if l.rstrip()!='']
+			print("AC" if rf(o)==rf(a) else "WA")
+```
+
+
 # 计算几何
 
 https://csacademy.com/app/geometry_widget/
@@ -226,8 +227,9 @@ typedef long long ll;
 typedef double db;  // 视情况改为 long double
 const db eps=1e-8;  // 极端数据下，放大 eps 可能有奇效
 const db PI=acos(-1.0);
-int sgn(db x) { return (x>eps)-(x<-eps); }
+const db inf = numeric_limits<db>::max();
 int sgn(ll x) { return (x>0)-(x<0); }
+int sgn(db x) { return (x>eps)-(x<-eps); }
 ```
 
 
@@ -235,37 +237,32 @@ int sgn(ll x) { return (x>0)-(x<0); }
 ## 向量
 
 ```cpp
-template<typename T>
-struct point {
+typedef ll T;
+struct Point {
 	T x, y;
-    point(int x=0, int y=0): x(x), y(y) {}
-	friend istream& operator>> (istream& is, point& p) { return is>>p.x>>p.y; }
-	friend ostream& operator<< (ostream& os, point& p) { return os<<p.x<<" "<<p.y; }
+    Point(int x=0, int y=0): x(x), y(y) {}
+	friend istream& operator>> (istream& is, Point& p) { return is>>p.x>>p.y; }
+	friend ostream& operator<< (ostream& os, Point& p) { return os<<p.x<<" "<<p.y; }
 	db ang() { return atan2(y, x); }
-	bool operator< (const point &p) const { return x<p.x || (x==p.x && y<p.y); }
-	point operator+ (const point &p) const { return point(x+p.x, y+p.y); }
-    point operator- (const point &p) const { return point(x-p.x, y-p.y); }
-	point operator* (const T &k) const { return point(k*x, k*y); }
-	point operator/ (const T &k) const { return point(x/k, y/k); }
-	T operator* (const point &p) const { return x*p.x + y*p.y; }
-	T operator^ (const point &p) const { return x*p.y - y*p.x; }  // 叉乘时打括号
+	bool operator< (const Point &p) const { return x<p.x || (x==p.x && y<p.y); }
+	Point operator+ (const Point &p) const { return Point(x+p.x, y+p.y); }
+    Point operator- (const Point &p) const { return Point(x-p.x, y-p.y); }
+	Point operator* (const T &k) const { return Point(k*x, k*y); }
+	Point operator/ (const T &k) const { return Point(x/k, y/k); }
+	T operator* (const Point &p) const { return x*p.x + y*p.y; }
+	T operator^ (const Point &p) const { return x*p.y - y*p.x; }  // 叉乘时打括号
 	T len2() { return (*this)*(*this); }
 	db len() { return sqrtl(len2()); }  // 等价于 hypotl(x, y)
-	point rotate(db ang) { return point(x*cos(ang)-y*sin(ang), x*sin(ang)+y*cos(ang)); }
-	point trunc(db l) { return (*this) * (l/len()); }
+	Point rot(db ang) { return Point(x*cos(ang)-y*sin(ang), x*sin(ang)+y*cos(ang)); }
+	Point trunc(db l) { return (*this) * (l/len()); }
 };
-typedef point<ll> Point;
-typedef Point Vector;
+typedef Point<ll> Point;
 
 // 判断 c 是否在 ab 的逆时针方向
-int toLeft(Point a, Point b, Point c) {
-    return sgn((b-a)^(c-a))>0;
-}
+int toLeft(Point a, Point b, Point c) { return sgn((b-a)^(c-a)); }
 
 // 二维向量夹角
-db getAngle(Vector a, Vector b) {
-    return fabs(atan2(fabs(a^b), a*b));
-}
+db getAngle(Vector a, Vector b) { return fabs(atan2(fabs(a^b), a*b)); }
 ```
 
 极角排序
@@ -312,6 +309,7 @@ struct Line {
 	int toLeft(Point p) { return sgn(v^(p-a)); }
 	bool onSegment(Point p) { return (toLeft(p)==0) && ((p-a)*(p-b)<=0); }
 	db distToLine(Point p) { return fabs((v^(p-a))/v.len()); }
+	Point proj(Point a) { return p+v*((v*(a-p))/(v*v)); }
 	// 用整数操作判断直线与点 C 的距离是否小于（等于）某个值 r
 	// 常见于判断直线与圆的位置关系
 	// 注意叉乘再相乘可能会爆 ll，所以这里用 __int128
@@ -320,6 +318,12 @@ struct Line {
 	    return xmult*xmult >= r*r*v.len2();
 	}
 };
+
+// 判断两条直线是否平行
+bool isParallel(Line l1, Line l2)
+{
+	return sgn(l1.v^l2.v)==0 && sgn(l1.v^(l1.a-l2.a))!=0;
+}
 
 // 判断两条线段是否相交
 // 先做两次跨立实验判断是否规范相交，再特判至少三点共线的情况
@@ -332,9 +336,9 @@ bool hasIntersection(Line L1, Line L2)
     if (L2.onSegment(L1.b)) { return true; }
     // 跨立实验判断两直线是否规范相交
     // 线段端点分布在直线两侧，“线段与线段/线段与直线/直线与直线”是否相交对应修改即可
-    bool crossStanding = [&](Line L, Point a, Point b) {
-        return L.toLeft(a)*L.toLeft(b) == -1;
-    }
+	function<bool(Line,Point,Point)> crossStanding = [](Line L, Point a, Point b){
+        return L.toLeft(a) * L.toLeft(b) == -1;
+    };
     return crossStanding(L1, L2.a, L2.b) && crossStanding(L2, L1.a, L2.a);
 }
 
@@ -343,23 +347,17 @@ bool hasIntersection(Line L1, Line L2)
 Point getIntersection(Line L1, Line L2)
 {
     Point P1=L1.a, P2=L2.a;
-    Vector v1=L1.v, v2=L2.v;
+    Point v1=L1.v, v2=L2.v;
     return P1 + v1 * ( (v2^(P1-P2)) / (v1^v2) );
 }
 
 //点P到线段AB的距离公式
-double DistanceToSegment(Point P, Point A, Point B) {
-    if(A==B) return Length(P-A);
-    Vector v1=B-A, v2=P-A, v3=P-B;
-    if(dcmp(Dot(v1,v2))<0) return Length(v2);
-    if(dcmp(Dot(v1,v3))>0) return Length(v3);
-    return DistanceToLine(P,A,B);
-}
-
-//点P在直线AB上的投影点
-Point GetLineProjection(Point P, Point A, Point B) {
-    Vector v=B-A;
-    return A+v*(Dot(v,P-A)/Dot(v,v));
+double DisToSeg(Point p, Point a, Point b) {
+    if(a == b) return (P-A).len();
+    Point v1=b-a, v2=p-a, v3=p-b;
+    if(sgn(v1*v2) < 0) return v2.len();
+    if(sgn(v1*v3) > 0) return v3.len();
+    return Line(a,b).DisToLine(p);
 }
 ```
 
@@ -371,13 +369,14 @@ Point GetLineProjection(Point P, Point A, Point B) {
 ```cpp
 struct Polygon: vector<Point> {
     using vector<Point>::vector;  // 直接使用 vector 的构造函数
+    size_t nxt(size_t i) { return i+1==this->size()? 0: i+1; }
+    size_t pre(size_t i) { return i==0? this->size()-1: i-1; }
 	// 求多边形面积
 	// 为避免精度误差，可以返回 2*S，即去掉 "0.5*()"
-    db area() {
+	db area() {
         db res = 0;
-        int n = this->size();
-        for (int i = 0; i < n; ++i) {
-            res += 0.5 * ((*this)[i] ^ (*this)[(i+1)%n]);
+        for (size_t i = 0; i < size(); ++i) {
+            res += 0.5 * ((*this)[i] ^ (*this)[nxt(i)]);
         }
         return fabs(res);
     }
@@ -401,44 +400,97 @@ struct Polygon: vector<Point> {
 };
 ```
 
-凸包板子。可以求出平面点集的凸包，判断点是否在凸包内
+凸包板子。可以求出平面点集的凸包，判断点是否在凸包内，旋转卡壳。
 ```cpp
 struct Convex: Polygon {
 	using Polygon::Polygon;
 	// 求平面点集的凸包
 	// Andrew 算法，时间复杂度 O(nlogn)
-    Convex(vector<Point> p) {
+	Convex(vector<Point> p) {
         if (p.empty()) { return; }
         sort(p.begin(), p.end());
         auto check = [&](Point u){
-            Point p1=this->back(), p2=*prev(this->end(), 2);
+            Point p1=back(), p2=*prev(end(),2);
             return sgn((p1-p2)^(u-p1))<=0;
         };
         for (const Point &u: p) {
-            while ((int)this->size()>1 && check(u)) { this->pop_back(); }
-            this->push_back(u);
+            while (size()>1 && check(u)) { pop_back(); }
+            push_back(u);
         }
-        int k = this->size();
-        p.pop_back(); reverse(p.begin(), p.end());
+        size_t k = size();
+        p.pop_back(); reverse(p.begin(),p.end());
         for (const Point &u: p) {
-            while ((int)this->size()>k && check(u)) { this->pop_back(); }
-            this->push_back(u);
+            while (size()>k && check(u)) { pop_back(); }
+            push_back(u);
         }
-        this->pop_back();
-    }
+        pop_back();
+    }	
     // 判断点是否在凸包内
 	bool inConvex(Point p) {
-	    int n = this->size();
 	    int cnt = 0;
-	    for (int i = 0; i < n; ++i) {
-	        Point p1 = (*this)[i], p2 = (*this)[(i+1)%n];
+	    for (size_t i = 0; i < size(); ++i) {
+	        Point p1 = (*this)[i], p2 = (*this)[nxt(i)];
 	        if (Line(p1,p2).onSegment(p)) { return true; }
 	        cnt += toLeft(p1, p2, p);
 	    }
 	    if (abs(cnt) == n) { return true; }
 	    else { return false; }
 	}
+	// 旋转卡壳
+	template<typename F> void rotcaliper(const F&& func) {
+	    auto &p = *this;
+	    auto area = [](Point u, Point v, Point w){ return abs((w-u)^(w-v)); };
+	    for (size_t i=0, j=1; i < size(); ++i) {
+	        func(p[i], p[nxt(i)], p[j]);
+	        while (area(p[nxt(j)],p[i],p[nxt(i)]) >= area(p[j],p[i],p[nxt(i)])) { 
+	            j = nxt(j);
+	            func(p[i], p[nxt(i)], p[j]);
+	        }
+	    }
+	}
+	// 旋转卡壳运用：求凸包直径
+	T diameter2() {
+	    auto &p = *this;
+	    if (size() == 1) { return 0; }
+	    if (size() == 2) { return (p[0]-p[1]).len2(); }
+	    T ans = 0;
+	    rotcaliper([&](Point a, Point b, Point c){
+	        ans = max( { ans, (a-c).len2(), (b-c).len2() } );
+	    }); 
+	    return ans;
+	}
 };
+
+// 旋转卡壳运用：最小矩形覆盖
+pair<db,Polygon> rotcaliper(Convex &&p)
+{
+    db ans = inf;
+    Polygon ansp;
+    auto area = [](Point a, Point b, Point c) { return fabs((c-a)^(c-b)); };
+    for (int i=0, j=1, l=-1, r=-1; i<(int)p.size(); ++i) {
+        while (area(p[p.nxt(j)],p[i],p[p.nxt(i)]) >= area(p[j],p[i],p[p.nxt(i)])) {
+            j = p.nxt(j);
+        }
+        if (l == -1) { l=i; r=j; }
+        Point v = p[p.nxt(i)]-p[i];
+        v = Point(-v.y, v.x);
+        while (sgn(v^(p[p.nxt(l)]-p[l])) <= 0) { l = p.nxt(l); }
+        while (sgn(v^(p[p.nxt(r)]-p[r])) >= 0) { r = p.nxt(r); }
+        Line li(p[i], p[p.nxt(i)]-p[i]), lj(p[j], p[i]-p[p.nxt(i)]);
+        Line ll(p[l], v), lr(p[r], v);
+        Polygon now = {
+            getIntersection(li, ll),
+            getIntersection(ll, lj),
+            getIntersection(lj, lr),
+            getIntersection(lr, li)
+        };
+        if (sgn(now.area()-ans) < 0) {
+            ans = now.area();
+            ansp = now;
+        }
+    }
+    return {ans,ansp};
+}
 ```
 
 
@@ -708,10 +760,11 @@ BIT T(n);
 懒标记线段树本质上是维护两个幺半群和三个三元操作，对应重载即可。
 ```cpp
 template<typename Info, typename Lazy>
-struct segmentTree {
+class segmentTree {
     #define lson (p << 1)
     #define rson (p << 1 | 1)
     #define m ((l+r)>>1)
+private:
     int n;
     vector<Info> info;
     vector<Lazy> lazy;
@@ -727,6 +780,36 @@ struct segmentTree {
         apply(rson, lazy[p]);
         lazy[p] = Lazy();
     }
+	template<typename F>
+    Info dfs(int p, int l, int r, int x, int y, F&& op) {
+        if (y <= l || r <= x) { return Info(); }
+        if (x <= l && r <= y) { op(p,l,r); return info[p]; }
+        spread_down(p);
+        Info res;
+        res = res + dfs(lson, l, m, x, y, op);
+        res = res + dfs(rson, m, r, x, y, op);
+        push_up(p);
+        return res;
+    }
+    template<typename F>
+    pair<int,Info> findFirst(int p, int l, int r, int x, int y, F&& pred) {
+        if (y <= l || r <= x) { return {-1,Info()}; }
+        if (x <= l && r <= y && !pred(info[p])) { return {-1,Info()}; }
+        if (l == r-1) { return {l,info[p]}; }
+        spread_down(p);
+        pair<int,Info> res = findFirst(lson, l, m, x, y, pred);
+        if (res.first == -1) {
+            res = findFirst(rson, m, r, x, y, pred);
+        }
+        return res;
+    }
+    void Debug(int p, int l, int r) {
+    	// 输出调试信息
+        if (l == r-1) { return; }
+        Debug(lson, l, m);
+        Debug(rson, m, r);
+    }
+public:
     segmentTree(int n): n(n), info(4 << __lg(n)), lazy(4 << __lg(n)) { }
     segmentTree(const vector<Info> &a): segmentTree(a.size()) {
         function<void(int,int,int)> build = [&](int p, int l, int r){
@@ -737,43 +820,35 @@ struct segmentTree {
         };
         build(1, 0, n);
     }
-    void rangeApply(int p, int l, int r, int x, int y, const Lazy& v) {
-        if (y <= l || r <= x) { return; }
-        if (x <= l && r <= y) { apply(p, v); return; }
-        spread_down(p);
-        rangeApply(lson, l, m, x, y, v);
-        rangeApply(rson, m, r, x, y, v);
-        push_up(p);
+    void Debug() { Debug(1, 0, n); }
+    void rangeModify(int x, int y, Lazy v) {
+    	dfs(1, 0, n, x, y+1, [&](int p, int l, int r){
+    		apply(p, Lazy(v));
+    	});
     }
-    Info rangeQuery(int p, int l, int r, int x, int y) {
-        if (y <= l || r <= x) { return Info(); }
-        if (x <= l && r <= y) { return info[p]; }
-        spread_down(p);
-        return rangeQuery(lson, l, m, x, y) + rangeQuery(rson, m, r, x, y);
-    }
-    void modify(int x, int y, ll k) {
-    	assert(x <= y);
-        rangeApply(1, 0, n, x, y+1, Lazy(k));
-    }
-    ll query(int x, int y) {
-        return rangeQuery(1, 0, n, x, y+1).s;
+    Info query(int x, int y) {
+    	return dfs(1, 0, n, x, y+1, [&](int p, int l, int r){});
     }
 };
 struct Info {
-    Info() { }
+    ll s, l;
+    Info(ll s=0, ll l=0): s(s), l(l) { }
 };
 struct Lazy {
-    Lazy() { }
+    ll k;
+    Lazy(ll k=0): k(k) { }
 };
 Info operator+ (const Info &u, const Info &v) {
+    return Info(u.s+v.s, u.l+v.l);
 }
 Info operator+ (const Info &u, const Lazy &v) {
-    return u;
+    return Info(u.s + v.k * u.l, u.l);
 }
 Lazy operator+ (const Lazy &u, const Lazy &v) {
-    return u;
+    return Lazy(u.k + v.k);
 }
 ```
+
 
 
 ## 逆序对
@@ -811,6 +886,37 @@ for (int i = 0; i < n; ++i) {
 
 
 
+## 笛卡尔树
+
+每个节点的编号满足二叉搜索树的性质。
+节点 $i$ 的权值为 $p_i$，每个节点的权值满足小根堆的性质。
+```cpp
+vector<int> stk;
+for (int i = 1; i <= n; ++i) {
+	int flag = 0;
+	while (!stk.empty()) {
+		if (a[stk.back()] > a[i]) {  // 小根堆
+			flag = stk.back(); stk.pop_back();
+		} else {
+			break;
+		}
+	}
+	if (flag) { L[i] = flag; }
+	if (!stk.empty()) { R[stk.back()] = i; }
+	stk.push_back(i);
+}
+function<void(int)> dfs = [&](int x){
+	cerr << "now node " << x << "\n";
+	cerr << ":: L = " << L[x] << "\n";
+	cerr << ":: R = " << R[x] << "\n";
+	if (L[x]) dfs(L[x]);
+	if (R[x]) dfs(R[x]);
+};
+dfs(stk[0]);
+```
+
+
+
 # 图论
 
 https://csacademy.com/app/graph_editor/
@@ -831,6 +937,45 @@ void dfs(int u, int fa)
 
 ## 最短路
 
+
+
+
+### bfs
+
+```cpp
+const int dx[]={-1, 1, 0, 0}, dy[]={0, 0, -1, 1};  // 上，下，左，右
+unordered_map<char,int> d={{'U',0},{'D',1},{'L',2},{'R',3}};
+
+int f[N][N];
+bool vis[N][N];
+bool valid(int x, int y)
+{
+    return (
+        (1 <= x && x <= h) &&
+        (1 <= y && y <= w)
+    );
+}
+int sx, sy, tx, ty;
+int bfs()
+{
+    queue <array<int,3>> q;
+    q.push( { sx, sy, 0 } );
+    memset(f, 0x3f, sizeof(f));
+    while (!q.empty()) {
+        auto [x, y, cnt] = q.front(); q.pop();
+        if (vis[x][y]) { continue; }
+        vis[x][y] = true;
+        f[x][y] = cnt;
+        for (int dd = 0; dd < 4; ++dd) {
+            int nx = x + dx[dd];
+            int ny = y + dy[dd];
+            if (valid(nx, ny)) { q.push( { nx, ny, cnt+1 } ); }
+        }
+    }
+    if (vis[tx][ty]) { return f[tx][ty]; }
+    else { return -1; }
+}
+```
 
 
 
@@ -1519,6 +1664,7 @@ struct Flow {
 
 $[1,n]$ 所有数字的因数个数和是 $O(n\log n)$ 的。
 $720720$ 是 $10^6$ 内因数最多的数字，其因数个数为 $240$。
+$735134400$ 是 $10^9$ 内因数最多的数字，其因数个数为 $1344$。
 ```cpp
 vector d(mx+1, vector<int>());
 for (int i = 1; i <= mx; ++i) {
@@ -1527,6 +1673,7 @@ for (int i = 1; i <= mx; ++i) {
     }
 }
 ```
+
 
 
 ## 线性筛
@@ -1687,13 +1834,13 @@ typedef long long ll;
 typedef pair<ll, ll> hs;
 const ll MOD1=1e9+7, MOD2=1e9+9;
 const hs p = { 117, 131 };
-hs operator + (hs a, hs b) {
+hs operator+ (hs a, hs b) {
 	return hs{(a.first+b.first)%MOD1, (a.second+b.second)%MOD2};
 }
-hs operator - (hs a, hs b) {
+hs operator- (hs a, hs b) {
 	return hs{(a.first-b.first+MOD1)%MOD1, (a.second-b.second+MOD2)%MOD2};
 }
-hs operator * (hs a, hs b) {
+hs operator* (hs a, hs b) {
 	return hs{(a.first*b.first)%MOD1, (a.second*b.second)%MOD2};
 }
 struct Hash {
@@ -1768,12 +1915,13 @@ cout << (ans-m)/2 << "\n";  // 去除无向边，环正走反走算一个
 	- 可以尝试写写注释
 	- 如果觉得脑袋不清醒，去洗把脸
 - 眼瞎 / 脑残
+	- 不验样例就开始写
+	- 要和队友确认题意
 	- 答案要取模
 	- 多测时，全局变量记得要清空（测 `assert` 时注意全局！！）
 	- 【与】和【或】不要搞反
 	- 如果一眼看上去感觉完全不可做，很有可能是缺条件或看（想）错条件，先模样例，防止脑残
 - 开 `long long`
-	- `#define int long long`
 	- 叉乘的结果再相乘，需要检查是否爆 `long long`
 	- 位运算的时候考虑下 `long long`，比如 `1LL<<i`
 	- 注意参数类型，如 `__builtin_popcount()` 不能传 `ll`，`accumulate` 的第三个参数必须传 `ll`
@@ -1788,6 +1936,8 @@ cout << (ans-m)/2 << "\n";  // 去除无向边，环正走反走算一个
 	- （网络流！）建图的时候考虑清楚点边的意义和数量（如：有可能需要开 $3N$）
 - `cin` 读入大数据导致 `TLE`，总输入量达到 `4e6` 就要快读或者优化 `cin`
 - 做图论题先看看图是否联通
+- 注意数据范围中带 $0$ 的部分，比如做除法时能不能作分母
 - 注意位运算的优先级，打括号
 - 考虑初态，什么操作都不做
 - 有两维，可以尝试交换枚举顺序
+- 如果感觉复杂度过高，可以考虑贪心

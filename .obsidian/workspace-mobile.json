@@ -11,10 +11,14 @@
             "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "0-系统组件/homepage.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "homepage"
             }
           }
         ]
@@ -84,8 +88,8 @@
         "state": {
           "type": "VIEW_TYPE_LONGFORM_EXPLORER",
           "state": {},
-          "icon": "lucide-file",
-          "title": "插件不再活动"
+          "icon": "longform",
+          "title": "Longform"
         }
       }
     ],
@@ -144,6 +148,15 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "markdown-importer:打开 Markdown 格式转换器": false,
+      "zk-prefixer:创建时间戳笔记": false,
+      "workspaces:管理工作区布局": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "obsidian-git:Open Git source control": false,
+      "omnisearch:Omnisearch": false,
+      "templater-obsidian:Templater": false,
+      "smart-random-note:Open Random Note from Search": false,
+      "homepage:Open homepage": false,
       "switcher:打开快速切换": true,
       "graph:查看关系图谱": false,
       "canvas:新建白板": true,

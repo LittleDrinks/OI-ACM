@@ -8,31 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "9c024674bffa72a6",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2-题解/gym105657B.md",
+                "file": "4-输出/板子/点线操作.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "gym105657B"
-            }
-          },
-          {
-            "id": "654277d5e5fc1b01",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "3-文档/1-笔记/线段树.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "线段树"
+              "title": "点线操作"
             }
           }
         ]
@@ -41,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "7f6c8da415929381",
+    "id": "b8945e07d53a899b",
     "type": "split",
     "children": [
       {
-        "id": "0e633fc20dee07e4",
+        "id": "0dbf80a15aabb145",
         "type": "tabs",
         "children": [
           {
-            "id": "d1d33600c1a07559",
+            "id": "26fd9dcc7c29691a",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -62,12 +48,12 @@
             }
           },
           {
-            "id": "13590c8235728ab7",
+            "id": "4bc7812f4a96b8ee",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:笛卡尔树",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,7 +65,7 @@
             }
           },
           {
-            "id": "ce6ff92fcb436eb9",
+            "id": "d6a4e978bb7de9ff",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -89,7 +75,7 @@
             }
           },
           {
-            "id": "cf2c00143b00226d",
+            "id": "3382c9756d89b6a3",
             "type": "leaf",
             "state": {
               "type": "VIEW_TYPE_LONGFORM_EXPLORER",
@@ -102,23 +88,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 313.5
+    "width": 300
   },
   "right": {
-    "id": "0322e523a125bb36",
+    "id": "e913299cd4ab4d45",
     "type": "split",
     "children": [
       {
-        "id": "27e1cbf3ed8be78a",
+        "id": "ea1df0086735134b",
         "type": "tabs",
         "children": [
           {
-            "id": "416f94a1e7ab16c7",
+            "id": "32d9f2aed7e285c0",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "3-文档/2-比赛/Hello 2025.md",
+                "file": "4-输出/板子/点线操作.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,25 +114,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Hello 2025 的反向链接列表"
+              "title": "点线操作 的反向链接列表"
             }
           },
           {
-            "id": "bd466e5107f6ed4a",
+            "id": "768871acf868a4a4",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "3-文档/2-比赛/Hello 2025.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Hello 2025 的出链列表"
+              "title": "出链"
             }
           },
           {
-            "id": "e545248956e0ef98",
+            "id": "fb1555c4c9bfdd2f",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -161,22 +146,22 @@
             }
           },
           {
-            "id": "21dc2d45d4e19c83",
+            "id": "42e9bc5e93f0a73b",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "2-题解/P1967.md",
+                "file": "4-输出/板子/点线操作.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "P1967 的大纲"
+              "title": "点线操作 的大纲"
             }
           },
           {
-            "id": "5b1cf506039c19ce",
+            "id": "1979bb497c62e128",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -194,68 +179,43 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:打开快速切换": true,
+      "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
-      "canvas:新建白板": true,
-      "daily-notes:打开/创建今天的日记": true,
-      "templates:插入模板": true,
-      "command-palette:打开命令面板": true,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "markdown-importer:打开 Markdown 格式转换器": false,
       "zk-prefixer:创建时间戳笔记": false,
-      "markdown-importer:打开 Markdown 格式转换器": true,
       "workspaces:管理工作区布局": false,
       "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "obsidian-git:Open Git source control": false,
       "omnisearch:Omnisearch": false,
       "templater-obsidian:Templater": false,
       "smart-random-note:Open Random Note from Search": false,
-      "obsidian-git:Open Git source control": false,
       "homepage:Open homepage": false
     }
   },
-  "active": "9c024674bffa72a6",
+  "active": "42e9bc5e93f0a73b",
   "lastOpenFiles": [
-    "3-文档/2-比赛/The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25 Hangzhou).md",
-    "4-输出/板子/懒标记线段树.md",
-    "3-文档/1-笔记/线段树.md",
-    "2-题解/gym105657B.md",
-    "3-文档/1-笔记/The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25 Hangzhou).md",
     "0-系统组件/homepage.md",
-    "2-题解/gym579538D.md",
-    "2-题解/gym105657E.md",
-    "2-题解/gym105657F.md",
-    "3-文档/1-笔记/tarjan.md",
-    "2-题解/gym105657M.md",
-    "2-题解/gym105657H.md",
-    "~syncthing~.nomedia.tmp",
-    "3-文档/1-笔记/辗转相除法.md",
-    "3-文档/1-笔记/笛卡尔树.md",
-    "3-文档/2-比赛/SHUPC2025.md",
-    "4-输出/板子/笛卡尔树.md",
-    "2-题解/P5854.md",
-    "3-文档/1-笔记/栈.md",
-    "4-输出/板子/预处理因数.md",
-    "2-题解/gym104417M.md",
-    "2-题解/AcWing41.md",
-    "4-输出/板子/线性筛.md",
-    "4-输出/板子/一些公柿.md",
-    "4-输出/板子/烂掉啦.md",
     "4-输出/板子/template_by_LittleDrinks.md",
-    "4-输出/板子/DSU on tree.md",
-    "0-系统组件/1-附件/【jiangly】算法模板 (群友自收集，v1.8.7).pdf",
-    "2-题解/未命名",
-    "3-文档/~syncthing~.sync-conflict-20250215-100758-TIMKZYG.nomedia.tmp",
-    "2-题解/~syncthing~.nomedia.tmp",
-    "0-系统组件/~syncthing~.nomedia.tmp",
-    "0-系统组件/3-Excalidraw/~syncthing~.sync-conflict-20250215-090647-DWSA24O.nomedia.tmp",
-    "4-输出/板子/~syncthing~Index.sync-conflict-20250215-090222-DWSA24O.md.tmp",
-    "2-题解/~syncthing~.sync-conflict-20250215-090225-DWSA24O.nomedia.tmp",
-    "~syncthing~.sync-conflict-20250215-090243-DWSA24O.nomedia.tmp",
-    "0-系统组件/1-附件/Pasted image 20250130112742.png",
-    "0-系统组件/1-附件/Pasted image 20250110141805.png",
-    "0-系统组件/1-附件/56c0a8a12b4081d91ce8e4635eaf3cc.png",
-    "0-系统组件/1-附件/Pasted image 20241222131648.png",
-    "0-系统组件/1-附件/769026e41fd8671126b30b4a3e07449.png",
-    "0-系统组件/1-附件/ddfaa6d7e2d00f30819af0b593dba74.png",
-    "0-系统组件/3-Excalidraw/CF2038D.png",
-    "0-系统组件/1-附件/Pasted image 20240930203940.png"
+    "4-输出/板子/对拍.md",
+    "4-输出/板子/常用函数.md",
+    "4-输出/板子/笛卡尔树.md",
+    "4-输出/板子/运行时间.md",
+    "4-输出/板子/土制cph.md",
+    "4-输出/板子/vector相关.md",
+    "4-输出/板子/高精度.md",
+    "4-输出/板子/一些公柿.md",
+    "4-输出/板子/多边形与凸包.md",
+    "4-输出/板子/向量.md",
+    "4-输出/板子/计算几何.md",
+    "4-输出/板子/点线操作.md",
+    "4-输出/板子/随机数.md",
+    "2-题解/gym103729F.md",
+    "2-题解/字符串哈希.md",
+    "4-输出/板子/懒标记线段树.md",
+    "4-输出/板子/树状数组.md"
   ]
 }
