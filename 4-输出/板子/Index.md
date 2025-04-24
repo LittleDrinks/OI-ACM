@@ -67,5 +67,4 @@ longform:
     - manuscript
     - myTemplate
     - template_by_LittleDrinks
-    - Index.sync-conflict-20250213-161051-DWSA24O
 ---
