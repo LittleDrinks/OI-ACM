@@ -39,7 +39,7 @@ longform:
       - LCA
       - - 倍增O(LogN)求LCA
         - 欧拉序+ST表O(1)求LCA
-      - 树的直径
+      - 树的直径与中心
       - 点分治与树的重心
       - Hierholzer求欧拉路
       - DSU on tree
