@@ -23,7 +23,7 @@ longform:
     - - 带权并查集
       - Trie
       - ST表
-      - 对顶multiset维护中位数
+      - 对顶multiset
       - 树状数组
       - 懒标记线段树
       - 逆序对
@@ -34,7 +34,7 @@ longform:
         - bitset优化传递闭包
         - 有向图上找最小环
         - spfa判断负环
-      - 基环树上找环
+      - 基环树
       - 最小生成树
       - 拓扑排序
       - LCA
