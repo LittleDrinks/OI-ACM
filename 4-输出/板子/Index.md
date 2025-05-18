@@ -11,36 +11,31 @@ longform:
       - vector相关
       - 随机数
       - 对拍
+      - bfs
       - 整数域三分
       - 运行时间
-      - 土制cph
     - 计算几何
     - - 向量
       - 点线操作
       - 多边形与凸包
-      - 三维向量
     - 数据结构
     - - 带权并查集
       - Trie
       - ST表
-      - 对顶multiset
       - 树状数组
       - 懒标记线段树
       - 逆序对
       - 笛卡尔树
     - 图论
     - - 最短路
-      - - bfs
-        - bitset优化传递闭包
+      - - bitset优化传递闭包
         - 有向图上找最小环
         - spfa判断负环
-      - 基环树
       - 最小生成树
       - 拓扑排序
       - LCA
       - - 倍增O(LogN)求LCA
         - 欧拉序+ST表O(1)求LCA
-      - 树的直径与中心
       - 点分治与树的重心
       - Hierholzer求欧拉路
       - DSU on tree
@@ -68,4 +63,5 @@ longform:
     - manuscript
     - myTemplate
     - template_by_LittleDrinks
+    - Index.sync-conflict-20250213-161051-DWSA24O
 ---

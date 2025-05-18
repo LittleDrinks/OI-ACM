@@ -5,7 +5,7 @@ aliases:
 ```python
 from os import system as e, listdir as l
 from sys import argv
-_, q, v = argv  # q: 题号, f: 文件名
+_, q, f = argv  # q: 题号, f: 文件名
 
 # r: 运行命令
 # 跑 py 需要 `python3 cph.py A A.py`
