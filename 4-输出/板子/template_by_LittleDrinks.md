@@ -89,6 +89,147 @@ iota(a.begin(), a.end(), 0);
 
 
 
+## bfs
+
+```cpp
+const int dx[]={-1, 1, 0, 0}, dy[]={0, 0, -1, 1};  // 上，下，左，右
+unordered_map<char,int> d={{'U',0},{'D',1},{'L',2},{'R',3}};
+
+int f[N][N];
+bool vis[N][N];
+bool valid(int x, int y)
+{
+    return (
+        (1 <= x && x <= h) &&
+        (1 <= y && y <= w)
+    );
+}
+int sx, sy, tx, ty;
+int bfs()
+{
+    queue <array<int,3>> q;
+    q.push( { sx, sy, 0 } );
+    memset(f, 0x3f, sizeof(f));
+    while (!q.empty()) {
+        auto [x, y, cnt] = q.front(); q.pop();
+        if (vis[x][y]) { continue; }
+        vis[x][y] = true;
+        f[x][y] = cnt;
+        for (int dd = 0; dd < 4; ++dd) {
+            int nx = x + dx[dd];
+            int ny = y + dy[dd];
+            if (valid(nx, ny)) { q.push( { nx, ny, cnt+1 } ); }
+        }
+    }
+    if (vis[tx][ty]) { return f[tx][ty]; }
+    else { return -1; }
+}
+```
+
+
+
+## 整数域三分
+
+```cpp
+// 整数域三分求单峰函数最大值
+int l, r;
+while (l + 2 <= r) {
+	int w = (r - l) / 3;
+	int m1 = l + w; int v1 = f(m1);
+	int m2 = r - w; int v2 = f(m2);
+	if (v1 <= v2) {
+		l = m1 + 1;
+	} else {
+		r = m2 - 1;
+	}
+} 
+cout << max(f(l), f(r)) << "\n";
+```
+
+
+
+## 土制cph(仅linux)
+
+第一版，使用 `timeout`，仅适用 linux
+```python
+from os import system as e, listdir as l
+from sys import argv
+_, q, f = argv  # q: 题号, f: 文件名
+
+# r: 运行命令
+# 跑 py 需要 `python3 cph.py A A.py`
+if "py" in f:
+	r = f"python3 {f}"
+else:
+	e(f"g++ -std=c++23 -o2 -Wall {f}.cpp -o {f}")
+	r = "./" + f
+
+#
+d = "samples-" + q.capitalize()
+for i in l(d):
+	if not "in" in i: continue
+	print(i)
+	p = d + "/" + i[:-2]
+	if e(f"timeout 2 {r}<{p}in>{p}out"): print("TLE or RE")
+	else:
+		with open(f"{p}out") as o, open(f"{p}ans") as a:
+			print("AC" if o.read().split()==a.read().split() else "WA")
+```
+
+
+
+## 土制cph(全平台)
+
+第二版，使用 `subprocess`，添加彩字，适用 windows 和 linux
+```python
+from os import listdir as l, system as e
+from os.path import join as jp
+from sys import argv as a
+import subprocess as s
+_,q,f = a
+if "py" in f:
+    cmd = f"python {f}"
+else:
+    e(f"g++ -std=gnu++20 -O2 -Wall {f}.cpp -o {f}")
+    cmd = jp(".", f"{f}.exe")
+
+d='samples-'+q.capitalize()
+g,r,p,n='\033[32m','\033[31m','\033[35m','\033[0m'
+for i in l(d):
+    if not 'in' in i: continue
+    t=jp(d,i[:-2])
+    print(i,'测评结果 ',end='',flush=1)
+    try:
+        k=s.run(cmd,timeout=2,stdin=open(t+'in'),stdout=open(t+'out','w'),stderr=s.PIPE,text=1)
+        if open(t+'out').read().split()==open(t+'ans').read().split():
+            print(f'{g}AC{n}')
+        else:
+            print(f'{r}WA{n}')
+        k.stderr and print(f'{r}{k.stderr}{n}')
+    except s.TimeoutExpired as k:
+        print(f'{p}TLE or RE{n}')
+        k.stderr and print(f'{r}{k.stderr}{n}')
+```
+
+
+
+## 对拍
+
+```cpp
+// checker.cpp
+while (1) {
+	system("gen > data.in");  // linux 下换成 ./xxx
+	system("myc < data.in > myc.out");
+	system("std < data.in > std.out");
+	if (system("fc my.out std.out")) {  // linux 下换成 diff
+		system("pause");
+		return 0;
+	}
+}
+```
+
+
+
 ## 随机数
 
 随机数
@@ -140,43 +281,6 @@ vector<array<int,2>> Graph(int n, int m=-1, int root=-1)
 
 
 
-## 对拍
-
-```cpp
-// checker.cpp
-while (1) {
-	system("gen > data.in");  // linux 下换成 ./xxx
-	system("myc < data.in > myc.out");
-	system("std < data.in > std.out");
-	if (system("fc my.out std.out")) {  // linux 下换成 diff
-		system("pause");
-		return 0;
-	}
-}
-```
-
-
-
-## 整数域三分
-
-```cpp
-// 整数域三分求单峰函数最大值
-int l, r;
-while (l + 2 <= r) {
-	int w = (r - l) / 3;
-	int m1 = l + w; int v1 = f(m1);
-	int m2 = r - w; int v2 = f(m2);
-	if (v1 <= v2) {
-		l = m1 + 1;
-	} else {
-		r = m2 - 1;
-	}
-} 
-cout << max(f(l), f(r)) << "\n";
-```
-
-
-
 ## 运行时间
 
 ```cpp
@@ -188,35 +292,6 @@ if (duration > 998) { cout << ans << "\n"; exit(0); }
 
 
 
-## 土制cph
-
-```python
-from os import system as e, listdir as l
-from sys import argv
-_, q, v = argv  # q: 题号, f: 文件名
-
-# r: 运行命令
-# 跑 py 需要 `python3 cph.py A A.py`
-if "py" in f:
-	r = f"python3 {f}"
-else:
-	e(f"g++ -std=c++23 -o2 -Wall {f}.cpp -o {f}")
-	r = "./" + f
-
-#
-d = "samples-" + q.capitalize()
-for i in l(d):
-	if not "in" in i: continue
-	print(i)
-	p = d + "/" + i[:-2]
-	if e(f"timeout 2 {r}<{p}in>{p}out"): print("TLE or RE")
-	else:
-		with open(f"{p}out") as o, open(f"{p}ans") as a:
-			rf = lambda f: [l.rstrip() for l in f if l.rstrip()!='']
-			print("AC" if rf(o)==rf(a) else "WA")
-```
-
-
 # 计算几何
 
 https://csacademy.com/app/geometry_widget/
@@ -225,7 +300,7 @@ https://csacademy.com/app/geometry_widget/
 const int inf = INT_MAX;
 typedef long long ll;
 typedef double db;  // 视情况改为 long double
-const db eps=1e-8;  // 极端数据下，放大 eps 可能有奇效
+const db eps=1e-8;
 const db PI=acos(-1.0);
 const db inf = numeric_limits<db>::max();
 int sgn(ll x) { return (x>0)-(x<0); }
@@ -309,7 +384,7 @@ struct Line {
 	int toLeft(Point p) { return sgn(v^(p-a)); }
 	bool onSegment(Point p) { return (toLeft(p)==0) && ((p-a)*(p-b)<=0); }
 	db distToLine(Point p) { return fabs((v^(p-a))/v.len()); }
-	Point proj(Point a) { return p+v*((v*(a-p))/(v*v)); }
+	Point proj(Point p) { return a+v*((v*(a-p))/(v*v)); }
 	// 用整数操作判断直线与点 C 的距离是否小于（等于）某个值 r
 	// 常见于判断直线与圆的位置关系
 	// 注意叉乘再相乘可能会爆 ll，所以这里用 __int128
@@ -495,6 +570,10 @@ pair<db,Polygon> rotcaliper(Convex &&p)
 
 
 
+## 三维向量
+
+
+
 # 数据结构
 
 
@@ -656,7 +735,7 @@ struct ST {
 
 
 
-## 对顶multiset维护中位数
+## 对顶multiset
 
 ```cpp
 struct PairingMultiset {
@@ -940,45 +1019,6 @@ void dfs(int u, int fa)
 
 
 
-### bfs
-
-```cpp
-const int dx[]={-1, 1, 0, 0}, dy[]={0, 0, -1, 1};  // 上，下，左，右
-unordered_map<char,int> d={{'U',0},{'D',1},{'L',2},{'R',3}};
-
-int f[N][N];
-bool vis[N][N];
-bool valid(int x, int y)
-{
-    return (
-        (1 <= x && x <= h) &&
-        (1 <= y && y <= w)
-    );
-}
-int sx, sy, tx, ty;
-int bfs()
-{
-    queue <array<int,3>> q;
-    q.push( { sx, sy, 0 } );
-    memset(f, 0x3f, sizeof(f));
-    while (!q.empty()) {
-        auto [x, y, cnt] = q.front(); q.pop();
-        if (vis[x][y]) { continue; }
-        vis[x][y] = true;
-        f[x][y] = cnt;
-        for (int dd = 0; dd < 4; ++dd) {
-            int nx = x + dx[dd];
-            int ny = y + dy[dd];
-            if (valid(nx, ny)) { q.push( { nx, ny, cnt+1 } ); }
-        }
-    }
-    if (vis[tx][ty]) { return f[tx][ty]; }
-    else { return -1; }
-}
-```
-
-
-
 ### bitset优化传递闭包
 
 邻接矩阵存图，时间复杂度为 $O(\dfrac{n^3}{w})$，可以处理 $2000$ 左右的数据。
@@ -1048,40 +1088,6 @@ bool spfa(int s=1)
 ```
 
 
-## 基环树上找环
-
-在建图的过程中如果发现 $u,v$ 已经联通，则 $u,v$ 两点必然在环上。从 $u$ 出发 dfs 到 $v$ 即可。
-```cpp
-vector<int> G[N], cycle;
-void dfs(int u, int fa)
-{
-    cycle.push_back(u);
-    if (u == t) {
-        sort(cycle.begin(), cycle.end());
-        for (int x: cycle) { cout << x << " "; }
-        exit(0);
-    }
-    for (int v: G[u]) {
-        if (v != fa) { dfs(v, u); }
-    }
-    cycle.pop_back();
-}
-int main()
-{
-	dsu d(n);  // 见并查集板子
-	for (int i = 1; i <= n; ++i) {
-	    int u, v;
-	    cin >> u >> v;
-	    G[u].push_back(v);
-	    G[v].push_back(u);
-	    if (d.same(u, v)) { s=u; t=v; }
-	    d.merge(u, v);
-	}
-	dfs(s, 0);
-}
-```
-
-
 ## 最小生成树
 
 kruskal 时间复杂度为 $O(m\log m)$
@@ -1119,8 +1125,10 @@ queue<int> q;
 for (int i = 1; i <= n; ++i) {
 	if (deg[i] == 0) { q.push(i); }
 }
+vector<int> topo;
 while (!q.empty()) {
 	int u = q.front(); q.pop();
+	topo.push_back(u);
 	for (int v: G[u]) {
 		if (--deg[v] == 0) { q.push(v); }
 	}
@@ -1227,9 +1235,44 @@ int main()
 
 
 
-## 树的直径
+## 基环树
+
+在建图的过程中如果发现 $u,v$ 已经联通，则 $u,v$ 两点必然在环上。从 $u$ 出发 dfs 到 $v$ 即可。
+```cpp
+vector<int> G[N], cycle;
+void dfs(int u, int fa)
+{
+    cycle.push_back(u);
+    if (u == t) {
+        sort(cycle.begin(), cycle.end());
+        for (int x: cycle) { cout << x << " "; }
+        exit(0);
+    }
+    for (int v: G[u]) {
+        if (v != fa) { dfs(v, u); }
+    }
+    cycle.pop_back();
+}
+int main()
+{
+	dsu d(n);  // 见并查集板子
+	for (int i = 1; i <= n; ++i) {
+	    int u, v;
+	    cin >> u >> v;
+	    G[u].push_back(v);
+	    G[v].push_back(u);
+	    if (d.same(u, v)) { s=u; t=v; }
+	    d.merge(u, v);
+	}
+	dfs(s, 0);
+}
+```
+
+
+## 树的直径与中心
 
 树上任意两节点之间最长的简单路径
+树形 DP 求法
 ```cpp
 int d[N], mxd;
 void dfs(int u, int fa)
@@ -1241,6 +1284,35 @@ void dfs(int u, int fa)
 			d[u] = max(d[u], d[v]+1);
 		}
 	}
+}
+```
+两次 DFS 求法，可以把整条直径提取出来，然后在其上找到树的中心
+```cpp
+int mxd=0, V=0;
+vector<int> d(n+1);
+vector<int> f(n+1);
+function<void(int,int,int)> dfs = [&](int u, int fa, int d){
+    f[u] = fa;
+    if (d > mxd) {
+        mxd = d;
+        V = u;
+    }
+    for (auto v: G[u]) {
+        if (v != fa) {
+            dfs(v, u, d+1);
+        }
+    }
+};
+mxd = 0;
+dfs(1, 0, 1);
+mxd = 0;
+int s = V;
+dfs(V, 0, 1);
+int t = V;
+vector<int> R{t};
+while (t != s) {
+    t = f[t];
+    R.push_back(t);
 }
 ```
 
@@ -1651,7 +1723,7 @@ struct Flow {
 
 | 公式名                                   | 内容                                                                                                                                                                                                                                                     |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 连续幂和公式                                | $\displaystyle\sum_{i=1}^n(i^2)=\dfrac{n(n+1)(2n+1)}{6}$<br>$\displaystyle\sum_{i=1}^n(i^3)=(\dfrac{n(n+1)}{2})^2$                                                                                                                                     |
+| 连续幂和公式                                | $\displaystyle\sum_{i=1}^n(i^2)=\dfrac{n(n+1)(2n+1)}{6}$<br>$\displaystyle\sum_{i=1}^n(i^3)=(\dfrac{n(n+1)}{2})^2$<br>$\displaystyle\sum_{i=1}^n\bigg(i\times(n-i)\bigg)=\dfrac{n(n-1)(n+1)}{6}={n+1\choose 3}$                                        |
 | 组合数                                   | ①定义式：$\displaystyle{n\choose k}=\frac{n!}{k!(n-k)!}$；<br>②递推式： $\displaystyle{n\choose m}={n-1\choose m}+{n-1 \choose m-1}$；<br>③曲棍球棒定理：$\displaystyle\sum_{k=r}^{n}{n\choose k}={n+1\choose k+1}$；<br>④求和：$\displaystyle\sum_{i=0}^n{n\choose i}=2^n$ |
 | 几何级数                                  | ① $\dfrac{1}{1-x}=\displaystyle\sum_{k=0}^\infty x^k$；<br>② $\dfrac{x}{(1-x)^2}=\displaystyle\sum_{k=1}^\infty kx^k$                                                                                                                                   |
 | 不定方程 $\displaystyle\sum_{i=1}^mx_i=n$ | 正整数解个数为 ${n-1\choose m-1}$<br>非负整数解的个数为 ${n+m-1\choose m-1}$                                                                                                                                                                                           |

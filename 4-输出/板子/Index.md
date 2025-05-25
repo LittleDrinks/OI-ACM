@@ -9,19 +9,23 @@ longform:
     - - 常用函数
       - 高精度
       - vector相关
-      - 随机数
-      - 对拍
       - bfs
       - 整数域三分
+      - 土制cph(仅linux)
+      - 土制cph(全平台)
+      - 对拍
+      - 随机数
       - 运行时间
     - 计算几何
     - - 向量
       - 点线操作
       - 多边形与凸包
+      - 三维向量
     - 数据结构
     - - 带权并查集
       - Trie
       - ST表
+      - 对顶multiset
       - 树状数组
       - 懒标记线段树
       - 逆序对
@@ -36,6 +40,8 @@ longform:
       - LCA
       - - 倍增O(LogN)求LCA
         - 欧拉序+ST表O(1)求LCA
+      - 基环树
+      - 树的直径与中心
       - 点分治与树的重心
       - Hierholzer求欧拉路
       - DSU on tree

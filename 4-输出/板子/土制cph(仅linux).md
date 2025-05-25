@@ -2,6 +2,7 @@
 tags: 
 aliases:
 ---
+第一版，使用 `timeout`，仅适用 linux
 ```python
 from os import system as e, listdir as l
 from sys import argv
@@ -24,6 +25,5 @@ for i in l(d):
 	if e(f"timeout 2 {r}<{p}in>{p}out"): print("TLE or RE")
 	else:
 		with open(f"{p}out") as o, open(f"{p}ans") as a:
-			rf = lambda f: [l.rstrip() for l in f if l.rstrip()!='']
-			print("AC" if rf(o)==rf(a) else "WA")
+			print("AC" if o.read().split()==a.read().split() else "WA")
 ```
