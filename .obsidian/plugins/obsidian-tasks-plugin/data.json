@@ -1,4 +1,5 @@
 {
+  "includes": {},
   "globalQuery": "",
   "globalFilter": "",
   "removeGlobalFilter": false,
@@ -14,6 +15,7 @@
   "filenameAsScheduledDateFormat": "",
   "filenameAsDateFolders": [],
   "recurrenceOnNextLine": false,
+  "removeScheduledDateOnRecurrence": false,
   "statusSettings": {
     "coreStatuses": [
       {
@@ -54,7 +56,9 @@
   "generalSettings": {},
   "headingOpened": {
     "Core Statuses": true,
-    "Custom Statuses": true
+    "Custom Statuses": true,
+    "核心状态": true,
+    "自定义状态": true
   },
   "debugSettings": {
     "ignoreSortInstructions": false,
