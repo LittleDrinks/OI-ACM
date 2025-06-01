@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "aab83faa2bbf2f79",
+        "id": "b604e174eea50fb3",
         "type": "tabs",
         "children": [
           {
-            "id": "f60d196a7526030f",
+            "id": "8c9589f0a5a4249f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0-系统组件/homepage.md",
+                "file": "3-文档/1-笔记/最短路.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "homepage"
+              "title": "最短路"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "这篇",
+                "query": "tag:最短路/传递闭包",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -151,13 +151,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "4-输出/板子/土制cph(全平台).md",
+                "file": "3-文档/1-笔记/最短路.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "土制cph(全平台) 的大纲"
+              "title": "最短路 的大纲"
             }
           },
           {
@@ -198,8 +198,16 @@
   },
   "active": "1979bb497c62e128",
   "lastOpenFiles": [
-    "2-题解/CF2115B.md",
+    "3-文档/1-笔记/传递闭包.md",
     "0-系统组件/homepage.md",
+    "2-题解/AcWing343.md",
+    "3-文档/1-笔记/最短路.md",
+    "2-题解/未命名",
+    "2-题解/AcWing341.md",
+    "2-题解/AcWing340.md",
+    "2-题解/CF2057E.md",
+    "2-题解/CF2115B.md",
+    "~syncthing~.nomedia.tmp",
     "2-题解/CF2115A.md",
     "2-题解/CF2110E.md",
     "4-输出/板子/快速幂与乘法逆元.md",
@@ -208,7 +216,6 @@
     "4-输出/板子/多边形与凸包.md",
     "4-输出/板子/向量.md",
     "4-输出/板子/计算几何.md",
-    "~syncthing~.nomedia.tmp",
     "4-输出/板子/点线操作.md",
     "4-输出/板子/运行时间.md",
     "4-输出/板子/土制cph(全平台).md",
@@ -219,12 +226,6 @@
     "2-题解/CF2007C.md",
     "这篇帖子.md",
     "3-文档/1-笔记/树状数组.md",
-    "4-输出/板子/Hierholzer求欧拉路.md",
-    "未命名.md",
-    "2-题解/P2731.md",
-    "4-输出/板子/有向图上找最小环.md",
-    "4-输出/板子/spfa判断负环.md",
-    "4-输出/板子/bitset优化传递闭包.md",
     "4-输出/板子/~syncthing~点线操作.sync-conflict-20250425-011006-7ZE3FLQ.md.tmp",
     "4-输出/板子/~syncthing~计算几何.sync-conflict-20250425-011007-7ZE3FLQ.md.tmp",
     "4-输出/板子/~syncthing~笛卡尔树.sync-conflict-20250425-011007-7ZE3FLQ.md.tmp",
