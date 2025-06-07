@@ -29,9 +29,6 @@ for i in l(d):
         #               for x,y in zip(o.read().split(),a.read().split()))
         print(f'{g}AC{n}' if c(open(f"{t}out"),open(f"{t}ans")) else f'{r}WA{n}')
         if k.stderr:print(f'{r}{k.stderr}{n}')
-        else:
-            print(f'{r}WA{n}')
-        if k.stderr: print(f'{r}{k.stderr}{n}')
     except s.TimeoutExpired as k:
         print(f'{p}TLE or RE{n}')
         if k.stderr: print(f'{r}{k.stderr}{n}')

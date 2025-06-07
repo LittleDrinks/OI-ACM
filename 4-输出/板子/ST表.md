@@ -40,5 +40,18 @@ struct ST {
         if (rr < n) { return rr; }
         return -1;
     }
+	int find(int l, int x) {  // 倍增写法
+	    assert(l < n);
+	    if (st[0][l] < x) { return l; }
+	    if (query(l, n-1) >= x) { return n; }
+	    int ans = l, g = st[0][l];
+	    for (int i = I; i >= 0; --i) {
+	        if (ans+(1<<i) < n && gcd(g, st[i][ans]) >= x) {
+	            g = gcd(g, st[i][ans]);
+	            ans += 1 << i;
+	        }
+	    }
+	    return ans;
+	}
 };
 ```

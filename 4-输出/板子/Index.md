@@ -5,17 +5,18 @@ longform:
   workflow: Default Workflow
   sceneFolder: /
   scenes:
+    - 赛前准备
+    - - 土制cph(仅linux)
+      - 土制cph(全平台)
+      - 对拍
+      - 随机数
+      - 运行时间
     - 杂项
     - - 常用函数
       - 高精度
       - vector相关
       - bfs
       - 整数域三分
-      - 土制cph(仅linux)
-      - 土制cph(全平台)
-      - 对拍
-      - 随机数
-      - 运行时间
     - 计算几何
     - - 向量
       - 点线操作

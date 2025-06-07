@@ -1,3 +1,156 @@
+# 赛前准备
+- 打开 vscode 的自动保存功能
+- （如需）配置 python 和 g++环境变量
+- 抄一份土制 cph
+- 下载样例，右键一键解压缩到 `samples-X` 文件夹
+
+
+
+## 土制cph(仅linux)
+
+第一版，使用 `timeout`，仅适用 linux
+```python
+from os import system as e, listdir as l
+from sys import argv
+_, q, f = argv  # q: 题号, f: 文件名
+
+# r: 运行命令
+# 跑 py 需要 `python3 cph.py A A.py`
+if "py" in f:
+	r = f"python3 {f}"
+else:
+	e(f"g++ -std=c++23 -o2 -Wall {f}.cpp -o {f}")
+	r = "./" + f
+
+#
+d = "samples-" + q.capitalize()
+for i in l(d):
+	if not "in" in i: continue
+	print(i)
+	p = d + "/" + i[:-2]
+	if e(f"timeout 2 {r}<{p}in>{p}out"): print("TLE or RE")
+	else:
+		with open(f"{p}out") as o, open(f"{p}ans") as a:
+			print("AC" if o.read().split()==a.read().split() else "WA")
+```
+
+
+
+## 土制cph(全平台)
+
+第二版，使用 `subprocess`，添加彩字，适用 windows 和 linux，支持计算相对误差
+```python
+from os import listdir as l, system as e
+from os.path import join as jp
+from sys import argv as a
+import subprocess as s
+_,q,f = a
+if "py" in f:
+    cmd = f"python {f}"
+else:
+    e(f"g++ -std=gnu++20 -O2 -Wall {f}.cpp -o {f}")
+    cmd = jp(".", f"{f}.exe")
+
+d='samples-'+q.capitalize()
+g,r,p,n='\033[32m','\033[31m','\033[35m','\033[0m'
+for i in l(d):
+    if not 'in' in i: continue
+    t=jp(d,i[:-2])
+    print(i,'测评结果 ',end='',flush=1)
+    try:
+        k = s.run(cmd, timeout=2, stdin=open(f"{t}in"), 
+                 stdout=open(f"{t}out", 'w'), stderr=s.PIPE, text=1)
+        c = lambda o,a : o.read().split() == a.read().split()
+        # c = lambda o,a : all(abs(float(x)-float(y))/max(1,abs(float(y)))<=1e-4 
+        #               for x,y in zip(o.read().split(),a.read().split()))
+        print(f'{g}AC{n}' if c(open(f"{t}out"),open(f"{t}ans")) else f'{r}WA{n}')
+        if k.stderr:print(f'{r}{k.stderr}{n}')
+    except s.TimeoutExpired as k:
+        print(f'{p}TLE or RE{n}')
+        if k.stderr: print(f'{r}{k.stderr}{n}')
+```
+
+
+
+## 对拍
+
+```cpp
+// checker.cpp
+while (1) {
+	system("gen > data.in");  // linux 下换成 ./xxx
+	system("myc < data.in > myc.out");
+	system("std < data.in > std.out");
+	if (system("fc my.out std.out")) {  // linux 下换成 diff
+		system("pause");
+		return 0;
+	}
+}
+```
+
+
+
+## 随机数
+
+随机数
+```cpp
+mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+int Rand(int a, int b) { return rng() % (b - a + 1) + a; }
+shuffle(a.begin(), a.end(), rng);
+```
+随机树/图
+```cpp
+// n 为节点个数
+// m 为边的个数，默认为 -1，表示建树
+// root 为根节点编号，默认为 -1，
+vector<array<int,2>> Graph(int n, int m=-1, int root=-1)
+{
+	assert(m==-1 || (n-1<=m && m<=1LL*n*(n-1)/2));
+	assert(root==-1 || (1<=root && root<=n));
+	vector<array<int,2>> E;
+	set<array<int,2>> diff;
+	// 先建一棵以 0 为根的树，然后选根偏移
+	for (int i = 1; i < n; ++i) {
+		E.push_back( { i, Rand(0, i-1) } );
+	}
+	if (root == -1) { root = Rand(0, n-1); }
+	for (auto& [x, y]: E) {
+		x = (x+root) % n + 1;
+		y = (y+root) % n + 1;
+		diff.insert( { x, y } );
+		diff.insert( { y, x } );  // 无向图中需要添加这条反向边
+	}
+	// 从树建图
+	if (m != -1) {
+		for (int i = n-1; i < m; ++i) {
+			while (1) {
+				int x = Rand(1, n);
+				int y = Rand(1, n);
+				if (x == y || diff.count({x,y})) { continue; }
+				E.push_back( { x, y } );
+				diff.insert( { x, y } );
+				diff.insert( { y, x } );  // 无向图中需要添加这条反向边
+				break;
+			}
+		}
+	}
+	shuffle(E.begin(), E.end(), rng);
+	return E;
+}
+```
+
+
+
+## 运行时间
+
+```cpp
+auto start = chrono::high_resolution_clock::now();
+auto stop = chrono::high_resolution_clock::now();
+auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+if (duration > 998) { cout << ans << "\n"; exit(0); }
+```
+
+
+
 # 杂项
 
 
@@ -148,150 +301,6 @@ cout << max(f(l), f(r)) << "\n";
 
 
 
-## 土制cph(仅linux)
-
-第一版，使用 `timeout`，仅适用 linux
-```python
-from os import system as e, listdir as l
-from sys import argv
-_, q, f = argv  # q: 题号, f: 文件名
-
-# r: 运行命令
-# 跑 py 需要 `python3 cph.py A A.py`
-if "py" in f:
-	r = f"python3 {f}"
-else:
-	e(f"g++ -std=c++23 -o2 -Wall {f}.cpp -o {f}")
-	r = "./" + f
-
-#
-d = "samples-" + q.capitalize()
-for i in l(d):
-	if not "in" in i: continue
-	print(i)
-	p = d + "/" + i[:-2]
-	if e(f"timeout 2 {r}<{p}in>{p}out"): print("TLE or RE")
-	else:
-		with open(f"{p}out") as o, open(f"{p}ans") as a:
-			print("AC" if o.read().split()==a.read().split() else "WA")
-```
-
-
-
-## 土制cph(全平台)
-
-第二版，使用 `subprocess`，添加彩字，适用 windows 和 linux
-```python
-from os import listdir as l, system as e
-from os.path import join as jp
-from sys import argv as a
-import subprocess as s
-_,q,f = a
-if "py" in f:
-    cmd = f"python {f}"
-else:
-    e(f"g++ -std=gnu++20 -O2 -Wall {f}.cpp -o {f}")
-    cmd = jp(".", f"{f}.exe")
-
-d='samples-'+q.capitalize()
-g,r,p,n='\033[32m','\033[31m','\033[35m','\033[0m'
-for i in l(d):
-    if not 'in' in i: continue
-    t=jp(d,i[:-2])
-    print(i,'测评结果 ',end='',flush=1)
-    try:
-        k=s.run(cmd,timeout=2,stdin=open(t+'in'),stdout=open(t+'out','w'),stderr=s.PIPE,text=1)
-        if open(t+'out').read().split()==open(t+'ans').read().split():
-            print(f'{g}AC{n}')
-        else:
-            print(f'{r}WA{n}')
-        k.stderr and print(f'{r}{k.stderr}{n}')
-    except s.TimeoutExpired as k:
-        print(f'{p}TLE or RE{n}')
-        k.stderr and print(f'{r}{k.stderr}{n}')
-```
-
-
-
-## 对拍
-
-```cpp
-// checker.cpp
-while (1) {
-	system("gen > data.in");  // linux 下换成 ./xxx
-	system("myc < data.in > myc.out");
-	system("std < data.in > std.out");
-	if (system("fc my.out std.out")) {  // linux 下换成 diff
-		system("pause");
-		return 0;
-	}
-}
-```
-
-
-
-## 随机数
-
-随机数
-```cpp
-mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-int Rand(int a, int b) { return rng() % (b - a + 1) + a; }
-shuffle(a.begin(), a.end(), rng);
-```
-随机树/图
-```cpp
-// n 为节点个数
-// m 为边的个数，默认为 -1，表示建树
-// root 为根节点编号，默认为 -1，
-vector<array<int,2>> Graph(int n, int m=-1, int root=-1)
-{
-	assert(m==-1 || (n-1<=m && m<=1LL*n*(n-1)/2));
-	assert(root==-1 || (1<=root && root<=n));
-	vector<array<int,2>> E;
-	set<array<int,2>> diff;
-	// 先建一棵以 0 为根的树，然后选根偏移
-	for (int i = 1; i < n; ++i) {
-		E.push_back( { i, Rand(0, i-1) } );
-	}
-	if (root == -1) { root = Rand(0, n-1); }
-	for (auto& [x, y]: E) {
-		x = (x+root) % n + 1;
-		y = (y+root) % n + 1;
-		diff.insert( { x, y } );
-		diff.insert( { y, x } );  // 无向图中需要添加这条反向边
-	}
-	// 从树建图
-	if (m != -1) {
-		for (int i = n-1; i < m; ++i) {
-			while (1) {
-				int x = Rand(1, n);
-				int y = Rand(1, n);
-				if (x == y || diff.count({x,y})) { continue; }
-				E.push_back( { x, y } );
-				diff.insert( { x, y } );
-				diff.insert( { y, x } );  // 无向图中需要添加这条反向边
-				break;
-			}
-		}
-	}
-	shuffle(E.begin(), E.end(), rng);
-	return E;
-}
-```
-
-
-
-## 运行时间
-
-```cpp
-auto start = chrono::high_resolution_clock::now();
-auto stop = chrono::high_resolution_clock::now();
-auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-if (duration > 998) { cout << ans << "\n"; exit(0); }
-```
-
-
-
 # 计算几何
 
 https://csacademy.com/app/geometry_widget/
@@ -340,8 +349,12 @@ int toLeft(Point a, Point b, Point c) { return sgn((b-a)^(c-a)); }
 db getAngle(Vector a, Vector b) { return fabs(atan2(fabs(a^b), a*b)); }
 ```
 
-极角排序
+极角排序 
 ```cpp
+// 直接计算极角
+atan2(y, x);            // atan2(n, m) 表示以 m 为极轴，m 转向 n 为正方向
+fmod(2*PI+ang(), 2*PI)  // 极角归一化 
+
 // 所有点在一个半平面内的简化版本
 bool argcmp(Point a, Point b) { return (a^b) > eps; }
 
@@ -444,8 +457,8 @@ double DisToSeg(Point p, Point a, Point b) {
 ```cpp
 struct Polygon: vector<Point> {
     using vector<Point>::vector;  // 直接使用 vector 的构造函数
-    size_t nxt(size_t i) { return i+1==this->size()? 0: i+1; }
-    size_t pre(size_t i) { return i==0? this->size()-1: i-1; }
+    size_t nxt(size_t i) { return i+1==size()? 0: i+1; }
+    size_t pre(size_t i) { return i==0? size()-1: i-1; }
 	// 求多边形面积
 	// 为避免精度误差，可以返回 2*S，即去掉 "0.5*()"
 	db area() {
@@ -1386,17 +1399,53 @@ int main()
 有向图中欧拉通路存在条件：起点出度比入度大 $1$，终点入度比出度大 $1$，其余点入度等于出度。
 有向图中欧拉回路存在条件：所有点入度等于出度。
 ```cpp
+int n, deg[N<<1], cur[N<<1];
+bool vis[N];
+vector<int> ans;
+vector<pair<int,int>> G[N<<1];
+
 void dfs(int u)
-{   // Hierholzer 算法
-    for (auto [v, id]: G[u]) {
-        if (!vis[id]) {
-            vis[id] = true;
+{
+    for (int &j = cur[u]; j < G[u].size(); ++j) {
+        auto [v, i] = G[u][j];
+        if (!vis[i]) {
+            vis[i] = true;
             dfs(v);
+            ans.push_back(i);
         }
     }
-    ans.push_back(u);
+}
+
+int main()
+{
+	int s = 1;
+	while (s <= 2*n && deg[s] % 2 == 0) { ++s; }
+	if (s > 2 * n) {
+	    s = 1;
+	    while (!deg[s]) { ++s; }
+	}
+	
+	int cnt = 0;
+	for (int i = 1; i <= 2*n; ++i) {
+	    cnt += deg[i] % 2;
+	}
+	if (cnt > 2) {
+	    cout << "NO\n"; return;
+	}
+	
+	dfs(s);
+	
+	if (ans.size() != n) {
+	    cout << "NO\n";
+	} else {
+	    cout << "YES\n";
+	    for (auto x: ans) {
+	        cout << x << " \n"[x == ans.back()];
+	    }
+	}
 }
 ```
+****
 
 
 ## DSU on tree
@@ -1902,31 +1951,43 @@ void solve()
 ## 字符串哈希
 
 ```cpp
-typedef long long ll;
-typedef pair<ll, ll> hs;
+typedef pair<ll,ll> hs;
 const ll MOD1=1e9+7, MOD2=1e9+9;
 const hs p = { 117, 131 };
 hs operator+ (hs a, hs b) {
-	return hs{(a.first+b.first)%MOD1, (a.second+b.second)%MOD2};
+    return hs{ (a.first+b.first)%MOD1, (a.second+b.second)%MOD2 };
 }
 hs operator- (hs a, hs b) {
-	return hs{(a.first-b.first+MOD1)%MOD1, (a.second-b.second+MOD2)%MOD2};
+    return hs{ (a.first-b.first+MOD1)%MOD1, (a.second-b.second+MOD2)%MOD2 };
 }
 hs operator* (hs a, hs b) {
-	return hs{(a.first*b.first)%MOD1, (a.second*b.second)%MOD2};
+    return hs{ a.first*b.first%MOD1, a.second*b.second%MOD2 };
 }
 struct Hash {
     int n;
-    vector<hs> hs1, Pow;
-    Hash(const string &s) {
+    vector<hs> hs1, hs2, Pow;
+    Hash(string s) {  // 0-index
         n = s.length();
-        hs1.resize(n+2);
-        Pow.resize(n+2);
+        hs1.resize(n + 2);
+        hs2.resize(n + 2);
+        Pow.resize(n + 2);
         Pow[0] = { 1LL, 1LL };
-        for (int i = 1; i <= n; ++i) { Pow[i] = Pow[i-1]*p; }
-        for (int i = 1; i <= n; ++i) { hs1[i] = hs1[i-1]*p + hs{s[i-1],s[i-1]}; }
+        for (int i = 1; i <= n; ++i) {
+            Pow[i] = Pow[i-1] * p;
+        }
+        for (int i = 1; i <= n; ++i) {
+            hs1[i] = hs1[i-1] * p + hs{s[i-1]-'a'+1, s[i-1]-'a'+1};
+        }
+        for (int i = n; i; --i) {
+            hs2[i] = hs2[i+1] * p + hs{s[i-1]-'a'+1, s[i-1]-'a'+1};
+        }
     }
-    hs get(int l, int r) { return hs1[r]-hs1[l-1]*Pow[r-l+1]; }
+    hs get1(int l, int r) {
+        return hs1[r] - hs1[l-1] * Pow[r-l+1];
+    }
+    hs get2(int l, int r) {
+        return hs2[l] - hs2[r+1] * Pow[r-l+1];
+    }
 };
 ```
 
