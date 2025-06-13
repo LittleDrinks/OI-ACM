@@ -1,3 +1,3 @@
 ---
-Aliases: [ "#bfs" ]
+Aliases: [ "#搜索/bfs" ]
 ---
