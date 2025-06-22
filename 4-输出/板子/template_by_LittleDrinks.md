@@ -1,6 +1,6 @@
 # 赛前准备
 - 打开 vscode 的自动保存功能
-- （如需）配置 python 和 g++环境变量
+- （如需）配置 python 和 g++ 环境变量
 - 抄一份土制 cph
 - 下载样例，右键一键解压缩到 `samples-X` 文件夹
 
@@ -152,6 +152,14 @@ if (duration > 998) { cout << ans << "\n"; exit(0); }
 
 
 # 杂项
+
+
+
+## 解除python大数限制
+```python
+import sys
+sys.set_int_max_str_digits(100005)
+```
 
 
 
@@ -743,6 +751,19 @@ struct ST {
         if (rr < n) { return rr; }
         return -1;
     }
+	int find(int l, int x) {  // 倍增写法
+	    assert(l < n);
+	    if (st[0][l] < x) { return l; }
+	    if (query(l, n-1) >= x) { return n; }
+	    int ans = l, g = st[0][l];
+	    for (int i = I; i >= 0; --i) {
+	        if (ans+(1<<i) < n && gcd(g, st[i][ans]) >= x) {
+	            g = gcd(g, st[i][ans]);
+	            ans += 1 << i;
+	        }
+	    }
+	    return ans;
+	}
 };
 ```
 
@@ -1836,6 +1857,13 @@ ll qpow(ll a, ll b=MOD-2)
     return res;
 }
 ```
+预处理 $1$ 到 $n$ 的乘法逆元
+```cpp
+Inv[1] = 1;
+for (int i = 2; i <= n; ++i) {
+	Inv[i] = (ll)(MOD - MOD / i) * Inv[MOD % i] % MOD;
+}
+```
 
 
 
@@ -1862,6 +1890,10 @@ import math
 def C(n, k):
     return math.factorial(n)//math.factorial(k)//math.factorial(n-k);
 ```
+
+
+## Lucas
+
 
 
 ## 卡特兰数
@@ -1992,6 +2024,10 @@ struct Hash {
 ```
 
 
+## AC自动机
+
+
+
 # DP
 
 
@@ -2070,7 +2106,7 @@ cout << (ans-m)/2 << "\n";  // 去除无向边，环正走反走算一个
 - `cin` 读入大数据导致 `TLE`，总输入量达到 `4e6` 就要快读或者优化 `cin`
 - 做图论题先看看图是否联通
 - 注意数据范围中带 $0$ 的部分，比如做除法时能不能作分母
-- 注意位运算的优先级，打括号
+- 注意位运算的优先级，打括号，如 `(a^b)==1`
 - 考虑初态，什么操作都不做
 - 有两维，可以尝试交换枚举顺序
 - 如果感觉复杂度过高，可以考虑贪心

@@ -4,9 +4,10 @@
   "promptDelete": false,
   "alwaysUpdateLinks": true,
   "pdfExportSettings": {
-    "pageSize": "Letter",
+    "includeName": false,
+    "pageSize": "A4",
     "landscape": false,
-    "margin": "0",
+    "margin": "1",
     "downscalePercent": 100
   }
 }
