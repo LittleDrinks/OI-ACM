@@ -10,7 +10,7 @@ from sys import argv as a
 import subprocess as s
 _,q,f = a
 if "py" in f:
-    cmd = f"python {f}"
+    cmd = ["python3", f]
 else:
     e(f"g++ -std=gnu++20 -O2 -Wall {f}.cpp -o {f}")
     cmd = jp(".", f"{f}.exe")
