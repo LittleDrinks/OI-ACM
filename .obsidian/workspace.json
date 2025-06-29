@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3-文档/2-比赛/SHUPC2025.md",
+                "file": "2-题解/gym105657B.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SHUPC2025"
+              "title": "gym105657B"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "SHUPC",
+                "query": "hangzhou",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -197,35 +197,35 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "26fd9dcc7c29691a",
   "lastOpenFiles": [
-    "2-题解/gym579538G.md",
-    "3-文档/2-比赛/SHUPC2025.md",
+    "3-文档/2-比赛/The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25 Hangzhou).md",
     "0-系统组件/homepage.md",
-    "3-文档/2-比赛/The 2025 Sichuan Provincial Collegiate Programming Contest.md",
-    "2-题解/gym105949K.md",
-    "2-题解/gym105949A.md",
-    "2-题解/gym105949J.md",
-    "2-题解/gym105949F.md",
-    "2-题解/gym105949H.md",
-    "0-系统组件/2-模板/比赛模板.md",
-    "2-题解/gym105941C.md",
-    "2-题解/CF2112E.md",
-    "4-输出/板子/土制cph(全平台).md",
-    "4-输出/板子/解除python大数限制.md",
-    "4-输出/板子/土制cph(仅linux).md",
-    "4-输出/板子/有向图上找最小环.md",
-    "4-输出/板子/最短路.md",
-    "4-输出/板子/高精度.md",
-    "4-输出/板子/字符串哈希.md",
-    "3-文档/1-笔记/珂朵莉树.md",
-    "2-题解/gym105231IL.md",
-    "2-题解/gym105930G.md",
-    "2-题解/gym105941F.md",
-    "2-题解/gym105930H.md",
+    "3-文档/2-比赛/SHUPC2025夏季赛.md",
+    "2-题解/gym616306D.md",
+    "2-题解/gym616306G.md",
+    "2-题解/gym616306F.md",
+    "2-题解/gym616306J.md",
+    "2-题解/gym105657F.md",
+    "3-文档/1-笔记/tarjan.md",
+    "2-题解/gym616306C.md",
+    "3-文档/1-笔记/多路归并.md",
+    "2-题解/P1631.md",
+    "().md",
+    "3-文档/2-比赛/SHUPC2025春季赛.md",
     "4-输出/板子/template_by_LittleDrinks.md",
     "4-输出/板子/AC自动机.md",
     "~syncthing~.nomedia.tmp",
+    "4-输出/板子/因数.md",
+    "4-输出/板子/线性筛.md",
+    "4-输出/板子/Lucas.md",
+    "4-输出/板子/卡特兰数.md",
+    "4-输出/板子/容斥原理.md",
+    "4-输出/板子/一些公柿.md",
+    "4-输出/板子/O(1)计算排列组合数.md",
+    "2-题解/gym579538G.md",
+    "3-文档/2-比赛/The 2025 Sichuan Provincial Collegiate Programming Contest.md",
+    "2-题解/gym105949K.md",
     "2-题解/未命名",
     "4-输出/板子/~syncthing~点线操作.sync-conflict-20250425-011006-7ZE3FLQ.md.tmp",
     "4-输出/板子/~syncthing~计算几何.sync-conflict-20250425-011007-7ZE3FLQ.md.tmp",

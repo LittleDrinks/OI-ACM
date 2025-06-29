@@ -46,7 +46,7 @@ from sys import argv as a
 import subprocess as s
 _,q,f = a
 if "py" in f:
-    cmd = f"python {f}"
+    cmd = ["python3", f]
 else:
     e(f"g++ -std=gnu++20 -O2 -Wall {f}.cpp -o {f}")
     cmd = jp(".", f"{f}.exe")
@@ -1802,11 +1802,13 @@ struct Flow {
 
 
 
-## 预处理因数
+## 因数
 
+可以在 $O(\sqrt{V})$ 的时间内求出一个数的因数。
 $[1,n]$ 所有数字的因数个数和是 $O(n\log n)$ 的。
 $720720$ 是 $10^6$ 内因数最多的数字，其因数个数为 $240$。
 $735134400$ 是 $10^9$ 内因数最多的数字，其因数个数为 $1344$。
+$10^{12}$ 以内的因数大约是 $3\times 10^3$ 数量级。
 ```cpp
 vector d(mx+1, vector<int>());
 for (int i = 1; i <= mx; ++i) {
@@ -1893,7 +1895,22 @@ def C(n, k):
 
 
 ## Lucas
-
+```cpp
+const int MOD = 1000003;
+ll C(ll a, ll b) {
+	if (a < b) { return 0; }
+	ll down = 1, up = 1;
+	for (int i = a, j = 1; j <= b; --i, ++j) {
+		up = up * i % MOD;
+		down = down * j % MOD;
+	}
+	return up * qpow(down) % MOD;
+}
+ll lucas(ll a, ll b) {
+	if (a < p && b < p) { return C(a, b); }
+	return C(a%MOD, b%MOD) * lucas(a/MOD, b/MOD) % MOD;
+}
+```
 
 
 ## 卡特兰数
@@ -2025,7 +2042,68 @@ struct Hash {
 
 
 ## AC自动机
-
+给你一个文本串 $S$ 和 $n$ 个模式串 $T_{1 \sim n}$，请你分别求出每个模式串 $T_i$ 在 $S$ 中出现的次数。
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+const int N=2e6+5;
+int n,ch[N][26],cnt=0,fail[N],tag[N],id[N];
+char s[N];
+vector<int> e[N];
+void insert(char *t,int k){
+	int p=0;
+	for(int i=0;t[i];i++){
+		int c=t[i]-'a';
+		if(!ch[p][c]) ch[p][c]=++cnt;
+		p=ch[p][c];
+	}
+	id[k]=p;
+}
+void build(){
+	queue<int> q;
+	for(int i=0;i<26;i++){
+		if(ch[0][i]) q.push(ch[0][i]);
+	}
+	while(!q.empty()){
+		int u=q.front();q.pop();
+		for(int i=0;i<26;i++){
+			int v=ch[u][i];
+			if(v) fail[v]=ch[fail[u]][i],q.push(v);
+			else ch[u][i]=ch[fail[u]][i];
+		}
+	}
+}
+void query(char *t){
+	for(int i=0,k=0;t[i];i++){
+		k=ch[k][t[i]-'a'];
+		tag[k]++;
+	}
+}
+void dfs(int u){
+	for(auto v:e[u]){
+		dfs(v);
+		tag[u]+=tag[v];
+	}
+}
+int main(){
+	cin>>n;
+	for(int i=1;i<=n;i++){
+		char t[N];
+		cin>>t;
+		insert(t,i);
+	}
+	cin>>s;
+	build();
+	query(s);
+	for(int i=1;i<=cnt;i++)
+		e[fail[i]].push_back(i);
+	dfs(0);
+	for(int i=1;i<=n;i++){
+		cout<<tag[id[i]]<<endl;
+	}
+	return 0;
+}
+```
 
 
 # DP

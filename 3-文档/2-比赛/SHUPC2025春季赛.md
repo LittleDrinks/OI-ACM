@@ -2,6 +2,7 @@
 tags:
   - 比赛
 aliases:
+  - SHUACM集训队
 ---
 # [SHUPC2025](https://codeforces.com/gym/579538)
 
