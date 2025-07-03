@@ -2,7 +2,7 @@
 tags:
   - 比赛
 aliases: 
-author: HDU
+author: hdu 出题组
 ---
 # [The 2025 Sichuan Provincial Collegiate Programming Contest](https://codeforces.com/gym/105949)
 

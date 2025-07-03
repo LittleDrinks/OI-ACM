@@ -1,7 +1,8 @@
 ---
 tags:
   - 比赛
-aliases:
+aliases: 
+author: SUA 程序设计竞赛命题组
 ---
 # [The 15th Shandong CCPC Provincial Collegiate Programming Contest](https://codeforces.com/gym/105930)
 

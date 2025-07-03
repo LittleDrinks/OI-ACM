@@ -1,7 +1,7 @@
 ---
 tags:
   - 题解
-  - 数论
+  - 数论/因数
 aliases:
 ---
 ## [E - GCD of Subset](https://atcoder.jp/contests/abc393/tasks/abc393_e)

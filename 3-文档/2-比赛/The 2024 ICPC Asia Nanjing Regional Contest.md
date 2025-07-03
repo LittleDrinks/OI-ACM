@@ -1,6 +1,8 @@
 ---
 tags:
   - 比赛
+aliases: 
+author: SUA 程序设计竞赛命题组
 ---
 # [The 2024 ICPC Asia Nanjing Regional Contest](https://codeforces.com/gym/105484)
 

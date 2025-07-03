@@ -1,7 +1,8 @@
 ---
 tags:
   - 比赛
-aliases:
+aliases: 
+author: WHU ICPC 命题组
 ---
 # [2024 (ICPC) Jiangxi Provincial Contest -- Official Contest](https://codeforces.com/gym/105231)
 

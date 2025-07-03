@@ -61,6 +61,7 @@ longform:
       - Lucas
       - 卡特兰数
       - 容斥原理
+      - FFT
     - 字符串
     - - 前缀函数与KMP
       - Manacher

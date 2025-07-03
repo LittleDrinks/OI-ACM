@@ -1,7 +1,8 @@
 ---
 tags:
   - 比赛
-aliases:
+aliases: 
+author: SUA 程序设计竞赛命题组
 ---
 # [The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25: Hangzhou)](https://codeforces.com/gym/105657)
 

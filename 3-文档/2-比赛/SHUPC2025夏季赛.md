@@ -2,7 +2,7 @@
 tags:
   - 比赛
 aliases: 
-author:
+author: SHUACM集训队
 ---
 # [SHUPC-summer 2025](https://codeforces.com/gym/616306)
 
