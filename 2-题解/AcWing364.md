@@ -6,7 +6,7 @@ tags:
 aliases:
   - Network
 ---
-## [AcWing364. Network]()
+## [AcWing364. 网络](https://www.acwing.com/problem/content/366/)
 
 按边双连通分量将原来的图缩为一棵树。树上所有的边就是原来图中的桥。
 每次添加一条边，相当于将树上两点简单路径上的所有边排除，每次直接暴力跳就可以了，时间复杂度 $O(m+qn)$。
