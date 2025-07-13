@@ -62,6 +62,7 @@ longform:
       - Lucas
       - 高斯消元
       - FFT
+      - NTT
     - 字符串
     - - 前缀函数与KMP
       - Manacher
