@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3-文档/2-比赛/2024 National Invitational of CCPC (Zhengzhou), 2024 CCPC Henan Provincial Collegiate Programming Contest.md",
+                "file": "4-输出/板子/树哈希.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2024 National Invitational of CCPC (Zhengzhou), 2024 CCPC Henan Provincial Collegiate Programming Contest"
+              "title": "树哈希"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "105158",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -84,7 +84,8 @@
               "title": "Longform"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -151,12 +152,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "2-题解/gym105941B.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "gym105941B 的大纲"
             }
           },
           {
@@ -195,11 +197,15 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "26fd9dcc7c29691a",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "2-题解/gym105158H.md",
-    "3-文档/2-比赛/2024 National Invitational of CCPC (Zhengzhou), 2024 CCPC Henan Provincial Collegiate Programming Contest.md",
+    "4-输出/板子/点分治与树的重心.md",
+    "4-输出/板子/树哈希.md",
     "0-系统组件/homepage.md",
+    "2-题解/gym105941B.md",
+    "3-文档/2-比赛/2025 National Invitational of CCPC (Zhengzhou), 2025 CCPC Henan Provincial Collegiate Programming Contest.md",
+    "3-文档/2-比赛/2024 National Invitational of CCPC (Zhengzhou), 2024 CCPC Henan Provincial Collegiate Programming Contest.md",
+    "2-题解/gym105158H.md",
     "2-题解/gym105158D.md",
     "3-文档/2-比赛/The 2025 Sichuan Provincial Collegiate Programming Contest.md",
     "2-题解/gym105949C.md",
@@ -220,10 +226,6 @@
     "4-输出/板子/常用函数.md",
     "4-输出/板子/解除python大数限制.md",
     "4-输出/板子/一些公柿.md",
-    "4-输出/板子/随机数.md",
-    "4-输出/板子/线性筛.md",
-    "4-输出/板子/整数域三分.md",
-    "4-输出/板子/土制cph(全平台).md",
     "0-系统组件/1-附件/Pasted image 20250711125540.png",
     "0-系统组件/1-附件/2024CCPC重庆站题解.pdf",
     "~syncthing~.nomedia.tmp",
