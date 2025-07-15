@@ -2,7 +2,7 @@
 tags:
   - 题解
   - tarjan/PBCC
-  - 二分图
+  - 二分图/二分图染色
 aliases:
 ---
 ## [AcWing365. 圆桌骑士](https://www.acwing.com/problem/content/367/)
