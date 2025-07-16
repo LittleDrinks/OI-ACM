@@ -3,25 +3,28 @@ tags:
 ---
 ```cpp
 vector<int> prefixFunction(string s)
-{
-    vector<int> pi(s.length());
-    for (int i = 1; i < s.length(); ++i) {
-        int j = pi[i-1];
-        while (j && s[j]!=s[i]) { j = pi[j-1]; }
-        if (s[j] == s[i]) { ++j; }
-        pi[i] = j;
+{   // fail : 1-index
+    int n = s.length();
+    vector<int> fail(n + 1);
+    for (int i = 1, j = 0; i < n; ++i) {
+        while (j && s[i] != s[j]) { j = fail[j]; }
+        j += (s[i] == s[j]);
+        fail[i + 1] = j;
     }
-    return pi;
+    return fail;
 }
 void kmp()
 {
 	string s, t;
-    cin >> s >> t;
-    int n = s.length(), m = t.length();
-    vector<int> pi = prefixFunction(t+"#"+s);
-    for (int i = m+1; i <= n+m; ++i) {
-        if (pi[i] == m) { cout << i-2*m+1 << "\n"; }
-    }
-    for (int i = 0; i < m; ++i) { cout << pi[i] << " "; }
+	cin >> s >> t;
+	int n = s.length();
+	int m = t.length();
+	auto fail = prefixFunction(t + "#" + s);
+	for (int i = m + 2; i <= n + m + 1; ++i) {
+	    if (fail[i] == m) {
+	        cout << i - 2*m << "\n";
+	    }
+	}
+	for (int i = 1; i <= m; ++i) { cout << fail[i] << " \n"[i == m]; }
 }
 ```

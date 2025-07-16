@@ -65,9 +65,9 @@ longform:
       - FFT
       - NTT
     - 字符串
-    - - 前缀函数与KMP
+    - - 字符串哈希
+      - 前缀函数与KMP
       - Manacher
-      - 字符串哈希
       - AC自动机
     - DP
     - - 无向图上回路计数
