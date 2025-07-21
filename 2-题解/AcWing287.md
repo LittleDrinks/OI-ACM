@@ -3,7 +3,7 @@ tags:
   - 题解
   - DP
   - DP/树形DP
-  - DP/树形DP/二次扫描与换根法
+  - DP/树形DP/二次扫描
 aliases:
   - AcWing287. 积蓄程度
 speed:

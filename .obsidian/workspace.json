@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "8855f2ff767fced7",
+        "id": "6bff4b467224801a",
         "type": "tabs",
         "children": [
           {
-            "id": "bf2bfd070b6bd76f",
+            "id": "0cc01636f1817756",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "4-输出/板子/烂掉啦.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "烂掉啦"
             }
           }
         ]
@@ -49,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:KMP",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -190,38 +194,38 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "bf2bfd070b6bd76f",
+  "active": "26fd9dcc7c29691a",
   "lastOpenFiles": [
-    "2-题解/P2375.md",
-    "3-文档/1-笔记/KMP.md",
-    "2-题解/P4824.md",
-    "3-文档/1-笔记/Trie.md",
-    "2-题解/P4407.md",
-    "未命名.md",
-    "2-题解/gym105941E.md",
-    "2-题解/P2536.md",
-    "4-输出/板子/前缀函数与KMP.md",
-    "4-输出/板子/字符串哈希.md",
-    "0-系统组件/homepage.md",
-    "3-文档/1-笔记/DP.md",
-    "4-输出/板子/Index.md",
-    "4-输出/板子/template_by_LittleDrinks.md",
-    "4-输出/板子/AC自动机.md",
-    "4-输出/板子/线性筛.md",
-    "4-输出/板子/一些公柿.md",
-    "2-题解/CF559C.md",
-    "3-文档/2-比赛/2025 National Invitational of CCPC (Zhengzhou), 2025 CCPC Henan Provincial Collegiate Programming Contest.md",
-    "2-题解/gym105941B.md",
-    "3-文档/2-比赛/2024 National Invitational of CCPC (Zhengzhou), 2024 CCPC Henan Provincial Collegiate Programming Contest.md",
-    "3-文档/2-比赛/The 2025 Jiangsu Collegiate Programming Contest, The 2025 Guangdong Provincial Collegiate Programming Contest.md",
-    "2-题解/gym105945I.md",
-    "2-题解/gym105986B.md",
+    "2-题解/gym105986E.md",
+    "2-题解/AcWing287.md",
     "3-文档/2-比赛/2025 Wuhan University of Technology Programming Contest.md",
-    "2-题解/P6577.md",
+    "4-输出/板子/烂掉啦.md",
+    "4-输出/板子/线段树.md",
+    "0-系统组件/homepage.md",
+    "4-输出/板子/随机数.md",
+    "4-输出/板子/高精度.md",
+    "4-输出/板子/常用函数.md",
+    "4-输出/板子/懒标记线段树.md",
+    "4-输出/板子/树状数组.md",
+    "3-文档/2-比赛/2025牛客暑期多校训练营2.md",
+    "2-题解/NCC108299H.md",
+    "0-系统组件/3-Excalidraw/NCC108299H图示.md",
+    "3-文档/1-笔记/凸壳.md",
+    "3-文档/1-笔记/计算几何 凸包.md",
+    "3-文档/2-比赛/2025牛客暑期多校训练营1.md",
+    "2-题解/P2322.md",
+    "2-题解/P2292.md",
+    "4-输出/板子/AC自动机.md",
+    "~syncthing~.nomedia.tmp",
+    "2-题解/NCC108298I.md",
+    "4-输出/板子/对拍.md",
+    "4-输出/板子/因数.md",
+    "4-输出/板子/一些公柿.md",
+    "4-输出/板子/数学.md",
+    "4-输出/板子/对顶multiset.md",
     "0-系统组件/1-附件/Pasted image 20250713160331.png",
     "0-系统组件/1-附件/Pasted image 20250711125540.png",
     "0-系统组件/1-附件/2024CCPC重庆站题解.pdf",
-    "~syncthing~.nomedia.tmp",
     "2-题解/未命名",
     "4-输出/板子/~syncthing~点线操作.sync-conflict-20250425-011006-7ZE3FLQ.md.tmp",
     "4-输出/板子/~syncthing~计算几何.sync-conflict-20250425-011007-7ZE3FLQ.md.tmp",
