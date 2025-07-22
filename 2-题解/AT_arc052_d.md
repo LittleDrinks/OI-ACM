@@ -13,7 +13,7 @@ speed:
 当模数 $k<B$ 时，考虑数位 DP。将当前位数 $p$、$v=n\% k$、各位和 $s$ 和是否到达上限 $u$ 作为四个状态，每次枚举 $p-1$ 位可能的取值，通过记忆化搜索转移。时间复杂度 $O(10\times B\times 90\times 10)=O(9000B)$。此处写代码时主要参考了[这份博客](https://www.luogu.com.cn/article/b1zida77)。
 最后，当 $90\times\frac{M}{B}=9000B\Rightarrow B=10000$ 时有最小复杂度。
 
-#### [AC代码](https://atcoder.jp/contests/arc052/submissions/57440699)
+[***AC 代码***](https://atcoder.jp/contests/arc052/submissions/57440699)
 
 ```cpp
 #include <bits/stdc++.h>

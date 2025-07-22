@@ -72,6 +72,7 @@ longform:
       - AC自动机
     - DP
     - - 无向图上回路计数
+      - 数位DP
     - 烂掉啦
   ignoredFiles:
     - manuscript
