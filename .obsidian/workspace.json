@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "61540c454d4d8cf0",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "164c342113132450",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0-系统组件/homepage.md",
+                "file": "3-文档/2-比赛/2025 National Invitational of CCPC (Fujian), The 12th Fujian Collegiate Programming Contest.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "homepage"
+              "title": "2025 National Invitational of CCPC (Fujian), The 12th Fujian Collegiate Programming Contest"
+            }
+          },
+          {
+            "id": "ca71dcde86be3e12",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2-题解/gym105977F.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "gym105977F"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -53,7 +68,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:DP/数位DP",
+                "query": "tag:#线段树  ",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -194,18 +209,28 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "164c342113132450",
+  "active": "ca71dcde86be3e12",
   "lastOpenFiles": [
+    "2-题解/gym105977F.md",
+    "3-文档/2-比赛/2025 National Invitational of CCPC (Fujian), The 12th Fujian Collegiate Programming Contest.md",
+    "4-输出/板子/随机数.md",
+    "4-输出/板子/高精度.md",
+    "4-输出/板子/树状数组.md",
+    "4-输出/板子/线段树.md",
+    "4-输出/板子/懒标记线段树.md",
+    "0-系统组件/homepage.md",
+    "4-输出/板子/二维树状数组.md",
+    "4-输出/板子/一些公柿.md",
+    "2-题解/gym102900C.md",
+    "2-题解/P8856.md",
+    "2-题解/SP1716.md",
+    "4-输出/板子/数位DP.md",
     "2-题解/AcWing311.md",
     "2-题解/P2602.md",
     "2-题解/AT_arc052_d.md",
-    "4-输出/板子/数位DP.md",
     "2-题解/P13085.md",
     "2-题解/P4999.md",
     "3-文档/1-笔记/DP 数位DP.md",
-    "0-系统组件/homepage.md",
-    "4-输出/板子/随机数.md",
-    "2-题解/SP1716.md",
     "2-题解/gym105657B.md",
     "2-题解/gym103729L.md",
     "2-题解/CF2057D.md",
@@ -213,16 +238,6 @@
     "4-输出/板子/线性筛.md",
     "2-题解/NCC108299H.md",
     "~syncthing~.nomedia.tmp",
-    "4-输出/板子/烂掉啦.md",
-    "2-题解/gym105986E.md",
-    "2-题解/AcWing287.md",
-    "3-文档/2-比赛/2025 Wuhan University of Technology Programming Contest.md",
-    "4-输出/板子/线段树.md",
-    "4-输出/板子/高精度.md",
-    "4-输出/板子/常用函数.md",
-    "4-输出/板子/懒标记线段树.md",
-    "4-输出/板子/树状数组.md",
-    "3-文档/2-比赛/2025牛客暑期多校训练营2.md",
     "0-系统组件/1-附件/Pasted image 20250713160331.png",
     "0-系统组件/1-附件/Pasted image 20250711125540.png",
     "0-系统组件/1-附件/2024CCPC重庆站题解.pdf",
