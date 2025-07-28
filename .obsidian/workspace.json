@@ -13,30 +13,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3-文档/2-比赛/2025 National Invitational of CCPC (Fujian), The 12th Fujian Collegiate Programming Contest.md",
+                "file": "4-输出/板子/可持久化Trie.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2025 National Invitational of CCPC (Fujian), The 12th Fujian Collegiate Programming Contest"
-            }
-          },
-          {
-            "id": "ca71dcde86be3e12",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2-题解/gym105977F.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "gym105977F"
+              "title": "可持久化Trie"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -68,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#线段树  ",
+                "query": "tag:哈希",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -99,7 +84,8 @@
               "title": "Longform"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -209,35 +195,35 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "ca71dcde86be3e12",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "4-输出/板子/可持久化线段树.md",
+    "4-输出/板子/可持久化Trie.md",
+    "4-输出/板子/可持久化.md",
+    "~syncthing~.nomedia.tmp",
+    "0-系统组件/homepage.md",
+    "4-输出/板子/无向图上回路计数.md",
+    "4-输出/板子/单调队列优化（滑动窗口）.md",
+    "4-输出/板子/数位DP.md",
+    "4-输出/板子/O(1)计算排列组合数.md",
+    "4-输出/板子/快速幂与乘法逆元.md",
+    "2-题解/gym105902C.md",
+    "3-文档/1-笔记/哈希.md",
+    "4-输出/板子/线段树.md",
+    "4-输出/板子/高精度.md",
+    "4-输出/板子/字符串哈希.md",
+    "2-题解/NCC108301G.md",
+    "3-文档/2-比赛/2025牛客暑期多校训练营4.md",
+    "2-题解/CF559C.md",
     "2-题解/gym105977F.md",
     "3-文档/2-比赛/2025 National Invitational of CCPC (Fujian), The 12th Fujian Collegiate Programming Contest.md",
     "4-输出/板子/随机数.md",
-    "4-输出/板子/高精度.md",
     "4-输出/板子/树状数组.md",
-    "4-输出/板子/线段树.md",
     "4-输出/板子/懒标记线段树.md",
-    "0-系统组件/homepage.md",
     "4-输出/板子/二维树状数组.md",
     "4-输出/板子/一些公柿.md",
     "2-题解/gym102900C.md",
     "2-题解/P8856.md",
-    "2-题解/SP1716.md",
-    "4-输出/板子/数位DP.md",
-    "2-题解/AcWing311.md",
-    "2-题解/P2602.md",
-    "2-题解/AT_arc052_d.md",
-    "2-题解/P13085.md",
-    "2-题解/P4999.md",
-    "3-文档/1-笔记/DP 数位DP.md",
-    "2-题解/gym105657B.md",
-    "2-题解/gym103729L.md",
-    "2-题解/CF2057D.md",
-    "2-题解/AT_abc397_f.md",
-    "4-输出/板子/线性筛.md",
-    "2-题解/NCC108299H.md",
-    "~syncthing~.nomedia.tmp",
     "0-系统组件/1-附件/Pasted image 20250713160331.png",
     "0-系统组件/1-附件/Pasted image 20250711125540.png",
     "0-系统组件/1-附件/2024CCPC重庆站题解.pdf",
