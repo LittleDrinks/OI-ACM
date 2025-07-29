@@ -2,7 +2,7 @@
 tags:
   - 比赛
 aliases: 
-author:
+author: 电子科技大学
 ---
 # [The 2025 Jiangsu Collegiate Programming Contest, The 2025 Guangdong Provincial Collegiate Programming Contest](https://codeforces.com/gym/105945)
 

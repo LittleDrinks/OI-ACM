@@ -1,3 +1,6 @@
+$$
+{n\choose k}={\lfloor n/p \rfloor\choose\lfloor k/p \rfloor}{n\ \mathrm{mod}\  p\choose k\ \mathrm{mod}\ p}\pmod p
+$$
 ```cpp
 const int MOD = 1000003;
 ll C(ll a, ll b) {

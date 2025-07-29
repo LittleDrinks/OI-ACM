@@ -67,6 +67,7 @@ longform:
       - O(1)计算排列组合数
       - Lucas
       - 高斯消元
+      - 自适应辛普森法
       - FFT
       - NTT
     - 字符串
@@ -78,6 +79,7 @@ longform:
     - - 单调队列优化（滑动窗口）
       - 无向图上回路计数
       - 数位DP
+      - SOSDP
     - 烂掉啦
   ignoredFiles:
     - manuscript

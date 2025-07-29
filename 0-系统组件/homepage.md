@@ -8,8 +8,14 @@ FROM "2-题解"
 SORT file.mtime DESC
 LIMIT 10
 ```
+```dataview
+TABLE WITHOUT ID file.link AS "比赛"
+FROM "3-文档/2-比赛"
+SORT file.mtime DESC
+LIMIT 10
+```
 ```contributionGraph
-title: 刷题统计
+title: 写作统计
 graphType: default
 dateRangeValue: 180
 dateRangeType: LATEST_DAYS
