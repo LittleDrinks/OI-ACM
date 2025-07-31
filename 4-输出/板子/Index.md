@@ -75,6 +75,7 @@ longform:
       - 前缀函数与KMP
       - Manacher
       - AC自动机
+      - 后缀自动机SAM
     - DP
     - - 单调队列优化（滑动窗口）
       - 无向图上回路计数
