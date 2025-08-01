@@ -47,7 +47,7 @@ struct ST {
 	    int ans = l, g = st[0][l];
 	    for (int i = I; i >= 0; --i) {
 	        if (ans+(1<<i) < n && gcd(g, st[i][ans]) >= x) {
-	            g = gcd(g, st[i][ans]);
+	            g = max(g, st[i][ans]);
 	            ans += 1 << i;
 	        }
 	    }

@@ -48,7 +48,7 @@
         "state": {
           "type": "search",
           "state": {
-            "query": "",
+            "query": "cf2049d",
             "matchingCase": false,
             "explainSearch": false,
             "collapseAll": false,
@@ -93,7 +93,7 @@
         }
       }
     ],
-    "currentTab": 4
+    "currentTab": 1
   },
   "right": {
     "id": "b834cea2bc733818",
@@ -165,7 +165,7 @@
       "command-palette:打开命令面板": true
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "cc3ae12a2f5d692a",
   "lastOpenFiles": [
     "0-系统组件/homepage.md",
     "4-输出/板子/匈牙利算法.md",
