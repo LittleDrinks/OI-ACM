@@ -64,6 +64,7 @@ longform:
       - 快速幂与乘法逆元
       - O(1)计算排列组合数
       - 卡特兰数
+      - 数论分块
       - Lucas
       - 自适应辛普森法
       - FFT
@@ -74,12 +75,12 @@ longform:
       - Manacher
       - 字符串哈希
       - AC自动机
+      - 后缀自动机SAM
     - DP
     - - 数位DP
       - 单调队列优化（滑动窗口）
       - 无向图上回路计数
       - SOSDP
-      - 后缀自动机SAM
     - 烂掉啦
   ignoredFiles:
     - manuscript
