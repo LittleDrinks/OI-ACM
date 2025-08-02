@@ -65,11 +65,12 @@ longform:
       - O(1)计算排列组合数
       - 卡特兰数
       - 数论分块
+      - 高斯消元
       - Lucas
       - 自适应辛普森法
-      - FFT
-      - NTT
-      - 高斯消元
+      - 多项式
+      - - FFT
+        - NTT
     - 字符串
     - - 前缀函数与KMP
       - Manacher
