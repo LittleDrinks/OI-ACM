@@ -4,8 +4,9 @@ tags:
   - 数学
   - 生成函数
 aliases:
+  - 高塔
 ---
-## [高塔](https://www.lanqiao.cn/problems/3530/learning/?page=1&first_category_id=1&name=%E9%AB%98%E5%A1%94)
+## [lanqiao3530. 高塔](https://www.lanqiao.cn/problems/3530/learning/?page=1&first_category_id=1&name=%E9%AB%98%E5%A1%94)
 
 $O(nm^2)$ 的暴力 DP 是显然的。记 $f(i,j)$ 表示前 $i$ 轮用了 $j$ 的能量，则
 $$
