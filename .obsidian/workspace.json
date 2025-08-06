@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "29313d22c32fcd83",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "f5136a2d25b90ffb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4-输出/板子/卡特兰数.md",
+                "file": "2-题解/NCC108304A.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "卡特兰数"
+              "title": "NCC108304A"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "卷",
+                "query": "逆序对",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -194,12 +194,24 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "26fd9dcc7c29691a",
+  "active": "f5136a2d25b90ffb",
   "lastOpenFiles": [
+    "3-文档/2-比赛/2025牛客暑期多校训练营7.md",
+    "2-题解/CF2123G.md",
+    "2-题解/NCC108304A.md",
+    "2-题解/NCC108304J.md",
+    "0-系统组件/homepage.md",
+    "1-闪念/20250806145707 数字华容道必然有解的条件.md",
+    "2-题解/P10389.md",
+    "1-闪念/未命名.md",
+    "2-题解/NCC108304D.md",
+    "2-题解/NCC108304I.md",
+    "4-输出/板子/ST表.md",
+    "2-题解/未命名.md",
+    "4-输出/板子/卡特兰数.md",
     "4-输出/板子/bitset优化传递闭包.md",
     "4-输出/板子/有向图上找最小环.md",
     "4-输出/板子/矩阵快速幂.md",
-    "0-系统组件/homepage.md",
     "4-输出/板子/template_by_LittleDrinks.md",
     "4-输出/板子/高斯消元.md",
     "2-题解/HDUC1177-1008.md",
@@ -211,21 +223,9 @@
     "3-文档/2-比赛/2025“钉耙编程”中国大学生算法设计暑期联赛（6）.md",
     "3-文档/2-比赛/The 2025 Jiangsu Collegiate Programming Contest, The 2025 Guangdong Provincial Collegiate Programming Contest.md",
     "3-文档/2-比赛/2025“钉耙编程”中国大学生算法设计暑期联赛（4）.md",
-    "2-题解/CF2121H.md",
-    "4-输出/板子/排列组合数.md",
-    "3-文档/2-比赛/2025“钉耙编程”中国大学生算法设计暑期联赛（1）.md",
-    "2-题解/NC230897.md",
-    "3-文档/1-笔记/生成函数.md",
-    "2-题解/lanqiao3530.md",
     "0-系统组件/1-附件/Pasted image 20250803225314.png",
     "0-系统组件/1-附件/Pasted image 20250803223957.png",
     "0-系统组件/1-附件/Pasted image 20250803222959.png",
-    "2-题解/P6078.md",
-    "2-题解/CF451E.md",
-    "4-输出/板子/Lucas.md",
-    "2-题解/NC207746.md",
-    "4-输出/板子/一些公柿.md",
-    "4-输出/板子/FFT.md",
     "0-系统组件/1-附件/Pasted image 20250713160331.png",
     "0-系统组件/1-附件/Pasted image 20250711125540.png",
     "0-系统组件/1-附件/2024CCPC重庆站题解.pdf",
