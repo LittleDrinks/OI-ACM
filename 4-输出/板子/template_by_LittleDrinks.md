@@ -1301,9 +1301,9 @@ void dfs(int u, int fa)
 
 ### bitset优化传递闭包
 
-邻接矩阵存图，时间复杂度为 $O(\dfrac{n^3}{w})$，可以处理 $2000$ 左右的数据。
+邻接矩阵存图，时间复杂度为 $O\left(\dfrac{n^3}{w}\right)$，可以处理 $2000$ 左右的数据。
 ```cpp
-bitset <N> b[N];
+bitset<N> b[N];
 for (int j = 1; j <= n; ++j) {  // 注意中转点在最外层
     for (int i = 1; i <= n; ++i) {
         if (b[i][j]) { b[i] |= b[j]; }
@@ -1534,31 +1534,38 @@ void dfs(int u, int fa)
 ```
 两次 DFS 求法，可以把整条直径提取出来，然后在其上找到树的中心
 ```cpp
-int mxd=0, V=0;
-vector<int> d(n+1);
-vector<int> f(n+1);
-function<void(int,int,int)> dfs = [&](int u, int fa, int d){
-    f[u] = fa;
-    if (d > mxd) {
-        mxd = d;
-        V = u;
-    }
-    for (auto v: G[u]) {
-        if (v != fa) {
-            dfs(v, u, d+1);
-        }
-    }
-};
-mxd = 0;
-dfs(1, 0, 1);
-mxd = 0;
-int s = V;
-dfs(V, 0, 1);
-int t = V;
-vector<int> R{t};
-while (t != s) {
-    t = f[t];
-    R.push_back(t);
+void work() {
+	int mxd=0, V=0;
+	vector<int> f(n+1);
+	function<void(int,int,int)> dfs = [&](int u, int fa, int d){
+	    f[u] = fa;
+	    if (d > mxd) {
+	        mxd = d;
+	        V = u;
+	    }
+	    for (auto v: G[u]) {
+	        if (v != fa) {
+	            dfs(v, u, d+1);
+	        }
+	    }
+	};
+	
+	// 第一次 dfs，找端点
+	mxd = 0;
+	dfs(1, 0, 1);
+	
+	// 第二次 dfs，走直径
+	mxd = 0;
+	int s = V;
+	dfs(V, 0, 1);
+	int t = V;
+	
+	// 把直径存入 vector
+	vector<int> R{t};
+	while (t != s) {
+	    t = f[t];
+	    R.push_back(t);
+	}
 }
 ```
 
@@ -2351,27 +2358,24 @@ int Guess(vector<vector<db>> &a)
 
 ## 矩阵快速幂
 ```cpp
-struct matrix: vector<vector<ll>> {
-    using vector<vector<ll>>::vector;
-    matrix(int n, int m) { assign(n, vector<ll>(m)); }
-};
+using matrix = vector<vector<ll>>;
 matrix IM(int n) {
-    matrix a(n, n);
-    for (int i = 0; i < n; ++i) { a[i][i] = 1; }
-    return a;
+    matrix I(n, vector<ll>(n));
+    for (int i = 0; i < n; ++i) { I[i][i] = 1; }
+    return I;
 }
-matrix operator* (const matrix& a, const matrix &b) {
-    assert(a.front().size() == b.size());
-    int n = a.size(), m = a.front().size(), k = b.front().size();
-    matrix c(n, k);
+matrix operator* (matrix A, matrix B) {
+    assert(A.front().size() == B.size());
+    int n = A.size(), m = B.size(), k = B.front().size();
+    matrix C(n, vector<ll>(m));
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < k; ++j) {
             for (int x = 0; x < m; ++x) {
-                c[i][j] = add(c[i][j], mul(a[i][x], b[x][j]));
+                C[i][j] = add(C[i][j], mul(A[i][x], B[x][j]));
             }
         }
     }
-    return c;
+    return C;
 }
 matrix qpow(matrix a, ll b) {
     matrix res = IM(a.size());
@@ -2518,7 +2522,86 @@ using namespace Polynomial;
 
 
 ### NTT
+```cpp
+#include <bits/stdc++.h>
+#define fp(i, a, b) for (int i = (a), i##_ = (b) + 1; i < i##_; ++i)
+#define fd(i, a, b) for (int i = (a), i##_ = (b) - 1; i > i##_; --i)
+using namespace std;
+const int maxn = 2e5 + 5, P = 998244353;
+using ll = int64_t;
+#define ADD(a, b) (((a) += (b)) >= P ? (a) -= P : 0)
+#define SUB(a, b) (((a) -= (b)) < 0 ? (a) += P : 0)
+#define MUL(a, b) (ll(a) * (b) % P)
+int POW(ll a, int b = P - 2, ll x = 1) {
+    for (; b; b >>= 1, a = a * a % P)
+        if (b & 1) x = x * a % P;
+    return x;
+}
 
+namespace NTT {
+const int g = 3;
+vector<int> Omega(int L) {
+    int wn = POW(g, P / L);
+    vector<int> w(L);
+    w[L >> 1] = 1;
+    fp(i, L / 2 + 1, L - 1) w[i] = MUL(w[i - 1], wn);
+    fd(i, L / 2 - 1, 1) w[i] = w[i << 1];
+    return w;
+}
+auto W = Omega(1 << 21);
+void DIF(int *a, int n) {
+    for (int k = n >> 1; k; k >>= 1) {
+        for (int i = 0, y; i < n; i += k << 1)
+            fp(j, 0, k - 1) y = a[i + j + k],
+                            a[i + j + k] = MUL(a[i + j] - y + P, W[k + j]),
+                            ADD(a[i + j], y);
+    }
+}
+void IDIT(int *a, int n) {
+    for (int k = 1; k < n; k <<= 1) {
+        for (int i = 0, x, y; i < n; i += k << 1)
+            fp(j, 0, k - 1) x = a[i + j], y = MUL(a[i + j + k], W[k + j]),
+                            a[i + j + k] = x - y < 0 ? x - y + P : x - y,
+                            ADD(a[i + j], y);
+    }
+    int Inv = P - (P - 1) / n;
+    fp(i, 0, n - 1) a[i] = MUL(a[i], Inv);
+    reverse(a + 1, a + n);
+}
+}  // namespace NTT
+namespace Polynomial {
+using Poly = std::vector<int>;
+Poly &operator*=(Poly &a, int b) {
+    for (auto &x : a) x = MUL(x, b);
+    return a;
+}
+Poly operator*(Poly a, int b) { return a *= b; }
+Poly operator*(int a, Poly b) { return b * a; }
+void DFT(Poly &a) { NTT::DIF(a.data(), a.size()); }
+void IDFT(Poly &a) { NTT::IDIT(a.data(), a.size()); }
+int norm(int n) { return 1 << (32 - __builtin_clz(n - 1)); }
+void norm(Poly &a) {
+    if (!a.empty()) a.resize(norm(a.size()), 0);
+}
+Poly &dot(Poly &a, Poly &b) {
+    fp(i, 0, a.size() - 1) a[i] = MUL(a[i], b[i]);
+    return a;
+}
+Poly operator*(Poly a, Poly b) {
+    int n = a.size() + b.size() - 1, L = norm(n);
+    if (a.size() <= 8 || b.size() <= 8) {
+        Poly c(n);
+        fp(i, 0, a.size() - 1) fp(j, 0, b.size() - 1) c[i + j] =
+            (c[i + j] + (ll)a[i] * b[j]) % P;
+        return c;
+    }
+    a.resize(L), b.resize(L);
+    DFT(a), DFT(b), dot(a, b), IDFT(a);
+    return a.resize(n), a;
+}
+}  // namespace Polynomial
+using namespace Polynomial;
+```
 
 
 # 字符串
@@ -2949,6 +3032,27 @@ int main()
 
 
 ## 单调队列优化（滑动窗口）
+```cpp
+auto work = [&](auto&& cmp) -> void {
+	deque<pair<int,int>> q;
+
+	auto update = [&](int id, int x) -> void {
+		while (!q.empty() && cmp(x, q.back().second)) {
+			q.pop_back();
+		}
+		q.emplace_back(id, x);
+	};
+
+	for (int i = 1; i <= k; ++i) {
+		update(i, a[i]);
+	}
+	for (int i = 1, j = i+k-1; j <= n; ++i, ++j) {
+		while (!q.empty() && q.front().first < i) { q.pop_front(); }
+		update(j, a[j]);
+		cout << q.front().second << " \n"[j == n];
+	}
+};
+```
 
 
 
