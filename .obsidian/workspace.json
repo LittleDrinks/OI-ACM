@@ -8,17 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "524e532572a9e2df",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4-输出/板子/template_by_LittleDrinks.md",
+                "file": "4-输出/板子/逆序对.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "template_by_LittleDrinks"
+              "title": "逆序对"
             }
           }
         ]
@@ -195,8 +195,12 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "524e532572a9e2df",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "4-输出/板子/分块.md",
+    "4-输出/板子/莫队.md",
+    "0-系统组件/homepage.md",
+    "4-输出/板子/template_by_LittleDrinks.md",
     "4-输出/板子/单调队列优化（滑动窗口）.md",
     "4-输出/板子/后缀自动机SAM.md",
     "4-输出/板子/前缀函数与KMP.md",
@@ -204,7 +208,6 @@
     "4-输出/板子/整数域三分.md",
     "4-输出/板子/常用函数.md",
     "4-输出/板子/土制cph(全平台).md",
-    "0-系统组件/homepage.md",
     "4-输出/板子/随机数.md",
     "4-输出/板子/数论分块.md",
     "4-输出/板子/懒标记线段树.md",
@@ -220,9 +223,6 @@
     "2-题解/CF2123G.md",
     "2-题解/NCC108304J.md",
     "1-闪念/20250806145707 数字华容道必然有解的条件.md",
-    "2-题解/P10389.md",
-    "1-闪念/未命名.md",
-    "2-题解/NCC108304D.md",
     "~syncthing~.nomedia.tmp",
     "0-系统组件/1-附件/Pasted image 20250803225314.png",
     "0-系统组件/1-附件/Pasted image 20250803223957.png",

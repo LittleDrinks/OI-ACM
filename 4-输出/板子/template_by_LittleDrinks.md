@@ -1,4 +1,9 @@
+
+
+
+
 # 赛前准备
+
 - 打开 vscode 的自动保存功能
 - （如需）配置 python 和 g++ 环境变量
 - （如需）`ctrl+shift+p` 选择 `C/C++：Edit Configurations（UI）`，配置编译器路径
@@ -956,7 +961,7 @@ struct Info {
     }
 };
 ```
-	
+
 
 
 ### 懒标记线段树
