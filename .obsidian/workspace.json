@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "f7b695510bdcea27",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "5d5e634397f2f262",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2-题解/CF2123H.md",
+                "file": "0-系统组件/homepage.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CF2123H"
+              "title": "homepage"
             }
           }
         ]
@@ -104,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2-题解/CF2123H.md",
+                "file": "4-输出/板子/拓扑排序.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +114,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "CF2123H 的反向链接列表"
+              "title": "拓扑排序 的反向链接列表"
             }
           },
           {
@@ -160,8 +160,19 @@
               "icon": "lucide-list",
               "title": "CF2123H 的大纲"
             }
+          },
+          {
+            "id": "34c7f6198df75253",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -186,10 +197,25 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "ff639c8eacaec76c",
+  "active": "5d5e634397f2f262",
   "lastOpenFiles": [
+    "2-题解/AT_abc419_e.md",
     "0-系统组件/homepage.md",
-    "2-题解/CF2123H.md",
+    "4-输出/板子/拓扑排序.md",
+    "4-输出/板子/强连通分量（SCC）.md",
+    "4-输出/板子/多边形与凸包.md",
+    "4-输出/板子/向量.md",
+    "4-输出/板子/点线操作.md",
+    "4-输出/板子/三维向量.md",
+    "4-输出/板子/计算几何.md",
+    "4-输出/板子/字符串哈希.md",
+    "4-输出/板子/前缀函数与KMP.md",
+    "4-输出/板子/Manacher.md",
+    "4-输出/板子/最大流.md",
+    "4-输出/板子/懒标记线段树.md",
+    "4-输出/板子/线段树.md",
+    "2-题解/CF2123E.md",
+    "2-题解/CF2131H.md",
     "2-题解/gym105657M.md",
     "2-题解/gym105949C.md",
     "2-题解/gym105986I.md",
@@ -198,21 +224,6 @@
     "2-题解/gym105986B.md",
     "2-题解/gym105941B.md",
     "2-题解/P4316.md",
-    "2-题解/gym105158H.md",
-    "2-题解/AT_abc415_e.md",
-    "2-题解/CF2123E.md",
-    "2-题解/CF165E.md",
-    "3-文档/1-笔记/DP SOSDP.md",
-    "2-题解/HDUC1172-1006.md",
-    "2-题解/P3975.md",
-    "2-题解/gym105977F.md",
-    "2-题解/gym102900C.md",
-    "2-题解/P8856.md",
-    "2-题解/AcWing311.md",
-    "2-题解/AT_arc052_d.md",
-    "2-题解/SP1716.md",
-    "2-题解/gym105986E.md",
-    "2-题解/AcWing287.md",
-    "2-题解/P2322.md"
+    "2-题解/gym105158H.md"
   ]
 }
