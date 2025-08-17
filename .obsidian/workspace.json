@@ -197,10 +197,13 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "825153f3cff25d9a",
+  "active": "5b614736f005efdd",
   "lastOpenFiles": [
-    "3-文档/1-笔记/贪心.md",
+    "3-文档/2-比赛/2025“钉耙编程”中国大学生算法设计暑期联赛（8）.md",
     "0-系统组件/homepage.md",
+    "3-文档/2-比赛/2025牛客暑期多校训练营7.md",
+    "2-题解/AT_abc419_e.md",
+    "3-文档/1-笔记/贪心.md",
     "3-文档/1-笔记/DP.md",
     "3-文档/2-比赛/The 2025 Jiangsu Collegiate Programming Contest, The 2025 Guangdong Provincial Collegiate Programming Contest.md",
     "2-题解/AT_abc413_e.md",
@@ -217,12 +220,10 @@
     "3-文档/2-比赛/The 2025 Sichuan Provincial Collegiate Programming Contest.md",
     "3-文档/2-比赛/2024-2025 ICPC, NERC, Southern and Volga Russian Regional Contest.md",
     "4-输出/板子/后缀自动机SAM.md",
-    "2-题解/AT_abc419_e.md",
     "4-输出/板子/拓扑排序.md",
     "4-输出/板子/强连通分量（SCC）.md",
     "4-输出/板子/多边形与凸包.md",
     "4-输出/板子/向量.md",
-    "4-输出/板子/点线操作.md",
-    "4-输出/板子/三维向量.md"
+    "4-输出/板子/点线操作.md"
   ]
 }
