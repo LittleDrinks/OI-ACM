@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "f7b695510bdcea27",
+        "id": "50e1dec53802e719",
         "type": "tabs",
         "children": [
           {
-            "id": "5d5e634397f2f262",
+            "id": "5b614736f005efdd",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:DP/SOSDP",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -197,33 +197,32 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "5d5e634397f2f262",
+  "active": "825153f3cff25d9a",
   "lastOpenFiles": [
-    "2-题解/AT_abc419_e.md",
+    "3-文档/1-笔记/贪心.md",
     "0-系统组件/homepage.md",
+    "3-文档/1-笔记/DP.md",
+    "3-文档/2-比赛/The 2025 Jiangsu Collegiate Programming Contest, The 2025 Guangdong Provincial Collegiate Programming Contest.md",
+    "2-题解/AT_abc413_e.md",
+    "2-题解/CF2121E.md",
+    "2-题解/AT_abc392_g.md",
+    "2-题解/HDUC1179-1012.md",
+    "3-文档/2-比赛/The 2024 ICPC Kunming Invitational Contest.md",
+    "3-文档/2-比赛/2025年北京市大学生程序设计竞赛暨“小米杯”全国邀请赛.md",
+    "3-文档/2-比赛/The 2023 ICPC Asia Nanjing Regional Contest.md",
+    "3-文档/2-比赛/The 15th Shandong CCPC Provincial Collegiate Programming Contest.md",
+    "3-文档/2-比赛/2025 National Invitational of CCPC (Zhengzhou), 2025 CCPC Henan Provincial Collegiate Programming Contest.md",
+    "3-文档/2-比赛/The 3rd Universal Cup. Stage 8 Cangqian.md",
+    "0-系统组件/主页test1.md",
+    "3-文档/2-比赛/The 2025 Sichuan Provincial Collegiate Programming Contest.md",
+    "3-文档/2-比赛/2024-2025 ICPC, NERC, Southern and Volga Russian Regional Contest.md",
+    "4-输出/板子/后缀自动机SAM.md",
+    "2-题解/AT_abc419_e.md",
     "4-输出/板子/拓扑排序.md",
     "4-输出/板子/强连通分量（SCC）.md",
     "4-输出/板子/多边形与凸包.md",
     "4-输出/板子/向量.md",
     "4-输出/板子/点线操作.md",
-    "4-输出/板子/三维向量.md",
-    "4-输出/板子/计算几何.md",
-    "4-输出/板子/字符串哈希.md",
-    "4-输出/板子/前缀函数与KMP.md",
-    "4-输出/板子/Manacher.md",
-    "4-输出/板子/最大流.md",
-    "4-输出/板子/懒标记线段树.md",
-    "4-输出/板子/线段树.md",
-    "2-题解/CF2123E.md",
-    "2-题解/CF2131H.md",
-    "2-题解/gym105657M.md",
-    "2-题解/gym105949C.md",
-    "2-题解/gym105986I.md",
-    "2-题解/gym105158L.md",
-    "2-题解/gym105158A.md",
-    "2-题解/gym105986B.md",
-    "2-题解/gym105941B.md",
-    "2-题解/P4316.md",
-    "2-题解/gym105158H.md"
+    "4-输出/板子/三维向量.md"
   ]
 }
