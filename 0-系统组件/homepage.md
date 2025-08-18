@@ -214,7 +214,6 @@ function 更新显示() {
 
     const 最近数据 = 所有题解
       .sort(p => p.file.ctime, 'desc')
-      .slice(0, 15)
       .map(p => {
         const 知识点 = (p.file.tags || []).filter(t => t !== "#题解").map(t => t.replace("#", "")).join(", ");
         
