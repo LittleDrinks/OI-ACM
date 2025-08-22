@@ -19,7 +19,7 @@ using i128 = __int128;
 
 const int L=18;
 int a[L+5];
-ll f[L+5][15];
+ll f[L+5][15]
 ll dfs(int p, bool limit, bool lead0, int last)
 {
 	if (!p) { return 1; }

@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "682526e44948d2d8",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "2b7a577f0f3878cd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0-系统组件/homepage.md",
+                "file": "2-题解/gym105459L.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "homepage"
+              "title": "gym105459L"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#DP/数位DP  ",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -104,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "4-输出/板子/拓扑排序.md",
+                "file": "0-系统组件/homepage.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +114,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "拓扑排序 的反向链接列表"
+              "title": "homepage 的反向链接列表"
             }
           },
           {
@@ -123,12 +123,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2-题解/CF2123H.md",
+                "file": "4-输出/板子/烂掉啦.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "CF2123H 的出链列表"
+              "title": "烂掉啦 的出链列表"
             }
           },
           {
@@ -152,13 +152,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2-题解/CF2123H.md",
+                "file": "4-输出/板子/烂掉啦.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "CF2123H 的大纲"
+              "title": "烂掉啦 的大纲"
             }
           },
           {
@@ -180,6 +180,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:创建新数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -197,34 +198,34 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "2b7a577f0f3878cd",
   "lastOpenFiles": [
-    "2-题解/gym105945K.md",
     "0-系统组件/homepage.md",
-    "2-题解/gym105930E.md",
-    "2-题解/gym616306J.md",
-    "2-题解/gym105158L.md",
-    "2-题解/HDUC1177-1008.md",
-    "2-题解/AT_abc392_g.md",
-    "2-题解/NCC108304J.md",
-    "2-题解/NCC108304I.md",
-    "2-题解/NCC108304D.md",
-    "2-题解/P10389.md",
-    "2-题解/AT_abc413_f.md",
-    "2-题解/AT_abc413_g.md",
-    "2-题解/AT_abc419_e.md",
-    "2-题解/AT_abc388_f.md",
-    "3-文档/2-比赛/AtCoder Beginner Contest 388.md",
-    "3-文档/2-比赛/2025 Wuhan University of Technology Programming Contest.md",
-    "2-题解/gym105986E.md",
-    "3-文档/2-比赛/2025 National Invitational of CCPC (Fujian), The 12th Fujian Collegiate Programming Contest.md",
-    "2-题解/gym105977F.md",
-    "3-文档/2-比赛/The 3rd Universal Cup. Stage 8 Cangqian.md",
-    "3-文档/2-比赛/2025“钉耙编程”中国大学生算法设计暑期联赛（10）.md",
-    "~syncthing~.nomedia.tmp",
-    "2-题解/HDUC1181-1002.md",
-    "4-输出/板子/因数.md",
+    "2-题解/gym105459L.md",
+    "4-输出/板子/字符串哈希.md",
+    "2-题解/CF2132G.md",
+    "4-输出/板子/割边与边双连通分量（EBCC）.md",
+    "4-输出/板子/强连通分量（SCC）.md",
+    "2-题解/P4999.md",
+    "4-输出/板子/解除python大数限制.md",
+    "4-输出/板子/高精度.md",
+    "2-题解/P2602.md",
+    "2-题解/gym102900C.md",
+    "2-题解/AT_arc052_d.md",
+    "2-题解/AcWing311.md",
+    "4-输出/板子/数位DP.md",
+    "4-输出/板子/一些公柿.md",
+    "4-输出/板子/烂掉啦.md",
+    "2-题解/NCC108301D.md",
+    "3-文档/2-比赛/2025牛客暑期多校训练营4.md",
+    "2-题解/NCC108301G.md",
+    "2-题解/CF1753C.md",
+    "2-题解/NCC108299D.md",
+    "3-文档/2-比赛/2025“钉耙编程”中国大学生算法设计暑期联赛（1）.md",
     "4-输出/板子/线性筛.md",
-    "4-输出/板子/一些公柿.md"
+    "4-输出/板子/常用函数.md",
+    "4-输出/板子/随机数.md",
+    "4-输出/板子/土制cph(全平台).md",
+    "~syncthing~.nomedia.tmp"
   ]
 }
