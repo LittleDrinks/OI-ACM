@@ -7,4 +7,5 @@ author: 同济大学
 # [The 2025 Shanghai Collegiate Programming Contest](https://codeforces.com/gym/105992)
 
 - [x] [[gym105992J]] ✅ 2025-07-29
-- [ ] [[gym105992E]]
+- [x] [[gym105992E]] ✅ 2025-09-02
+- [x] [[gym105992A]] ✅ 2025-09-02
