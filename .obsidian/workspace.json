@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0-系统组件/homepage.md",
+                "file": "2-题解/gym103428M.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "homepage"
+              "title": "gym103428M"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:线段树/势能线段树",
+                "query": "tag:#计算几何",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -201,9 +201,13 @@
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
     "0-系统组件/homepage.md",
+    "2-题解/gym103428M.md",
+    "2-题解/gym104417M.md",
+    "2-题解/gym104128M.md",
+    "2-题解/NC233135.md",
+    "2-题解/gym105336D.md",
     "3-文档/2-比赛/The 2024 CCPC Online Contest.md",
     "2-题解/gym105336K.md",
-    "2-题解/gym105336D.md",
     "2-题解/CF438D.md",
     "3-文档/1-笔记/线段树 势能线段树.md",
     "~syncthing~.nomedia.tmp",
@@ -223,10 +227,6 @@
     "4-输出/板子/O(1)gcd.md",
     "4-输出/板子/因数.md",
     "3-文档/2-比赛/2024 China Collegiate Programming Contest (CCPC) Jinan Site (The 3rd Universal Cup. Stage 17 Jinan).md",
-    "3-文档/2-比赛/2024 China Collegiate Programming Contest (CCPC) Zhengzhou Onsite (The 3rd Universal Cup. Stage 22 Zhengzhou).md",
-    "2-题解/gym103409K.md",
-    "2-题解/gym105992J.md",
-    "2-题解/gym105632C.md",
     "0-系统组件/1-附件/CF2133E2.png",
     "0-系统组件/1-附件/CF2133E1.png"
   ]
