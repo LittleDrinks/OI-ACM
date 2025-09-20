@@ -11,7 +11,7 @@ void dfs(int u, int fa)
 {   // 预处理父节点、深度、路径上的最小值
     f[0][u] = fa;
     dep[u] = dep[fa] + 1;
-    for (int i = 1; i <= I; ++i) {
+    for (int i = 1; i <= I; ++i) { 
         f[i][u] = f[i-1][ f[i-1][u] ];
         mn[i][u] = min( mn[i-1][u], mn[i-1][ f[i-1][u] ] );
     }
