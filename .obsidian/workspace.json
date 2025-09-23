@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "4b43d606b1a537eb",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "0c296580e6b77657",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "2-题解/CF2146F.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "CF2146F"
             }
           }
         ]
@@ -194,14 +198,21 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "825153f3cff25d9a",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
     "0-系统组件/homepage.md",
+    "2-题解/CF2146F.md",
+    "2-题解/CF2146E.md",
+    "4-输出/板子/懒标记线段树.md",
+    "4-输出/板子/线段树.md",
+    "2-题解/CF2146D.md",
+    "2-题解/QOJ14549.md",
+    "3-文档/2-比赛/第十一届中国大学生程序设计竞赛网络预选赛（CCPC Online 2025）.md",
+    "4-输出/板子/火车头.md",
     "3-文档/2-比赛/The 2025 ICPC Asia EC Regionals Online Contest (II).md",
     "2-题解/gym106072H.md",
     "2-题解/gym106072J.md",
     "3-文档/2-比赛/未命名",
-    "4-输出/板子/火车头.md",
     "4-输出/板子/数论分块.md",
     "4-输出/板子/点分治与树的重心.md",
     "4-输出/板子/吉司机线段树.md",
@@ -216,13 +227,6 @@
     "1-闪念/20250909221458 矩阵优化子序列匹配.md",
     "3-文档/2-比赛/The 2024 CCPC Online Contest.md",
     "2-题解/gym105336D.md",
-    "2-题解/gym103428M.md",
-    "2-题解/gym104417M.md",
-    "2-题解/gym104128M.md",
-    "2-题解/NC233135.md",
-    "2-题解/gym105336K.md",
-    "2-题解/CF438D.md",
-    "3-文档/1-笔记/线段树 势能线段树.md",
     "~syncthing~.nomedia.tmp",
     "0-系统组件/1-附件/CF2133E2.png",
     "0-系统组件/1-附件/CF2133E1.png"
