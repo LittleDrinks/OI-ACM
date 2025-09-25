@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "4509724f8bf84da7",
+        "id": "9588ab23fa16f383",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a7b303c61786dc",
+            "id": "17491ebbd3fb35a7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2-题解/CF2146F.md",
+                "file": "4-输出/板子/懒标记线段树.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CF2146F"
+              "title": "懒标记线段树"
+            }
+          },
+          {
+            "id": "f87937f7b550ffc9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2-题解/CF2151E.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CF2151E"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -198,13 +213,20 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "f87937f7b550ffc9",
   "lastOpenFiles": [
+    "4-输出/板子/懒标记线段树.md",
+    "2-题解/CF2151E.md",
+    "2-题解/gym105941L.md",
+    "3-文档/2-比赛/2025 National Invitational of CCPC (Zhengzhou), 2025 CCPC Henan Provincial Collegiate Programming Contest.md",
+    "3-文档/2-比赛/2024 China Collegiate Programming Contest (CCPC) Zhengzhou Onsite (The 3rd Universal Cup. Stage 22 Zhengzhou).md",
     "0-系统组件/homepage.md",
+    "4-输出/板子/线段树.md",
+    "3-文档/2-比赛/第九届中国大学生程序设计竞赛 桂林站（CCPC 2023 Guilin Site）.md",
+    "2-题解/QOJ7685.md",
+    "2-题解/QOJ7679.md",
     "2-题解/CF2146F.md",
     "2-题解/CF2146E.md",
-    "4-输出/板子/懒标记线段树.md",
-    "4-输出/板子/线段树.md",
     "2-题解/CF2146D.md",
     "2-题解/QOJ14549.md",
     "3-文档/2-比赛/第十一届中国大学生程序设计竞赛网络预选赛（CCPC Online 2025）.md",
@@ -220,13 +242,6 @@
     "2-题解/QOJ7991.md",
     "2-题解/QOJ14303.md",
     "4-输出/板子/运行时间.md",
-    "4-输出/板子/倍增O(LogN)求LCA.md",
-    "4-输出/板子/随机数.md",
-    "4-输出/板子/有向图上找最小环.md",
-    "3-文档/2-比赛/The 2025 ICPC Asia East Continent Online Contest (I).md",
-    "1-闪念/20250909221458 矩阵优化子序列匹配.md",
-    "3-文档/2-比赛/The 2024 CCPC Online Contest.md",
-    "2-题解/gym105336D.md",
     "~syncthing~.nomedia.tmp",
     "0-系统组件/1-附件/CF2133E2.png",
     "0-系统组件/1-附件/CF2133E1.png"
