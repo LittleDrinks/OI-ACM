@@ -24,10 +24,11 @@ for i in l(d):
     try:
         k = s.run(cmd, timeout=2, stdin=open(f"{t}in"), 
                  stdout=open(f"{t}out", 'w'), stderr=s.PIPE, text=1)
-        c = lambda o,a : o.read().split() == a.read().split()
         # c = lambda o,a : all(abs(float(x)-float(y))/max(1,abs(float(y)))<=1e-4 
         #               for x,y in zip(o.read().split(),a.read().split()))
-        print(f'{g}AC{n}' if c(open(f"{t}out"),open(f"{t}ans")) else f'{r}WA{n}')
+		o = open(f"{t}out").read().split()
+		a = open(f"{t}ans").read().split()
+		print(f"{g}AC{n}" if o == a else f"{r}WA{n}")
         if k.stderr:print(f'{r}{k.stderr}{n}')
     except s.TimeoutExpired as k:
         print(f'{p}TLE or RE{n}')
