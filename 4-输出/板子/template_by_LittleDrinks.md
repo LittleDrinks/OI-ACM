@@ -1,6 +1,4 @@
-
-
-
+[TOC]
 
 # 赛前准备
 
@@ -66,10 +64,11 @@ for i in l(d):
     try:
         k = s.run(cmd, timeout=2, stdin=open(f"{t}in"), 
                  stdout=open(f"{t}out", 'w'), stderr=s.PIPE, text=1)
-        c = lambda o,a : o.read().split() == a.read().split()
         # c = lambda o,a : all(abs(float(x)-float(y))/max(1,abs(float(y)))<=1e-4 
         #               for x,y in zip(o.read().split(),a.read().split()))
-        print(f'{g}AC{n}' if c(open(f"{t}out"),open(f"{t}ans")) else f'{r}WA{n}')
+		o = open(f"{t}out").read().split()
+		a = open(f"{t}ans").read().split()
+		print(f"{g}AC{n}" if o == a else f"{r}WA{n}")
         if k.stderr:print(f'{r}{k.stderr}{n}')
     except s.TimeoutExpired as k:
         print(f'{p}TLE or RE{n}')
@@ -287,6 +286,23 @@ if (duration > 998) { cout << ans << "\n"; exit(0); }
 
 
 
+## 火车头
+```cpp
+#pragma GCC optimize(3)
+#pragma GCC optimize("unroll-loops")
+```
+
+
+
+## 防止umap被卡
+```cpp
+unordered_map<int,int>mp;
+mp.reserve(1024);
+mp.max_load_factor(0.25);
+```
+
+
+
 # 计算几何
 
 https://csacademy.com/app/geometry_widget/
@@ -313,7 +329,7 @@ struct Point {
     Point(T x=0, T y=0): x(x), y(y) {}
 	friend istream& operator>> (istream& is, Point& p) { return is>>p.x>>p.y; }
 	friend ostream& operator<< (ostream& os, Point& p) { return os<<p.x<<" "<<p.y; }
-	db ang() { return atan2(y, x); } 
+	db ang() { return atan2(y, x); }
 	bool operator== (const Point &p) const { return sgn(x-p.x)==0 && sgn(y-p.y)==0; }
 	bool operator< (const Point &p) const { return x<p.x || (x==p.x && y<p.y); }
 	Point operator+ (const Point &p) const { return Point(x+p.x, y+p.y); }
@@ -332,8 +348,20 @@ using Vector = Point;
 // 判断 c 是否在 ab 的逆时针方向
 int toLeft(Point a, Point b, Point c) { return sgn((b-a)^(c-a)); }
 
-// 二维向量夹角
+// 二维向量夹角，注意特判垂直的情况
 db getAngle(Vector a, Vector b) { return fabs(atan2(fabs(a^b), a*b)); }
+
+// ab 夹角是否大于 uv
+bool polarCmp(Point a, Point b, Point u, Point v)
+{
+    int qa = sgn(a*b);
+    int qu = sgn(u*v);
+    if (qa != qu) {
+        return qa < qu;
+    } else {
+        return abs(a^b) * (u*v) > abs(u^v) * (a*b);
+    }
+}
 ```
 
 极角排序 
@@ -966,11 +994,13 @@ struct Info {
 
 ### 懒标记线段树
 
-> [!quote] 【模板】线段树 2
-> 已知一个数列，你需要进行下面三种操作：
-> - 将某区间每一个数乘上 $x$；
-> - 将某区间每一个数加上 $x$；
-> - 求出某区间每一个数的和。
+
+已知一个数列，你需要进行下面三种操作：
+
+- 将某区间每一个数乘上 $x$；
+- 将某区间每一个数加上 $x$；
+- 求出某区间每一个数的和。
+
 ```cpp
 #define lson (p << 1)
 #define rson (p << 1 | 1)
@@ -1065,39 +1095,231 @@ Lazy operator+ (Lazy u, Lazy v) {
 
 
 
-## 逆序对
+### 吉司机线段树
+给出一个长度为 $n$ 的数列 $A$，同时定义一个辅助数组 $B$，$B$ 开始与 $A$ 完全相同。接下来进行了 $m$ 次操作，操作有五种类型，按以下格式给出：
 
-归并排序解决静态逆序对问题。
+- `1 l r k`：对于所有的 $i\in[l,r]$，将 $A_i$ 加上 $k$（$k$ 可以为负数）。
+- `2 l r v`：对于所有的 $i\in[l,r]$，将 $A_i$ 变成 $\min(A_i,v)$。
+- `3 l r`：求 $\sum_{i=l}^{r}A_i$。
+- `4 l r`：对于所有的 $i\in[l,r]$，求 $A_i$ 的最大值。
+- `5 l r`：对于所有的 $i\in[l,r]$，求 $B_i$ 的最大值。
+
+在每一次操作后，我们都进行一次更新，让 $B_i\gets\max(B_i,A_i)$。
+
+```
+5 6
+1 2 3 4 5
+3 2 5
+1 1 3 3
+4 2 4
+2 3 4 1
+5 1 5
+3 1 4
+---
+14
+6
+6
+11
+```
+
 ```cpp
-ll msort(vector<int> &a, int l, int r)
-{
-    if (l == r) { return 0; }
-    int mid = (l + r) >> 1;
-    ll ans=0;
-    ans += msort(a, l, mid);
-    ans += msort(a, mid+1, r);
-    int i=l, j=mid+1;
-    vector<int> b;
-    while (i <= mid && j <= r) {
-        if (a[i] <= a[j]) { b.push_back(a[i++]); }
-        else              { b.push_back(a[j++]); ans+=mid-i+1; }
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using db = long double;
+using i128 = __int128;
+
+const int N = 5e5 + 5;
+const int inf = 2e9;
+
+struct Info {
+    ll s;
+    int mx, se, cnt, his;
+    Info() : s(-inf), mx(-inf), se(-inf), cnt(0), his(-inf) {
     }
-    while (i <= mid) { b.push_back(a[i++]); }
-    while (j <= r)   { b.push_back(a[j++]); }
-    copy(b.begin(), b.end(), a.begin()+l);
-    return ans;
-}
-```
-树状数组解决静态逆序对问题。
-```cpp
-ll ans = 0;
-for (int i = 0; i < n; ++i) {
-    ans += t.query(n)-t.query(p[a[i]]);
-    t.modify(p[a[i]], 1);
-}
-```
-分块解决动态逆序对问题。
+    Info(int val) : s(val), mx(val), se(-inf), cnt(1), his(val) {
+    }
+    Info(ll s, int mx, int se, int cnt, int his)
+        : s(s), mx(mx), se(se), cnt(cnt), his(his) {
+    }
+};
 
+struct Lazy {
+    int a1, a2, a3, a4;
+    Lazy() : a1(0), a2(0), a3(0), a4(0) {
+    }
+    Lazy(int a1, int a2, int a3, int a4) : a1(a1), a2(a2), a3(a3), a4(a4) {
+    }
+};
+
+#define lson (p << 1)
+#define rson (p << 1 | 1)
+#define m ((l + r) >> 1)
+int vec[N + 5];
+Info a[N * 4 + 5];
+Lazy t[N * 4 + 5];
+void push_up(int p) {
+    a[p].s = a[lson].s + a[rson].s;
+    a[p].mx = max(a[lson].mx, a[rson].mx);
+    a[p].his = max(a[lson].his, a[rson].his);
+    if (a[lson].mx == a[rson].mx) {
+        a[p].se = max(a[lson].se, a[rson].se);
+        a[p].cnt = a[lson].cnt + a[rson].cnt;
+    } else if (a[lson].mx > a[rson].mx) {
+        a[p].se = max(a[lson].se, a[rson].mx);
+        a[p].cnt = a[lson].cnt;
+    } else {
+        a[p].se = max(a[lson].mx, a[rson].se);
+        a[p].cnt = a[rson].cnt;
+    }
+}
+void apply(int p, int l, int r, Lazy v) {
+    a[p].s += 1LL * v.a1 * a[p].cnt;
+    a[p].s += 1LL * v.a2 * (r - l - a[p].cnt);
+    a[p].his = max(a[p].his, a[p].mx + v.a3);
+    a[p].mx += v.a1;
+    if (a[p].se != -inf) {
+        a[p].se += v.a2;
+    }
+
+    int a1 = t[p].a1 + v.a1;
+    int a2 = t[p].a2 + v.a2;
+    int a3 = max(t[p].a3, t[p].a1 + v.a3);
+    int a4 = max(t[p].a4, t[p].a2 + v.a4);
+    t[p] = Lazy(a1, a2, a3, a4);
+}
+void spread_down(int p, int l, int r) {
+    Lazy v = Lazy(t[p].a2, t[p].a2, t[p].a4, t[p].a4);
+    int mx = max(a[lson].mx, a[rson].mx);
+    apply(lson, l, m, (a[lson].mx == mx ? t[p] : v));
+    apply(rson, m, r, (a[rson].mx == mx ? t[p] : v));
+    t[p] = Lazy();
+}
+void build(int p, int l, int r) {
+    if (l == r - 1) {
+        a[p] = Info(vec[l]);
+        return;
+    }
+    build(lson, l, m);
+    build(rson, m, r);
+    push_up(p);
+}
+void modify_add(int p, int l, int r, int x, int y, int k) {
+    if (y <= l || r <= x) {
+        return;
+    }
+    if (x <= l && r <= y) {
+        a[p].s += 1LL * k * (r - l);
+        a[p].mx += k;
+        a[p].his = max(a[p].his, a[p].mx);
+        if (a[p].se != -inf) {
+            a[p].se += k;
+        }
+        t[p].a1 += k;
+        t[p].a2 += k;
+        t[p].a3 = max(t[p].a3, t[p].a1);
+        t[p].a4 = max(t[p].a4, t[p].a2);
+        return;
+    }
+    spread_down(p, l, r);
+    modify_add(lson, l, m, x, y, k);
+    modify_add(rson, m, r, x, y, k);
+    push_up(p);
+}
+void modify_min(int p, int l, int r, int x, int y, int v) {
+    if (y <= l || r <= x || v >= a[p].mx) {
+        return;
+    }
+    if (x <= l && r <= y && a[p].se < v) {  // se < v < mx 的条件不分开会 RE
+        a[p].s -= 1LL * a[p].cnt * (a[p].mx - v);
+        t[p].a1 -= a[p].mx - v;
+        a[p].mx = v;
+        return;
+    }
+    spread_down(p, l, r);
+    modify_min(lson, l, m, x, y, v);
+    modify_min(rson, m, r, x, y, v);
+    push_up(p);
+}
+ll query_sum(int p, int l, int r, int x, int y) {
+    if (y <= l || r <= x) {
+        return 0;
+    }
+    if (x <= l && r <= y) {
+        return a[p].s;
+    }
+    ll s = 0;
+    spread_down(p, l, r);
+    s += query_sum(lson, l, m, x, y);
+    s += query_sum(rson, m, r, x, y);
+    push_up(p);
+    return s;
+}
+int query_max(int p, int l, int r, int x, int y) {
+    if (y <= l || r <= x) {
+        return -inf;
+    }
+    if (x <= l && r <= y) {
+        return a[p].mx;
+    }
+    int mx = -inf;
+    spread_down(p, l, r);
+    mx = max(mx, query_max(lson, l, m, x, y));
+    mx = max(mx, query_max(rson, m, r, x, y));
+    push_up(p);
+    return mx;
+}
+int query_hismax(int p, int l, int r, int x, int y) {
+    if (y <= l || r <= x) {
+        return -inf;
+    }
+    if (x <= l && r <= y) {
+        return a[p].his;
+    }
+    int mx = -inf;
+    spread_down(p, l, r);
+    mx = max(mx, query_hismax(lson, l, m, x, y));
+    mx = max(mx, query_hismax(rson, m, r, x, y));
+    push_up(p);
+    return mx;
+}
+#undef lson
+#undef rson
+#undef m
+
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    int n, q;
+    cin >> n >> q;
+    for (int i = 0; i < n; ++i) {
+        cin >> vec[i];
+    }
+    build(1, 0, n);
+    for (int _ = 1; _ <= q; ++_) {
+        int o, l, r;
+        cin >> o >> l >> r;
+        --l;
+        if (o == 1) {
+            int k;
+            cin >> k;
+            modify_add(1, 0, n, l, r, k);
+        } else if (o == 2) {
+            int v;
+            cin >> v;
+            modify_min(1, 0, n, l, r, v);
+        } else if (o == 3) {
+            cout << query_sum(1, 0, n, l, r) << "\n";
+        } else if (o == 4) {
+            cout << query_max(1, 0, n, l, r) << "\n";
+        } else {
+            cout << query_hismax(1, 0, n, l, r) << "\n";
+        }
+    }
+}
+
+```
 
 
 ## 笛卡尔树
@@ -1106,6 +1328,7 @@ for (int i = 0; i < n; ++i) {
 节点 $i$ 的权值为 $p_i$，每个节点的权值满足小根堆的性质。
 ```cpp
 vector<int> stk;
+vector<int> L(n+1), R(n+1);
 for (int i = 1; i <= n; ++i) {
 	int flag = 0;
 	while (!stk.empty()) {
@@ -1281,6 +1504,176 @@ void solve()
 
 
 
+## 分块
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using db = long double;
+using i128 = __int128;
+
+ll add(ll x, ll y, ll MOD) { x %= MOD; y %= MOD; return (x + y) % MOD; }
+ll mul(ll x, ll y, ll MOD) { x %= MOD; y %= MOD; return (x * y) % MOD; }
+
+const int N = 50000, B = 300;
+int n;
+int siz, L[B+5], R[B+5], belong[N+5];
+ll a[N+5], sum[B+5], tag[B+5];
+
+int main()
+{
+    ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); 
+    cin >> n;
+    for (int i = 1; i <= n; ++i) {
+        cin >> a[i];
+    }
+
+    siz = sqrt(n) + 1;
+    for (int i = 1; i <= n; ++i) {
+        belong[i] = i / siz + 1;
+        sum[belong[i]] += a[i];
+        if (belong[i] != belong[i-1]) {
+            L[belong[i]] = i;
+            R[belong[i-1]] = i - 1;
+        }
+    }
+    L[belong[1]] = 1;
+    R[belong[n]] = n;
+
+    for (int i = 1; i <= n; ++i) {
+        int o, l, r; ll c;
+        cin >> o >> l >> r >> c;
+        if (o == 0) {
+            if (belong[l] == belong[r]) {
+                for (int j = l; j <= r; ++j) {
+                    a[j] += c;
+                    sum[belong[j]] += c;
+                }
+            } else {
+                for (int j = l; j < L[belong[l]+1]; ++j) {
+                    a[j] += c;
+                    sum[belong[j]] += c;
+                }
+                for (int j = L[belong[r]]; j <= r; ++j) {
+                    a[j] += c;
+                    sum[belong[j]] += c;
+                }
+                for (int j = belong[l]+1; j < belong[r]; ++j) {
+                    sum[j] += c * (R[j] - L[j] + 1);
+                    tag[j] += c;
+                }
+            }
+        } else {
+            ll ans = 0;
+            if (belong[l] == belong[r]) {
+                for (int j = l; j <= r; ++j) {
+                    ans = add(ans, a[j] + tag[belong[j]], c + 1);
+                }
+            } else {
+                for (int j = l; j < L[belong[l]+1]; ++j) {
+                    ans = add(ans, a[j] + tag[belong[j]], c + 1);
+                }
+                for (int j = L[belong[r]]; j <= r; ++j) {
+                    ans = add(ans, a[j] + tag[belong[j]], c + 1);
+                }
+                for (int j = belong[l]+1; j < belong[r]; ++j) {
+                    ans = add(ans, sum[j], c + 1);
+                }
+            }
+            cout << ans << "\n";
+        }
+    }
+}
+```
+
+
+
+## 莫队
+求 $[l,r]$ 中出现了几种数
+```cpp
+const int N=1e5;
+int n, q, a[N+5], x[N+5], y[N+5], ans[N+5], id[N+5];
+int cnt[N+5], colcnt;
+
+void move(int p, int d)
+{
+    cnt[a[p]] += d;
+    if (d == 1 && cnt[a[p]] == 1) { ++colcnt; }
+    if (d == -1 && cnt[a[p]] == 0) { --colcnt; }
+}
+
+int main()
+{
+    ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); 
+    cin >> n >> q;
+    iota(id, id+q+1, 0);
+    for (int i = 1; i <= n; ++i) { 
+        cin >> a[i];
+    }
+    for (int i = 1; i <= q; ++i) {
+        cin >> x[i] >> y[i];
+    }
+    int siz = sqrt(n) + 1;
+    sort(id+1, id+q+1, [&](int a, int b){
+        int ra = x[a] / siz;
+        int rb = x[b] / siz;
+        if (ra == rb) {
+            return y[a] < y[b];
+        } else {
+            return ra < rb;
+        }
+    });
+
+    int l = 1, r = 0;
+    for (int i = 1; i <= q; ++i) {
+        int xx = x[id[i]];
+        int yy = y[id[i]];
+        while (l < xx) { move(l++, -1); }
+        while (l > xx) { move(--l, 1); }
+        while (r < yy) { move(++r, 1); }
+        while (r > yy) { move(r--, -1); }
+        ans[id[i]] = colcnt;
+    }
+}
+
+```
+
+
+## 逆序对
+
+归并排序解决静态逆序对问题。
+```cpp
+ll msort(vector<int> &a, int l, int r)
+{
+    if (l == r) { return 0; }
+    int mid = (l + r) >> 1;
+    ll ans=0;
+    ans += msort(a, l, mid);
+    ans += msort(a, mid+1, r);
+    int i=l, j=mid+1;
+    vector<int> b;
+    while (i <= mid && j <= r) {
+        if (a[i] <= a[j]) { b.push_back(a[i++]); }
+        else              { b.push_back(a[j++]); ans+=mid-i+1; }
+    }
+    while (i <= mid) { b.push_back(a[i++]); }
+    while (j <= r)   { b.push_back(a[j++]); }
+    copy(b.begin(), b.end(), a.begin()+l);
+    return ans;
+}
+```
+树状数组解决静态逆序对问题。
+```cpp
+ll ans = 0;
+for (int i = 0; i < n; ++i) {
+    ans += t.query(n)-t.query(p[a[i]]);
+    t.modify(p[a[i]], 1);
+}
+```
+分块解决动态逆序对问题。
+
+
+
 # 图论
 
 https://csacademy.com/app/graph_editor/
@@ -1343,6 +1736,7 @@ void Dijkstra(int s)
     }
 }
 ```
+
 
 
 ### spfa判断负环
@@ -1438,7 +1832,7 @@ void dfs(int u, int fa)
 {   // 预处理父节点、深度、路径上的最小值
     f[0][u] = fa;
     dep[u] = dep[fa] + 1;
-    for (int i = 1; i <= I; ++i) {
+    for (int i = 1; i <= I; ++i) { 
         f[i][u] = f[i-1][ f[i-1][u] ];
         mn[i][u] = min( mn[i-1][u], mn[i-1][ f[i-1][u] ] );
     }
@@ -2079,54 +2473,107 @@ void solve()
 
 dicnic 在普通图上的时间复杂度是 $O (EV^2)$，在单位容量图上的时间复杂度是 $O (E\min(E^{\frac{1}{2}},V^{\frac{2}{3}}))$
 ```cpp
-const ll INF = 9e18; 
+template<typename T>
 struct Flow {
-    vector<tuple<int,ll,int>> G[N];  // 终点，流量，反边
-    int dis[N], now[N];  // now[u] 为当前弧
-    void add_edge(int u, int v, ll w) {
-        G[u].push_back( { v, w, G[v].size() } );
-        G[v].push_back( { u, 0, G[u].size()-1 } );
-    }
-    void bfs(int st) {  // 求层次图
-        queue<int> q;
-        memset(dis, 0, sizeof(dis));
-        q.push(st); dis[st] = 1;
-        while (!q.empty()) {
-            int u = q.front(); q.pop();
-            for (auto& [v, w, inv]: G[u]) {
-                if (w != 0 && dis[v] == 0) {
-                    dis[v] = dis[u] + 1;
-                    q.push(v);
+    struct _edge {
+        int to;
+        T cap;
+        _edge(int to, T cap): to(to), cap(cap) { }
+    };
+
+    int n;
+    vector<_edge> e;
+    vector<vector<int>> g;
+    vector<int> cur, h;
+
+    Flow() { }
+    Flow(int n): n(n), e(), g(n+1), cur(n+1), h(n+1) { }
+
+    bool bfs(int s, int t) {
+        h.assign(n+1, -1);
+        queue<int> que;
+        h[s] = 0;
+        que.push(s);
+        while (!que.empty()) {
+            const int u = que.front(); que.pop();
+            for (auto i: g[u]) {
+                auto [v, c] = e[i];
+                if (c > 0 && h[v] == -1) {
+                    h[v] = h[u] + 1;
+                    if (v == t) {
+                        return true;
+                    }
+                    que.push(v);
                 }
             }
         }
+        return false;
     }
-    ll dfs(int u, int t, ll flow) {  // 求阻塞流
-        if (u == t) { return flow; }
-        for (int &i=now[u]; i < (int)G[u].size(); ++i) {
-            auto& [v, w, inv] = G[u][i];
-            if (w != 0 && dis[v] > dis[u]) {
-                ll d = dfs(v, t, min(flow, w));
-                if (d > 0) {
-                    w -= d;
-                    get<1>(G[v][inv]) += d;
-                    return d;
+
+    T dfs(int u, int t, T f) {
+        if (u == t) { return f; }
+        auto r = f;
+        for (int &i = cur[u]; i < int(g[u].size()); ++i) {
+            const int j = g[u][i];
+            auto [v, c] = e[j];
+            if (c > 0 && h[v] == h[u] + 1) {
+                auto a = dfs(v, t, min(r, c));
+                e[j].cap -= a;
+                e[j ^ 1].cap += a;
+                r -= a;
+                if (r == 0) {
+                    return f;
                 }
             }
         }
-        return 0;
+        return f - r;
     }
-    ll dicnic(int st, int ed) {
-        for (ll flow=0, res;;) {
-            bfs(st);
-            if (dis[ed] == 0) { return flow; }
-            memset(now, 0, sizeof(now));
-            while ((res=dfs(st,ed,INF)) > 0) {
-                flow += res;
-            }
+
+    void add_edge(int u, int v, T c) {
+        g[u].push_back(e.size());
+        e.emplace_back(v, c);
+        g[v].emplace_back(e.size());
+        e.emplace_back(u, 0);
+    }
+
+    T maxFlow(int s, int t) {
+        T ans = 0;
+        while (bfs(s, t)) {
+            cur.assign(n+1, 0);
+            ans += dfs(s, t, numeric_limits<T>::max());
         }
+        return ans;
+    }
+
+    vector<bool> minCut() {
+        vector<bool> c(n+1);
+        for (int i = 0; i <= n; ++i) {
+            c[i] = (h[i] != -1);
+        }
+        return c;
+    }
+
+    struct edge {
+        int fr;
+        int to;
+        T cap;
+        T flow;
+    };
+    vector<edge> edges() {
+        vector<edge> a;
+        for (int i = 0; i < int(e.size()); i += 2) {
+            edge x;
+            x.fr = e[i + 1].to;
+            x.to = e[i].to;
+            x.cap = e[i].cap + e[i + 1].cap;
+            x.flow = e[i + 1].cap;
+            a.push_back(x);
+        }
+        return a;
     }
 };
+
+Flow<ll> G(n);  // n 表示最大下标
 ```
 
 
@@ -2207,7 +2654,31 @@ for (int i = 1; i <= X; ++i) {
 
 
 
-## 快速幂与乘法逆元
+## O(1)gcd
+```cpp
+const int V = 5000;
+int g[V + 5][V + 5];
+int gcd(int x, int y) {
+    x = abs(x);
+    y = abs(y);
+    if (x <= V && y <= V && g[x][y] != 0) {
+        return g[x][y];
+    }
+    ll res = x == 0 ? y : gcd(y % x, x);
+    if (x <= V && y <= V) {
+        g[x][y] = res;
+    }
+    return res;
+}
+int lcm(int x, int y) {
+    int d = gcd(x, y);
+    return d == 0 ? 0 : x / d * y;
+}
+```
+
+
+
+## 排列组合数
 
 根据费马小定理 $a^{p-1}\equiv1\pmod p$，得 $a^{p-2}\equiv\dfrac{1}{a}\pmod p$，据此计算乘法逆元。
 要求模数为质数，且 $a$ 不是 $p$ 的倍数。
@@ -2229,22 +2700,18 @@ Inv[1] = 1;
 for (int i = 2; i <= n; ++i) {
 	Inv[i] = (ll)(MOD - MOD / i) * Inv[MOD % i] % MOD;
 }
+// 另一种写法
+fac[0] = Inv[0] = 1;
+for (int i = 1; i <= N; ++i) { fac[i] = mul(fac[i-1], i); }
+Inv[N] = qpow(fac[N]);
+for (int i = N - 1; i; --i) { Inv[i] = mul(Inv[i + 1], i + 1); }
 ```
-
-
-
-## 排列组合数
-
+直接计算排列组合数
 ```cpp
 const int N=1e5;
 ll fac[N+5], Inv[N+5];
 ll C(ll n, ll k) { return n==0? 1: fac[n] * Inv[k] % MOD * Inv[n-k] % MOD; }
 ll P(ll n, ll k) { return n==0? 1: fac[n] * Inv[n-k] % MOD; }
-// 预处理阶乘和阶乘的逆元
-for (int i = 1; i <= N; ++i) {
-	fac[i] = fac[i-1] * i % MOD;
-	Inv[i] = qpow(fac[i]); 
-}
 ```
 python 高精度版。
 ```python
@@ -2361,6 +2828,139 @@ int Guess(vector<vector<db>> &a)
 
 
 
+## 线性基
+```cpp
+struct LinearBasis {
+    static const int maxbase = 35;
+    bool flag = false;
+    ll a[maxbase + 1];
+    int tot;
+    LinearBasis() {
+        memset(a, 0, sizeof a);
+        tot = 0;
+    }
+    LinearBasis(ll *x, int n) {
+        LinearBasis();
+        build(x, n);
+    }
+    void build(ll *x, int n) {
+        for (int i = 1; i <= n; ++i) insert(x[i]);
+    }
+    void clear() { memset(a, 0, sizeof a); }
+    bool insert(ll t) {
+        // 暴力插入一个数，维护的是一个上三角型的线性基矩阵，时间复杂度低，当待插入元素能插入时，返回true
+        for (int i = maxbase; i >= 0; --i) {
+            if (t & (1ll << i)) {
+                if (!a[i]) {
+                    a[i] = t;  // 这里表示插入成功
+                    break;
+                }
+                t ^= a[i];
+            }
+        }
+        if (t == 0) flag = true, tot++;
+        return t;
+    }
+    bool query(ll t) {
+        // 询问t是否可以被当前线性基表示，不插入
+        if (t > queryMax()) return false;
+        if (t == 0) return true;
+        for (int i = maxbase; i >= 0; --i) {
+            if (t & (1ll << i)) {
+                if (!a[i]) {
+                    return false;
+                }
+                t ^= a[i];
+            }
+        }
+        return true;
+    }
+    void Insert(ll t) {
+        // 插入一个线性基，利用高斯消元法维护一个对角矩阵
+        for (int i = maxbase; i >= 0; --i) {
+            if (t >> i & 1) {
+                if (a[i])
+                    t ^= a[i];
+                else {
+                    a[i] = t;
+                    for (int j = i - 1; j >= 0; --j)
+                        if (a[j] && (a[i] >> j & 1)) a[i] ^= a[j];
+                    for (int j = i + 1; j <= maxbase; ++j)
+                        if (a[j] >> i & 1) a[j] ^= a[i];
+                    break;
+                }
+            }
+        }
+    }
+    LinearBasis merge(const LinearBasis &l1, const LinearBasis &l2) {
+        // 得到两个线性基的并
+        LinearBasis ret = l1;
+        for (int i = maxbase; i >= 0; --i)
+            if (l2.a[i]) ret.insert(l2.a[i]);
+        return ret;
+    }
+    LinearBasis intersection(const LinearBasis &l1, const LinearBasis &l2) {
+        // 得到两个线性基的交
+        LinearBasis all, ret, full;
+        ret.clear();
+        for (int i = maxbase; i >= 0; --i) {
+            all.a[i] = l1.a[i];
+            full.a[i] = 1ll << i;
+        }
+        for (int i = maxbase; i >= 0; --i) {
+            if (l2.a[i]) {
+                ll v = l2.a[i], k = 0;
+                bool flag = true;
+                for (int j = maxbase; j >= 0; --j) {
+                    if (v & (1ll << j)) {
+                        if (all.a[j]) {
+                            v ^= all.a[j];
+                            k ^= full.a[j];
+                        } else {
+                            // l2's basis is not in l1's;
+                            flag = false;
+                            all.a[j] = v;
+                            full.a[j] = k;
+                            break;
+                        }
+                    }
+                }
+                if (flag) {
+                    ll v = 0;  // get intersection by k;
+                    for (int j = maxbase; j >= 0; --j) {
+                        if (k & (1ll << j)) {
+                            v ^= l1.a[j];
+                        }
+                    }
+                    ret.insert(v);
+                }
+            }
+        }
+        return ret;
+    }
+    // 询问最值
+    ll queryMax() {
+        ll ret = 0;
+        for (int i = maxbase; i >= 0; --i)
+            if ((ret ^ a[i]) > ret) ret ^= a[i];
+        return ret;
+    }
+    ll queryMin() {
+        for (int i = 0; i <= maxbase; ++i)
+            if (a[i]) return a[i];
+        return 0;
+    }
+    ll Kth_Max(ll k) {
+        ll res = 0;
+        for (int i = 62; i >= 0; i--)
+            if (k & (1LL << i)) res ^= a[i];
+        return res;
+    }
+};
+```
+
+
+
 ## 矩阵快速幂
 ```cpp
 using matrix = vector<vector<ll>>;
@@ -2418,6 +3018,40 @@ double calc(double l, double r, double eps) {
 
 
 ## 多项式
+
+
+
+### 暴力乘除
+```cpp
+using poly = vector<ll>;
+poly operator*(const poly &a, const poly &b) {
+    int n = a.size();
+    int m = b.size();
+    poly c(n + m - 1);
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            c[i + j] = add(c[i + j], mul(a[i], b[j]));
+        }
+    }
+    return c;
+}
+poly operator/(poly a, poly b) {
+    int n = a.size();
+    int m = b.size();
+    if (b[1] == 0) {
+        return a;
+    }
+
+    poly c(n - 1);
+    ll base = qpow(b[1]);
+    for (int i = n - 1; i; --i) {
+        ll d = mul(a[i], base);
+        c[i - 1] = d;
+        a[i - 1] = del(a[i - 1], mul(d, b[0]));
+    }
+    return c;
+}
+```
 
 
 
@@ -2528,85 +3162,108 @@ using namespace Polynomial;
 
 ### NTT
 ```cpp
-#include <bits/stdc++.h>
-#define fp(i, a, b) for (int i = (a), i##_ = (b) + 1; i < i##_; ++i)
-#define fd(i, a, b) for (int i = (a), i##_ = (b) - 1; i > i##_; --i)
-using namespace std;
-const int maxn = 2e5 + 5, P = 998244353;
-using ll = int64_t;
-#define ADD(a, b) (((a) += (b)) >= P ? (a) -= P : 0)
-#define SUB(a, b) (((a) -= (b)) < 0 ? (a) += P : 0)
-#define MUL(a, b) (ll(a) * (b) % P)
-int POW(ll a, int b = P - 2, ll x = 1) {
-    for (; b; b >>= 1, a = a * a % P)
-        if (b & 1) x = x * a % P;
-    return x;
-}
-
 namespace NTT {
 const int g = 3;
 vector<int> Omega(int L) {
-    int wn = POW(g, P / L);
+    int wn = qpow(g, MOD / L);
     vector<int> w(L);
     w[L >> 1] = 1;
-    fp(i, L / 2 + 1, L - 1) w[i] = MUL(w[i - 1], wn);
-    fd(i, L / 2 - 1, 1) w[i] = w[i << 1];
+    for (int i = L / 2 + 1; i <= L - 1; ++i) {
+        w[i] = mul(w[i - 1], wn);
+    }
+    for (int i = L / 2 - 1; i; --i) {
+        w[i] = w[i << 1];
+    }
     return w;
 }
 auto W = Omega(1 << 21);
 void DIF(int *a, int n) {
     for (int k = n >> 1; k; k >>= 1) {
-        for (int i = 0, y; i < n; i += k << 1)
-            fp(j, 0, k - 1) y = a[i + j + k],
-                            a[i + j + k] = MUL(a[i + j] - y + P, W[k + j]),
-                            ADD(a[i + j], y);
+        for (int i = 0, y; i < n; i += k << 1) {
+            for (int j = 0; j < k; ++j) {
+                y = a[i + j + k];
+                a[i + j + k] = mul(del(a[i + j], y), W[k + j]);
+                a[i + j] = add(a[i + j], y);
+            }
+        }
     }
 }
 void IDIT(int *a, int n) {
     for (int k = 1; k < n; k <<= 1) {
-        for (int i = 0, x, y; i < n; i += k << 1)
-            fp(j, 0, k - 1) x = a[i + j], y = MUL(a[i + j + k], W[k + j]),
-                            a[i + j + k] = x - y < 0 ? x - y + P : x - y,
-                            ADD(a[i + j], y);
+        for (int i = 0, x, y; i < n; i += k << 1) {
+            for (int j = 0; j < k; ++j) {
+                x = a[i + j];
+                y = mul(a[i + j + k], W[k + j]);
+                a[i + j + k] = del(x, y);
+                a[i + j] = add(a[i + j], y);
+            }
+        }
     }
-    int Inv = P - (P - 1) / n;
-    fp(i, 0, n - 1) a[i] = MUL(a[i], Inv);
+    int Inv = MOD - (MOD - 1) / n;
+    for (int i = 0; i < n; ++i) {
+        a[i] = mul(a[i], Inv);
+    }
     reverse(a + 1, a + n);
 }
-}  // namespace NTT
+} // namespace NTT
 namespace Polynomial {
 using Poly = std::vector<int>;
 Poly &operator*=(Poly &a, int b) {
-    for (auto &x : a) x = MUL(x, b);
+    for (auto &x : a) {
+        x = mul(x, b);
+    }
     return a;
 }
-Poly operator*(Poly a, int b) { return a *= b; }
-Poly operator*(int a, Poly b) { return b * a; }
-void DFT(Poly &a) { NTT::DIF(a.data(), a.size()); }
-void IDFT(Poly &a) { NTT::IDIT(a.data(), a.size()); }
-int norm(int n) { return 1 << (32 - __builtin_clz(n - 1)); }
+Poly operator*(Poly a, int b) {
+    return a *= b;
+}
+Poly operator*(int a, Poly b) {
+    return b * a;
+}
+void DFT(Poly &a) {
+    NTT::DIF(a.data(), a.size());
+}
+void IDFT(Poly &a) {
+    NTT::IDIT(a.data(), a.size());
+}
+int norm(int n) {
+    return 1 << (32 - __builtin_clz(n - 1));
+}
 void norm(Poly &a) {
-    if (!a.empty()) a.resize(norm(a.size()), 0);
+    if (!a.empty()) {
+        a.resize(norm(a.size()), 0);
+    }
 }
 Poly &dot(Poly &a, Poly &b) {
-    fp(i, 0, a.size() - 1) a[i] = MUL(a[i], b[i]);
+    for (int i = 0; i < int(a.size()); ++i) {
+        a[i] = mul(a[i], b[i]);
+    }
     return a;
 }
 Poly operator*(Poly a, Poly b) {
     int n = a.size() + b.size() - 1, L = norm(n);
     if (a.size() <= 8 || b.size() <= 8) {
         Poly c(n);
-        fp(i, 0, a.size() - 1) fp(j, 0, b.size() - 1) c[i + j] =
-            (c[i + j] + (ll)a[i] * b[j]) % P;
+        for (int i = 0; i < int(a.size()); ++i) {
+            for (int j = 0; j < int(b.size()); ++j) {
+                c[i + j] = add(c[i + j], mul(a[i], b[j]));
+            }
+        }
         return c;
     }
-    a.resize(L), b.resize(L);
-    DFT(a), DFT(b), dot(a, b), IDFT(a);
-    return a.resize(n), a;
+    a.resize(L);
+    b.resize(L);
+    DFT(a);
+    DFT(b);
+    dot(a, b);
+    IDFT(a);
+    a.resize(n);
+    return a;
 }
-}  // namespace Polynomial
+} // namespace Polynomial
 using namespace Polynomial;
 ```
+
 
 
 # 字符串
@@ -2990,7 +3647,7 @@ using i128 = __int128;
 
 const int L=18;
 int a[L+5];
-ll f[L+5][15];
+ll f[L+5][15]
 ll dfs(int p, bool limit, bool lead0, int last)
 {
 	if (!p) { return 1; }
@@ -3130,6 +3787,8 @@ for(int k=0;k<=19;k++)
 	- 多测时，全局变量记得要清空（测 `assert` 时注意全局！！）
 	- 【与】和【或】不要搞反
 	- 如果一眼看上去感觉完全不可做，很有可能是缺条件或看（想）错条件，先模样例，防止脑残
+	- 如果题面或数据范围看错了，从头开始重想，避免下意识地忽略正解
+	- 不要忘记换行
 - 开 `long long`
 	- 叉乘的结果再相乘，需要检查是否爆 `long long`
 	- 位运算的时候考虑下 `long long`，比如 `1LL<<i`
