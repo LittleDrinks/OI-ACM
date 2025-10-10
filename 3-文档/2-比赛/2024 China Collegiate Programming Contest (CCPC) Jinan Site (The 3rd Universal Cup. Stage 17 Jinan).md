@@ -8,4 +8,4 @@ author:
 ---
 # [2024 China Collegiate Programming Contest (CCPC) Jinan Site (The 3rd Universal Cup. Stage 17: Jinan)](https://codeforces.com/gym/105540)
 
-- [ ] [[gym105540E]]
+- [x] [[gym105540E]]
