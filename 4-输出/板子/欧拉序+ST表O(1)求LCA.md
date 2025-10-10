@@ -11,9 +11,9 @@ tags:
 template <typename T>
 struct ST {};
 
-int first[N], dep[N];
-vector <int> G[N];
-vector <pii> eular;
+int n;
+int first[N + 5], dep[N + 5];
+vector<int> G[N + 5];
 void dfs(int u, int fa)
 {   // 预处理深度和欧拉序
     first[u] = eular.size();
@@ -27,7 +27,7 @@ void dfs(int u, int fa)
     }
 }
 
-ST<pii> st;
+ST<pair<int,int>> st;
 int lca(int u, int v)
 {
     u = first[u];
