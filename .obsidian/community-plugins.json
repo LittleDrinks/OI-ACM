@@ -6,9 +6,7 @@
   "floating-toc",
   "obsidian-git",
   "obsidian-hover-editor",
-  "obsidian-image-toolkit",
   "keyboard-analyzer",
-  "mousewheel-image-zoom",
   "omnisearch",
   "obsidian-style-settings",
   "tag-wrangler",
@@ -23,5 +21,7 @@
   "homepage",
   "easy-typing-obsidian",
   "file-explorer-note-count",
-  "obsidian-latex-suite"
+  "obsidian-latex-suite",
+  "image-converter",
+  "obsidian-image-toolkit"
 ]

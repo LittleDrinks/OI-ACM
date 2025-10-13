@@ -1,16 +1,16 @@
 {
   "version": 3,
   "projects": {},
-  "selectedDraftVaultPath": "4-输出/板子/Index.md",
+  "selectedDraftVaultPath": "4-输出/模板整理/烂掉啦.md",
   "userScriptFolder": null,
   "sessionStorage": "data",
   "sessions": [
     {
       "start": "2025-10-13T13:58:07.453Z",
-      "total": 4906,
+      "total": 4583,
       "drafts": {
         "4-输出/板子/Index.md": {
-          "total": 4906,
+          "total": 4583,
           "scenes": {
             "赛前准备": 0,
             "土制cph(全平台)": 0,
@@ -18,7 +18,6 @@
             "随机数": 0,
             "对拍": 0,
             "杂项": 0,
-            "常用函数": 323,
             "快读": 36,
             "取模": 63,
             "__int128流重载": 74,
@@ -115,6 +114,66 @@
             "SOSDP": 0,
             "烂掉啦": 12
           }
+        },
+        "4-输出/数据结构/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/赛前准备/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/计算几何/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/计算几何/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/赛前准备/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/数据结构/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/0-赛前准备/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/1-杂项/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/2-计算几何/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/3-数据结构/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/4-图论/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/5-数学/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/6-字符串/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/7-DP/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "4-输出/模板整理/烂掉啦.md": {
+          "total": 0,
+          "scenes": {}
         }
       }
     },
