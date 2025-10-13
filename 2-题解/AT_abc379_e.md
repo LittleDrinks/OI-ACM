@@ -12,7 +12,7 @@ $$
 s_i\times i\times \underbrace{11\cdots1}_{n-i \text{个} 1}
 $$
 其中，$s_i\times i$ 可以直接处理，而 $\underbrace{11\cdots1}_{n-i \text{个} 1}$ 可以通过从左到右求一次前缀和处理，时间复杂度 $O(n)$。
-另外，直接粗暴使用 python 会 RE，详见 [[20241112183800为什么python在处理大整数时会RE]]
+另外，直接粗暴使用 python 会 RE，详见 [[20241112183800 为什么python在处理大整数时会RE]]
 
 #### [AC代码](https://www.luogu.com.cn/record/188332196)
 
