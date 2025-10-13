@@ -2,13 +2,12 @@
 tags: 
 aliases:
 ---
-第二版，使用 `subprocess`，添加彩字，适用 windows 和 linux，支持计算相对误差
 ```python
 from os import listdir as l, system as e
 from os.path import join as jp
-from sys import argv as a
+from sys import argv
 import subprocess as s
-_,q,f = a
+_,q,f = argv
 if "py" in f:
     cmd = ["python3", f]
 else:

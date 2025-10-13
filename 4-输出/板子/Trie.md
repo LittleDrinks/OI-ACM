@@ -4,45 +4,49 @@ tags:
   - Trie/01Trie
   - 模板
 ---
-普通 Trie。
+普通 Trie
 ```cpp
-const string VAL="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const int S=3e6+5, V=62;
+int tot, trie[N][62], val[N];
 
-struct Trie {
-    unordered_map<char,int> p;
-    int tot, ch[S][V], pass[S];
-    int newNode() {
-        ++tot;
-        memset(ch[tot], 0, sizeof(ch[tot]));
-        pass[tot] = 0;
-        return tot;
-    }
-    void init() {
-        tot = -1;
-        newNode();
-    }
-    Trie() {
-        for (int i = 0; i < V; ++i) { p[VAL[i]] = i; }
-        init();
-    }
-    void insert(string s) {
-        int now = 0;
-        for (auto c: s) {
-            if (!ch[now][p[c]]) { ch[now][p[c]] = newNode(); }
-            now = ch[now][p[c]];
-            ++pass[now];
+int newNode()
+{
+    ++tot;
+    fill(trie[tot], trie[tot]+62, 0);
+    val[tot] = 0;
+    return tot;
+}
+
+void add(string s)
+{
+    int now = 0;
+    for (auto c: s) {
+        int v;
+        if ('a' <= c && c <= 'z') { v = c - 'a'; }
+        if ('A' <= c && c <= 'Z') { v = c - 'A' + 26; }
+        if ('0' <= c && c <= '9') { v = c - '0' + 52; }
+        if (!trie[now][v]) {
+            trie[now][v] = newNode();
         }
+        now = trie[now][v];
+        ++val[now];
     }
-    int query(string s) {
-        int now = 0;
-        for (auto c: s) {
-            if (!ch[now][p[c]]) { return 0; }
-            now = ch[now][p[c]];
+}
+
+int query(string s)
+{
+    int now = 0;
+    for (auto c: s) {
+        int v;
+        if ('a' <= c && c <= 'z') { v = c - 'a'; }
+        if ('A' <= c && c <= 'Z') { v = c - 'A' + 26; }
+        if ('0' <= c && c <= '9') { v = c - '0' + 52; }
+        if (!trie[now][v]) {
+            return 0;
         }
-        return pass[now];
+        now = trie[now][v];
     }
-} trie;
+    return val[now];
+}
 ```
 求 $\displaystyle \max_x \{x\oplus y\}$。求树上最长异或路径。
 ```cpp

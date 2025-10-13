@@ -1,5 +1,7 @@
 [TOC]
 
+
+
 # 赛前准备
 
 - 打开 vscode 的自动保存功能
@@ -46,9 +48,9 @@ for i in l(d):
 ```python
 from os import listdir as l, system as e
 from os.path import join as jp
-from sys import argv as a
+from sys import argv
 import subprocess as s
-_,q,f = a
+_,q,f = argv
 if "py" in f:
     cmd = ["python3", f]
 else:
@@ -145,25 +147,78 @@ while (1) {
 	}
 }
 ```
+.sh 脚本
+```cpp
+#!/bin/bash
+P=$1
+g++ -std=gnu++20 -O2 "${P}.cpp" -o "${P}"
+g++ -std=gnu++20 -O2 "${P}_bf.cpp" -o "${P}_bf"
+g++ -std=gnu++20 -O2 "${P}_gen.cpp" -o "${P}_gen"
+while true; do
+    ./"${P}_gen" > ".in"
+    ./"${P}" < ".in" > ".out"
+    ./"${P}_bf" < ".in" > ".ans"
+    if diff ".out" ".ans" > /dev/null; then
+        echo "AC"
+    else
+        echo "WA"
+        break
+    fi
+done
+```
 
+
+
+## template
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using db = long double;
+using i128 = __int128;
+
+template<typename T1,typename T2>
+ostream& operator<<(ostream& os, const pair<T1,T2>& p) {
+    return os << "( " << p.first << ", " << p.second << " )";
+}
+template<typename T>
+ostream& operator<<(ostream& os, const vector<T>& v) {
+    os << "[ ";
+    if (v.size()) os << v[0];
+    for (int i = 1; i < int(v.size()); ++i) {
+        os << ", " << v[i];
+    }
+    return os << " ]";
+}
+
+void solve()
+{
+    int n;
+    cin >> n;
+}
+
+int main()
+{
+    ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); 
+    int t = 1;
+    cin >> t;
+    while (t--) { solve(); }
+}
+
+```
 
 
 # 杂项
 
 
 
-## 解除python大数限制
-```python
-import sys
-sys.set_int_max_str_digits(100005)
-```
-
-
-
 ## 常用函数
 
+
+
+
+### 快读
 ```cpp
-// 快读
 inline int read()
 {
 	int x=0,f=1;char ch=getchar();
@@ -171,8 +226,11 @@ inline int read()
 	while (ch>='0'&&ch<='9'){x=x*10+ch-48;ch=getchar();}
 	return x*f;
 }
+```
 
-// 取模
+
+### 取模
+```cpp
 const int MOD=998244353;
 ll add(ll x, ll y) { return (x+y)%MOD; }
 ll del(ll x, ll y) { return add(x, MOD-y); }
@@ -185,20 +243,10 @@ ll qpow(ll a, ll b = MOD - 2) {
 	}
 	return res;
 }
-
-// 计算一个整数的二进制表示中有多少个 1
-__builtin_popcountll(i);
-std::popcount((unsigned long long)i);  // c++20
-
-// 计算一个整数的二进制表示中最高位的 1
-__lg(i);  // i 最多 32 位
 ```
 
 
-
-## 高精度
-
-重载 `__int128` 输入输出
+### __int128流重载
 ```cpp
 istream& operator>> (istream& is, __int128 &x)
 {
@@ -225,8 +273,36 @@ ostream& operator<< (ostream& os, __int128 &x)
 ```
 
 
+### 解除python大数限制
+```python
+import sys
+sys.set_int_max_str_digits(100005)
+```
 
-## vector相关
+
+
+### 二进制
+```cpp
+// 计算一个整数的二进制表示中有多少个 1
+__builtin_popcountll(i);
+std::popcount((unsigned long long)i);  // c++20
+
+// 计算一个整数的二进制表示中最高位的 1
+__lg(i);  // i 最多 32 位
+```
+
+
+### 子集枚举
+```cpp
+for (int i = 1; i < (1 << n); i++) {
+	for (int j = i; j; j = (j - 1) & i) {
+		// j 遍历了 i 的所有非空子集
+	}
+}
+```
+
+
+### vector相关
 
 ```cpp
 // 多维 vector，需要 c++17，c++14 只能老老实实写 vector<vector<int>>
@@ -294,28 +370,15 @@ if (duration > 998) { cout << ans << "\n"; exit(0); }
 
 
 
-## 防止umap被卡
-```cpp
-unordered_map<int,int>mp;
-mp.reserve(1024);
-mp.max_load_factor(0.25);
-```
-
-
-
 # 计算几何
 
-https://csacademy.com/app/geometry_widget/
-先判断，再计算，精度会好很多
 ```cpp
-const int inf = INT_MAX;
-typedef long long ll;
-typedef double db;  // 视情况改为 long double
+using ll = long long;
+using db = long double;
 const db eps=1e-8;
 const db PI=acos(-1.0);
 const db inf = numeric_limits<db>::max();
-int sgn(ll x) { return (x>0)-(x<0); }
-int sgn(db x) { return (x>eps)-(x<-eps); }
+int sgn(auto x) { return (x > eps) - (x < -eps); }
 ```
 
 
@@ -343,13 +406,12 @@ struct Point {
 	Point rot(db ang) { return Point(x*cos(ang)-y*sin(ang), x*sin(ang)+y*cos(ang)); }
 	Point trunc(db l) { return (*this) * (l/len()); }
 };
-using Vector = Point;
 
 // 判断 c 是否在 ab 的逆时针方向
 int toLeft(Point a, Point b, Point c) { return sgn((b-a)^(c-a)); }
 
 // 二维向量夹角，注意特判垂直的情况
-db getAngle(Vector a, Vector b) { return fabs(atan2(fabs(a^b), a*b)); }
+db getAngle(Point a, Point b) { return fabs(atan2(fabs(a^b), a*b)); }
 
 // ab 夹角是否大于 uv
 bool polarCmp(Point a, Point b, Point u, Point v)
@@ -364,16 +426,20 @@ bool polarCmp(Point a, Point b, Point u, Point v)
 }
 ```
 
-极角排序 
+
+
+## 极角排序
+直接计算极角
 ```cpp
-// 直接计算极角
 atan2(y, x);            // atan2(n, m) 表示以 m 为极轴，m 转向 n 为正方向
 fmod(2*PI+ang(), 2*PI)  // 极角归一化 
-
-// 所有点在一个半平面内的简化版本
-bool argcmp(Point a, Point b) { return (a^b) > eps; }
-
-// 全平面极角排序
+```
+所有点在一个半平面内
+```cpp
+bool argcmp(Point a, Point b) { return sgn(a^b) > 0; }
+```
+全平面极角排序
+```cpp
 // 把全平面划分为：下半平面 < 原点 < x 正半轴 < 上半平面 < x 负半轴
 bool argcmp(Point a, Point b) {  
     auto quad = [](const Point &a) {
@@ -466,23 +532,32 @@ double distToSeg(Point p, Point a, Point b) {
 
 
 
-## 多边形与凸包
+## 多边形
 
 任意多边形。可以计算面积和回转数，根据回转数判断点是否在该多边形内。
+```cpp
+T area(const vector<Point> &p) {
+	T s = 0;
+	int n = p.size();
+	for (size_t i = 0; i < n; ++i) {
+		s += (p[i] ^ p[(i + 1) % n]);
+	}
+	return abs(s);
+}
+db circ(const vector<Point> &p) {
+    db s = 0;
+    int n = p.size();
+    for (int i = 0; i < n; ++i) {
+        s += (p[i] - p[(i + 1) % n]).len();
+    }
+    return s;
+}
+```
 ```cpp
 struct Polygon: vector<Point> {
     using vector<Point>::vector;  // 直接使用 vector 的构造函数
     size_t nxt(size_t i) { return i+1==size()? 0: i+1; }
     size_t pre(size_t i) { return i==0? size()-1: i-1; }
-	// 求多边形面积
-	// 为避免精度误差，可以返回 2*S，即去掉 "0.5*()"
-	db area() {
-        db res = 0;
-        for (size_t i = 0; i < size(); ++i) {
-            res += 0.5 * ((*this)[i] ^ (*this)[nxt(i)]);
-        }
-        return fabs(res);
-    }
     // Sunday's algorithm 光线回转法
     // 在整数范围内判断一个点是否在多边形（不保证凸包）内部
     // 亦可用于求某点相对于该多边形的回转数
@@ -503,7 +578,59 @@ struct Polygon: vector<Point> {
 };
 ```
 
-凸包板子。可以求出平面点集的凸包，判断点是否在凸包内，旋转卡壳。
+
+
+## 求点集的凸包
+```cpp
+vector<Point> toConvex(vector<Point> &ori)
+{
+    const int n = ori.size();
+    if (n <= 2) { return {}; }
+    
+    vector<Point> p = ori;
+    sort(p.begin(), p.end());
+    
+    vector<Point> st;
+    st.reserve(n + 1);
+    
+    auto check = [&](Point u) {
+        const auto p1 = st.back();
+        const auto p2 = *prev(st.end(), 2);
+        return sgn((p1 - p2) ^ (u - p1)) <= 0;
+    };
+
+	// 上凸壳
+    for (const auto &u: p) {
+        while (st.size() > 1 && check(u)) { st.pop_back(); }
+        st.push_back(u);
+    }
+
+	// 下凸壳
+    size_t k = st.size();
+    p.pop_back();
+    reverse(p.begin(), p.end());
+    for (const Point &u: p) {
+        while (st.size() > k && check(u)) { st.pop_back(); }
+        st.push_back(u);
+    }
+    st.pop_back();
+
+	// 筛选不在凸包上的点
+    vector<Point> r;
+    set<Point> h(st.begin(), st.end());
+    for (const auto &u: ori) {
+        if (!h.count(u)) { r.push_back(u); }
+    }
+    ori = move(st);
+    return r;
+}
+```
+
+
+
+
+## 凸包
+判断点是否在凸包内；旋转卡壳。
 ```cpp
 struct Convex: Polygon {
 	using Polygon::Polygon;
@@ -563,8 +690,9 @@ struct Convex: Polygon {
 	    return ans;
 	}
 };
-
-// 旋转卡壳运用：最小矩形覆盖
+```
+旋转卡壳运用：最小矩形覆盖
+```cpp
 pair<db,Polygon> rotcaliper(Convex &&p)
 {
     db ans = inf;
@@ -599,7 +727,51 @@ pair<db,Polygon> rotcaliper(Convex &&p)
 
 
 ## 三维向量
-
+```cpp
+using T = db;
+struct Point {
+    T x, y, z;
+    Point(T x=0, T y=0, T z=0): x(x), y(y), z(z) {}
+    friend istream& operator>> (istream& is, Point &p) {
+        T a, b, c;
+        is >> a >> b >> c;
+        db len = sqrtl(a*a + b*b + c*c);
+        p.x = a * r / len;
+        p.y = b * r / len;
+        p.z = c * r / len;
+        return is;
+    }
+    Point operator+ (Point p) { return Point(x+p.x, y+p.y, z+p.z); }
+    Point operator- (Point p) { return Point(x-p.x, y-p.y, z-p.z); }
+    Point operator* (db k) { return Point(x*k, y*k, z*k); }
+    Point operator/ (db k) { return Point(x/k, y/k, z/k); }
+    T operator* (Point p) { return x*p.x + y*p.y + z*p.z; }
+    Point operator^ (Point p) {
+        return Point(
+            y*p.z - z*p.y,
+            z*p.x - x*p.z,
+            x*p.y - y*p.x
+        );
+    }
+    T len2() { return (*this)*(*this); }
+    db len() { return sqrtl(len2()); }
+};
+T mul(Point a, Point b, Point c) {
+    return (a ^ b) * c;
+}
+bool onPlain(Point a, Point b, Point c) {
+    return sgn(mul(a,b,c)) == 0;
+}
+bool hasIntersection(Point p, Point S, Point T) {
+    Point n = S ^ T;
+    db cross_S_p = (S ^ p) * n;
+    db cross_p_T = (p ^ T) * n;
+    return sgn(cross_S_p) >= 0 && sgn(cross_p_T) >= 0;
+}
+db getAng(Point a, Point b) {
+    return fabs(atan2( (a^b).len(), a*b ));
+}
+```
 
 
 # 数据结构
@@ -677,18 +849,18 @@ struct PairingMultiset {
 struct DSU {
     int n;
     vector<int> f, siz, pre;
-    DSU(int n): n(n),
-    			f(vector<int>(n+1)),
-    			siz(vector<int>(n+1,1)),
-    			pre(vector<int>(n+1))
-    {
+    DSU(int n)
+        : n(n), f(vector<int>(n + 1)), siz(vector<int>(n + 1, 1)),
+          pre(vector<int>(n + 1)) {
         iota(f.begin(), f.end(), 0);
     }
     int find(int x) {
-        if (f[x] == x) { return x; }
+        if (f[x] == x) {
+            return x;
+        }
         int fa = find(f[x]);
         pre[x] += pre[f[x]];
-        return f[x]=fa;
+        return f[x] = fa;
     }
     bool same(int x, int y) {
         return find(x) == find(y);
@@ -702,7 +874,7 @@ struct DSU {
         siz[x] = 0;
     }
     int query(int x, int y) {
-        return abs(pre[x]-pre[y])-1;
+        return abs(pre[x] - pre[y]) - 1;
     }
 };
 ```
@@ -711,45 +883,49 @@ struct DSU {
 
 ## Trie
 
-普通 Trie。
+普通 Trie
 ```cpp
-const string VAL="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const int S=3e6+5, V=62;
+int tot, trie[N][62], val[N];
 
-struct Trie {
-    unordered_map<char,int> p;
-    int tot, ch[S][V], pass[S];
-    int newNode() {
-        ++tot;
-        memset(ch[tot], 0, sizeof(ch[tot]));
-        pass[tot] = 0;
-        return tot;
-    }
-    void init() {
-        tot = -1;
-        newNode();
-    }
-    Trie() {
-        for (int i = 0; i < V; ++i) { p[VAL[i]] = i; }
-        init();
-    }
-    void insert(string s) {
-        int now = 0;
-        for (auto c: s) {
-            if (!ch[now][p[c]]) { ch[now][p[c]] = newNode(); }
-            now = ch[now][p[c]];
-            ++pass[now];
+int newNode()
+{
+    ++tot;
+    fill(trie[tot], trie[tot]+62, 0);
+    val[tot] = 0;
+    return tot;
+}
+
+void add(string s)
+{
+    int now = 0;
+    for (auto c: s) {
+        int v;
+        if ('a' <= c && c <= 'z') { v = c - 'a'; }
+        if ('A' <= c && c <= 'Z') { v = c - 'A' + 26; }
+        if ('0' <= c && c <= '9') { v = c - '0' + 52; }
+        if (!trie[now][v]) {
+            trie[now][v] = newNode();
         }
+        now = trie[now][v];
+        ++val[now];
     }
-    int query(string s) {
-        int now = 0;
-        for (auto c: s) {
-            if (!ch[now][p[c]]) { return 0; }
-            now = ch[now][p[c]];
+}
+
+int query(string s)
+{
+    int now = 0;
+    for (auto c: s) {
+        int v;
+        if ('a' <= c && c <= 'z') { v = c - 'a'; }
+        if ('A' <= c && c <= 'Z') { v = c - 'A' + 26; }
+        if ('0' <= c && c <= '9') { v = c - '0' + 52; }
+        if (!trie[now][v]) {
+            return 0;
         }
-        return pass[now];
+        now = trie[now][v];
     }
-} trie;
+    return val[now];
+}
 ```
 求 $\displaystyle \max_x \{x\oplus y\}$。求树上最长异或路径。
 ```cpp
@@ -785,6 +961,71 @@ struct Trie {
 
 
 
+### 可持久化Trie
+给定一个非负整数序列 $\{a\}$，初始长度为 $N$。  有 $M$ 个操作，有以下两种操作类型：  
+
+1. `A x`：添加操作，表示在序列末尾添加一个数 $x$，序列的长度 $N$ 加 $1$。  
+2. `Q l r x`：询问操作，你需要找到一个位置 $p$，满足 $l \le p \le r$，使得：$a[p] \oplus a[p+1] \oplus ... \oplus a[N] \oplus x$ 最大，输出最大值。
+
+```cpp
+const int N=2e7+9;
+struct Trie {
+    int ch[N][2];
+    int root[N], cnt[N], top=0, siz=0;
+    void insert(int x) {
+        root[++top] = ++siz;
+        int rt1 = root[top-1], rt2 = root[top];
+        for (int i = 24; i >= 0; --i) {
+            int b = x >> i & 1;
+            ch[rt2][!b] = ch[rt1][!b];
+            ch[rt2][b] = ++siz;
+            rt1 = ch[rt1][b];
+            rt2 = ch[rt2][b];
+            cnt[rt2] = cnt[rt1] + 1;
+        }
+    }
+    int query(int l, int r, int x) {
+        int ans = 0;
+        int rt1 = root[l], rt2 = root[r];
+        for (int i = 24; i >= 0; --i) {
+            int b = x >> i & 1;
+            if (cnt[ch[rt2][!b]] > cnt[ch[rt1][!b]]) {
+                ans += (1 << i);
+                b = !b;
+            }
+            rt1 = ch[rt1][b];
+            rt2 = ch[rt2][b];
+        }
+        return ans;
+    }
+} tr;
+
+void solve()
+{
+	int n, m;
+	cin >> n >> m;
+    tr.insert(0);
+    int sum = 0; 
+    for (int i = 1; i <= n; ++i) {
+        int x; cin >> x;
+        tr.insert(sum ^= x);
+    }
+    for (int i = 1; i <= m; ++i) {
+        char op; cin >> op;
+        if (op == 'A') {
+            int x; cin >> x;
+            tr.insert(sum ^= x);
+        } else {
+            int l, r, x;
+            cin >> l >> r >> x;
+            cout << tr.query(l-1, r, x^sum) << "\n";
+        }
+    }
+}
+```
+
+
+
 ## ST表
 
 这是一个 $0$ 下标的封装版 ST 表。但是 $1$ 下标时令 $a[0]=0$ 不会影响答案。
@@ -794,23 +1035,24 @@ struct ST {
     int n=0, I=0;
     vector<int> Log;
     vector<vector<T>> st;
-    ST() { }
-    ST(const vector<T>& a): n(a.size()), Log(vector<int>(n+1)) {
-        for (int i = 2; i <= n; ++i) {
+	function<T(T,T)> op;
+	ST() { }
+	ST(const vector<T>& a, function<T(T,T)> op): n(a.size()), Log(vector<int>(n+1)), op(op) {
+		for (int i = 2; i <= n; ++i) {
         	I=Log[i]=Log[i/2]+1;
         }
         st.assign(I+1, vector<T>(n));
         copy(a.begin(), a.end(), st[0].begin());
         for (int i = 1; i <= I; ++i) {
             for (int j = 0; j+(1<<(i-1)) < n; ++j) {
-                st[i][j] = max( st[i-1][j], st[i-1][j+(1<<(i-1))] );
+                st[i][j] = op( st[i-1][j], st[i-1][j+(1<<(i-1))] );
             }
         }
     }
     T query(int l, int r) {
     	assert(l <= r);  // l > r 时的返回值需要特殊定义
         int s = Log[r-l+1];
-        return max( st[s][l], st[s][r-(1<<s)+1] );
+        return op( st[s][l], st[s][r-(1<<s)+1] );
     }
     int find(int l, T x) {  // 第一个区间 [l,r] 最值大于等于 x 的 r
     	if (l >= n) { return -1; }
@@ -872,10 +1114,7 @@ struct BIT {
 };
 BIT T(n);
 ```
-
-
-
-### 二维树状数组
+二维树状数组
 ```cpp
 struct BIT {
 	int n, m;
@@ -1322,42 +1561,6 @@ int main() {
 ```
 
 
-## 笛卡尔树
-
-每个节点的编号满足二叉搜索树的性质。
-节点 $i$ 的权值为 $p_i$，每个节点的权值满足小根堆的性质。
-```cpp
-vector<int> stk;
-vector<int> L(n+1), R(n+1);
-for (int i = 1; i <= n; ++i) {
-	int flag = 0;
-	while (!stk.empty()) {
-		if (a[stk.back()] > a[i]) {  // 小根堆
-			flag = stk.back(); stk.pop_back();
-		} else {
-			break;
-		}
-	}
-	if (flag) { L[i] = flag; }
-	if (!stk.empty()) { R[stk.back()] = i; }
-	stk.push_back(i);
-}
-function<void(int)> dfs = [&](int x){
-	cerr << "now node " << x << "\n";
-	cerr << ":: L = " << L[x] << "\n";
-	cerr << ":: R = " << R[x] << "\n";
-	if (L[x]) dfs(L[x]);
-	if (R[x]) dfs(R[x]);
-};
-dfs(stk[0]);
-```
-
-
-
-## 可持久化
-
-
-
 ### 可持久化线段树
 如题，你需要维护这样的一个长度为 $N$ 的数组，支持如下两种操作：
 
@@ -1439,67 +1642,34 @@ void solve()
 ```
 
 
-### 可持久化Trie
-给定一个非负整数序列 $\{a\}$，初始长度为 $N$。  有 $M$ 个操作，有以下两种操作类型：  
+## 笛卡尔树
 
-1. `A x`：添加操作，表示在序列末尾添加一个数 $x$，序列的长度 $N$ 加 $1$。  
-2. `Q l r x`：询问操作，你需要找到一个位置 $p$，满足 $l \le p \le r$，使得：$a[p] \oplus a[p+1] \oplus ... \oplus a[N] \oplus x$ 最大，输出最大值。
-
+每个节点的编号满足二叉搜索树的性质。
+节点 $i$ 的权值为 $p_i$，每个节点的权值满足小根堆的性质。
 ```cpp
-const int N=2e7+9;
-struct Trie {
-    int ch[N][2];
-    int root[N], cnt[N], top=0, siz=0;
-    void insert(int x) {
-        root[++top] = ++siz;
-        int rt1 = root[top-1], rt2 = root[top];
-        for (int i = 24; i >= 0; --i) {
-            int b = x >> i & 1;
-            ch[rt2][!b] = ch[rt1][!b];
-            ch[rt2][b] = ++siz;
-            rt1 = ch[rt1][b];
-            rt2 = ch[rt2][b];
-            cnt[rt2] = cnt[rt1] + 1;
-        }
-    }
-    int query(int l, int r, int x) {
-        int ans = 0;
-        int rt1 = root[l], rt2 = root[r];
-        for (int i = 24; i >= 0; --i) {
-            int b = x >> i & 1;
-            if (cnt[ch[rt2][!b]] > cnt[ch[rt1][!b]]) {
-                ans += (1 << i);
-                b = !b;
-            }
-            rt1 = ch[rt1][b];
-            rt2 = ch[rt2][b];
-        }
-        return ans;
-    }
-} tr;
-
-void solve()
-{
-	int n, m;
-	cin >> n >> m;
-    tr.insert(0);
-    int sum = 0; 
-    for (int i = 1; i <= n; ++i) {
-        int x; cin >> x;
-        tr.insert(sum ^= x);
-    }
-    for (int i = 1; i <= m; ++i) {
-        char op; cin >> op;
-        if (op == 'A') {
-            int x; cin >> x;
-            tr.insert(sum ^= x);
-        } else {
-            int l, r, x;
-            cin >> l >> r >> x;
-            cout << tr.query(l-1, r, x^sum) << "\n";
-        }
-    }
+vector<int> stk;
+vector<int> L(n+1), R(n+1);
+for (int i = 1; i <= n; ++i) {
+	int flag = 0;
+	while (!stk.empty()) {
+		if (a[stk.back()] > a[i]) {  // 小根堆
+			flag = stk.back(); stk.pop_back();
+		} else {
+			break;
+		}
+	}
+	if (flag) { L[i] = flag; }
+	if (!stk.empty()) { R[stk.back()] = i; }
+	stk.push_back(i);
 }
+function<void(int)> dfs = [&](int x){
+	cerr << "now node " << x << "\n";
+	cerr << ":: L = " << L[x] << "\n";
+	cerr << ":: R = " << R[x] << "\n";
+	if (L[x]) dfs(L[x]);
+	if (R[x]) dfs(R[x]);
+};
+dfs(stk[0]);
 ```
 
 
@@ -1671,7 +1841,114 @@ for (int i = 0; i < n; ++i) {
 }
 ```
 分块解决动态逆序对问题。
+```cpp
+//CF1830E
+#include <bits/stdc++.h>
+using namespace std;
 
+const int MAXN=5e5+5;
+const int K=3162;
+int n,q,p[MAXN],t[MAXN],sz[3162],szblock;
+pair<int,int>a[162][K+5]; // first是val ； second 是 这个元素在原有p排列中的位置 
+long long tot=0,sum=0;
+
+int lowbit(int x){ return x&-x; }
+int query(int i){
+    int ret=0;
+    for(;i;i-=lowbit(i)) ret+=t[i];
+    return ret;
+}
+void modify(int i){
+    for(;i<=n;i+=lowbit(i)) t[i]++;
+}
+
+long long solve(int l,int r){
+	// bell:belong_l l在哪个块   
+	// posl表示l在bell块中是第几个 
+    int bell=(l-1)/K+1,belr=(r-1)/K+1;
+    int posl=lower_bound(a[bell]+1,a[bell]+sz[bell]+1,make_pair(p[l],0))-a[bell];
+    int posr=lower_bound(a[belr]+1,a[belr]+sz[belr]+1,make_pair(p[r],0))-a[belr];
+    if(bell==belr){
+        for(int i=l+1;i<r;i++){
+            if(p[i]<p[l]) sum--;
+            else          sum++;
+            if(p[i]>p[r]) sum--;
+            else          sum++;
+        }
+        a[bell][posl].second=r;	
+        a[belr][posr].second=l;
+    }else{
+        for(int i=1;i<=sz[bell];i++)				//bel_l这个散块 对 答案的影响 
+            if(a[bell][i].second>l){
+                if(a[bell][i].first<p[l]) sum--;
+                else                      sum++;
+                if(a[bell][i].first<p[r]) sum++;
+                else                      sum--;
+            }
+        for(int i=1;i<=sz[belr];i++)				//bel_r这个散块 对 答案的影响  
+            if(a[belr][i].second<r){
+                if(a[belr][i].first>p[r]) sum--;
+                else                      sum++;
+                if(a[belr][i].first>p[l]) sum++;
+                else                      sum--;
+            }
+        for(int i=bell+1,pos;i<belr;i++){			//处理中间所有整块 
+            pos=lower_bound(a[i]+1,a[i]+sz[i]+1,make_pair(p[l],0))-a[i];
+            sum=sum-(pos-1)+(sz[i]-pos+1);
+            pos=lower_bound(a[i]+1,a[i]+sz[i]+1,make_pair(p[r],0))-a[i];
+            sum=sum+(pos-1)-(sz[i]-pos+1);
+        }
+        a[bell][posl].first=p[r];					//交换两个元素的位置，并维护每个块的有序性 
+        if(p[r]>p[l]){
+            while(a[bell][posl]>a[bell][posl+1] && posl<sz[bell]){
+                swap(a[bell][posl],a[bell][posl+1]);
+                posl++;
+            }
+        }else{
+            while(a[bell][posl]<a[bell][posl-1] && posl>1){
+                swap(a[bell][posl],a[bell][posl-1]);
+                posl--;
+            }
+        }
+        a[belr][posr].first=p[l];
+        if(p[l]>p[r]){
+            while(a[belr][posr]>a[belr][posr+1] && posr<sz[belr]){
+                swap(a[belr][posr],a[belr][posr+1]);
+                posr++;
+            }
+        }else{
+            while(a[belr][posr]<a[belr][posr-1] && posr>1){
+                swap(a[belr][posr],a[belr][posr-1]);
+                posr--;
+            }
+        }
+    }
+    if(p[l]<p[r]) sum++;								//计算相互之间产生的逆序对 
+    else          sum--;
+    tot=tot-abs(l-p[l])-abs(r-p[r])+abs(l-p[r])+abs(r-p[l]);
+    swap(p[l],p[r]);
+    return tot-sum;
+}
+
+int main(){
+    cin>>n>>q;
+    for(int i=1;i<=n;i++){
+        cin>>p[i];
+        modify(p[i]);
+        sum+=i-query(p[i]);
+        a[(i-1)/K+1][(i-1)%K+1]=make_pair(p[i],i);
+        sz[(i-1)/K+1]++;
+        tot+=abs(i-p[i]);
+    }
+    szblock=(n-1)/K+1;
+    for(int i=1;i<=szblock;i++) sort(a[i]+1,a[i]+sz[i]+1);
+    while(q--){
+        int l,r;
+        cin>>l>>r;
+        cout<<solve(l,r)<<endl;
+    }
+}
+```
 
 
 # 图论
@@ -1794,7 +2071,51 @@ int kruskal()
 	return ans;
 }
 ```
-
+Prim
+```cpp
+struct node {
+    ll v, w;
+};
+set<pll> q;
+vector<node> edge[N];
+bool is[N];
+ll dis[N];
+ll prim() {
+    int tot = 0;
+    ll ans = 0;
+    memset(is, 0, sizeof(is));
+    for (int i = 1; i <= n; i++) {
+        dis[i] = 1e18;
+    }
+    dis[1] = 0;
+    q.clear();
+    for (int i = 1; i <= n; i++) {
+        q.insert({dis[i], i});
+    }
+    while (!q.empty()) {
+        int x = q.begin()->second;
+        q.erase(q.begin());
+        if (dis[x] == 1e18) {
+            break;
+        }
+        tot++;
+        ans += dis[x];
+        is[x] = 1;
+        for (auto j : edge[x]) {
+            if (!is[j.v] && j.w < dis[j.v]) {
+                q.erase({dis[j.v], j.v});
+                dis[j.v] = j.w;
+                q.insert({dis[j.v], j.v});
+            }
+        }
+    }
+    if (tot != n) {
+        return -1;
+    } else {
+        return ans;
+    }
+}
+```
 
 
 ## 拓扑排序
@@ -1821,7 +2142,7 @@ while (!q.empty()) {
 
 
 
-### 倍增O(LogN)求LCA
+#### 倍增O(LogN)求LCA
 
 ```cpp
 const int N=5e5+5, I=20;
@@ -1868,7 +2189,7 @@ int LCA(int u, int v)
 
 
 
-### 欧拉序+ST表O(1)求LCA
+#### 欧拉序+ST表O(1)求LCA
 
 初次访问节点 $u$ 和回溯到节点 $u$ 时记录，所产生的序列即为欧拉序。
 欧拉序长度为 $2n-1$。
@@ -1879,9 +2200,9 @@ int LCA(int u, int v)
 template <typename T>
 struct ST {};
 
-int first[N], dep[N];
-vector <int> G[N];
-vector <pii> eular;
+int n;
+int first[N + 5], dep[N + 5];
+vector<int> G[N + 5];
 void dfs(int u, int fa)
 {   // 预处理深度和欧拉序
     first[u] = eular.size();
@@ -1895,7 +2216,7 @@ void dfs(int u, int fa)
     }
 }
 
-ST<pii> st;
+ST<pair<int,int>> st;
 int lca(int u, int v)
 {
     u = first[u];
@@ -2033,6 +2354,156 @@ int main()
 ```
 
 
+## DSU on tree
+
+求一棵树中有多少子树，满足其中存在的每种颜色的结点个数都相同。
+```cpp
+const int N=2e5+5;
+int n, c[N], siz[N], hvs[N];
+int L[N], R[N], dfn[N], totdfn;
+vector<int> G[N];
+
+void dfs_init(int u, int fa)
+{   // 预处理 dfn 和重儿子
+	siz[u] = 1;
+	L[u] = ++totdfn;
+	dfn[totdfn] = u;
+	for (int v: G[u]) {
+		if (v != fa) {
+			dfs_init(v, u);
+			siz[u] += siz[v];
+			if (hvs[u] == 0 || siz[v] > siz[hvs[u]]) {
+				hvs[u] = v;
+			}
+		}
+	}
+	R[u] = totdfn;
+}
+
+void add(int u, int dt)
+{
+	--ccnt[cnt[c[u]]];
+	cnt[c[u]] += dt;
+	++ccnt[cnt[c[u]]];
+}
+
+void dfs_solve(int u, int fa, bool keep)
+{
+	for (auto v: G[u]) {  // 先做轻儿子，不保留
+		if (v != fa && v != hvs[u]) {
+			dfs_solve(v, u, false);
+		}
+	}
+	if (hvs[u]) {  // 再做重儿子，保留
+		dfs_solve(hvs[u], u, true);
+	}
+	for (auto v: G[u]) {  // 再把轻儿子的信息加上
+		if (v != fa && v != hvs[u]) {
+			for (int i = L[v]; i <= R[v]; ++i) {
+				add(dfn[i], 1);
+			}
+		}
+	}
+	add(u, 1);
+	ans += (cnt[c[u]] * ccnt[cnt[c[u]]] == siz[u]);
+	if (keep) { return; }
+	for (int i = L[u]; i <= R[u]; ++i) {
+		add(dfn[i], -1);
+	}
+}
+```
+
+
+
+## 树哈希
+方法一：使用 xor shift 进行哈希混淆，计算有根树的哈希值。
+对于无根树，选择以重心为根，计算哈希值最大的那一个。
+```cpp
+using ull = unsigned long long;
+const ull msk = chrono::steady_clock::now().time_since_epoch().count();
+
+// ull h(ull x) { return x * x * x * 1237123 + 19260817; }
+// ull f(ull x) { return h(x & ((1 << 31) - 1)) + h(x >> 31); }
+ull shift(ull x)
+{
+    x ^= msk;
+    x ^= x << 13;
+    x ^= x >> 7;
+    x ^= x << 17;
+    x ^= msk;
+    return x;
+}
+
+ull has[N];
+void getHash(int u, int fa) 
+{
+    has[u] = 1;
+    for (auto v: G[u]) {
+        if (v == fa) { continue; }
+        getHash(v, u);
+        has[u] += shift(has[v]);
+    }
+}
+```
+
+---
+
+方法二：$f(u)=\sum f(v)\times P(siz_v)$，其中 $P(k)$ 表示第 $k$ 个质数。
+记 $g(u)$ 表示以 $u$ 为根时整棵树的哈希值，有换根转移式
+$$
+g(u) = (g(fa)-f(u)\times P(siz_u))\times P(n-siz_u) + f(u)
+$$
+```cpp
+vector<ll> P = sieve(2e6);  // 0-idx，但是也能用，2e6 以内有 1e5 个质数
+const int N=1e5+5;
+int n, siz[N];
+vector<int> G[N];
+ll f[N], g[N];
+
+void dfs(int u, int fa)
+{
+    siz[u] = 1;
+    f[u] = 1;
+    for (auto v: G[u]) {
+        if (v == fa) {
+            continue; 
+        }
+        dfs(v, u);
+        siz[u] += siz[v];
+        f[u] = add(f[u], mul(f[v], P[siz[v]]));
+    }
+}
+
+void change(int u, int fa)
+{
+    if (fa) {
+        ll ffa = del(g[fa], mul<ll>(f[u], P[siz[u]]));
+        g[u] = add(f[u], mul<ll>(ffa, P[n-siz[u]]));
+    }
+    for (auto v: G[u]) {
+        if (v == fa) {
+            continue;
+        }
+        change(v, u);
+    }
+}
+
+void solve()
+{
+	cin >> n;
+    for (int i = 1; i < n; ++i) {
+        int u, v;
+        cin >> u >> v;
+        G[u].push_back(v);
+        G[v].push_back(u);
+    }
+    dfs(1, 0);
+    g[1] = f[1];
+    change(1, 0);
+}
+```
+
+
 ## 基环树
 
 在建图的过程中如果发现 $u,v$ 已经联通，则 $u,v$ 两点必然在环上。从 $u$ 出发 dfs 到 $v$ 即可。
@@ -2119,67 +2590,6 @@ int main()
 }
 ```
 ****
-
-
-## DSU on tree
-
-求一棵树中有多少子树，满足其中存在的每种颜色的结点个数都相同。
-```cpp
-const int N=2e5+5;
-int n, c[N], siz[N], hvs[N];
-int L[N], R[N], dfn[N], totdfn;
-vector<int> G[N];
-
-void dfs_init(int u, int fa)
-{   // 预处理 dfn 和重儿子
-	siz[u] = 1;
-	L[u] = ++totdfn;
-	dfn[totdfn] = u;
-	for (int v: G[u]) {
-		if (v != fa) {
-			dfs_init(v, u);
-			siz[u] += siz[v];
-			if (hvs[u] == 0 || siz[v] > siz[hvs[u]]) {
-				hvs[u] = v;
-			}
-		}
-	}
-	R[u] = totdfn;
-}
-
-void add(int u, int dt)
-{
-	--ccnt[cnt[c[u]]];
-	cnt[c[u]] += dt;
-	++ccnt[cnt[c[u]]];
-}
-
-void dfs_solve(int u, int fa, bool keep)
-{
-	for (auto v: G[u]) {  // 先做轻儿子，不保留
-		if (v != fa && v != hvs[u]) {
-			dfs_solve(v, u, false);
-		}
-	}
-	if (hvs[u]) {  // 再做重儿子，保留
-		dfs_solve(hvs[u], u, true);
-	}
-	for (auto v: G[u]) {  // 再把轻儿子的信息加上
-		if (v != fa && v != hvs[u]) {
-			for (int i = L[v]; i <= R[v]; ++i) {
-				add(dfn[i], 1);
-			}
-		}
-	}
-	add(u, 1);
-	ans += (cnt[c[u]] * ccnt[cnt[c[u]]] == siz[u]);
-	if (keep) { return; }
-	for (int i = L[u]; i <= R[u]; ++i) {
-		add(dfn[i], -1);
-	}
-}
-```
-
 
 
 ## tarjan
@@ -2380,95 +2790,6 @@ struct PBCC {
 ```
 
 
-## 树哈希
-方法一：使用 xor shift 进行哈希混淆，计算有根树的哈希值。
-对于无根树，选择以重心为根，计算哈希值最大的那一个。
-```cpp
-using ull = unsigned long long;
-const ull msk = chrono::steady_clock::now().time_since_epoch().count();
-
-// ull h(ull x) { return x * x * x * 1237123 + 19260817; }
-// ull f(ull x) { return h(x & ((1 << 31) - 1)) + h(x >> 31); }
-ull shift(ull x)
-{
-    x ^= msk;
-    x ^= x << 13;
-    x ^= x >> 7;
-    x ^= x << 17;
-    x ^= msk;
-    return x;
-}
-
-ull has[N];
-void getHash(int u, int fa) 
-{
-    has[u] = 1;
-    for (auto v: G[u]) {
-        if (v == fa) { continue; }
-        getHash(v, u);
-        has[u] += shift(has[v]);
-    }
-}
-```
-
----
-
-方法二：$f(u)=\sum f(v)\times P(siz_v)$，其中 $P(k)$ 表示第 $k$ 个质数。
-记 $g(u)$ 表示以 $u$ 为根时整棵树的哈希值，有换根转移式
-$$
-g(u) = (g(fa)-f(u)\times P(siz_u))\times P(n-siz_u) + f(u)
-$$
-```cpp
-vector<ll> P = sieve(2e6);  // 0-idx，但是也能用，2e6 以内有 1e5 个质数
-const int N=1e5+5;
-int n, siz[N];
-vector<int> G[N];
-ll f[N], g[N];
-
-void dfs(int u, int fa)
-{
-    siz[u] = 1;
-    f[u] = 1;
-    for (auto v: G[u]) {
-        if (v == fa) {
-            continue; 
-        }
-        dfs(v, u);
-        siz[u] += siz[v];
-        f[u] = add(f[u], mul(f[v], P[siz[v]]));
-    }
-}
-
-void change(int u, int fa)
-{
-    if (fa) {
-        ll ffa = del(g[fa], mul<ll>(f[u], P[siz[u]]));
-        g[u] = add(f[u], mul<ll>(ffa, P[n-siz[u]]));
-    }
-    for (auto v: G[u]) {
-        if (v == fa) {
-            continue;
-        }
-        change(v, u);
-    }
-}
-
-void solve()
-{
-	cin >> n;
-    for (int i = 1; i < n; ++i) {
-        int u, v;
-        cin >> u >> v;
-        G[u].push_back(v);
-        G[v].push_back(u);
-    }
-    dfs(1, 0);
-    g[1] = f[1];
-    change(1, 0);
-}
-```
-
-
 ## 最大流
 
 dicnic 在普通图上的时间复杂度是 $O (EV^2)$，在单位容量图上的时间复杂度是 $O (E\min(E^{\frac{1}{2}},V^{\frac{2}{3}}))$
@@ -2592,7 +2913,7 @@ Flow<ll> G(n);  // n 表示最大下标
 | 几何级数                                  | ① $\dfrac{1}{1-x}=\displaystyle\sum_{k=0}^\infty x^k$；<br>② $\dfrac{x}{(1-x)^2}=\displaystyle\sum_{k=1}^\infty kx^k$                                                                                                                                                                                                                                                                                     |
 | 常见的形式幂逆元                              | $A(x)=\sum_{i\ge0}x^i$ 和 $B(x)=1-x$<br>$A(x)=\sum_{i\ge 0} a^ix^i$ 和 $B(x)=1-ax$<br>$A(x)=\sum_{i\ge 0} {i+k-1\choose i}x^i$ 和 $B(x)=(1-x)^k$                                                                                                                                                                                                                                                            |
 | 不定方程 $\displaystyle\sum_{i=1}^mx_i=n$ | 正整数解个数为 ${n-1\choose m-1}$<br>非负整数解的个数为 ${n+m-1\choose m-1}$                                                                                                                                                                                                                                                                                                                                             |
-| 前缀异或和                                 | $\oplus_{i=1}^ni=\begin{cases}n& n\equiv0\pmod4\\ 1 & n\equiv 1\pmod4\\ n+1&n\equiv2\pmod4\\0&n\equiv3\pmod4\end{cases}$                                                                                                                                                                                                                                                                                 |
+| 前缀异或和                                 | $\oplus_{i=1}^ni=\begin{cases}1& n\equiv0\pmod4\\ n+1 & n\equiv1\pmod4\\ 0&n\equiv2\pmod4\\n&n\equiv3\pmod4\end{cases}$                                                                                                                                                                                                                                                                                  |
 | 多重排列                                  | $\dfrac{n!}{\prod_i(k_i!)}$                                                                                                                                                                                                                                                                                                                                                                              |
 | 错位排列问题                                | $D(n)=(n-1)\times(D(n-1)+D(n-2))$                                                                                                                                                                                                                                                                                                                                                                        |
 | 从 $(1,1)$ 走到 $(n,m)$ 的方案数             | $\displaystyle {n+m-2\choose n-1}$                                                                                                                                                                                                                                                                                                                                                                       |
@@ -2601,7 +2922,173 @@ Flow<ll> G(n);  // n 表示最大下标
 
 
 
-## 线性筛
+### 卡特兰数
+
+$Cat(n)$ 的求法：① $\begin{cases}H_1=1\\H_n=\dfrac{4n-2}{n+1}H_{n-1}\end{cases}$；② $H_n=\dfrac{C_{2n}^n}{n+1}$；③ $H_n=C_{2n}^n-C_{2n}^{n-1}$；④ $H_n=\displaystyle\prod_{i=0}^n H_iH_{n-1-i}$
+$Cat(n)$ 的意义：①不跨对角线从 $(1,1)$ 走到 $(n,n)$ 的方案数；② $2n$ 个括号所组成的所有合法括号序列的个数；③合法的出栈方案数；④ $n$ 边形划分为若干个三角形的方案数；⑤ $n+1$ 个节点的二叉树形态。
+```cpp
+ll Cat(ll n) { return C(2*n, n) * qpow(n+1) % MOD; }
+```
+
+
+
+### 扩展欧拉定理
+$$
+a^b \equiv 
+\begin{cases} 
+    a^{b \bmod \varphi(m)}, & \gcd(a,m) = 1, \\ 
+    a^b, & \gcd(a,m) \neq 1, \, b < \varphi(m), \\ 
+    a^{(b \bmod \varphi(m)) + \varphi(m)}, & \gcd(a,m) \neq 1, \, b \geq \varphi(m). 
+\end{cases}
+\pmod{m}
+$$
+
+
+### 阶和原根
+**阶的定义：**$a$ 的阶 $(ord_n a)$ 是满足方程 $a^x \equiv 1 \pmod{n}$ 的最小正整数解
+**定理 1：** 设正整数 $x$，满足 $a^x \equiv 1 \pmod{n}$ 则 $ord_n a\mid x$ ，因此有 $\phi(n)$ 被 $ord_n a$ 整除
+**原根的定义**：若 $a$ 与 $n$ 是互素正整数，且 $\phi(n)=ord_n a$，那么称 $a$ 是 $\bmod n$ 的原根
+**定理 2：** 设 $g$ 为 $\bmod n$ 的原根，则 $g, g^2, g^3, \ldots, g^{\varphi(n)}$ 这 $\varphi(n)$ 个数构成 $\bmod n$ 的缩系。
+**定理 3：** 如果 $ord_n a = t$，$u$ 是正整数，那么 $ord_n (a^u)=\dfrac{t} { (t, u)}$   
+**定理 4：** 如果 $\bmod n$ 有原根 $g$，那么 $\bmod n$ 有 $\phi(\phi( n))$ 个不同的原根，这些原根可以写成 $g^u$ ，其中u是 $1,2,…,\phi(n)$ 中与 $phi(n)$ 互质的数
+**定理 5：** 仅有 $1,2,4$ 或奇素数 $p^α$ 及 $2p^α$ 有原根，其它的数都没有原根。
+
+找出 n 的所有原根（定理 4 和定理 5）
+```cpp
+const int N = 1e6 + 1;
+vector<int>check(N);
+void solve() {
+	int n, g= -1;
+	cin >> n;
+	if (!check[n]) {
+		cout << "0\n\n";
+		return;
+	}
+	int phi_n = euler_phi(n);
+	auto order = [&](int x) {//求x的阶
+		int ord = 0, tmp = 1;
+		while (1) {
+			ord++;
+			tmp *= x;
+			tmp %= n;
+			if (tmp == 1)return ord;
+		}
+		};
+	for (int a = 1; a <= n; a++) {
+		if (gcd(a,n) ==1 && order(a) == phi_n) {
+			g = a;
+			break;
+		}
+	}
+	vector<int> ans;
+	if (g != -1) {
+		int tmp = 1;
+		for (int i = 1; i <= phi_n; i++) {
+			tmp *= g;
+			tmp %= n;
+			if (gcd(phi_n, i) == 1)ans.push_back(tmp);
+		}
+	}
+}
+
+//check数组构造
+check[2] = 1;
+check[4] = 1;
+vector<int> prime = getPrime(N);
+for (auto p : prime) 
+	if (p % 2 == 1) {
+		long long tmp = p;
+		while (tmp < N) {
+			check[tmp] = 1;
+			if (2 * tmp < N)check[2 * tmp] = 1;
+			tmp *= p;
+		}
+	}
+```
+
+
+
+## 因数
+
+可以在 $O(\sqrt{V})$ 的时间内求出一个数的因数。
+$[1,n]$ 所有数字的因数个数和是 $O(n\log n)$ 的。
+$720720$ 是 $10^6$ 内因数最多的数字，其因数个数为 $240$。
+$735134400$ 是 $10^9$ 内因数最多的数字，其因数个数为 $1344$。
+$10^{12}$ 以内的因数大约是 $3\times 10^3$ 数量级。
+```cpp
+const int X=1e5;
+vector<int> fac[X+5];
+for (int i = 1; i <= X; ++i) {
+    for (int j = i; j <= X; j += i) {
+        fac[j].push_back(i);
+    }
+}
+```
+
+
+
+### 质因数分解
+$O(\sqrt n)$ 分解单个素因数
+```cpp
+typedef pair<int, int> pii;
+vector<pii> divide(int n) {
+	vector<pii> primes;
+	int cnt = 0;
+	for (int i = 2; i <= sqrt(n); i++) {
+		cnt = 0;
+		while (n % i == 0)n /= i, cnt++;
+		if (cnt)primes.push_back(make_pair(i, cnt));
+	}
+	if (n > 1)primes.push_back(make_pair(n, 1));
+	return primes;
+}
+//注意1要特判，n==1时会返回空集
+```
+线性预处理+ $O(\log n)$ 分解
+```cpp
+vector<int> sieve(int n, vector<int>& mP)
+{
+    vector<bool> vis(n + 1);
+    vector<int> prime;
+    vis[1] = 1;
+    for (int i = 2; i <= n; ++i) {
+        if (!vis[i]) {
+            prime.push_back(i);
+            mP[i] = i;
+        }
+        for (auto p : prime) {
+            if (i * p > n) { break; }
+            vis[i * p] = 1;
+            mP[i * p] = p;
+            if (i % p == 0) { break; }  // 线性筛关键优化
+        }
+    }
+    return prime;
+}
+
+void solve() {
+    int n;
+    cin >> n;
+    vector<int> minp(n + 1, 1);
+    vector<int> prime = sieve(n, minp);
+    auto divide = [&](int x) {
+        vector<pii> res;
+        for (int y = x; y > 1; y /= minp[y]) {
+            if (res.empty() || res[res.size() - 1].first != minp[y])res.push_back({ minp[y], 1 });
+            else res[res.size() - 1].second++;
+        }
+        return res;
+        };
+}
+```
+
+
+
+## 筛
+
+
+
+### 线性筛
 
 
 ```cpp
@@ -2635,22 +3122,223 @@ for (int y = x; y > 1; y /= mP[y]) {
 
 
 
-## 因数
-
-可以在 $O(\sqrt{V})$ 的时间内求出一个数的因数。
-$[1,n]$ 所有数字的因数个数和是 $O(n\log n)$ 的。
-$720720$ 是 $10^6$ 内因数最多的数字，其因数个数为 $240$。
-$735134400$ 是 $10^9$ 内因数最多的数字，其因数个数为 $1344$。
-$10^{12}$ 以内的因数大约是 $3\times 10^3$ 数量级。
+### 欧拉函数
+求单个欧拉函数
 ```cpp
-const int X=1e5;
-vector<int> fac[X+5];
-for (int i = 1; i <= X; ++i) {
-    for (int j = i; j <= X; j += i) {
-        fac[j].push_back(i);
-    }
+int euler_phi(int n) { 
+    int ans = n;
+    for (int i = 2; i * i <= n; i++)
+        if (n % i == 0) {
+            ans = ans / i * (i - 1);
+            while (n % i == 0) n /= i;
+        }
+    if (n > 1) ans = ans / n * (n - 1);
+    return ans;
 }
 ```
+
+线性筛欧拉函数
+```cpp
+vector<int> get_Euler_phi(int n) {
+	vector<int> prime = getPrime(n); //见线性筛模版
+	vector<int>notPrime(n + 1);
+	vector<int> Euler_phi(n + 1);
+	Euler_phi[1] = 1;
+	for (int i = 2; i <= n; i++) {
+		if (!notPrime[i]) 
+			Euler_phi[i] = i - 1;
+		for (auto p : prime) {
+			if (i * p > n) break;
+			notPrime[i * p] = true;
+			if (i % p == 0) {
+				Euler_phi[i * p] = Euler_phi[i] * p;
+				break;
+			}
+			Euler_phi[i * p] = Euler_phi[i] * Euler_phi[p];
+		}
+	}
+	return Euler_phi;
+}
+```
+
+
+### 莫比乌斯函数
+```cpp
+vector <int> get_Mu(int n)
+{
+	vector<int> mu(n + 1);
+	vector <bool> vis(n + 1);
+	vector <int> prime;
+	vis[1] = 1;
+	for (int i = 2; i <= n; ++i) {
+		if (!vis[i]) { prime.push_back(i); mu[i] = -1; }
+		for (auto p : prime) {
+			if (i * p > n) { break; }
+			vis[i * p] = 1;
+			if (i % p == 0) { mu[i * p] == 0; break; }  
+			mu[i * p] = -mu[i];
+		}
+	}
+	return mu;
+}
+```
+
+
+### Min_25筛
+用途：定义积性函数 $f(x)$，求解 $\sum_{i = 1} ^ n f(i)$
+使用说明：要将$f(x)$多项式拆成单项式，然后分别计算递推函数g
+下板题意为：定义积性函数 $f(x)$，且 $f(p ^ k) = p ^ k(p ^ k - 1)$（$p$ 是一个质数）
+```cpp
+void min_25(int n) {
+	const int MOD = 1000000007, inv2 = 500000004, inv3 = 333333336; //inv2、inv3分别表示2和3的逆元，公式需要
+	int sq = sqrt(n);
+	vector<int>g1(sq * 3), g2(sq * 3); //递推函数,数量依据多项式拆出来的单项式个数
+	vector<int>sp1(sq * 3), sp2(sq * 3); //前i项质数的多项式前缀和
+	vector<int>w(sq * 3); //离散化存储要处理的数
+	vector<int>idx1(sq * 3), idx2(sq * 3);//记录离散化下标
+	
+	auto getPrime = [&](int n){
+			vector <bool> vis(n + 1);
+			vector <int> prime;
+			prime.push_back(1);
+			vis[1] = 1;
+			for (int i = 2; i <= n; ++i) {
+				if (!vis[i]) { 
+					prime.push_back(i); 
+					sp1[prime.size() - 1] = (sp1[prime.size() - 2] + i) % MOD;
+					sp2[prime.size() - 1] = (sp2[prime.size() - 2] + i * i) % MOD;
+				}
+				for (auto p : prime) {
+					if (p > 1) {
+						if (i * p > n) { break; }
+						vis[i * p] = 1;
+						if (i % p == 0) { break; }
+					}
+				}
+			}
+			
+			return prime;
+	};
+
+	vector<int> p = getPrime(sq);
+	function<int(int, int)> S = [&](int x, int y) ->int {
+		if (p[y] >= x)return 0;
+		int k = (x <= sq ? idx1[x] : idx2[n / x]);
+		int ans = (g2[k] - g1[k] + MOD - (sp2[y] - sp1[y]) + MOD) % MOD;//质数贡献
+		for (int i = y + 1; i < p.size() && p[i] * p[i] <= x; i++)//合数贡献
+		{
+			int pe = p[i];
+			for (int e = 1; pe <= x; e++, pe = pe * p[i])
+			{
+				int xx = pe % MOD;
+				ans = (ans + xx * (xx - 1) % MOD * (S(x / pe, i) + (e != 1))) % MOD;
+			}
+		}
+		return ans % MOD;
+	};
+	int d = 0, cnt = 0;
+	while (d < n) {
+		d++;
+		w[++cnt] = n / d;
+		int tmp = w[cnt] % MOD;
+		g2[cnt] = tmp * (tmp + 1) / 2 % MOD * (2 * tmp + 1) % MOD * inv3 % MOD - 1;//平方和公式，因为p0=1，所以要把1去掉
+		g1[cnt] = tmp * (tmp + 1) / 2 % MOD - 1;
+		if (n / d <= sq)idx1[n / d] = cnt;
+		else idx2[n / (n / d)] = cnt;
+		d = n / (n / d);
+	}
+	
+	for (int i = 1; i < p.size();i++) 
+		for (int j = 1; j <= cnt && p[i] * p[i] <= w[j]; j++)
+		{
+			int k = (w[j] / p[i] <= sq ? idx1[w[j] / p[i]] : idx2[n / (w[j] / p[i])]);
+			g1[j] -= p[i] * (g1[k] - sp1[i - 1] + MOD) % MOD;
+			g2[j] -= p[i] * p[i] % MOD * (g2[k] - sp2[i - 1] + MOD) % MOD;
+			g1[j] %= MOD, g2[j] %= MOD;
+			if (g1[j] < 0)g1[j] += MOD;
+			if (g2[j] < 0)g2[j] += MOD;
+		}
+	cout << (S(n, 0) + 1) % MOD;
+}
+```
+
+也可以用于求非积性函数的质数项前缀和，只需最后计算S的时候去掉合数的贡献即可，例如：Min_25筛求区间素数个数(即n以内素数个数)
+```cpp
+int min_25(int n) {
+	int sq = sqrt(n);
+	vector<int>g1(sq * 3);
+	vector<int>sp1(sq * 3);
+	vector<int>w(sq * 3); 
+	vector<int>idx1(sq * 3), idx2(sq * 3);
+	auto getPrime = [&](int n) {
+		vector <bool> vis(n + 1);
+		vector <int> prime;
+		prime.push_back(1);
+		vis[1] = 1;
+		for (int i = 2; i <= n; ++i) {
+			if (!vis[i]) {
+				prime.push_back(i);
+				sp1[prime.size() - 1] = (sp1[prime.size() - 2] + 1);
+			}
+			for (auto p : prime) {
+				if (p > 1) {
+					if (i * p > n) { break; }
+					vis[i * p] = 1;
+					if (i % p == 0) { break; }
+				}
+			}
+		}
+		return prime;
+	};
+	vector<int> p = getPrime(sq);
+	function<int(int, int)> S = [&](int x, int y) ->int {
+		if (p[y] >= x)return 0;
+		int k = (x <= sq ? idx1[x] : idx2[n / x]);
+		int ans = g1[k] -sp1[y];
+		return ans;
+		};
+	int d = 0, cnt = 0;
+	while (d < n) {
+		d++;
+		w[++cnt] = n / d;
+		int tmp = w[cnt];
+		g1[cnt] = tmp - 1;
+		if (n / d <= sq)idx1[n / d] = cnt;
+		else idx2[n / (n / d)] = cnt;
+		d = n / (n / d);
+	}
+
+	for (int i = 1; i < p.size(); i++)
+		for (int j = 1; j <= cnt && p[i] * p[i] <= w[j]; j++)
+		{
+			int k = (w[j] / p[i] <= sq ? idx1[w[j] / p[i]] : idx2[n / (w[j] / p[i])]);
+			g1[j] -= g1[k] - sp1[i - 1];
+		}
+	return S(n, 0);
+}
+```
+
+
+## 数论分块
+$\left\lfloor\dfrac{n}{i}\right\rfloor$ 所在块的右端点为 $\left\lfloor\dfrac{n}{\lfloor n/l\rfloor}\right\rfloor$
+```cpp
+ll l=1, r=0;
+while (l <= n) {
+    r = n / (n/l);
+    // 统计 ans
+    l = r + 1;
+}
+```
+$\left\lceil \dfrac{n}{i}\right\rceil$ 所在块的右端点为 $\left\lfloor \dfrac{n-1}{\lfloor n-1/l\rfloor}\right\rfloor$，注意特判 $l=n$ 的情况
+```cpp
+ll l=1, r=0;
+while (l <= n) {
+    r = (l >= n ? n : (n-1)/((n-1)/l));
+    // 统计 ans
+    l = r + 1;
+}
+```
+二维数论分块，将 `r = n / (n / i)` 替换为 `r = min(n / (n / i), m / (m / i))`
 
 
 
@@ -2676,6 +3364,75 @@ int lcm(int x, int y) {
 }
 ```
 
+
+
+## 扩展欧几里得算法
+求 $ax+by=\gcd(a,b)$ 的一组解，函数返回值是 $\gcd(a,b)$，x, y 在迭代中途求解
+该函数也可用于求逆元，因为 a、b 互素的时候求解 $ax+by=1$，即 $ax \equiv 1 \pmod{b}$，但 $x$ 有可能是负数
+```cpp
+typedef long long ll;
+ll Exgcd(ll a, ll b, ll& x, ll& y) {
+    if (!b) {
+        x = 1, y = 0;
+        return a;
+    }
+    ll d = Exgcd(b, a % b, y, x);
+	y -= a / b * x;
+    return d;
+}
+```
+
+扩欧求解线性同余方程 $ax\equiv c \pmod{b}$，转化成 $ax+by=c$ 求解，函数返回是否有解，x, y 是 $ax+by=c$ 的一组解，通解 $x=x_0+bt$ ; $y=y_0-at$ ($t$ 取任意整数)
+```cpp
+bool liEu(int a, int b, int c, int& x, int& y) {
+    int d = Exgcd(a, b, x, y);
+    if (c % d != 0) return false;
+    int k = c / d;
+    x *= k;
+    y *= k;
+    return true;
+}
+```
+
+
+
+## 中国剩余定理
+求解线性同余方程组 $x\equiv a_i \pmod{r_i}$
+```cpp
+typedef long long ll;//很可能long long也会爆，要开__int128
+ll CRT(vector<ll> &r, vector<ll> &a) {
+    ll n = 1, ans = 0, k = a.size();
+    for (auto x : r) n = n * x;
+    for (int i = 0; i < k; i++) {
+        ll m = n / r[i], R, y;
+        Exgcd(m, r[i], R, y);  // 见扩欧模版
+        ans = (ans + a[i] * m * R % n) % n;
+    }
+    return (ans % n + n) % n;
+}
+```
+
+
+## 扩展中国剩余定理
+处理模数不互质的情况
+```cpp
+ll ExCRT(vector<ll>&r,vector<ll>&a) {
+	ll R = r[1], A = a[1];
+	auto mix = [&](ll aa, ll rr) {
+		ll x, y;
+		liEu(R, rr, aa - A, x, y);
+		A += R * x;
+		R = lcm(R, rr);
+		A %= R;
+		if (A < 0)A += R;
+		};
+	for (int i = 2; i < r.size(); i++)
+		mix(a[i], r[i]);
+	ll ans = A % R;
+	if (ans < 0)ans += R;
+	return ans;
+}
+```
 
 
 ## 排列组合数
@@ -2745,40 +3502,11 @@ ll lucas(ll a, ll b) {
 
 
 
-## 卡特兰数
-
-$Cat(n)$ 的求法：① $\begin{cases}H_1=1\\H_n=\dfrac{4n-2}{n+1}H_{n-1}\end{cases}$；② $H_n=\dfrac{C_{2n}^n}{n+1}$；③ $H_n=C_{2n}^n-C_{2n}^{n-1}$；④ $H_n=\displaystyle\prod_{i=0}^n H_iH_{n-1-i}$
-$Cat(n)$ 的意义：①不跨对角线从 $(1,1)$ 走到 $(n,n)$ 的方案数；② $2n$ 个括号所组成的所有合法括号序列的个数；③合法的出栈方案数；④ $n$ 边形划分为若干个三角形的方案数；⑤ $n+1$ 个节点的二叉树形态。
-```cpp
-ll Cat(ll n) { return C(2*n, n) * qpow(n+1) % MOD; }
-```
+## 线性代数
 
 
 
-## 数论分块
-$\left\lfloor\dfrac{n}{i}\right\rfloor$ 所在块的右端点为 $\left\lfloor\dfrac{n}{\lfloor n/l\rfloor}\right\rfloor$
-```cpp
-ll l=1, r=0;
-while (l <= n) {
-    r = n / (n/l);
-    // 统计 ans
-    l = r + 1;
-}
-```
-$\left\lceil \dfrac{n}{i}\right\rceil$ 所在块的右端点为 $\left\lfloor \dfrac{n-1}{\lfloor n-1/l\rfloor}\right\rfloor$，注意特判 $l=n$ 的情况
-```cpp
-ll l=1, r=0;
-while (l <= n) {
-    r = (l >= n ? n : (n-1)/((n-1)/l));
-    // 统计 ans
-    l = r + 1;
-}
-```
-二维数论分块，将 `r = n / (n / i)` 替换为 `r = min(n / (n / i), m / (m / i))`
-
-
-
-## 高斯消元
+### 高斯消元
 ```cpp
 int Guess(vector<vector<db>> &a)
 {
@@ -2828,7 +3556,7 @@ int Guess(vector<vector<db>> &a)
 
 
 
-## 线性基
+### 线性基
 ```cpp
 struct LinearBasis {
     static const int maxbase = 35;
@@ -2961,7 +3689,7 @@ struct LinearBasis {
 
 
 
-## 矩阵快速幂
+### 矩阵快速幂
 ```cpp
 using matrix = vector<vector<ll>>;
 matrix IM(int n) {
@@ -3015,6 +3743,72 @@ double calc(double l, double r, double eps) {
 }
 ```
 
+
+
+## 离散对数
+```cpp
+// https://www.luogu.com.cn/article/svjqhzj5
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/hash_policy.hpp>
+using namespace std;
+using namespace __gnu_pbds;
+typedef long long ll;
+const int N = 31630;
+int qpow(int a, int b, int p) {
+	int c = 1;
+	while (b) {
+		if (b & 1) c = (ll)c * a % p;
+		a = (ll)a * a % p, b >>= 1;
+	}
+	return c;
+}
+gp_hash_table<int, int> mp;
+int p, g, blk, w;
+void init(int g, int P, int B) {
+	p = P, blk = B, w = qpow(qpow(g, blk, p), p - 2, p);
+	int x = 1;
+	for (int i = 0; i < blk; i++) mp[x] = i, x = (ll)x * g % p;
+}
+int BSGS(int a) {
+	int x = a, tot = p / blk;
+	for (int i = 0; i <= tot; i++) {
+		if (mp.find(x) != mp.end()) return i * blk + mp[x];
+		x = (ll)x * w % p;
+	}
+	return -1;
+}
+int lg_1, lim, tot, pri[N], lg[N];
+bool vis[N];
+inline int mod(int x, int p) { return x >= p ? x - p : x; }
+void sieve(int n) {
+	for (int i = 2; i <= n; i++) {
+		if (!vis[i]) pri[++tot] = i, lg[i] = BSGS(i);
+		for (int j = 1, k; j <= tot && i * pri[j] <= n; j++) {
+			k = pri[j];
+			vis[i * k] = 1, lg[i * k] = mod(lg[i] + lg[k], p - 1);
+			if (!(i % k)) break;
+		}
+	}
+}
+int Log(int a) {
+	if (a <= lim) return lg[a];
+	int b = p / a, c = p % a;
+	if (c < a - c) return mod(mod(lg_1 + Log(c), p - 1) - lg[b] + p - 1, p - 1);
+	return mod(Log(a - c) - lg[b + 1] + p - 1, p - 1);
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0), cout.tie(0);
+	cin >> p >> g, lim = sqrt(p) + 1;
+	init(g, p, sqrt(p * sqrt(p) / log(p)));
+	lg_1 = BSGS(p - 1);
+	sieve(lim);
+	int T, x;
+	cin >> T;
+	while (T--) cin >> x, cout << Log(x) << '\n';
+}
+```
 
 
 ## 多项式
@@ -3780,6 +4574,7 @@ for(int k=0;k<=19;k++)
 	- 多造数据。想清楚每一步是要干什么、为什么、对不对，如果理不清楚那就不要指望代码能写对
 	- 可以尝试写写注释
 	- 如果觉得脑袋不清醒，去洗把脸
+	- 卡签到不要红温，及时换题
 - 眼瞎 / 脑残
 	- 不验样例就开始写，不造数据就随便乱交
 	- 要和队友确认题意
