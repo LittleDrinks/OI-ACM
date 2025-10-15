@@ -4,22 +4,26 @@ aliases:
 ---
 ```python
 from os import listdir as l, system as e
-from os.path import join as jp
+from os.path import join as j
 from sys import argv
 import subprocess as s
-_,q,f = argv
+
+q,f = argv[1:3]
+tid = argv[3] if len(argv)>3 else None
+
 if "py" in f:
     cmd = ["python3", f]
 else:
     e(f"g++ -std=gnu++20 -O2 -Wall {f}.cpp -o {f}")
-    cmd = jp(".", f"{f}.exe")
+    cmd = j(".", f)
 
 d='samples-'+q.capitalize()
 g,r,p,n='\033[32m','\033[31m','\033[35m','\033[0m'
 for i in l(d):
-    if not 'in' in i: continue
-    t=jp(d,i[:-2])
-    print(i,'测评结果 ',end='',flush=1)
+    if ("in" not in i) or (tid and i != tid + ".in"):
+        continue
+    t = j(d, i[:-2])
+    print(i,end=' ',flush=1)
     try:
         k = s.run(cmd, timeout=2, stdin=open(f"{t}in"), 
                  stdout=open(f"{t}out", 'w'), stderr=s.PIPE, text=1)

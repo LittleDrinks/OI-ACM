@@ -31,7 +31,7 @@ for (int i = 1; i < (1 << n); i++) {
 ```
 
 
-# __int128流重载
+# \_\_int128流重载
 ```cpp
 istream& operator>> (istream& is, __int128 &x)
 {
