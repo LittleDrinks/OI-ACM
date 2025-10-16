@@ -1,9 +1,4 @@
-[TOC]
-
-
-
 # 赛前准备
-
 - 打开 vscode 的自动保存功能
 - （如需）配置 python 和 g++ 环境变量
 - （如需）`ctrl+shift+p` 选择 `C/C++：Edit Configurations（UI）`，配置编译器路径
@@ -12,57 +7,30 @@
 
 
 
-## 土制cph(仅linux)
-
-第一版，使用 `timeout`，仅适用 linux
-```python
-from os import system as e, listdir as l
-from sys import argv
-_, q, f = argv  # q: 题号, f: 文件名
-
-# r: 运行命令
-# 跑 py 需要 `python3 cph.py A A.py`
-if "py" in f:
-	r = f"python3 {f}"
-else:
-	e(f"g++ -std=c++23 -o2 -Wall {f}.cpp -o {f}")
-	r = "./" + f
-
-#
-d = "samples-" + q.capitalize()
-for i in l(d):
-	if not "in" in i: continue
-	print(i)
-	p = d + "/" + i[:-2]
-	if e(f"timeout 2 {r}<{p}in>{p}out"): print("TLE or RE")
-	else:
-		with open(f"{p}out") as o, open(f"{p}ans") as a:
-			print("AC" if o.read().split()==a.read().split() else "WA")
-```
-
-
-
 ## 土制cph(全平台)
 
-第二版，使用 `subprocess`，添加彩字，适用 windows 和 linux，支持计算相对误差
 ```python
 from os import listdir as l, system as e
-from os.path import join as jp
+from os.path import join as j
 from sys import argv
 import subprocess as s
-_,q,f = argv
+
+q,f = argv[1:3]
+tid = argv[3] if len(argv)>3 else None
+
 if "py" in f:
     cmd = ["python3", f]
 else:
     e(f"g++ -std=gnu++20 -O2 -Wall {f}.cpp -o {f}")
-    cmd = jp(".", f"{f}.exe")
+    cmd = j(".", f)
 
 d='samples-'+q.capitalize()
 g,r,p,n='\033[32m','\033[31m','\033[35m','\033[0m'
 for i in l(d):
-    if not 'in' in i: continue
-    t=jp(d,i[:-2])
-    print(i,'测评结果 ',end='',flush=1)
+    if ("in" not in i) or (tid and i != tid + ".in"):
+        continue
+    t = j(d, i[:-2])
+    print(i,end=' ',flush=1)
     try:
         k = s.run(cmd, timeout=2, stdin=open(f"{t}in"), 
                  stdout=open(f"{t}out", 'w'), stderr=s.PIPE, text=1)
@@ -77,6 +45,45 @@ for i in l(d):
         if k.stderr: print(f'{r}{k.stderr}{n}')
 ```
 
+
+
+## template
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using db = long double;
+using i128 = __int128;
+
+template<typename T1,typename T2>
+ostream& operator<<(ostream& os, const pair<T1,T2>& p) {
+    return os << "( " << p.first << ", " << p.second << " )";
+}
+template<typename T>
+ostream& operator<<(ostream& os, const vector<T>& v) {
+    os << "[ ";
+    if (v.size()) os << v[0];
+    for (int i = 1; i < int(v.size()); ++i) {
+        os << ", " << v[i];
+    }
+    return os << " ]";
+}
+
+void solve() 
+{
+    int n;
+    cin >> n;
+}
+
+int main()
+{
+    ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); 
+    int t = 1;
+    cin >> t;
+    while (t--) { solve(); }
+}
+
+```
 
 
 ## 随机数
@@ -150,6 +157,7 @@ while (1) {
 .sh 脚本
 ```cpp
 #!/bin/bash
+# chmod +x check.sh
 P=$1
 g++ -std=gnu++20 -O2 "${P}.cpp" -o "${P}"
 g++ -std=gnu++20 -O2 "${P}_bf.cpp" -o "${P}_bf"
@@ -169,55 +177,11 @@ done
 
 
 
-## template
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
-using db = long double;
-using i128 = __int128;
-
-template<typename T1,typename T2>
-ostream& operator<<(ostream& os, const pair<T1,T2>& p) {
-    return os << "( " << p.first << ", " << p.second << " )";
-}
-template<typename T>
-ostream& operator<<(ostream& os, const vector<T>& v) {
-    os << "[ ";
-    if (v.size()) os << v[0];
-    for (int i = 1; i < int(v.size()); ++i) {
-        os << ", " << v[i];
-    }
-    return os << " ]";
-}
-
-void solve()
-{
-    int n;
-    cin >> n;
-}
-
-int main()
-{
-    ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); 
-    int t = 1;
-    cin >> t;
-    while (t--) { solve(); }
-}
-
-```
-
-
 # 杂项
 
 
 
-## 常用函数
-
-
-
-
-### 快读
+## 快读
 ```cpp
 inline int read()
 {
@@ -229,24 +193,7 @@ inline int read()
 ```
 
 
-### 取模
-```cpp
-const int MOD=998244353;
-ll add(ll x, ll y) { return (x+y)%MOD; }
-ll del(ll x, ll y) { return add(x, MOD-y); }
-ll mul(ll x, ll y) { return (x*y)%MOD; }
-ll qpow(ll a, ll b = MOD - 2) {
-	ll res = 1;
-	for (; b; b >>= 1) {
-		if (b & 1) { res = mul(res, a); }
-		a = mul(a, a);
-	}
-	return res;
-}
-```
-
-
-### __int128流重载
+## __int128流重载
 ```cpp
 istream& operator>> (istream& is, __int128 &x)
 {
@@ -273,7 +220,7 @@ ostream& operator<< (ostream& os, __int128 &x)
 ```
 
 
-### 解除python大数限制
+## 解除python大数限制
 ```python
 import sys
 sys.set_int_max_str_digits(100005)
@@ -281,7 +228,7 @@ sys.set_int_max_str_digits(100005)
 
 
 
-### 二进制
+## 二进制
 ```cpp
 // 计算一个整数的二进制表示中有多少个 1
 __builtin_popcountll(i);
@@ -292,7 +239,7 @@ __lg(i);  // i 最多 32 位
 ```
 
 
-### 子集枚举
+## 子集枚举
 ```cpp
 for (int i = 1; i < (1 << n); i++) {
 	for (int j = i; j; j = (j - 1) & i) {
@@ -300,35 +247,6 @@ for (int i = 1; i < (1 << n); i++) {
 	}
 }
 ```
-
-
-### vector相关
-
-```cpp
-// 多维 vector，需要 c++17，c++14 只能老老实实写 vector<vector<int>>
-vector a(n+1, vector (n+1, vector<int>(n+1)));
-
-// 最值
-int mx = *min_element(vec.begin(), vec.end(), cmp);
-int mn = *min_element(vec.begin(), vec.end(), cmp);
-
-// 去重与离散化
-for (int i = 1; i <= n; ++i) { vec.push_back(a[i]); }
-sort(vec.begin(), vec.end());
-vec.erase(unique(vec.begin(), vec.end()), vec.end());
-for (int i = 1; i <= n; ++i) {
-	idx[i]=lower_bound(vec.begin(), vec.end(), a[i])-vec.begin()+1;  // 下标从1开始
-}
-
-// 前缀和
-vector <ll> a(n), s(n);
-partial_sum(a.begin(), a.end(), s.begin());
-ll sum = accumulate(a.begin(), a.end(), 0LL);
-
-// 填充 1~n，令 a[i]=i
-iota(a.begin(), a.end(), 0);
-```
-
 
 
 ## 整数域三分
@@ -372,6 +290,11 @@ if (duration > 998) { cout << ans << "\n"; exit(0); }
 
 # 计算几何
 
+
+
+
+## 向量
+
 ```cpp
 using ll = long long;
 using db = long double;
@@ -379,13 +302,7 @@ const db eps=1e-8;
 const db PI=acos(-1.0);
 const db inf = numeric_limits<db>::max();
 int sgn(auto x) { return (x > eps) - (x < -eps); }
-```
 
-
-
-## 向量
-
-```cpp
 using T = ll;
 struct Point {
 	T x, y;
@@ -1953,19 +1870,6 @@ int main(){
 
 # 图论
 
-https://csacademy.com/app/graph_editor/
-```CPP
-typedef pair<int,int> pii;
-const int N=2005;
-vector <pii> G[N];
-
-void dfs(int u, int fa)
-{
-    for (auto [v, w]: G[u]) {
-        if (v != fa) { dfs(v, u); }
-    }
-}
-```
 
 
 
@@ -2787,6 +2691,47 @@ struct PBCC {
         return V;
     }
 };
+```
+
+
+## 二分图最大匹配
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N=505, M=505, E=505;
+int n, m, e, match[N], ans;
+bool vis[N];
+vector <int> G[N];
+
+bool dfs(int u)
+{
+    for (int v: G[u]) {
+        if (!vis[v]) {
+            vis[v] = true;
+            if (!match[v] || dfs(match[v])) {
+                match[v] = u; return true;
+            }
+        }
+    }
+    return false;
+}
+
+int main()
+{
+    cin >> n >> m >> e;
+    for (int i = 1; i <= e; ++i) {
+        int u, v;
+        cin >> u >> v;
+        G[u].push_back(v);
+    }
+    for (int i = 1; i <= n; ++i) {
+        memset(vis, 0, sizeof(vis));
+        ans += dfs(i);
+    }
+    cout << ans << endl;
+}
 ```
 
 
@@ -4583,6 +4528,7 @@ for(int k=0;k<=19;k++)
 	- 【与】和【或】不要搞反
 	- 如果一眼看上去感觉完全不可做，很有可能是缺条件或看（想）错条件，先模样例，防止脑残
 	- 如果题面或数据范围看错了，从头开始重想，避免下意识地忽略正解
+	- 建图的时候边的数量别少看零，$500\times500=250000$
 	- 不要忘记换行
 - 开 `long long`
 	- 叉乘的结果再相乘，需要检查是否爆 `long long`
