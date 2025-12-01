@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "b0b2e0054146c071",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "74aab1d2ef3ead34",
+            "id": "04818cbf3e0d6158",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "3-文档/1-笔记/概率与期望.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "概率与期望"
             }
           }
         ]
@@ -49,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "凸壳",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -84,7 +88,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 332.5
+    "width": 290.5
   },
   "right": {
     "id": "8893928c8602158c",
@@ -193,10 +197,19 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "825153f3cff25d9a",
+  "active": "04818cbf3e0d6158",
   "lastOpenFiles": [
-    "2-题解/CF2170E.md",
+    "2-题解/CF1265E.md",
+    "3-文档/1-笔记/概率与期望.md",
+    "2-题解/CF235B.md",
+    "2-题解/CF518D.md",
+    "2-题解/CF280C.md",
+    "2-题解/CF453A.md",
+    "3-文档/1-笔记/DP.md",
+    "3-文档/1-笔记/概率与期望 1.md",
     "0-系统组件/homepage.md",
+    "4-输出/板子/差分约束.md",
+    "2-题解/CF2170E.md",
     "4-输出/板子/字符串哈希.md",
     "1-闪念/20240930220540 高版本gcc和devc++配置.md",
     "2-题解/AT_abc433_E.md",
@@ -212,16 +225,7 @@
     "4-输出/板子/火车头.md",
     "4-输出/板子/运行时间.md",
     "4-输出/板子/子集枚举.md",
-    "4-输出/板子/二进制.md",
     "~syncthing~.nomedia.tmp",
-    "4-输出/板子/土制cph(全平台).md",
-    "4-输出/板子/对拍.md",
-    "4-输出/板子/数论分块.md",
-    "4-输出/板子/随机数.md",
-    "1-闪念/20241112183800 为什么python在处理大整数时会RE.md",
-    "1-闪念/20240907235646 离散化时下标怎么写.md",
-    "4-输出/板子/python.md",
-    "2-题解/AT_abc318_g.md",
     "2-题解/未命名",
     "4-输出/模板整理/7-DP",
     "4-输出/模板整理/6-字符串",
