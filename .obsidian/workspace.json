@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2-题解/gym103861L.md",
+                "file": "0-系统组件/homepage.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "gym103861L"
+              "title": "homepage"
             }
           }
         ]
@@ -180,7 +180,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:创建新数据库": false,
+      "bases:新建数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -199,11 +199,12 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "2-题解/AT_arc212_a.md",
     "0-系统组件/homepage.md",
+    "4-输出/板子/懒标记线段树.md",
+    "4-输出/板子/线段树.md",
     "2-题解/gym103861L.md",
     "2-题解/CF1969E.md",
-    "4-输出/板子/线段树.md",
-    "4-输出/板子/懒标记线段树.md",
     "2-题解/AT_abc438_e.md",
     "4-输出/板子/强连通分量（SCC）.md",
     "4-输出/板子/基环树.md",
@@ -224,7 +225,6 @@
     "2-题解/CF235B.md",
     "2-题解/CF518D.md",
     "2-题解/CF280C.md",
-    "2-题解/CF453A.md",
     "~syncthing~.nomedia.tmp",
     "2-题解/未命名",
     "4-输出/模板整理/7-DP",
