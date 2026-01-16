@@ -1,0 +1,16 @@
+[
+	{trigger:"\\dis", replacement:"\\displaystyle $0", options:"m"},
+    {trigger:"\\rm", replacement:"\\mathrm{$0}", options:"m"},
+	{trigger:"\\bb", replacement:"\\mathbb{$0}", options:"m"},
+    {trigger:"d", replacement:"\\mathrm{d}", options:"m"},
+    {trigger:"E", replacement:"\\mathbb{E}", options:"m"},
+	{trigger:"cov", replacement:"\\mathrm{cov}($0)$1", options:"m"},
+    {trigger:"\\sum", replacement:"\\sum_{$0}^{$1}$2", options:"m"}, 
+	{trigger:"\\prod", replacement:"\\prod_{$0}^{$1}$2", options:"m"},
+    {trigger:"\\int", replacement:"\\int_{$0}^{$1}$2", options:"m"},
+    {trigger:"\\begin", replacement:"\\begin{$0}\n$2\n\\end{$1}$3", options:"M"},
+    {trigger:"\\begin", replacement:"\\begin{$0}$2\\end{$1}$3", options:"N"},
+    {trigger:"pm", replacement:"\\begin{pmatrix} $0\\end{pmatrix}", options:"m"},
+    {trigger:"\\left", replacement:"\\left$0$2\\right$1$3", options:"m"},
+    {trigger:"\\<", replacement:"\\langle $0 \\rangle", options:"m"},
+]
