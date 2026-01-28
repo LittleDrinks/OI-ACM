@@ -8,6 +8,7 @@ longform:
     - 赛前准备
     - - 土制cph(全平台)
       - template
+      - 模数类
       - 随机数
       - 对拍
     - 杂项
